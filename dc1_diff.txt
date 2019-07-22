@@ -1,0 +1,16 @@
+R01-02 Measured Power Measured: 0.237 kW, Modelled: 0 kW
+R02-02 Measured Power Measured: 3.363 kW, Modelled: 0 kW
+R02-01 Measured Power Measured: 1.862 kW, Modelled: 0 kW
+R10-07 Measured Power Measured: 3.41 kW, Modelled: 0 kW
+R02-03 Measured Power Measured: 3.448 kW, Modelled: 0 kW
+R09-06 Measured Power Measured: 5.766 kW, Modelled: 0 kW
+R09-07 Measured Power Measured: 6.165 kW, Modelled: 0 kW
+R09-08 Measured Power Measured: 1.311 kW, Modelled: 0 kW
+R08-01 (DMX-4 Storage Bay) Measured Power Measured: 3.8285 kW, Modelled: 0 kW
+R08-02 Measured Power Measured: 0.921 kW, Modelled: 0 kW
+R08-04 (DMX-4 Storage Bay) Measured Power Measured: 1.729 kW, Modelled: 0 kW
+R03-04 Measured Power Measured: 7.732 kW, Modelled: 0 kW
+R08-06 Measured Power Measured: 0.807 kW, Modelled: 0 kW
+R08-05 (DMX-4 Storage Bay) Measured Power Measured: 1.748 kW, Modelled: 0 kW
+R05-06 Measured Power Measured: 4.085 kW, Modelled: 0 kW
+R05-05 Measured Power Measured: 1.643 kW, Modelled: 0 kW

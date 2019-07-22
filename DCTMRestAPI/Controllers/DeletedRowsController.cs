@@ -1,0 +1,157 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class DeletedRowsController : Controller
+    {
+        private readonly DCTrackContext _context;
+        private readonly ILogger _logger;
+
+        public DeletedRowsController(DCTrackContext context,ILogger<DeletedRowsController> logger)
+        {
+            _context = context;
+            _logger = logger;
+        }
+
+
+        /// <summary>
+        /// Gets all Deleted Rows
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(typeof(TblDeletedRows), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblDeletedRows> Get()
+        {
+            List<TblDeletedRows> types = (from g in _context.TblDeletedRows
+                                              select g).ToList();
+            return types;
+        }
+
+        /// <summary>
+        /// Gets deleted rows based on identifier
+        /// </summary>
+        // GET api/appltypes/5
+        [HttpGet("{ID}")]
+        [ProducesResponseType(typeof(TblDeletedRows), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblDeletedRows> Get(string ID)
+        {
+            List<TblDeletedRows> rows = (from g in _context.TblDeletedRows
+                                                     where g.Id.ToString().ToLower().CompareTo(ID.ToString().ToLower()) == 0
+                                             select g).ToList();
+            return rows;
+        }
+
+        /// <summary>
+        /// Gets deleted rows which are modified after Last Updated datetime
+        /// </summary>
+        /// <param name="LastUpdatedTime">Unix timestamp</param>
+        // GET api/appltypes/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblDeletedRows), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblDeletedRows> Get(long LastUpdatedTime)
+        {
+            List<TblDeletedRows> rows = (from g in _context.TblDeletedRows
+                                                     where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return rows;
+        }
+
+
+        /// <summary>
+        /// Creates new deleted rows item
+        /// </summary>
+        /// <response code="200" >No reponse was specified</response>
+        /// <response code="204" >No content</response>
+        /// <param name="value">Deleted rows list</param>
+        //POST api/DeletedRows
+        [HttpPost]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(403)]
+        [ProducesResponseType(200)]
+        [Authorize(Roles = "Mobile")]
+        public async Task<IActionResult> Post([FromBody]List<TblDeletedRows> value)
+        {
+            List<DeletedRowsFailed> errors = new List<DeletedRowsFailed>();
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            foreach (TblDeletedRows rows in value)
+            {
+                try
+                {
+                    _context.Entry(rows).State = EntityState.Added;
+                    await _context.SaveChangesAsync();
+
+                }
+                catch (DbUpdateConcurrencyException ex1)
+                {
+                    _logger.LogCritical(ex1, "Post Request");
+
+                    DeletedRowsFailed failed = new DeletedRowsFailed();
+                    failed.Id = rows.Id.ToString();
+                    failed.ErrorMessage = ex1.Message;
+                    errors.Add(failed);
+
+                }
+                catch (Exception ex2)
+                {
+                    _logger.LogCritical(ex2, "Post Request");
+                    DeletedRowsFailed failed = new DeletedRowsFailed();
+                    failed.Id = rows.Id.ToString();
+
+                    if (ex2.InnerException != null)
+                        failed.ErrorMessage = ex2.InnerException.Message;
+                    else
+                        failed.ErrorMessage = ex2.Message;
+                    errors.Add(failed);
+                }
+            }
+
+            if (errors.Count > 0)
+                return Ok(errors);
+            else
+                return Ok();
+
+        }
+
+
+    }
+
+    public class DeletedRowsFailed
+    {
+
+        public string Id { get; set; }
+
+
+        public string ErrorMessage { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+    }
+}

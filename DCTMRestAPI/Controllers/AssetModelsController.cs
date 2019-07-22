@@ -1,0 +1,90 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class AssetModelsController : Controller
+    {
+        private readonly DCTrackContext _context;
+
+        public AssetModelsController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+
+        /// <summary>
+        /// Gets all asset models details
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/assetmodels
+        [HttpGet]
+        [ProducesResponseType(typeof(TblAssetModel), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblAssetModel> Get()
+        {
+            List<TblAssetModel> assetModels = (from g in _context.TblAssetModel
+                                               select g).ToList();
+            return assetModels;
+        }
+
+        /// <summary>
+        /// Gets asset model details based on identifier
+        /// </summary>
+        /// <param name="ModelId"></param>
+        /// <returns></returns>
+        // GET api/assetmodels/5
+        [HttpGet("{ModelId}")]
+        [ProducesResponseType(typeof(TblAssetModel), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblAssetModel> Get(int ModelId)
+        {
+            List<TblAssetModel> assetModels = (from g in _context.TblAssetModel
+                                               where g.ModelId == ModelId
+                                               select g).ToList();
+            return assetModels;
+
+
+        }
+
+        /// <summary>
+        /// Gets asset models which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/assetmodels/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblAssetModel), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblAssetModel> Get(long LastUpdatedTime)
+        {
+            List<TblAssetModel> models = (from g in _context.TblAssetModel
+                                               where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return models;
+        }
+
+        //// POST api/assetmodels
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/assetmodels/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+    }
+}

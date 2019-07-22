@@ -1,0 +1,219 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System.Text;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class RackPositionsController : Controller
+    {
+        private readonly DCTrackContext _context;
+        private readonly ILogger _logger;
+
+        public RackPositionsController(DCTrackContext context, ILogger<RackPositionsController> logger)
+        {
+            _context = context;
+            _logger = logger;
+
+        }
+
+        /// <summary>
+        /// Gets all racks position details
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/rackpositions
+        [HttpGet]
+        [ProducesResponseType(typeof(TblRacklPositions), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblRacklPositions> Get()
+        {
+            List<TblRacklPositions> rackPositions = (from g in _context.TblRacklPositions
+                                                     select g).ToList();
+            return rackPositions;
+        }
+
+        /// <summary>
+        /// Gets rack position details based on rack identifier
+        /// </summary>
+        /// <param name="RackId"></param>
+        /// <returns></returns>
+        // GET api/rackpositions/5
+        [HttpGet("{RackId}")]
+        [ProducesResponseType(typeof(TblRacklPositions), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblRacklPositions> Get(int RackId)
+        {
+            List<TblRacklPositions> rackPositions = (from g in _context.TblRacklPositions
+                                                     where g.RackId == RackId
+                                                     select g).ToList();
+            return rackPositions;
+        }
+
+        /// <summary>
+        /// Gets racks position details which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/rackpositions/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblRacklPositions), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblRacklPositions> Get(long LastUpdatedTime)
+        {
+            List<TblRacklPositions> racks = (from g in _context.TblRacklPositions
+                                             where g.LastUpdatedTime > LastUpdatedTime
+                                             select g).ToList();
+            return racks;
+        }
+
+        /// <summary>
+        /// Set Rack positions based on rack identifier
+        /// </summary>
+        /// <response code="200" >No reponse was specified</response>
+        /// <response code="204" >No content</response>
+        /// <param name="value">Rack positions list</param>
+        //PUT api/rackpositions/5
+        [HttpPut()]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [Authorize(Roles = "Mobile")]
+        public async Task<IActionResult> Put([FromBody]List<TblRacklPositions> value)
+        {
+
+            List<RackPositionsFailed> errors = new List<RackPositionsFailed>();
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            foreach (TblRacklPositions rp in value)
+            {
+               
+                try
+                {
+                    // check last modified date and see whether Server or client has latest record.
+                    // latest record will previal
+                    List<TblRacklPositions> selectedRack = (from g in _context.TblRacklPositions.AsNoTracking()
+                                                     where g.RackId == rp.RackId
+                                                     select g).ToList();
+                    if (selectedRack != null)
+                    {
+                        if (selectedRack.Count <= 0)
+                        {
+                            RackPositionsFailed failed = new RackPositionsFailed();
+                            failed.Id = rp.Id.ToString();
+                            failed.RackId = rp.RackId;
+                            failed.ErrorMessage = "Rack positions record does not exists.";
+                            errors.Add(failed);
+                        }
+                        else
+                        {
+                            if (selectedRack[0].LastModifiedDate == null || selectedRack[0].LastModifiedDate <= rp.LastModifiedDate)
+                            {
+                                _context.Entry(rp).State = EntityState.Modified;
+                                await _context.SaveChangesAsync();
+                            }
+                            else
+                            {
+                                RackPositionsFailed failed = new RackPositionsFailed();
+                                failed.Id = rp.Id.ToString();
+                                failed.RackId = rp.RackId;
+                                failed.ErrorMessage = "Server Record is latest compared to client record.";
+                                errors.Add(failed);
+
+                                //write to sync conflict log
+                                StringBuilder sb = new StringBuilder();
+                                sb.Append("****************** Rack Positions Data Conflict******************");
+                                sb.Append(Environment.NewLine);
+                                sb.Append("Server Record is latest compared to client record.");
+                                sb.Append(Environment.NewLine);
+                                sb.Append("Rack ID:" + selectedRack[0].RackId.ToString());
+                                sb.Append(Environment.NewLine);
+                                sb.Append("Server Modified Date:" + selectedRack[0].LastModifiedDate.ToString());
+                                sb.Append(Environment.NewLine);
+                                sb.Append("Client Modified Date:" + rp.LastModifiedDate.ToString());
+                                sb.Append(Environment.NewLine);
+                                sb.Append("******************************************************");
+                                sb.Append(Environment.NewLine);
+                                _logger.LogInformation(sb.ToString());
+                                //Microsoft.Practices.EnterpriseLibrary.Logging.Logger.Write(sb.ToString(), "ConflictLog");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        RackPositionsFailed failed = new RackPositionsFailed();
+                        failed.Id = rp.Id.ToString();
+                        failed.RackId = rp.RackId;
+                        failed.ErrorMessage = "Failed to get data from database";
+                        errors.Add(failed);
+                    }
+
+                }
+                catch (DbUpdateConcurrencyException ex1)
+                {
+                    _logger.LogCritical(ex1, "Put Request");
+
+                    RackPositionsFailed failed = new RackPositionsFailed();
+                    failed.Id = rp.Id.ToString();
+                    failed.RackId = rp.RackId;
+                    failed.ErrorMessage = ex1.Message;
+                    errors.Add(failed);
+
+                }
+                catch (Exception ex2)
+                {
+                    _logger.LogCritical(ex2, "Put Request");
+                    RackPositionsFailed failed = new RackPositionsFailed();
+                    failed.Id = rp.Id.ToString();
+                    failed.RackId = rp.RackId;
+
+                    if (ex2.InnerException != null)
+                        failed.ErrorMessage = ex2.InnerException.Message;
+                    else
+                        failed.ErrorMessage = ex2.Message;
+                    errors.Add(failed);
+                }
+            }
+
+            if (errors.Count > 0)
+                return Ok(errors);
+            else
+                return Ok();
+
+        }
+
+
+
+    }
+
+    public class RackPositionsFailed
+    {
+
+        public string Id { get; set; }
+        public long RackId { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+    }
+}

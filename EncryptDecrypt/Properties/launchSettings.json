@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EncryptDecrypt": {
+      "commandName": "Project",
+      "commandLineArgs": "-pe \"ConnectionStrings\" -key \"DCTrackDatabase\""
+    }
+  }
+}

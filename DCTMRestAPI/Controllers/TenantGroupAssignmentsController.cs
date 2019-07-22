@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class TenantGroupAssignmentsController : Controller
+    {
+        private readonly DCTrackContext _context;
+
+        public TenantGroupAssignmentsController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+
+        /// <summary>
+        /// Gets all tenant-group assignment details
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/Tenantgroupassignments
+        [HttpGet]
+        [ProducesResponseType(typeof(TblTenantGroupAssignment), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblTenantGroupAssignment> Get()
+        {
+            List<TblTenantGroupAssignment> tenants = (from g in _context.TblTenantGroupAssignment
+                                            select g).ToList();
+            return tenants;
+        }
+
+        /// <summary>
+        /// Gets tenant-group assignment details based on identifier
+        /// </summary>
+        /// <param name="TenantGroupId"></param>
+        /// <returns></returns>
+        // GET api/tenantgroupassignments/5
+        [HttpGet("{TenantGroupId}")]
+        [ProducesResponseType(typeof(TblTenantGroupAssignment), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblTenantGroupAssignment> Get(int TenantGroupId)
+        {
+            List<TblTenantGroupAssignment> buSite = (from g in _context.TblTenantGroupAssignment
+                                                   where g.TenantGroupId == TenantGroupId
+                                                           select g).ToList();
+            return buSite;
+        }
+
+        /// <summary>
+        /// Gets tenant-group assignment details which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/tenantgroupassignments/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblTenantGroupAssignment), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblTenantGroupAssignment> Get(long LastUpdatedTime)
+        {
+            List<TblTenantGroupAssignment> busite = (from g in _context.TblTenantGroupAssignment
+                                                     where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return busite;
+        }
+
+       
+    }
+}

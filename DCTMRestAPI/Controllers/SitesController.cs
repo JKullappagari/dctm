@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class SitesController : Controller
+    {
+
+        private readonly DCTrackContext _context;
+
+        public SitesController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+        /// <summary>
+        /// Gets all sites details
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/sites
+        [HttpGet]
+        [ProducesResponseType(typeof(TblSite), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblSite> Get()
+        {
+            List<TblSite> sites = (from g in _context.TblSite
+                                            select g).ToList();
+            return sites;
+        }
+
+        /// <summary>
+        /// Gets site details based on identifier
+        /// </summary>
+        /// <param name="SiteId"></param>
+        /// <returns></returns>
+        // GET api/sites/5
+        [HttpGet("{SiteId}")]
+        [ProducesResponseType(typeof(TblSite), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblSite> Get(int SiteId)
+        {
+            List<TblSite> sites = (from g in _context.TblSite
+                                       where g.SiteId == SiteId
+                                       select g).ToList();
+            return sites;
+        }
+
+        /// <summary>
+        /// Gets sites details which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/sites/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblSite), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblSite> Get(long LastUpdatedTime)
+        {
+            List<TblSite> sites = (from g in _context.TblSite
+                                         where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return sites;
+        }
+
+        //// POST api/sites
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
+
+        //// PUT api/sites/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/sites/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+    }
+}

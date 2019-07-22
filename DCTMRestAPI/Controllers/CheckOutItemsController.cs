@@ -1,0 +1,161 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class CheckOutItemsController : Controller
+    {
+        private readonly DCTrackContext _context;
+        private readonly ILogger _logger;
+
+        public CheckOutItemsController(DCTrackContext context,ILogger<CheckOutItemsController> logger)
+        {
+            _context = context;
+            _logger = logger;
+
+        }
+
+        /// <summary>
+        /// Gets all checkout items
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/checkoutitems
+        [HttpGet]
+        [ProducesResponseType(typeof(TblCheckOutItems), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblCheckOutItems> Get()
+        {
+            List<TblCheckOutItems> appStatus = (from g in _context.TblCheckOutItems
+                                            select g).ToList();
+            return appStatus;
+        }
+
+        /// <summary>
+        /// Gets checkout items based on checkout session id
+        /// </summary>
+        /// <param name="CheckOutSessionId"></param>
+        /// <returns></returns>
+        // GET api/checkoutitems/5
+        [HttpGet("{CheckOutSessionId}")]
+        [ProducesResponseType(typeof(TblCheckOutItems), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblCheckOutItems> Get(int CheckOutSessionId)
+        {
+            List<TblCheckOutItems> appStatus = (from g in _context.TblCheckOutItems
+                                                where g.CheckOutSessionId == CheckOutSessionId
+                                                select g).ToList();
+            return appStatus;
+        }
+
+        /// <summary>
+        /// Gets checkout items which are modified after Last Updated datetime
+        /// </summary>
+        /// <param name="LastUpdatedTime">Unix timestamp</param>
+        // GET api/checkoutitems/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblCheckOutItems), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblCheckOutItems> GetLastUpdated(long LastUpdatedTime)
+        {
+            List<TblCheckOutItems> purposes = (from g in _context.TblCheckOutItems
+                                                 where g.LastUpdatedTime > LastUpdatedTime
+                                                 select g).ToList();
+            return purposes;
+        }
+
+        /// <summary>
+        /// Creates new checkout items record
+        /// </summary>
+        /// <response code="200" >No reponse was specified</response>
+        /// <response code="204" >No content</response>
+        /// <param name="value">Checkout items list</param>
+        //POST api/checkoutitems
+        [HttpPost]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(403)]
+        [Authorize(Roles = "Mobile")]
+        public async Task<IActionResult> Post([FromBody]List<TblCheckOutItems> value)
+        {
+            List<CheckoutItemsFailed> errors = new List<CheckoutItemsFailed>();
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            foreach(TblCheckOutItems coItem in value)
+            {
+                try
+                {
+                    _context.Entry(coItem).State = EntityState.Added;
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException ex1)
+                {
+                    _logger.LogCritical(ex1, "Post Request");
+
+                    CheckoutItemsFailed failed = new CheckoutItemsFailed();
+                    failed.Id = coItem.Id.ToString();
+                    failed.AssetID = coItem.CheckOutAssetId;
+                    failed.CheckoutSessionId = coItem.CheckOutSessionId;
+                    failed.ErrorMessage = ex1.Message;
+                    errors.Add(failed);
+
+                }
+                catch (Exception ex2)
+                {
+                    _logger.LogCritical(ex2, "Post Request");
+                    CheckoutItemsFailed failed = new CheckoutItemsFailed();
+                    failed.Id = coItem.Id.ToString();
+                    failed.AssetID = coItem.CheckOutAssetId;
+                    failed.CheckoutSessionId = coItem.CheckOutSessionId;
+
+                    if (ex2.InnerException != null)
+                        failed.ErrorMessage = ex2.InnerException.Message;
+                    else
+                        failed.ErrorMessage = ex2.Message;
+                    errors.Add(failed);
+                }
+            }
+
+            if (errors.Count > 0)
+                return Ok(errors);
+            else
+                return Ok();
+
+        }
+
+    }
+
+    public class CheckoutItemsFailed
+    {
+
+        public string Id { get; set; }
+        public long AssetID { get; set; }
+        public long CheckoutSessionId { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+    }
+}

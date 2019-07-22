@@ -1,0 +1,164 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using DCTMRestAPI.Models.Custom;
+using Newtonsoft.Json;
+using Microsoft.Extensions.Logging;
+using System.Transactions;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class StockTakeSessionsController : Controller
+    {
+        private readonly DCTrackContext _context;
+        private readonly ILogger _logger;
+
+        public StockTakeSessionsController(DCTrackContext context, ILogger<StockTakeSessionsController> logger)
+        {
+            _context = context;
+            _logger = logger; ;
+
+        }
+
+        /// <summary>
+        /// Gets all stock take sessions
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/stocktakesessions
+        [HttpGet]
+        [ProducesResponseType(typeof(TblStockTakeSession), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblStockTakeSession> Get()
+        {
+            List<TblStockTakeSession> sessions = (from g in _context.TblStockTakeSession
+                                                  select g).ToList();
+            return sessions;
+        }
+
+        /// <summary>
+        /// Gets stock take session records based on identifier
+        /// </summary>
+        /// <param name="StockTakeSessionId"></param>
+        /// <returns></returns>
+        // GET api/stocktakesessions/5
+        [HttpGet("{StockTakeSessionId}")]
+        [ProducesResponseType(typeof(TblStockTakeSession), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblStockTakeSession> Get(int StockTakeSessionId)
+        {
+            List<TblStockTakeSession> sessions = (from g in _context.TblStockTakeSession
+                                                  where g.StockTakeSessionId == StockTakeSessionId
+                                                  select g).ToList();
+            return sessions;
+        }
+
+        /// <summary>
+        /// Gets stock take session records which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/stocktakesessions/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblStockTakeSession), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblStockTakeSession> Get(long LastUpdatedTime)
+        {
+            List<TblStockTakeSession> purposes = (from g in _context.TblStockTakeSession
+                                                  where g.LastUpdatedTime > LastUpdatedTime
+                                                  select g).ToList();
+            return purposes;
+        }
+
+        /// <summary>
+        /// Creates new stock take session
+        /// </summary>
+        /// <response code="200" >No reponse was specified</response>
+        /// <response code="204" >No content</response>
+        /// <param name="value">Stocktake session list</param>
+        //POST api/stocktakesessions
+        [HttpPost]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(403)]
+        [ProducesResponseType(200)]
+        [Authorize(Roles = "Mobile")]
+        public async Task<IActionResult> Post([FromBody] List<TblStockTakeSession> value)
+        {
+            List<StockTakeSessionFailed> errors = new List<StockTakeSessionFailed>();
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            foreach (TblStockTakeSession stSession in value)
+            {
+                try
+                {
+                    _context.Entry(stSession).State = EntityState.Added;
+
+                    _context.Database.BeginTransaction();
+                    _context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.tblStockTakeSession ON;");
+                    await _context.SaveChangesAsync();
+                    _context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.tblStockTakeSession OFF;");
+                    _context.Database.CommitTransaction();
+
+
+                }
+                catch (DbUpdateConcurrencyException ex1)
+                {
+                    _logger.LogCritical(ex1, "Post Request");
+
+                    StockTakeSessionFailed failed = new StockTakeSessionFailed();
+                    failed.Id = stSession.Id.ToString();
+                    failed.ErrorMessage = ex1.Message;
+                    errors.Add(failed);
+
+                }
+                catch (Exception ex2)
+                {
+                    _logger.LogCritical(ex2, "Post Request");
+                    StockTakeSessionFailed failed = new StockTakeSessionFailed();
+                    failed.Id = stSession.Id.ToString();
+                    if (ex2.InnerException != null)
+                        failed.ErrorMessage = ex2.InnerException.Message;
+                    else
+                        failed.ErrorMessage = ex2.Message;
+                    errors.Add(failed);
+                }
+            }
+
+            if (errors.Count > 0)
+                return Ok(errors);
+            else
+                return Ok();
+
+        }
+
+    }
+
+    public class StockTakeSessionFailed
+    {
+
+        public string Id { get; set; }
+        public string ErrorMessage { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+    }
+
+
+}

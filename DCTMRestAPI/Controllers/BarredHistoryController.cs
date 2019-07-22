@@ -1,0 +1,90 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class BarredHistoryController : Controller
+    {
+        private readonly DCTrackContext _context;
+
+        public BarredHistoryController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+
+        /// <summary>
+        /// Gets all barred history details
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/barredhistory
+        [HttpGet]
+        [ProducesResponseType(typeof(TblBarredHistory), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblBarredHistory> Get()
+        {
+            List<TblBarredHistory> barredHistory = (from g in _context.TblBarredHistory
+                                            select g).ToList();
+            return barredHistory;
+        }
+
+        /// <summary>
+        /// Gets barred history details based on identifier
+        /// </summary>
+        /// <param name="BarredHistoryId"></param>
+        /// <returns></returns>
+        // GET api/barredhistory/5
+        [HttpGet("{BarredHistoryId}")]
+        [ProducesResponseType(typeof(TblBarredHistory), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblBarredHistory> Get(int BarredHistoryId)
+        {
+            List<TblBarredHistory> barredHistory = (from g in _context.TblBarredHistory
+                                            where g.BarredHistoryId == BarredHistoryId
+                                                    select g).ToList();
+            return barredHistory;
+        }
+
+        /// <summary>
+        /// Gets barred history details which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/barredhistory/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblBarredHistory), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblBarredHistory> Get(long LastUpdatedTime)
+        {
+            List<TblBarredHistory> history = (from g in _context.TblBarredHistory
+                                                  where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return history;
+        }
+
+
+        //// POST api/barredhistory
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
+
+
+        //// DELETE api/barredhistory/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+    }
+}

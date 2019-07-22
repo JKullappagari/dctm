@@ -1,0 +1,1396 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using DCTMRestAPI.Types;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Dynamic;
+using System.Linq.Dynamic.Core;
+using System.IO;
+using System.Data;
+using System.ComponentModel;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net;
+using MimeMapping;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.JsonPatch.Operations;
+using DCTMRestAPI.Extensions;
+using AutoMapper;
+using DCTMRestAPI.Models.Custom;
+using System.Collections;
+using System.Data.SqlClient;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using System.Text;
+using System.Data.Common;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+
+    [Authorize]
+    [Route("api/[controller]")]
+    public class AssetsController : Controller
+    {
+        private readonly DCTrackContext _context;
+        private readonly IUrlHelper urlHelper;
+        private readonly IMapper _mapper;
+        private readonly ILogger _logger;
+
+
+        public AssetsController(DCTrackContext context, IUrlHelper urlHelper, IMapper mapper, ILogger<AssetsController> logger)
+        {
+            _context = context;
+            this.urlHelper = urlHelper;
+            _mapper = mapper;
+            _logger = logger;
+        }
+
+        /// <summary>
+        /// Gets all assets
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/assets
+        [HttpGet("")]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(TblAssetExcel), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult GetAll()
+        {
+            List<TblAssetExcel> assets = _context.TblAssetExcel.FromSql(" iAssetTrack_sp_AssetExcel_Data_API @p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9",
+                 parameters: new[] { "", "", "", "", "", "", "", "", "", "" }).ToList();
+            return Ok(assets);
+        }
+
+
+        /// <summary>
+        /// Gets all assets based on page parameters
+        /// </summary>
+        /// <param name="pagingParams"></param>
+        /// <returns></returns>
+        // GET: api/assets
+        [Produces("application/json")]
+        [HttpGet("pages", Name = "GetAllAssets")]
+        [ProducesResponseType(typeof(TblAsset), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult Get(PagingParams pagingParams)
+        {
+            var asset = GetAssets(pagingParams);
+
+            Response.Headers.Add("X-Pagination", asset.GetHeader().ToJson());
+
+            var outputAssets = new AssetOutputModel
+            {
+                Paging = asset.GetHeader(),
+                Links = GetLinks(asset),
+                Items = asset.List.Select(m => m).ToList(),
+            };
+            return Ok(outputAssets);
+        }
+
+        /// <summary>
+        /// Gets asset details based on asset identifier
+        /// </summary>
+        /// <param name="AssetId"></param>
+        /// <returns></returns>
+        // GET api/assets/5
+        [Produces("application/json")]
+        [HttpGet("{AssetId}")]
+        [ProducesResponseType(typeof(TblAsset), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblAsset> Get(int AssetId)
+        {
+            List<TblAsset> assets = (from g in _context.TblAsset
+                                     where g.AssetId == AssetId
+                                     select g).ToList();
+            return assets;
+        }
+
+        /// <summary>
+        /// Gets asset details based on asset tag
+        /// </summary>
+        /// <param name="AssetTag"></param>
+        /// <returns></returns>
+        // GET api/assets/HPEPDC00001
+        [Produces("application/json")]
+        [HttpGet("tag/{AssetTag}")]
+        [ProducesResponseType(typeof(TblAsset), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblAsset> GetFromTag(string AssetTag)
+        {
+            List<TblAsset> assets = (from g in _context.TblAsset
+                                     where g.CurrentRfidcardNumber.Trim().Contains(AssetTag.Trim())
+                                     select g).ToList();
+            return assets;
+        }
+
+        private PagedList<TblAsset> GetAssets(PagingParams pagingParams)
+        {
+            var query = _context.TblAsset.AsQueryable().OrderBy(t => t.AssetId);
+            return new PagedList<TblAsset>(
+                query, pagingParams.PageNumber, pagingParams.PageSize);
+        }
+
+        private List<LinkInfo> GetLinks(PagedList<TblAsset> list)
+        {
+            var links = new List<LinkInfo>();
+
+            if (list.HasPreviousPage)
+                links.Add(CreateLink("GetAllAssets", list.PreviousPageNumber,
+                           list.PageSize, "previousPage", "GET"));
+
+            links.Add(CreateLink("GetAllAssets", list.PageNumber,
+                           list.PageSize, "self", "GET"));
+
+            if (list.HasNextPage)
+                links.Add(CreateLink("GetAllAssets", list.NextPageNumber,
+                           list.PageSize, "nextPage", "GET"));
+
+            return links;
+        }
+
+        private LinkInfo CreateLink(
+            string routeName, int pageNumber, int pageSize,
+            string rel, string method)
+        {
+            return new LinkInfo
+            {
+                Href = urlHelper.Link(routeName,
+                            new { PageNumber = pageNumber, PageSize = pageSize }),
+                Rel = rel,
+                Method = method
+            };
+        }
+
+
+        /// <summary>
+        /// Gets assets details which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/assets/5
+        [Produces("application/json")]
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblAsset), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblAsset> Get(long LastUpdatedTime)
+        {
+            List<TblAsset> assets = (from g in _context.TblAsset
+                                     where g.LastUpdatedTime > LastUpdatedTime
+                                     select g).ToList();
+            return assets;
+        }
+
+        /// <summary>
+        /// Set asset information based on asset identifier
+        /// </summary>
+        /// <response code="200" >No reponse was specified</response>
+        /// <response code="204" >No content</response>
+        /// <param name="value">Asset list</param>
+        /// <returns></returns>
+        //PUT api/assets/5
+        [Produces("application/json")]
+        [HttpPut()]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [Authorize(Roles = "Mobile")]
+        public async Task<IActionResult> Put([FromBody]List<TblAsset> value)
+        {
+            List<AssetsFailed> errors = new List<AssetsFailed>();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            foreach (TblAsset asset in value)
+            {
+                try
+                {
+
+                    // check last modified date and see whether Server or client has latest record.
+                    // latest record will previal
+                    TblAsset selectedAsset = (from g in _context.TblAsset.AsNoTracking()
+                                              where g.AssetId == asset.AssetId
+                                              select g).First();
+                    if (selectedAsset.LastModifiedDate == null || selectedAsset.LastModifiedDate <= asset.LastModifiedDate)
+                    {
+
+                        _context.Entry(asset).State = EntityState.Modified;
+                        await _context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        AssetsFailed failed = new AssetsFailed();
+                        failed.AssetID = asset.AssetId.ToString();
+                        failed.ErrorMessage = "Server Record is latest compared to client record.";
+                        errors.Add(failed);
+
+                        //write to sync conflict log
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append(Environment.NewLine);
+                        sb.Append("****************** Asset Data Conflict******************");
+                        sb.Append(Environment.NewLine);
+                        sb.Append("Server Record is latest compared to client record.");
+                        sb.Append(Environment.NewLine);
+                        sb.Append("Asset ID:" + selectedAsset.AssetId.ToString());
+                        sb.Append(Environment.NewLine);
+                        sb.Append("Server Modified Date:" + selectedAsset.LastModifiedDate.ToString());
+                        sb.Append(Environment.NewLine);
+                        sb.Append("Client Modified Date:" + asset.LastModifiedDate.ToString());
+                        sb.Append(Environment.NewLine);
+                        sb.Append("******************************************************");
+                        sb.Append(Environment.NewLine);
+                        _logger.LogInformation(sb.ToString());
+                        //Microsoft.Practices.EnterpriseLibrary.Logging.Logger.Write(sb.ToString(), "ConflictLog");
+                    }
+                }
+                catch (DbUpdateConcurrencyException ex1)
+                {
+                    _logger.LogCritical(ex1, "Put Request");
+
+                    AssetsFailed failed = new AssetsFailed();
+                    failed.AssetID = asset.AssetId.ToString();
+                    failed.ErrorMessage = ex1.Message;
+                    errors.Add(failed);
+
+                }
+                catch (Exception ex2)
+                {
+                    _logger.LogCritical(ex2, "Put Request");
+                    AssetsFailed failed = new AssetsFailed();
+                    failed.AssetID = asset.AssetId.ToString();
+
+                    if (ex2.InnerException != null)
+                        failed.ErrorMessage = ex2.InnerException.Message;
+                    else
+                        failed.ErrorMessage = ex2.Message;
+                    errors.Add(failed);
+                }
+            }
+
+            if (errors.Count > 0)
+                return Ok(errors);
+            else
+                return Ok();
+
+        }
+
+        /// <summary>
+        /// Gets all assets based on search criteria
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/assets/search
+        [Produces("application/json")]
+        [HttpGet("search")]
+        [ProducesResponseType(typeof(TblAsset), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblAssetExcel> Get(TblAssetSearch search)
+        {
+            #region oldcode
+            //string query = " Select * from tblAsset A where 1 = 1 ";
+            //if (!string.IsNullOrEmpty(search.Assetname))
+            //{
+            //    query = " AND A.AssetName LIKE \'%" + search.Assetname.Trim() + "%\' ";
+            //}
+
+            //if (!string.IsNullOrEmpty(search.Serialno))
+            //{
+            //    query = query + " AND A.RefNumber LIKE \'%" + search.Serialno.Trim() + "%\' ";
+            //}
+
+            //if (!string.IsNullOrEmpty(search.Tagno))
+            //{
+            //    query = query + " AND A.CurrentRFIDCardNumber LIKE \'%" + search.Tagno.Trim() + "%\' ";
+            //}
+
+            //if (!string.IsNullOrEmpty(search.Site))
+            //{
+            //    query = query + " AND A.PrimarySiteID IN (select SiteID from tblSite where Site LIKE \'%" + search.Site.Trim() + "%\') ";
+            //}
+
+            //if (!string.IsNullOrEmpty(search.Custodian))
+            //{
+            //    query = query + " AND A.CurrentOwnerID IN (select OwnerID from tblOwner where (OwnerFirstName LIKE \'%" + search.Custodian.Trim() + "%\'"
+            //        + " OR OwnerLastName LIKE \'%" + search.Custodian.Trim() + "%\')) ";
+            //}
+
+            //if (!string.IsNullOrEmpty(search.Assettype))
+            //{
+            //    query = query + " AND A.AssetGroupID IN (select AssetGroupID from tblAssetGroup where AssetGroup LIKE \'%" + search.Assettype.Trim() + "%\') ";
+            //}
+
+            //if (!string.IsNullOrEmpty(search.Assetmodel) && !string.IsNullOrEmpty(search.Manufacturer))
+            //{
+            //    query = query + " AND A.modelID IN (select ModelID from tblAssetModel where " +
+            //        " ModelName LIKE \'%" + search.Assetmodel.Trim() + "%\' AND " +
+            //        "mfgID IN (Select MfgID from tblManufacturer where MfgName LIKE \'%" + search.Manufacturer.Trim() + "%\') "
+            //        + " )";
+            //}
+            //else if (!string.IsNullOrEmpty(search.Assetmodel) && string.IsNullOrEmpty(search.Manufacturer))
+            //{
+            //    query = query + " AND A.modelID IN (select ModelID from tblAssetModel where " +
+            //        " ModelName LIKE \'%" + search.Assetmodel.Trim() + "%\'  " 
+            //        + " )";
+            //}
+
+            //if (!string.IsNullOrEmpty(search.Hostname))
+            //{
+            //    query = query + " AND A.AssetID IN (select tblAsset.AssetID from tblAsset LEFT OUTER JOIN tblAssetHostAssignment ON tblAsset.AssetID = tblAssetHostAssignment.AssetID " +
+            //        " left outer JOIN tblHost ON tblAssetHostAssignment.HostID = tblHost.HostID " +
+            //        " where tblHost.HostName like %\'" + search.Hostname.Trim() + "\'% )";
+            //}
+
+            //if (!string.IsNullOrEmpty(search.Location) && !string.IsNullOrEmpty(search.Site))
+            //{
+            //    query = query + " AND A.LastseenlocationID IN (Select tblLocation.LocationID from tblLocation left outer join tblSiteLocationassignment SL " +
+            //        " ON SL.LocationID = tblLocation.LocationID left outer join tblSite "
+            //        + " ON SL.SiteID = tblSite.SiteID where " +
+            //        " Location like \'%" + search.Location + "%\' AND Site LIKE \'%" + search.Site.Trim() + "%\') ";
+            //}
+            //else if (!string.IsNullOrEmpty(search.Location) && string.IsNullOrEmpty(search.Site))
+            //{
+            //    query = query + " AND A.LastseenlocationID IN (Select tblLocation.LocationID from tblLocation left outer join tblSiteLocationassignment SL " +
+            //        " ON SL.LocationID = tblLocation.LocationID left outer join tblSite "
+            //        + " ON SL.SiteID = tblSite.SiteID where " +
+            //        " Location like \'%" + search.Location + "%\') ";
+            //}
+
+            //List<TblAsset> assets = _context.TblAsset.FromSql(query).ToList();
+            //return assets;
+            #endregion
+
+            #region direct sql code - commented
+            /*
+            string query = " SELECT DISTINCT A.ASSETID AS \'ASSETID\' , CASE " +
+                " WHEN A.RefNumber IS NULL THEN ISNULL(A.REFNUMBER, \'\') " +
+                " WHEN LTRIM(RTRIM(A.RefNumber)) = \'0\' THEN \'\' " +
+                " ELSE A.RefNumber END AS \'SERIALNO\' ,ISNULL(AG.ASSETGROUP, \'\') AS \'ASSETTYPE\' ,ISNULL(M.MFGNAME, \'\') AS \'MANUFACTURER\' " +
+                " ,ISNULL(AM.MODELNAME, \'\') AS \'MODEL\',ISNULL(A.RackorStand, \'\') AS \'MOUNTTYPE\' ,ISNULL(A.AssetName, \'\') AS \'ASSETNAME\' " +
+                " ,S.SITE AS \'SITE\',ISNULL(CI.CityName, \'\') AS \'CITY\',ISNULL(COU.CountryName, \'\') AS \'COUNTRY\',ISNULL(COU.Region, \'\') AS \'REGION\'" +
+                " ,ISNULL(A.CurrentRFIDCardNumber, \'\') AS \'TAGNO\' ,A.AssetCreatedDate AS \'CREATEDDATE\' ,CU.DISPLAYNAME AS \'CREATOR\' " +
+                " ,RACK.LOCATION AS \'RACK\' ,ISNULL(RACK.TAGID, \'\') AS \'RACKTAG\',ISNULL(RO.Location, \'\') AS \'ROW\',ISNULL(ROOM.LOCATION, \'\') AS \'ROOM\' " +
+                " ,ISNULL((Owner.OwnerLastName + \',\' + Owner.OwnerFirstName),'') AS \'Custodian\',ISNULL(A.OS, \'\') AS \'OS\',ISNULL(A.CPU, \'\') AS \'CPU\' " +
+                " ,A.CPUCount AS \'CPUCOUNT\',A.CPUCore AS \'CPUCORE\',CASE WHEN A.StartPos IS NULL THEN ISNULL(A.StartPos, \'\') " +
+                " WHEN A.StartPos = 0 THEN \'\'  ELSE A.StartPos END AS \'StartRU\' ,CASE WHEN A.NoOfRUs IS NULL THEN ISNULL(A.NoOfRUs, \'\') WHEN A.NoOfRUs = 0 THEN \'\'" +
+                " ELSE A.NoOfRUs END AS \'NOOFUS\' ,ISNULL(A.Orientation, \'\') AS \'ORIENTATION\' ,dbo.GetHostNames(A.AssetID) as \'HostName\', " +
+                " CASE WHEN(A.StartPos IS NULL AND A.NoOfRUs IS NULL)THEN \'\' WHEN(A.StartPos = 0 AND A.NoOfRUs = 0) THEN \'\' " +
+                " WHEN(A.StartPos > 0 AND A.NoOfRUs = 0) THEN(A.StartPos) WHEN(A.StartPos = 0 AND A.NoOfRUs > 0) THEN \'\' ELSE(A.StartPos + A.NoOfRUs - 1) " +
+                " END AS \'ENDRU\' " +
+                " FROM tblAsset A " +
+                " INNER JOIN tblAssetGroup AG ON AG.AssetGroupID = A.AssetGroupID " +
+                " INNER JOIN tblAssetModel AM ON AM.ModelID = A.ModelID " +
+                " INNER JOIN tblManufacturer M ON M.MfgID = AM.MfgID " +
+                " INNER JOIN tblBusinessUnit B ON B.BusinessUnitID = A.BusinessUnitID " +
+                " INNER JOIN tblBUSiteAssignment BS ON BS.BusinessUnitID = B.BusinessUnitID " +
+                " INNER JOIN TBLsITE S ON S.SiteID = A.PrimarySiteID AND S.SiteID = BS.SiteID " +
+                " LEFT OUTER JOIN tblOwner AS Owner ON A.CurrentOwnerID = Owner.OwnerID " +
+                " LEFT OUTER JOIN tblUser CU ON A.AssetCreatedBy = CU.UserID " +
+                " LEFT OUTER JOIN tblLocation RACK ON RACK.LocationID = A.LastSeenLocationID AND(Rack.ParentLocationID IS NOT NULL or Rack.ParentLocationID <> 0) " +
+                " LEFT OUTER JOIN tblLocation RO ON((RO.LocationID = RACK.ParentLocationID " +
+                " AND (ro.PARENTLOCATIONID IS NOT NULL OR RO.ParentLocationID<> 0)) " +
+                " AND RO.LOCATIONTYPEID = (SELECT LOCATIONTYPEID FROM TBLLOCATIONTYPE WHERE LOCATIONTYPE = 'ROW')) " +
+                " LEFT OUTER JOIN tblLocation ROOM ON((ROOM.LocationID = A.LastSeenLocationID OR " +
+                " ROOM.LOCATIONID = Ro.ParentLocationID OR ROOM.LocationID = Rack.ParentLocationid) " +
+                " AND(Room.ParentLocationID IS NULL OR Room.ParentLocationID = 0)) " +
+                " LEFT OUTER JOIN tblAsset PA ON PA.AssetID = A.ParentAssetID " +
+                " LEFT OUTER JOIN tblCity CI ON CI.CityID = S.CityID " +
+                " LEFT OUTER JOIN tblCountry COU ON COU.CountryID = S.CountryID " +
+                " LEFT OUTER JOIN tblAssetHostAssignment AH ON A.AssetID = AH.AssetID " +
+                " where 1 = 1 ";
+            if (!string.IsNullOrEmpty(search.Assetname))
+            {
+                query = " AND A.AssetName LIKE \'%" + search.Assetname.Trim() + "%\' ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Serialno))
+            {
+                query = query + " AND A.RefNumber LIKE \'%" + search.Serialno.Trim() + "%\' ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Tagno))
+            {
+                query = query + " AND A.CurrentRFIDCardNumber LIKE \'%" + search.Tagno.Trim() + "%\' ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Site))
+            {
+                query = query + " AND A.PrimarySiteID IN (select SiteID from tblSite where Site LIKE \'%" + search.Site.Trim() + "%\') ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Custodian))
+            {
+                query = query + " AND A.CurrentOwnerID IN (select OwnerID from tblOwner where (OwnerFirstName LIKE \'%" + search.Custodian.Trim() + "%\'"
+                    + " OR OwnerLastName LIKE \'%" + search.Custodian.Trim() + "%\')) ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Assettype))
+            {
+                query = query + " AND A.AssetGroupID IN (select AssetGroupID from tblAssetGroup where AssetGroup LIKE \'%" + search.Assettype.Trim() + "%\') ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Assetmodel) && !string.IsNullOrEmpty(search.Manufacturer))
+            {
+                query = query + " AND A.modelID IN (select ModelID from tblAssetModel where " +
+                    " ModelName LIKE \'%" + search.Assetmodel.Trim() + "%\' AND " +
+                    "mfgID IN (Select MfgID from tblManufacturer where MfgName LIKE \'%" + search.Manufacturer.Trim() + "%\') "
+                    + " )";
+            }
+            else if (!string.IsNullOrEmpty(search.Assetmodel) && string.IsNullOrEmpty(search.Manufacturer))
+            {
+                query = query + " AND A.modelID IN (select ModelID from tblAssetModel where " +
+                    " ModelName LIKE \'%" + search.Assetmodel.Trim() + "%\'  "
+                    + " )";
+            }
+
+            if (!string.IsNullOrEmpty(search.Hostname))
+            {
+                query = query + " AND A.AssetID IN (select tblAsset.AssetID from tblAsset LEFT OUTER JOIN tblAssetHostAssignment ON tblAsset.AssetID = tblAssetHostAssignment.AssetID " +
+                    " left outer JOIN tblHost ON tblAssetHostAssignment.HostID = tblHost.HostID " +
+                    " where tblHost.HostName like %\'" + search.Hostname.Trim() + "\'% )";
+            }
+
+            if (!string.IsNullOrEmpty(search.Location) && !string.IsNullOrEmpty(search.Site))
+            {
+                query = query + " AND A.LastseenlocationID IN (Select tblLocation.LocationID from tblLocation left outer join tblSiteLocationassignment SL " +
+                    " ON SL.LocationID = tblLocation.LocationID left outer join tblSite "
+                    + " ON SL.SiteID = tblSite.SiteID where " +
+                    " Location like \'%" + search.Location + "%\' AND Site LIKE \'%" + search.Site.Trim() + "%\') ";
+            }
+            else if (!string.IsNullOrEmpty(search.Location) && string.IsNullOrEmpty(search.Site))
+            {
+                query = query + " AND A.LastseenlocationID IN (Select tblLocation.LocationID from tblLocation left outer join tblSiteLocationassignment SL " +
+                    " ON SL.LocationID = tblLocation.LocationID left outer join tblSite "
+                    + " ON SL.SiteID = tblSite.SiteID where " +
+                    " Location like \'%" + search.Location + "%\') ";
+            }
+            */
+            #endregion
+
+            List<TblAssetExcel> assets = _context.TblAssetExcel.FromSql(" iAssetTrack_sp_AssetExcel_Data_API @p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9",
+                 parameters: new[]{search.Site,search.Location,search.Custodian,search.Assettype,search.Tagno,search.Manufacturer,search.Assetmodel,
+                 search.Hostname,search.Serialno,search.Assetname}).ToList();
+            return assets;
+
+
+        }
+
+        /// <summary>
+        /// Gets all assets based on search criteria
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/assets/search
+        [HttpGet("search/csv")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult GetCSV(TblAssetSearch search)
+        {
+            #region file generation - commented
+            /*
+            string query = " SELECT DISTINCT A.ASSETID AS \'ASSETID\' , CASE " +
+                " WHEN A.RefNumber IS NULL THEN ISNULL(A.REFNUMBER, \'\') " +
+                " WHEN LTRIM(RTRIM(A.RefNumber)) = \'0\' THEN \'\' " +
+                " ELSE A.RefNumber END AS \'SERIALNO\' ,ISNULL(AG.ASSETGROUP, \'\') AS \'ASSETTYPE\' ,ISNULL(M.MFGNAME, \'\') AS \'MANUFACTURER\' " +
+                " ,ISNULL(AM.MODELNAME, \'\') AS \'MODEL\',ISNULL(A.RackorStand, \'\') AS \'MOUNTTYPE\' ,ISNULL(A.AssetName, \'\') AS \'ASSETNAME\' " +
+                " ,S.SITE AS \'SITE\',ISNULL(CI.CityName, \'\') AS \'CITY\',ISNULL(COU.CountryName, \'\') AS \'COUNTRY\',ISNULL(COU.Region, \'\') AS \'REGION\'" +
+                " ,ISNULL(A.CurrentRFIDCardNumber, \'\') AS \'TAGNO\' ,A.AssetCreatedDate AS \'CREATEDDATE\' ,CU.DISPLAYNAME AS \'CREATOR\' " +
+                " ,RACK.LOCATION AS \'RACK\' ,ISNULL(RACK.TAGID, \'\') AS \'RACKTAG\',ISNULL(RO.Location, \'\') AS \'ROW\',ISNULL(ROOM.LOCATION, \'\') AS \'ROOM\' " +
+                " ,ISNULL((Owner.OwnerLastName + \',\' + Owner.OwnerFirstName),'') AS \'Custodian\',ISNULL(A.OS, \'\') AS \'OS\',ISNULL(A.CPU, \'\') AS \'CPU\' " +
+                " ,A.CPUCount AS \'CPUCOUNT\',A.CPUCore AS \'CPUCORE\',CASE WHEN A.StartPos IS NULL THEN ISNULL(A.StartPos, \'\') " +
+                " WHEN A.StartPos = 0 THEN \'\'  ELSE A.StartPos END AS \'StartRU\' ,CASE WHEN A.NoOfRUs IS NULL THEN ISNULL(A.NoOfRUs, \'\') WHEN A.NoOfRUs = 0 THEN \'\'" +
+                " ELSE A.NoOfRUs END AS \'NOOFUS\' ,ISNULL(A.Orientation, \'\') AS \'ORIENTATION\' ,dbo.GetHostNames(A.AssetID) as \'HostName\', " +
+                " CASE WHEN(A.StartPos IS NULL AND A.NoOfRUs IS NULL)THEN \'\' WHEN(A.StartPos = 0 AND A.NoOfRUs = 0) THEN \'\' " +
+                " WHEN(A.StartPos > 0 AND A.NoOfRUs = 0) THEN(A.StartPos) WHEN(A.StartPos = 0 AND A.NoOfRUs > 0) THEN \'\' ELSE(A.StartPos + A.NoOfRUs - 1) " +
+                " END AS \'ENDRU\' " +
+                " FROM tblAsset A " +
+                " INNER JOIN tblAssetGroup AG ON AG.AssetGroupID = A.AssetGroupID " +
+                " INNER JOIN tblAssetModel AM ON AM.ModelID = A.ModelID " +
+                " INNER JOIN tblManufacturer M ON M.MfgID = AM.MfgID " +
+                " INNER JOIN tblBusinessUnit B ON B.BusinessUnitID = A.BusinessUnitID " +
+                " INNER JOIN tblBUSiteAssignment BS ON BS.BusinessUnitID = B.BusinessUnitID " +
+                " INNER JOIN TBLsITE S ON S.SiteID = A.PrimarySiteID AND S.SiteID = BS.SiteID " +
+                " LEFT OUTER JOIN tblOwner AS Owner ON A.CurrentOwnerID = Owner.OwnerID " +
+                " LEFT OUTER JOIN tblUser CU ON A.AssetCreatedBy = CU.UserID " +
+                " LEFT OUTER JOIN tblLocation RACK ON RACK.LocationID = A.LastSeenLocationID AND(Rack.ParentLocationID IS NOT NULL or Rack.ParentLocationID <> 0) " +
+                " LEFT OUTER JOIN tblLocation RO ON((RO.LocationID = RACK.ParentLocationID " +
+                " AND (ro.PARENTLOCATIONID IS NOT NULL OR RO.ParentLocationID<> 0)) " +
+                " AND RO.LOCATIONTYPEID = (SELECT LOCATIONTYPEID FROM TBLLOCATIONTYPE WHERE LOCATIONTYPE = 'ROW')) " +
+                " LEFT OUTER JOIN tblLocation ROOM ON((ROOM.LocationID = A.LastSeenLocationID OR " +
+                " ROOM.LOCATIONID = Ro.ParentLocationID OR ROOM.LocationID = Rack.ParentLocationid) " +
+                " AND(Room.ParentLocationID IS NULL OR Room.ParentLocationID = 0)) " +
+                " LEFT OUTER JOIN tblAsset PA ON PA.AssetID = A.ParentAssetID " +
+                " LEFT OUTER JOIN tblCity CI ON CI.CityID = S.CityID " +
+                " LEFT OUTER JOIN tblCountry COU ON COU.CountryID = S.CountryID " +
+                " LEFT OUTER JOIN tblAssetHostAssignment AH ON A.AssetID = AH.AssetID " +
+                " where 1 = 1 ";
+            if (!string.IsNullOrEmpty(search.Assetname))
+            {
+                query = " AND A.AssetName LIKE \'%" + search.Assetname.Trim() + "%\' ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Serialno))
+            {
+                query = query + " AND A.RefNumber LIKE \'%" + search.Serialno.Trim() + "%\' ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Tagno))
+            {
+                query = query + " AND A.CurrentRFIDCardNumber LIKE \'%" + search.Tagno.Trim() + "%\' ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Site))
+            {
+                query = query + " AND A.PrimarySiteID IN (select SiteID from tblSite where Site LIKE \'%" + search.Site.Trim() + "%\') ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Custodian))
+            {
+                query = query + " AND A.CurrentOwnerID IN (select OwnerID from tblOwner where (OwnerFirstName LIKE \'%" + search.Custodian.Trim() + "%\'"
+                    + " OR OwnerLastName LIKE \'%" + search.Custodian.Trim() + "%\')) ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Assettype))
+            {
+                query = query + " AND A.AssetGroupID IN (select AssetGroupID from tblAssetGroup where AssetGroup LIKE \'%" + search.Assettype.Trim() + "%\') ";
+            }
+
+            if (!string.IsNullOrEmpty(search.Assetmodel) && !string.IsNullOrEmpty(search.Manufacturer))
+            {
+                query = query + " AND A.modelID IN (select ModelID from tblAssetModel where " +
+                    " ModelName LIKE \'%" + search.Assetmodel.Trim() + "%\' AND " +
+                    "mfgID IN (Select MfgID from tblManufacturer where MfgName LIKE \'%" + search.Manufacturer.Trim() + "%\') "
+                    + " )";
+            }
+            else if (!string.IsNullOrEmpty(search.Assetmodel) && string.IsNullOrEmpty(search.Manufacturer))
+            {
+                query = query + " AND A.modelID IN (select ModelID from tblAssetModel where " +
+                    " ModelName LIKE \'%" + search.Assetmodel.Trim() + "%\'  "
+                    + " )";
+            }
+
+            if (!string.IsNullOrEmpty(search.Hostname))
+            {
+                query = query + " AND A.AssetID IN (select tblAsset.AssetID from tblAsset LEFT OUTER JOIN tblAssetHostAssignment ON tblAsset.AssetID = tblAssetHostAssignment.AssetID " +
+                    " left outer JOIN tblHost ON tblAssetHostAssignment.HostID = tblHost.HostID " +
+                    " where tblHost.HostName like %\'" + search.Hostname.Trim() + "\'% )";
+            }
+
+            if (!string.IsNullOrEmpty(search.Location) && !string.IsNullOrEmpty(search.Site))
+            {
+                query = query + " AND A.LastseenlocationID IN (Select tblLocation.LocationID from tblLocation left outer join tblSiteLocationassignment SL " +
+                    " ON SL.LocationID = tblLocation.LocationID left outer join tblSite "
+                    + " ON SL.SiteID = tblSite.SiteID where " +
+                    " Location like \'%" + search.Location + "%\' AND Site LIKE \'%" + search.Site.Trim() + "%\') ";
+            }
+            else if (!string.IsNullOrEmpty(search.Location) && string.IsNullOrEmpty(search.Site))
+            {
+                query = query + " AND A.LastseenlocationID IN (Select tblLocation.LocationID from tblLocation left outer join tblSiteLocationassignment SL " +
+                    " ON SL.LocationID = tblLocation.LocationID left outer join tblSite "
+                    + " ON SL.SiteID = tblSite.SiteID where " +
+                    " Location like \'%" + search.Location + "%\') ";
+            }
+            */
+            #endregion
+
+            #region test code for server side file generation
+            //string fileid = "AssetData";
+            //string filepath = string.Format("C:\\inetpub\\{0}.xlsx", fileid.ToString());
+            //if (System.IO.File.Exists(filepath))
+            //    System.IO.File.Delete(filepath);
+            //FileStream s = new FileStream(filepath, FileMode.Create);
+            //s.Close();
+
+            #endregion
+
+            List<TblAssetExcel> assets = _context.TblAssetExcel.FromSql(" iAssetTrack_sp_AssetExcel_Data_API @p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9",
+                 parameters: new[]{search.Site,search.Location,search.Custodian,search.Assettype,search.Tagno,search.Manufacturer,search.Assetmodel,
+                 search.Hostname,search.Serialno,search.Assetname}).ToList();
+
+            DataTable table = ToDataTable(assets);
+            byte[] streamBytes;
+
+            //var bytes = pck.GetAsByteArray();
+            //await stream.WriteAsync(bytes, 0, bytes.Length);
+            //Response.Headers.Add("content-disposition", "attachment;  filename=DCTM_AssetData.xlsx");
+            //Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            //await Response.Body.WriteAsync(bytes, 0, bytes.Length);
+            //Response.Body.Flush();
+
+            // create a csv file and transmit it
+            using (FileStream stream = new FileStream("AssetData.csv", FileMode.Create))
+            {
+                StreamWriter sw = new StreamWriter(stream);
+                if (table != null && table.Rows.Count > 0)
+                {
+                    //add column names to csv
+                    string colList = string.Empty;
+                    foreach (DataColumn dc in table.Columns)
+                    {
+                        colList = colList + dc.ColumnName + ",";
+                    }
+                    colList = colList.Trim(',');
+                    sw.WriteLine(colList);
+                    //add row data to csv
+                    string rowData = string.Empty;
+                    foreach (DataRow dr in table.Rows)
+                    {
+                        rowData = string.Empty;
+                        for (int i = 0; i < table.Columns.Count; i++)
+                        {
+                            rowData = rowData + "\"" + dr[i].ToString() + "\"" + ",";
+                        }
+                        sw.WriteLine(rowData.Trim(','));
+                    }
+                    sw.WriteLine();
+                    sw.Flush();
+                }
+                stream.Seek(0, SeekOrigin.Begin);
+
+                MemoryStream ms = new MemoryStream();
+                stream.CopyTo(ms);
+                streamBytes = ms.ToArray();
+
+            }
+
+            string fileName = "AssetData.csv";
+            Response.Headers.Add("content-disposition", string.Format("attachment;  filename={0}", fileName));
+            return File(streamBytes, MimeMapping.MimeUtility.GetMimeMapping(fileName), fileName);
+
+            //string filename = "AssetData.xlsx";
+            //stream.Seek(0, SeekOrigin.Begin);
+            //FileResult f = File(stream,"application/octet-stream");
+
+            //return f;
+
+            #region commented - httpresponsemesssage code
+            //HttpResponseMessage httpResponseMessage = new HttpResponseMessage()
+            //{
+            //    StatusCode = HttpStatusCode.OK
+            //};
+            //httpResponseMessage.Content = new StreamContent(stream);
+            //httpResponseMessage.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+            //httpResponseMessage.Content.Headers.ContentDisposition.FileName = "test.xlsx";
+            //httpResponseMessage.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(MimeMapping.MimeUtility.GetMimeMapping("test.xlsx"));
+
+            //return Task.FromResult(httpResponseMessage);
+
+            #endregion
+
+
+        }
+
+        /// <summary>
+        /// Partial update of an asset 
+        /// </summary>
+        /// <remarks>
+        /// This operation is based on the JSON Patch specification (RFC 6902) http://jsonpatch.com
+        /// 
+        /// This will allow Replace operation and applicable for below mentioned properties only
+        /// 
+        /// Location update request must contain orinetation, new locationid and u-position. In case of blades, parent asset id is also required.
+        /// 
+        /// Assetname, Hostname, Assettag, SerialNumber, ParentAssetId, Uposition, Orientation, LocationId and ExternalID 
+        /// 
+        /// Example:
+        /// 
+        ///     Patch /api/assets/{AssetID}
+        ///     
+        ///         {
+        ///         
+        ///             "value": "TestSerialNo",
+        ///             
+        ///             "path": "/serialnumber",
+        ///             
+        ///             "op": "replace"
+        ///             
+        ///         }
+        ///         
+        /// 
+        /// </remarks>
+        /// <param name="AssetId"></param>
+        /// <param name="PatchAsset"></param>
+        /// <returns></returns>
+        [HttpPatch("{AssetId:int}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public async Task<IActionResult> AssetPatch(int AssetId, [FromBody] JsonPatchDocument<AssetDTO> patchAsset)
+        {
+            int newLocationId, parentAssetId, oId, position;
+            newLocationId = parentAssetId = oId = position = 0;
+            int modelId, assetTypeId;
+            string mountType = string.Empty;
+            string orientation = string.Empty;
+            string hostName = string.Empty;
+            string[] allowedPaths = { "assetname", "serialnumber", "assettag", "orientation", "locationid", "hostname", "uposition", "parentassetid", "externalid" };
+
+            //Only repalce operation is allowed
+            foreach (Operation o in patchAsset.Operations)
+            {
+                if (o.OperationType.ToString().ToLower().CompareTo("replace") != 0)
+                {
+                    return BadRequest("Only Replace operation is allowed");
+                }
+            }
+
+            //check if non editable fields has values, if so throw error message
+            // non editable fields: 
+            //  AssetId,AssetGroupId ,ModelId,TechId,RackorStand,ExpiryDate,BusinessUnitId,PrimarySiteId
+            //,AssetCreatedDate,AssetCreatedBy ,RfidassignDate ,IsApproved,IsPermRestrict,IsMustered
+            // ,BarredStartDate,BarredEndDate,IssuedBy,IssuedDate,IssuedTo,ReceivedBy,ReceivedDate
+            //,CurrentStatusId,LastSeenLocationTime ,CurrentOwnerId,CreatedDate ,CreatedBy,LastModifiedDate
+            // ,LastModifiedBy,LastValidationResult,LastGantryUpdatedTime,IsParent,MusterReasonId,CurrentOwnerRfidbadge,DefaultLocationId
+            // ,Os,Cpu,Cpucount ,Cpucore ,NoOfRus,IsWriteOff ,Rfidupdated,InternalId ,WriteOffReasonId,IsChild,DeratedPower,LastUpdatedTime
+
+            foreach (Operation o in patchAsset.Operations)
+            {
+                if (!allowedPaths.Contains(o.path.Replace("/", "").ToLower()))
+                {
+                    return BadRequest("Only Assetname, Serialnumber, Assettag, Orientation, LocationId,Hostname,Uposition,ParentAssetId and ExternalId update is allowed");
+                }
+            }
+
+            foreach (Operation o in patchAsset.Operations)
+            {
+                if (o.path.Replace("/", "").ToLower().CompareTo("serialnumber") == 0)
+                    o.path = "/refnumber";
+                if (o.path.Replace("/", "").ToLower().CompareTo("assettag") == 0)
+                    o.path = "/currentrfidcardnumber";
+                if (o.path.Replace("/", "").ToLower().CompareTo("locationid") == 0)
+                    o.path = "/lastseenlocationid";
+                if (o.path.Replace("/", "").ToLower().CompareTo("uposition") == 0)
+                    o.path = "/startpos";
+            }
+
+            //assets
+            var asset = (from l in _context.TblAsset
+                         where l.AssetId == AssetId
+                         select l).First();
+            // get asset model, asset type and mount type info
+            // while updating Standalone will get Front as default orientation
+            modelId = asset.ModelId;
+            assetTypeId = asset.AssetGroupId;
+            mountType = asset.RackorStand;
+            orientation = asset.Orientation;
+
+            if (asset.IsWriteOff.HasValue && asset.IsWriteOff.Value)
+            {
+                //write-off asset
+                return BadRequest("Write-off asset can not be updated.");
+
+            }
+
+            if (asset.IsMustered.HasValue && asset.IsMustered.Value)
+            {
+                //decommissioned asset
+                return BadRequest("Decom asset can not be updated.");
+            }
+
+            // check if tagid is unique or not
+            foreach (Operation o in patchAsset.Operations)
+            {
+                bool tagExists = false;
+                bool oCorrectFormat = false;
+                bool snoExists = false;
+                //check asset tag
+                if (o.path.Replace("/", "").ToLower().CompareTo("currentrfidcardnumber") == 0)
+                {
+                    tagExists = ((from l in _context.TblAsset
+                                  where l.AssetId != AssetId &&
+                                  l.CurrentRfidcardNumber != null &&
+                                  l.CurrentRfidcardNumber.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
+                                  select l).Count() > 0 ? true : false);
+                }
+
+                if (tagExists)
+                {
+                    return BadRequest("Asset tag already in use");
+                }
+
+                //check orientation
+                if (o.path.Replace("/", "").ToLower().CompareTo("orientation") == 0)
+                {
+                    oCorrectFormat = ((from or in _context.TblOrientation
+                                       where or.OrientationName.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
+                                       select or).Count()) > 0 ? true : false;
+                    if (!oCorrectFormat)
+                    {
+                        //orientation not found in db, so throw error
+                        return BadRequest("Orientation is not found or incorrect");
+                    }
+                }
+                //check serial number
+                if (o.path.Replace("/", "").ToLower().CompareTo("refnumber") == 0)
+                {
+                    snoExists = ((from l in _context.TblAsset
+                                  where l.AssetId != AssetId &&
+                                  l.RefNumber != null &&
+                                  l.RefNumber.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
+                                  select l).Count() > 0 ? true : false);
+                }
+
+                if (snoExists)
+                {
+                    return BadRequest("Asset serial number already in use");
+                }
+
+                // get Orientation,
+                switch (o.path.Replace("/", "").ToLower())
+                {
+                    case "orientation":
+                        TblOrientation or = (from ori in _context.TblOrientation
+                                             where ori.OrientationName.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
+                                             select ori).First();
+                        if (or != null)
+                            oId = or.OrientationId;
+
+                        orientation = o.value.ToString();
+                        break;
+                    case "lastseenlocationid":
+                        newLocationId = int.Parse(o.value.ToString());
+                        break;
+                    case "startpos":
+                        position = int.Parse(o.value.ToString());
+                        break;
+                    case "parentassetid":
+                        parentAssetId = int.Parse(o.value.ToString());
+                        break;
+
+                }
+            }
+
+            //validate hostname
+            bool doAssetHostAssignment = false;
+            foreach (Operation o in patchAsset.Operations)
+            {
+                bool hostNameExists = false;
+                if (o.path.Replace("/", "").ToLower().CompareTo("hostname") == 0)
+                {
+                    hostNameExists = ((from h in _context.TblHost
+                                       where h.HostName.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
+                                       select h).Count() > 0 ? true : false);
+                    if (hostNameExists)
+                    {
+                        //check if host name is already associated with asset
+                        //if so throw error else associate asset with host name
+                        string hostID = (from h in _context.TblHost
+                                         where h.HostName.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
+                                         select h.HostId).First().ToString();
+
+                        bool associatExists = ((from ah in _context.TblAssetHostAssignment
+                                                where ah.HostId.ToString().ToLower().CompareTo(hostID.ToLower()) == 0 &&
+                                                ah.AssetId == AssetId
+                                                select ah).Count() > 0 ? true : false);
+
+                        if (associatExists)
+                        {
+                            //do nothing
+                        }
+                        else
+                        {
+                            //associate asset and host
+                            doAssetHostAssignment = true;
+                        }
+                    }
+                    else
+                    {
+                        return BadRequest("Host name is not defined.");
+                    }
+                }
+
+            }
+
+            //location types
+            List<TblLocationType> locTypes = (from lt in _context.TblLocationType
+                                              select lt).ToList();
+
+            if (newLocationId > 0)
+            {
+                TblLocation newLocation = (from l in _context.TblLocation
+                                           where l.LocationId == newLocationId
+                                           select l).First();
+                string newLocType = (from lt in _context.TblLocationType
+                                     where lt.LocationTypeId == newLocation.LocationTypeId.Value
+                                     select lt.LocationType).First();
+                bool isWriteOffLoc = false;
+                bool isDecomLoc = false;
+                #region write-off/decom check
+
+                switch (newLocType)
+                {
+                    case "Room":
+                        if (newLocation != null)
+                        {
+                            if (newLocation.Location.ToLower().Contains("dispose") && newLocation.IsSpecialRoom)
+                                isWriteOffLoc = true;
+                            if (newLocation.Location.ToLower().Contains("decom") && newLocation.IsSpecialRoom)
+                                isDecomLoc = true;
+                        }
+                        break;
+                    case "Row":
+
+                        int parentRoomId;
+                        if (newLocation != null)
+                        {
+                            if (newLocation.ParentLocationId.HasValue)
+                                parentRoomId = newLocation.ParentLocationId.Value;
+                            else
+                                parentRoomId = 0;
+                            TblLocation parentLocation = (from l in _context.TblLocation
+                                                          where l.LocationId == parentRoomId
+                                                          && l.IsSpecialRoom == true
+                                                          select l).First();
+                            if (parentLocation != null)
+                            {
+                                if (parentLocation.Location.ToLower().Contains("dispose"))
+                                    isWriteOffLoc = true;
+                                if (parentLocation.Location.ToLower().Contains("decom"))
+                                    isDecomLoc = true;
+                            }
+                        }
+                        break;
+                    case "Rack":
+
+                        int parentL1Id;
+                        int parentL2Id;
+                        if (newLocation != null)
+                        {
+                            //row
+                            if (newLocation.ParentLocationId.HasValue)
+                                parentL1Id = newLocation.ParentLocationId.Value;
+                            else
+                                parentL1Id = 0;
+                            TblLocation parentRowLocation = (from l in _context.TblLocation
+                                                             where l.LocationId == parentL1Id
+                                                             select l).First();
+                            if (parentRowLocation != null)
+                            {
+                                //room
+                                if (parentRowLocation.ParentLocationId.HasValue)
+                                    parentL2Id = parentRowLocation.ParentLocationId.Value;
+                                else
+                                    parentL2Id = 0;
+
+                                List<TblLocation> parentRoomLocation = (from l in _context.TblLocation
+                                                                        where l.LocationId == parentL2Id
+                                                                        && l.IsSpecialRoom == true
+                                                                        select l).ToList();
+                                if (parentRoomLocation != null && parentRoomLocation.Count() > 0)
+                                {
+                                    if (parentRoomLocation[0].Location.ToLower().Contains("dispose"))
+                                        isWriteOffLoc = true;
+                                    if (parentRoomLocation[0].Location.ToLower().Contains("decom"))
+                                        isDecomLoc = true;
+                                }
+                            }
+                        }
+                        break;
+                }
+                if (asset.IsWriteOff.HasValue && asset.IsWriteOff.Value)
+                {
+                    //write-off asset
+                    //check new location, only dispose room is allowed
+                    if (!isWriteOffLoc)
+                        return BadRequest("Write-off asset can be moved to dispose location only.");
+
+                }
+
+                if (asset.IsMustered.HasValue && asset.IsMustered.Value)
+                {
+                    //decommissioned asset
+                    // check new location, only decom room is allowed.
+                    if (!isDecomLoc)
+                        return BadRequest("Decom asset can be moved to decom location only.");
+                }
+
+                #endregion
+
+
+                if (mountType.ToLower().CompareTo("standalone") == 0)
+                {
+                    if (newLocType.ToLower().CompareTo("rack") == 0)
+                        return BadRequest("Standalone asset can not be placed inside a rack. ");
+                }
+                else if (mountType.ToLower().CompareTo("enclosuremount") == 0)
+                {
+                    //child assets
+                    if (newLocType.ToLower().CompareTo("rack") == 0)
+                    {
+                        if (oId > 0 && parentAssetId > 0 && position > 0
+                            && (orientation.ToLower().CompareTo("front") == 0 || orientation.ToLower().CompareTo("rear") == 0))
+                        {
+                            TblAsset parentAsset = (from p in _context.TblAsset
+                                                    where p.AssetId == parentAssetId
+                                                    select p).First();
+                            if (parentAsset != null)
+                            {
+                                if (parentAsset.IsParent)
+                                {
+                                    if (orientation.ToLower().CompareTo("front") == 0 || orientation.ToLower().CompareTo("rear") == 0)
+                                    {
+                                        string posString = string.Empty;
+                                        ArrayList alPositions = new ArrayList();
+                                        int enclFRowCount, enclFColCount, enclRRowCount, enclRColCount;
+                                        int bladeRowCount, bladeColCount;
+                                        bool positionExists = false;
+                                        if (orientation.ToLower().CompareTo("front") == 0)
+                                        {
+                                            posString = (from ep in _context.TblEnclPositions
+                                                         where ep.EnclId == parentAssetId
+                                                         select ep.FrontPositions).First();
+                                        }
+                                        else if (orientation.ToLower().CompareTo("rear") == 0)
+                                        {
+                                            posString = (from ep in _context.TblEnclPositions
+                                                         where ep.EnclId == parentAssetId
+                                                         select ep.RearPositions).First();
+                                        }
+
+                                        if (!string.IsNullOrEmpty(posString))
+                                        {
+                                            for (int i = 1; i <= posString.Length; i++)
+                                            {
+                                                if (posString[i - 1] == 'P' || posString[i - 1] == 'V')
+                                                    alPositions.Add(i.ToString());
+                                            }
+                                        }
+                                        //get enclosure model details based on parent asset id
+                                        TblEnclModelDetails enclModel = (from em in _context.TblEnclModelDetails
+                                                                         where em.EnclModelId == parentAsset.ModelId
+                                                                         select em).First();
+                                        if (enclModel != null)
+                                        {
+                                            enclFRowCount = (enclModel.EnclFrontRowCount.HasValue ? enclModel.EnclFrontRowCount.Value : 0);
+                                            enclFColCount = (enclModel.EnclFrontColumnCount.HasValue ? enclModel.EnclFrontColumnCount.Value : 0);
+                                            enclRRowCount = (enclModel.EnclRearRowCount.HasValue ? enclModel.EnclRearRowCount.Value : 0);
+                                            enclRColCount = (enclModel.EnclRearColumnCount.HasValue ? enclModel.EnclRearColumnCount.Value : 0);
+
+                                            //get blade model details
+                                            TblBladeModelDetails bladeModel = (from bm in _context.TblBladeModelDetails
+                                                                               where bm.BladeModelId == asset.ModelId
+                                                                               select bm).First();
+                                            if (bladeModel != null)
+                                            {
+                                                bladeRowCount = (bladeModel.BladeRowCount.HasValue ? bladeModel.BladeRowCount.Value : 0);
+                                                bladeColCount = (bladeModel.BladeColumnCount.HasValue ? bladeModel.BladeColumnCount.Value : 0);
+
+                                                if (orientation.ToLower().CompareTo("front") == 0)
+                                                {
+                                                    positionExists = bladePositionExists(parentAssetId, orientation,
+                                                                                            bladeRowCount, bladeColCount, enclFRowCount, enclFColCount, position, posString);
+                                                }
+                                                else if (orientation.ToLower().CompareTo("rear") == 0)
+                                                {
+                                                    positionExists = bladePositionExists(parentAssetId, orientation,
+                                                                                            bladeRowCount, bladeColCount, enclRRowCount, enclRColCount, position, posString);
+                                                }
+
+                                                if (!positionExists)
+                                                    return BadRequest("Selectd bay position is not available.");
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        return BadRequest("Orientation must be front or rear only.");
+                                    }
+                                }
+                                else
+                                {
+                                    return BadRequest("Selected parent asset is not a valid enclosure asset.");
+                                }
+                            }
+                            else
+                            {
+                                return BadRequest("Selected parent asset is invalid.");
+                            }
+
+                        }
+                        else
+                        {
+                            return BadRequest("Child asset: location update request must have valid orientation, parent asset and position details.");
+                        }
+                    }
+
+                }
+                else if (mountType.ToLower().CompareTo("verticalmount") == 0)
+                {
+                    //vertical mount
+                    if (newLocType.ToLower().CompareTo("rack") == 0)
+                    {
+                        if (oId > 0 && orientation.ToLower().CompareTo("front") != 0 && orientation.ToLower().CompareTo("rear") != 0)
+                        {
+
+                        }
+                        else
+                        {
+                            return BadRequest("Vertical asset location update request must have a valid orientation");
+                        }
+                    }
+                }
+                else
+                {
+                    //rackmount or stack in rack assets
+                    if (newLocType.ToLower().CompareTo("rack") == 0)
+                    {
+                        if (oId > 0 && (orientation.ToLower().CompareTo("front") == 0 || orientation.ToLower().CompareTo("rear") == 0)
+                            && position > 0)
+                        {
+
+                        }
+                        else
+                        {
+                            return BadRequest("Asset location update request must have a valid orientation, position details.");
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+
+            //do update
+            var assetDTO = _mapper.Map<AssetDTO>(asset);
+            patchAsset.ApplyTo(assetDTO);
+            //update LastMofidiedBy and LastModifiedDate fields.
+            string userName = User.Identity.Name;
+            TblUser user = (from u in _context.TblUser
+                            where u.LoginName.ToLower().CompareTo(userName.ToLower()) == 0
+                            select u).First();
+
+            assetDTO.LastModifiedDate = DateTime.Now;
+            assetDTO.LastModifiedBy = user.UserId;
+            //assetDTO.Result = 0;
+            //
+
+            //if (asset.IsChild)
+            //{
+            //    //child asset
+            //}
+            //else
+            //{
+            TblAssetModel assetModel = (from m in _context.TblAssetModel
+                                        where m.ModelId == asset.ModelId
+                                        select m).First();
+
+            string query = "iAssetTrack_Sp_Asset_UpdateNew ";
+
+            SqlParameter[] parameters =
+            {
+                    new SqlParameter("@pIntAssetID", SqlDbType.Int) {Direction = ParameterDirection.InputOutput,Value = assetDTO.AssetId},
+                    new SqlParameter("@pVarRefNumber", SqlDbType.VarChar,100) {Direction = ParameterDirection.Input,Value = assetDTO.RefNumber},
+                    new SqlParameter("@pIntModelID", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.ModelId},
+                    new SqlParameter("@pIntAssetGroupID", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.AssetGroupId},
+                    new SqlParameter("@pIntDefaultLocationID", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.DefaultLocationId},
+                    new SqlParameter("@pIntBusinessUnitID", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.BusinessUnitId},
+                    new SqlParameter("@pIntPrimarySiteID", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.PrimarySiteId},
+                    new SqlParameter("@pVarAssetName", SqlDbType.VarChar,1000) {Direction = ParameterDirection.Input,Value = assetDTO.AssetName},
+                    new SqlParameter("@pDtAssetCreatedDate", SqlDbType.DateTime) {Direction = ParameterDirection.Input,Value = assetDTO.AssetCreatedDate},
+                    new SqlParameter("@pIntAssetCreatedBy", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.AssetCreatedBy},
+                    new SqlParameter("@pIntLastSeenLocationID", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.LastSeenLocationId},
+                    new SqlParameter("@pIntCurrentOwnerID", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.CurrentOwnerId},
+                    new SqlParameter("@pIntUpdatedBy", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = user.UserId},
+
+                    new SqlParameter("@pVarOS", SqlDbType.VarChar,50) {Direction = ParameterDirection.Input,
+                        Value = (string.IsNullOrEmpty(assetDTO.Os) ? DBNull.Value.ToString():assetDTO.Os)},
+                    new SqlParameter("@pVarCPU", SqlDbType.VarChar,50) {Direction = ParameterDirection.Input,
+                        Value = (string.IsNullOrEmpty(assetDTO.Cpu) ? DBNull.Value.ToString():assetDTO.Cpu)},
+                    new SqlParameter("@pIntCPUCount", SqlDbType.VarChar,50) {Direction = ParameterDirection.Input,Value = assetDTO.Cpucount},
+                    new SqlParameter("@pVarCPUCore", SqlDbType.VarChar,50) {Direction = ParameterDirection.Input,
+                        Value = (string.IsNullOrEmpty(assetDTO.Cpucore) ? DBNull.Value.ToString():assetDTO.Cpucore)},
+                    new SqlParameter("@pIntTechID", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.TechId},
+                    new SqlParameter("@pVarRackOrStand", SqlDbType.VarChar,25) {Direction = ParameterDirection.Input,Value = assetDTO.RackorStand},
+                    new SqlParameter("@pIntStartPos", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.StartPos},
+                    new SqlParameter("@pIntNoOfRUs", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.NoOfRus},
+                    new SqlParameter("@pBitIsImport", SqlDbType.Bit) {Direction = ParameterDirection.Input,Value = 0},
+                    new SqlParameter("@pBitSerialModelCheck", SqlDbType.Bit) {Direction = ParameterDirection.Input,Value = 1},
+                    new SqlParameter("@pIntParentAssetID", SqlDbType.Int) {Direction = ParameterDirection.Input,Value = assetDTO.ParentAssetId},
+                    new SqlParameter("@PIsParent", SqlDbType.Bit) {Direction = ParameterDirection.Input,Value = assetDTO.IsParent},
+                    new SqlParameter("@PCurrentRFIDCardNumber", SqlDbType.VarChar,24) {Direction = ParameterDirection.Input,Value = assetDTO.CurrentRfidcardNumber},
+                    new SqlParameter("@pVarHost", SqlDbType.VarChar,1000) {Direction = ParameterDirection.Input,Value = hostName},
+                    new SqlParameter("@POrientation", SqlDbType.VarChar,50) {Direction = ParameterDirection.Input,Value = assetDTO.Orientation},
+                    new SqlParameter("@pVarApplications", SqlDbType.VarChar,8000) {Direction = ParameterDirection.Input,Value = ""},
+                    new SqlParameter("@pVarInternalID", SqlDbType.VarChar,50) {Direction = ParameterDirection.Input,Value = (assetDTO.InternalId == null ? "": assetDTO.InternalId) },
+                    new SqlParameter("@pVarExternalID", SqlDbType.VarChar,50) {Direction = ParameterDirection.Input,Value = assetDTO.ExternalId},
+                    new SqlParameter("@pFltDeratedPower", SqlDbType.Float) {Direction = ParameterDirection.Input,Value = assetDTO.DeratedPower}
+                };
+
+            SqlParameter pResult = new SqlParameter("@pIntResult", SqlDbType.Int) { Direction = ParameterDirection.Output, Value = 0 };
+            SqlParameter pMessageCode = new SqlParameter("@pVarMessageCode", SqlDbType.VarChar, 2000) { Direction = ParameterDirection.Output, Value = "" };
+
+                string parameterList = "@pIntAssetID,@pVarRefNumber,@pIntModelID,@pIntAssetGroupID,@pIntDefaultLocationID,@pIntBusinessUnitID,@pIntPrimarySiteID," +
+                    "@pVarAssetName,@pDtAssetCreatedDate,@pIntAssetCreatedBy,@pIntLastSeenLocationID,@pIntCurrentOwnerID,@pIntUpdatedBy," +
+                    "@pVarOS,@pVarCPU,@pIntCPUCount,@pVarCPUCore,@pIntTechID,@pVarRackOrStand,@pIntStartPos,@pIntNoOfRUs,@pBitIsImport ,@pBitSerialModelCheck,@pIntParentAssetID," +
+                    "@PIsParent,@PCurrentRFIDCardNumber,@pVarHost,@POrientation,@pVarApplications,@pVarInternalID,@pVarExternalID,@pFltDeratedPower,@pIntResult,@pVarMessageCode";
+            _context.Database.OpenConnection();
+            DbCommand cmd = _context.Database.GetDbConnection().CreateCommand();
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = query ;
+            cmd.Parameters.AddRange(parameters);
+            cmd.Parameters.Add(pResult);
+            cmd.Parameters.Add(pMessageCode);
+
+            using (var reader = cmd.ExecuteReader())
+            {
+                //List<SpAssetUpdate> assetUpdate = reader.MapToList<SpAssetUpdate>();
+            }
+            _context.Entry(asset).Reload();
+
+            if (int.Parse(pResult.Value.ToString()) == -1)
+                return BadRequest(pMessageCode.Value.ToString());
+            //_context.Database.ExecuteSqlCommand(query + " " + parameterList, parameters,pResult,pMessageCode);
+            //standard asset
+            //AssetUpdateResult updateResult = ExecQuery(query, _context, CommandType.StoredProcedure, parameters);
+            //}
+
+            //_mapper.Map(assetDTO, asset);
+            //_context.Entry(asset).State = EntityState.Modified;
+            //_context.TblAsset.Update(asset);
+            //await _context.SaveChangesAsync();
+
+            return Ok(asset);
+        }
+
+        private DataTable ToDataTable<TblAssetExcel>(List<TblAssetExcel> iList)
+        {
+            DataTable dataTable = new DataTable();
+            PropertyDescriptorCollection propertyDescriptorCollection =
+                TypeDescriptor.GetProperties(typeof(TblAssetExcel));
+            for (int i = 0; i < propertyDescriptorCollection.Count; i++)
+            {
+                PropertyDescriptor propertyDescriptor = propertyDescriptorCollection[i];
+                Type type = propertyDescriptor.PropertyType;
+
+                if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+                    type = Nullable.GetUnderlyingType(type);
+                dataTable.Columns.Add(propertyDescriptor.Name, type);
+            }
+            object[] values = new object[propertyDescriptorCollection.Count];
+            foreach (TblAssetExcel iListItem in iList)
+            {
+                for (int i = 0; i < values.Length; i++)
+                {
+                    values[i] = propertyDescriptorCollection[i].GetValue(iListItem);
+                }
+                dataTable.Rows.Add(values);
+            }
+            return dataTable;
+        }
+
+
+        private bool bladePositionExists(int ParentAssetID, string Orientation, int BladeRowCount, int BladeColCount, int EnclRowCount, int EnclColCount, int StartPos, string posString)
+        {
+            bool retval = false;
+            bool throwError = false;
+            if (BladeRowCount > EnclRowCount || BladeColCount > EnclColCount)
+            {
+                throwError = true;
+            }
+            else
+            {
+                for (int enclr = 1; enclr <= EnclRowCount; enclr++)
+                {
+                    if (StartPos <= EnclColCount * enclr)
+                    {
+                        for (int bc = 1; bc <= BladeColCount; bc++)
+                        {
+                            if ((StartPos + bc - 1) > (EnclColCount * enclr))
+                            {
+                                throwError = true;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            if (!throwError)
+            {
+                List<int> enclPos = new List<int>();
+                if (!string.IsNullOrEmpty(posString))
+                {
+                    for (int i = 1; i <= posString.Length; i++)
+                    {
+                        if (posString[i - 1] == 'P' || posString[i - 1] == 'V')
+                            enclPos.Add(i);
+                    }
+                }
+
+                for (int r = 0; r < BladeRowCount; r++)
+                {
+                    for (int c = 0; c < BladeColCount; c++)
+                    {
+                        if (!enclPos.Contains((StartPos + (EnclColCount * r) + c)))
+                        {
+                            throwError = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (throwError)
+                retval = false;
+            else
+                retval = true;
+
+            return retval;
+        }
+
+        private AssetUpdateResult ExecQuery(string query, DCTrackContext context, CommandType CommType, params object[] parameters)
+        {
+            AssetUpdateResult obAUR;
+            using (context)
+            {
+                using (var command = context.Database.GetDbConnection().CreateCommand())
+                {
+                    command.CommandText = query;
+                    command.CommandType = CommType;
+                    command.Parameters.AddRange(parameters);
+                    context.Database.OpenConnection();
+                    DataTable data = new DataTable();
+                    command.ExecuteNonQuery();
+                    obAUR = new AssetUpdateResult();
+                    //IntResult
+                    obAUR.Result = (int)command.Parameters["@pIntResult"].Value;
+                    //varMessageCode
+                    obAUR.MessageCode = (string)command.Parameters["@pVarMessageCode"].Value;
+
+                }
+            }
+            return obAUR;
+        }
+    }
+
+    public class AssetUpdateResult
+    {
+        public int Result { get; set; }
+        public string MessageCode { get; set; }
+    }
+
+    public class AssetsFailed
+    {
+
+        public string AssetID { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+    }
+
+}

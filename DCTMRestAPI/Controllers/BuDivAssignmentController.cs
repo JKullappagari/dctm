@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class BuDivAssignmentController : Controller
+    {
+        private readonly DCTrackContext _context;
+
+        public BuDivAssignmentController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+
+        /// <summary>
+        /// Gets all BU-Division assignment details
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/budivassignment
+        [HttpGet]
+        [ProducesResponseType(typeof(TblBudivAssignment), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblBudivAssignment> Get()
+        {
+            List<TblBudivAssignment> buDiv = (from g in _context.TblBudivAssignment
+                                            select g).ToList();
+            return buDiv;
+        }
+
+        /// <summary>
+        /// Gets BU-Division assignment details based on identifier
+        /// </summary>
+        /// <param name="BudivAssignmentId"></param>
+        /// <returns></returns>
+        // GET api/budivassignment/5
+        [HttpGet("{BudivAssignmentId}")]
+        [ProducesResponseType(typeof(TblBudivAssignment), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblBudivAssignment> Get(int BudivAssignmentId)
+        {
+            List<TblBudivAssignment> buDiv = (from g in _context.TblBudivAssignment
+                                                  where g.BudivAssignmentId == BudivAssignmentId
+                                                  select g).ToList();
+            return buDiv;
+        }
+
+        /// <summary>
+        /// Gets BU-Division assignment details which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/budivassignment/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblBudivAssignment), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblBudivAssignment> Get(long LastUpdatedTime)
+        {
+            List<TblBudivAssignment> budiv = (from g in _context.TblBudivAssignment
+                                                    where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return budiv;
+        }
+
+        //// POST api/budivassignment
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/budivassignment/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+    }
+}

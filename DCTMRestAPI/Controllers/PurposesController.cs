@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class PurposesController : Controller
+    {
+        private readonly DCTrackContext _context;
+
+        public PurposesController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+
+        /// <summary>
+        /// Gets all purposes
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/purposes
+        [HttpGet]
+        [ProducesResponseType(typeof(TblPurpose), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblPurpose> Get()
+        {
+            List<TblPurpose> purposes = (from g in _context.TblPurpose
+                                            select g).ToList();
+            return purposes;
+        }
+
+        /// <summary>
+        /// Gets purpose based on identifier
+        /// </summary>
+        /// <param name="PurposeId"></param>
+        /// <returns></returns>
+        // GET api/purposes/5
+        [HttpGet("{PurposeId}")]
+        [ProducesResponseType(typeof(TblPurpose), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblPurpose> Get(int PurposeId)
+        {
+            List<TblPurpose> purposes = (from g in _context.TblPurpose
+                                          where g.PurposeId == PurposeId
+                                         select g).ToList();
+            return purposes;
+        }
+
+        /// <summary>
+        /// Gets purposes which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/purposes/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblPurpose), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblPurpose> Get(long LastUpdatedTime)
+        {
+            List<TblPurpose> purposes = (from g in _context.TblPurpose
+                                            where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return purposes;
+        }
+
+        //// POST api/purposes
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
+
+        //// PUT api/purposes/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/purposes/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+    }
+}

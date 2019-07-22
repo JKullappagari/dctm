@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class TechCategoriesController : Controller
+    {
+        private readonly DCTrackContext _context;
+
+        public TechCategoriesController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+
+        /// <summary>
+        /// Gets all tech category details
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/techcategories
+        [HttpGet]
+        [ProducesResponseType(typeof(TblTechCategory), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblTechCategory> Get()
+        {
+            List<TblTechCategory> categories = (from g in _context.TblTechCategory
+                                            select g).ToList();
+            return categories;
+        }
+
+        /// <summary>
+        /// Gets tech category details based on identifier
+        /// </summary>
+        /// <param name="TechId"></param>
+        /// <returns></returns>
+        // GET api/techcategories/5
+        [HttpGet("{TechId}")]
+        [ProducesResponseType(typeof(TblTechCategory), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblTechCategory> Get(int TechId)
+        {
+            List<TblTechCategory> categories = (from g in _context.TblTechCategory
+                                               where g.TechId == TechId
+                                               select g).ToList();
+            return categories;
+        }
+
+        /// <summary>
+        /// Gets tech category details which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/techcategories/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblTechCategory), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblTechCategory> Get(long LastUpdatedTime)
+        {
+            List<TblTechCategory> categories = (from g in _context.TblTechCategory
+                                                 where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return categories;
+        }
+
+        //// POST api/techcategories
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
+
+        //// PUT api/techcategories/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/techcategories/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+    }
+}

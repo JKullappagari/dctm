@@ -1,0 +1,795 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ModuleRightsData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Application Criticality</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Application Criticality</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Application Criticality</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Application Criticality</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Application Map</module>
+		<rights>Map</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Application Map</module>
+		<rights>Unmap</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Application Map</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Application Type</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Application Type</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Application Type</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Application Type</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Create Application</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Create Application</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Create Application</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Create Application</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Import Applications</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Import Applications</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Import Asset-App Map</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Application</mainmodule>
+		<module>Import Asset-App Map</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Create Asset</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Create Asset</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Import Asset</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Import Asset</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Import Blades</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Import Blades</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Inventory Update</module>
+		<rights>Inventory Update</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Inventory Update</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Search Asset</module>
+		<rights>Bar</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Search Asset</module>
+		<rights>Decommission</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Search Asset</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Search Asset</module>
+		<rights>Restrict</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Search Asset</module>
+		<rights>Revoke Perm Restrict</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Search Asset</module>
+		<rights>UnBar</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Search Asset</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Search Asset</module>
+		<rights>WriteOff</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Assignment</mainmodule>
+		<module>Assign Sites to Company</module>
+		<rights>Assignment</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Assignment</mainmodule>
+		<module>Assign Sites to Company</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Assignment</mainmodule>
+		<module>Company and Division Assignment</module>
+		<rights>Assignment</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Assignment</mainmodule>
+		<module>Company and Division Assignment</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Assignment</mainmodule>
+		<module>Site and Location Assignment</module>
+		<rights>Assignment</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Assignment</mainmodule>
+		<module>Site and Location Assignment</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Asset Model</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Asset Model</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Asset Model</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Asset Model</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Asset Type</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Asset Type</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Asset Type</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Asset Type</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Audit Cycle</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Audit Cycle</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Audit Cycle</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Audit Cycle</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Division</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Division</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Division</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Division</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Host</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Host</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Host</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Host</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Import Asset Models</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Import Asset Models</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Location</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Location</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Location</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Location</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Manufacturer</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Manufacturer</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Manufacturer</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Manufacturer</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Owner</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Owner</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Owner</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Owner</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Purpose</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Purpose</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Purpose</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Purpose</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Reason</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Reason</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Reason</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Reason</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Register Device</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Register Device</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Register Device</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Register Device</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Site</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Site</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Site</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Site</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Technology Category</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Technology Category</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Technology Category</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Technology Category</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Tenant</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Tenant</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Tenant</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Tenant</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Reports</mainmodule>
+		<module>App Summary - Rack</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Asset Data - Excel</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Asset History Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Asset Movement Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Asset Transaction Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Audit Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Capacity Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Last Printed Tag Details</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Rack Inventory Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Rack Tag Details</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>Change Password</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>Group</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>Group</module>
+		<rights>Delete</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>Group</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>Group</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>Group Module Access Rights Assignment</module>
+		<rights>Assign Rights</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>Group Module Access Rights Assignment</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>Manage Users</module>
+		<rights>Create</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>Manage Users</module>
+		<rights>Modify</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>Manage Users</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>User Search</module>
+		<rights>Assign Group to User</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>User Search</module>
+		<rights>Modify User</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Administrator</group>
+		<mainmodule>User Administration</mainmodule>
+		<module>User Search</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Users</group>
+		<mainmodule>Asset</mainmodule>
+		<module>Search Asset</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Users</group>
+		<mainmodule>Masters</mainmodule>
+		<module>Tenant</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Users</group>
+		<mainmodule>Reports</mainmodule>
+		<module>App Summary - Rack</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Users</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Asset History Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Users</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Asset Movement Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Users</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Asset Transaction Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Users</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Audit Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Users</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Capacity Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Users</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Rack Inventory Report</module>
+		<rights>View</rights>
+	</ModuleData>
+	<ModuleData>
+		<group>Users</group>
+		<mainmodule>Reports</mainmodule>
+		<module>Rack Tag Details</module>
+		<rights>View</rights>
+	</ModuleData>
+</ModuleRightsData>

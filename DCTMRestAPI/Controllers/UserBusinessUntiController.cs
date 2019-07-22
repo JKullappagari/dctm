@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class UserBusinessUnitController : Controller
+    {
+        private readonly DCTrackContext _context;
+
+        public UserBusinessUnitController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+
+        /// <summary>
+        /// Gets all user-businessunit details
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/userBusinessunits
+        [HttpGet]
+        [ProducesResponseType(typeof(TblUserBusinessUnit), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblUserBusinessUnit> Get()
+        {
+            List<TblUserBusinessUnit> userBUs = (from g in _context.TblUserBusinessUnit
+                                            select g).ToList();
+            return userBUs;
+        }
+
+        /// <summary>
+        /// Gets user-businessunit details based on identifier
+        /// </summary>
+        /// <param name="UserBusinessUnitId"></param>
+        /// <returns></returns>
+        // GET api/userBusinessunits/5
+        [HttpGet("{UserBusinessUnitId}")]
+        [ProducesResponseType(typeof(TblUserBusinessUnit), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblUserBusinessUnit> Get(int UserBusinessUnitId)
+        {
+            List<TblUserBusinessUnit> userBUs = (from g in _context.TblUserBusinessUnit
+                                                   where g.UserBusinessUnitId == UserBusinessUnitId
+                                                 select g).ToList();
+            return userBUs;
+        }
+
+        /// <summary>
+        /// Gets user-businessunit details which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/userBusinessunits/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblUserBusinessUnit), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblUserBusinessUnit> Get(long LastUpdatedTime)
+        {
+            List<TblUserBusinessUnit> userbu = (from g in _context.TblUserBusinessUnit
+                                                     where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return userbu;
+        }
+
+        //// POST api/userBusinessunits
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
+
+        //// PUT api/userBusinessunits/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/userBusinessunits/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+    }
+}

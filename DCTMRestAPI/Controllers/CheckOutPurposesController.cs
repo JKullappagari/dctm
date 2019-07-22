@@ -1,0 +1,301 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Microsoft.Extensions.Logging;
+using System.Text;
+using Serilog.Events;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class CheckOutPurposesController : Controller
+    {
+
+        private readonly DCTrackContext _context;
+        private readonly ILogger _logger;
+
+
+        public CheckOutPurposesController(DCTrackContext context, ILogger<CheckOutPurposesController> logger)
+        {
+            _context = context;
+            _logger = logger;
+
+        }
+
+        /// <summary>
+        /// Gets all checkout purposes
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/checkoutpurposes
+        [HttpGet]
+        [ProducesResponseType(typeof(TblCheckoutPurpose), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblCheckoutPurpose> Get()
+        {
+            List<TblCheckoutPurpose> checkoutPurpose = (from g in _context.TblCheckoutPurpose
+                                                        select g).ToList();
+            return checkoutPurpose;
+        }
+
+        /// <summary>
+        /// Gets checkout purposes based on identifier
+        /// </summary>
+        /// <param name="CheckoutPurposeId"></param>
+        /// <returns></returns>
+        // GET api/checkoutpurposes/5
+        [HttpGet("{CheckoutPurposeId}")]
+        [ProducesResponseType(typeof(TblCheckoutPurpose), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblCheckoutPurpose> Get(int CheckoutPurposeId)
+        {
+            List<TblCheckoutPurpose> checkoutPurpose = (from g in _context.TblCheckoutPurpose
+                                                        where g.CheckoutPurposeId == CheckoutPurposeId
+                                                        select g).ToList();
+            return checkoutPurpose;
+        }
+
+        /// <summary>
+        /// Gets checkout purposes which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/checkoutpurposes/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblCheckoutPurpose), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblCheckoutPurpose> Get(long LastUpdatedTime)
+        {
+            List<TblCheckoutPurpose> purposes = (from g in _context.TblCheckoutPurpose
+                                                 where g.LastUpdatedTime > LastUpdatedTime
+                                                 select g).ToList();
+            return purposes;
+        }
+
+
+        /// <summary>
+        /// Set Checkout purpose information based on identifier
+        /// </summary>
+        /// <response code="200" >No reponse was specified</response>
+        /// <response code="204" >No content</response>
+        /// <param name="value"> Checkout purpose list</param>
+        //PUT api/rackpositions/5
+        [HttpPut()]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [Authorize(Roles = "Mobile")]
+        public async Task<IActionResult> Put([FromBody]List<TblCheckoutPurpose> value)
+        {
+
+            List<CheckoutPurposeFailed> errors = new List<CheckoutPurposeFailed>();
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            foreach (TblCheckoutPurpose purpose in value)
+            {
+
+                try
+                {
+                    // check last modified date and see whether Server or client has latest record.
+                    // latest record will previal
+                    List<TblCheckoutPurpose> selectedPurpose = (from g in _context.TblCheckoutPurpose.AsNoTracking()
+                                                                where g.Id.ToString().ToLower().CompareTo(purpose.Id.ToString().ToLower()) == 0
+                                                                select g).ToList();
+                    
+
+                    if (selectedPurpose != null)
+                    {
+                        if (selectedPurpose.Count <= 0)
+                        {
+                            //create new Checkout purpose
+                            await PostRecord(errors, purpose);
+                        }
+                        else
+                        {
+                            if (selectedPurpose[0].LastModifiedDate == null || selectedPurpose[0].LastModifiedDate <= purpose.LastModifiedDate)
+                            {
+                                _context.Entry(purpose).State = EntityState.Modified;
+                                await _context.SaveChangesAsync();
+                            }
+                            else
+                            {
+                                CheckoutPurposeFailed failed = new CheckoutPurposeFailed();
+                                failed.Id = purpose.Id.ToString();
+                                failed.CheckoutPurposeID = purpose.CheckoutPurposeId;
+                                failed.CheckoutSessionId = purpose.CheckoutSessionId.ToString();
+                                failed.ErrorMessage = "Server Record is latest compared to client record.";
+                                errors.Add(failed);
+
+                                //write to sync conflict log
+                                StringBuilder sb = new StringBuilder();
+                                sb.Append(Environment.NewLine);
+                                sb.Append("****************** Checkout Purpose Data Conflict******************");
+                                sb.Append(Environment.NewLine);
+                                sb.Append("Server Record is latest compared to client record.");
+                                sb.Append(Environment.NewLine);
+                                sb.Append("Checkout Purpose ID:" + selectedPurpose[0].Id.ToString());
+                                sb.Append(Environment.NewLine);
+                                sb.Append("Server Modified Date:" + selectedPurpose[0].LastModifiedDate.ToString());
+                                sb.Append(Environment.NewLine);
+                                sb.Append("Client Modified Date:" + purpose.LastModifiedDate.ToString());
+                                sb.Append(Environment.NewLine);
+                                sb.Append("******************************************************");
+                                sb.Append(Environment.NewLine);
+
+                                _logger.LogInformation(sb.ToString());
+                                //Microsoft.Practices.EnterpriseLibrary.Logging.Logger.Write(sb.ToString(), "ConflictLog");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        CheckoutPurposeFailed failed = new CheckoutPurposeFailed();
+                        failed.Id = purpose.Id.ToString();
+                        failed.CheckoutPurposeID = purpose.CheckoutPurposeId;
+                        failed.CheckoutSessionId = purpose.CheckoutSessionId.ToString();
+                        failed.ErrorMessage = "Failed to get data from database";
+                        errors.Add(failed);
+                    }
+
+                }
+                catch (DbUpdateConcurrencyException ex1)
+                {
+                    _logger.LogCritical(ex1, "Put Request");
+
+                    CheckoutPurposeFailed failed = new CheckoutPurposeFailed();
+                    failed.Id = purpose.Id.ToString();
+                    failed.CheckoutPurposeID = purpose.CheckoutPurposeId;
+                    failed.CheckoutSessionId = purpose.CheckoutSessionId.ToString();
+                    failed.ErrorMessage = ex1.Message;
+                    errors.Add(failed);
+
+                }
+                catch (Exception ex2)
+                {
+                    _logger.LogCritical(ex2, "Put Request");
+                    CheckoutPurposeFailed failed = new CheckoutPurposeFailed();
+                    failed.Id = purpose.Id.ToString();
+                    failed.CheckoutPurposeID = purpose.CheckoutPurposeId;
+                    failed.CheckoutSessionId = purpose.CheckoutSessionId.ToString();
+
+                    if (ex2.InnerException != null)
+                        failed.ErrorMessage = ex2.InnerException.Message;
+                    else
+                        failed.ErrorMessage = ex2.Message;
+                    errors.Add(failed);
+                }
+            }
+
+            if (errors.Count > 0)
+                return Ok(errors);
+            else
+                return Ok();
+
+        }
+
+
+
+        /// <summary>
+        /// Creates new checkout purpose
+        /// </summary>
+        /// <response code="200" >No reponse was specified</response>
+        /// <response code="204" >No content</response>
+        /// <param name="value">Checkout purpose list</param>
+        //POST api/checkoutpurposes
+        [HttpPost]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(403)]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [Authorize(Roles = "Mobile")]
+        public async Task<IActionResult> Post([FromBody]List<TblCheckoutPurpose> value)
+        {
+            List<CheckoutPurposeFailed> errors = new List<CheckoutPurposeFailed>();
+
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            foreach (TblCheckoutPurpose purpose in value)
+            {
+                await PostRecord(errors, purpose);
+
+            }
+            if (errors.Count > 0)
+                return Ok(errors);
+            else
+                return Ok();
+
+
+        }
+
+        private async Task PostRecord(List<CheckoutPurposeFailed> errors, TblCheckoutPurpose purpose)
+        {
+            try
+            {
+                _context.Entry(purpose).State = EntityState.Added;
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException ex1)
+            {
+                _logger.LogCritical(ex1, "Post Request");
+
+                CheckoutPurposeFailed failed = new CheckoutPurposeFailed();
+                failed.Id = purpose.Id.ToString();
+                failed.CheckoutPurposeID = purpose.CheckoutPurposeId;
+                failed.CheckoutSessionId = purpose.CheckoutSessionId.ToString();
+                failed.ErrorMessage = ex1.Message;
+                errors.Add(failed);
+
+            }
+            catch (Exception ex2)
+            {
+                _logger.LogCritical(ex2, "Post Request");
+                CheckoutPurposeFailed failed = new CheckoutPurposeFailed();
+                failed.Id = purpose.Id.ToString();
+                failed.CheckoutPurposeID = purpose.CheckoutPurposeId;
+                failed.CheckoutSessionId = purpose.CheckoutSessionId.ToString();
+
+                if (ex2.InnerException != null)
+                    failed.ErrorMessage = ex2.InnerException.Message;
+                else
+                    failed.ErrorMessage = ex2.Message;
+                errors.Add(failed);
+            }
+
+        }
+    }
+
+    public class CheckoutPurposeFailed
+    {
+
+        public string Id { get; set; }
+        public long CheckoutPurposeID { get; set; }
+        public string CheckoutSessionId { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+    }
+}

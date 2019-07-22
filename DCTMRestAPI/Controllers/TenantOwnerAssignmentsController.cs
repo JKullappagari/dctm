@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class TenantOwnerAssignmentsController : Controller
+    {
+        private readonly DCTrackContext _context;
+
+        public TenantOwnerAssignmentsController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+
+        /// <summary>
+        /// Gets all tenant-owner assignment details
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/Tenantownerassignments
+        [HttpGet]
+        [ProducesResponseType(typeof(TblTenantOwnerAssignment), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblTenantOwnerAssignment> Get()
+        {
+            List<TblTenantOwnerAssignment> tenants = (from g in _context.TblTenantOwnerAssignment
+                                            select g).ToList();
+            return tenants;
+        }
+
+        /// <summary>
+        /// Gets tenant-owner assignment details based on identifier
+        /// </summary>
+        /// <param name="TenantOwnerId"></param>
+        /// <returns></returns>
+        // GET api/tenantownerassignments/5
+        [HttpGet("{TenantOwnerId}")]
+        [ProducesResponseType(typeof(TblTenantOwnerAssignment), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblTenantOwnerAssignment> Get(int TenantOwnerId)
+        {
+            List<TblTenantOwnerAssignment> buSite = (from g in _context.TblTenantOwnerAssignment
+                                                   where g.TenantOwnerId == TenantOwnerId
+                                                           select g).ToList();
+            return buSite;
+        }
+
+        /// <summary>
+        /// Gets tenant-owner assignment details which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/tenantownerassignments/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblTenantOwnerAssignment), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IEnumerable<TblTenantOwnerAssignment> Get(long LastUpdatedTime)
+        {
+            List<TblTenantOwnerAssignment> busite = (from g in _context.TblTenantOwnerAssignment
+                                                     where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return busite;
+        }
+
+       
+    }
+}
