@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTechCategory), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTechCategory> Get()
+        public async Task<IEnumerable<TblTechCategory>> Get()
         {
-            List<TblTechCategory> categories = (from g in _context.TblTechCategory
-                                            select g).ToList();
+            List<TblTechCategory> categories = await (from g in _context.TblTechCategory
+                                            select g).AsNoTracking().ToListAsync();
             return categories;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTechCategory), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTechCategory> Get(int TechId)
+        public async Task<IEnumerable<TblTechCategory>> Get(int TechId)
         {
-            List<TblTechCategory> categories = (from g in _context.TblTechCategory
+            List<TblTechCategory> categories = await (from g in _context.TblTechCategory
                                                where g.TechId == TechId
-                                               select g).ToList();
+                                               select g).AsNoTracking().ToListAsync();
             return categories;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTechCategory), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTechCategory> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblTechCategory>> Get(long LastUpdatedTime)
         {
-            List<TblTechCategory> categories = (from g in _context.TblTechCategory
+            List<TblTechCategory> categories = await (from g in _context.TblTechCategory
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return categories;
         }
 

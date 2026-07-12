@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblUser), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblUser> Get()
+        public async Task<IEnumerable<TblUser>> Get()
         {
-            List<TblUser> users = (from g in _context.TblUser
-                                               select g).ToList();
+            List<TblUser> users = await (from g in _context.TblUser
+                                               select g).AsNoTracking().ToListAsync();
             return users;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblUser), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblUser> Get(int UserId)
+        public async Task<IEnumerable<TblUser>> Get(int UserId)
         {
-            List<TblUser> users = (from g in _context.TblUser
+            List<TblUser> users = await (from g in _context.TblUser
                                   where g.UserId == UserId
-                                               select g).ToList();
+                                               select g).AsNoTracking().ToListAsync();
             return users;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblUser), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblUser> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblUser>> Get(long LastUpdatedTime)
         {
-            List<TblUser> users = (from g in _context.TblUser
+            List<TblUser> users = await (from g in _context.TblUser
                                          where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return users;
         }
 

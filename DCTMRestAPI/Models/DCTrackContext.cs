@@ -529,7 +529,7 @@ namespace DCTMRestAPI.Models
                 entity.ToTable("tblAssetGroup");
 
                 entity.HasIndex(e => e.AssetGroup)
-                    .HasName("IX_tblDocumentPrimaryGroup")
+                    .HasDatabaseName("IX_tblDocumentPrimaryGroup")
                     .IsUnique();
 
                 entity.Property(e => e.AssetGroupId).HasColumnName("AssetGroupID");
@@ -893,7 +893,7 @@ namespace DCTMRestAPI.Models
                 entity.ToTable("tblBusinessUnit");
 
                 entity.HasIndex(e => e.BusinessUnit)
-                    .HasName("IX_tblBusinessUnit")
+                    .HasDatabaseName("IX_tblBusinessUnit")
                     .IsUnique();
 
                 entity.Property(e => e.BusinessUnitId).HasColumnName("BusinessUnitID");
@@ -933,7 +933,7 @@ namespace DCTMRestAPI.Models
                 entity.ToTable("tblBUSiteAssignment");
 
                 entity.HasIndex(e => new { e.BusinessUnitId, e.SiteId })
-                    .HasName("IX_tblBUSiteAssignment")
+                    .HasDatabaseName("IX_tblBUSiteAssignment")
                     .IsUnique();
 
                 entity.Property(e => e.BusiteAssignmentId).HasColumnName("BUSiteAssignmentID");
@@ -1195,7 +1195,7 @@ namespace DCTMRestAPI.Models
                 entity.ToTable("tblEntityType");
 
                 entity.HasIndex(e => e.EntityType)
-                    .HasName("IX_tblEntityType")
+                    .HasDatabaseName("IX_tblEntityType")
                     .IsUnique();
 
                 entity.Property(e => e.EntityTypeId)
@@ -1454,7 +1454,7 @@ namespace DCTMRestAPI.Models
                 entity.ToTable("tblHost");
 
                 entity.HasIndex(e => e.HostName)
-                    .HasName("IX_tblHost")
+                    .HasDatabaseName("IX_tblHost")
                     .IsUnique();
 
                 entity.Property(e => e.HostId)
@@ -1664,7 +1664,7 @@ namespace DCTMRestAPI.Models
                 entity.ToTable("tblLocationType");
 
                 entity.HasIndex(e => e.LocationType)
-                    .HasName("IX_tblLocationType")
+                    .HasDatabaseName("IX_tblLocationType")
                     .IsUnique();
 
                 entity.Property(e => e.LocationTypeId).HasColumnName("LocationTypeID");
@@ -1772,11 +1772,11 @@ namespace DCTMRestAPI.Models
                 entity.ToTable("tblMobileDevice");
 
                 entity.HasIndex(e => e.DeviceId)
-                    .HasName("IX_tblMobileDevice")
+                    .HasDatabaseName("IX_tblMobileDevice")
                     .IsUnique();
 
                 entity.HasIndex(e => e.DeviceName)
-                    .HasName("IX_DEVICENAME")
+                    .HasDatabaseName("IX_DEVICENAME")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -1908,7 +1908,7 @@ namespace DCTMRestAPI.Models
                 entity.ToTable("tblMusterReason");
 
                 entity.HasIndex(e => e.MusterReason)
-                    .HasName("IX_tblMusterReason")
+                    .HasDatabaseName("IX_tblMusterReason")
                     .IsUnique();
 
                 entity.Property(e => e.MusterReasonId).HasColumnName("MusterReasonID");
@@ -2019,7 +2019,7 @@ namespace DCTMRestAPI.Models
                 entity.ToTable("tblPurpose");
 
                 entity.HasIndex(e => e.Purpose)
-                    .HasName("IX_tblPurpose")
+                    .HasDatabaseName("IX_tblPurpose")
                     .IsUnique();
 
                 entity.Property(e => e.PurposeId).HasColumnName("PurposeID");
@@ -2132,7 +2132,7 @@ namespace DCTMRestAPI.Models
                 entity.ToTable("tblSite");
 
                 entity.HasIndex(e => e.Site)
-                    .HasName("IX_tblSite")
+                    .HasDatabaseName("IX_tblSite")
                     .IsUnique();
 
                 entity.Property(e => e.SiteId).HasColumnName("SiteID");
@@ -2176,7 +2176,7 @@ namespace DCTMRestAPI.Models
                 entity.ToTable("tblSiteLocationAssignment");
 
                 entity.HasIndex(e => new { e.SiteId, e.LocationId })
-                    .HasName("IX_tblSiteLocAssignment")
+                    .HasDatabaseName("IX_tblSiteLocAssignment")
                     .IsUnique();
 
                 entity.Property(e => e.SiteLocationAssignmentId).HasColumnName("SiteLocationAssignmentID");

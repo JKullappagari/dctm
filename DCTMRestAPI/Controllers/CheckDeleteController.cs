@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [HttpGet]
-        public IEnumerable<TblCheckDelete> Get()
+        public async Task<IEnumerable<TblCheckDelete>> Get()
         {
-            List<TblCheckDelete> checkDelete = (from g in _context.TblCheckDelete
-                                            select g).ToList();
+            List<TblCheckDelete> checkDelete = await (from g in _context.TblCheckDelete
+                                            select g).AsNoTracking().ToListAsync();
             return checkDelete;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCheckDelete), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCheckDelete> Get(int ColumnTableId)
+        public async Task<IEnumerable<TblCheckDelete>> Get(int ColumnTableId)
         {
-            List<TblCheckDelete> checkDelete = (from g in _context.TblCheckDelete
+            List<TblCheckDelete> checkDelete = await (from g in _context.TblCheckDelete
                                               where g.ColumnTableId == ColumnTableId
-                                                select g).ToList();
+                                                select g).AsNoTracking().ToListAsync();
             return checkDelete;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCheckDelete), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCheckDelete> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblCheckDelete>> Get(long LastUpdatedTime)
         {
-            List<TblCheckDelete> checkdelete = (from g in _context.TblCheckDelete
+            List<TblCheckDelete> checkdelete = await (from g in _context.TblCheckDelete
                                                 where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return checkdelete;
         }
 

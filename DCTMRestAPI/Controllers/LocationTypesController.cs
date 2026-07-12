@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +34,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblLocationType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblLocationType> Get()
+        public async Task<IEnumerable<TblLocationType>> Get()
         {
-            List<TblLocationType> locationtypes = (from g in _context.TblLocationType
-                                                   select g).ToList();
+            List<TblLocationType> locationtypes = await (from g in _context.TblLocationType
+                                                   select g).AsNoTracking().ToListAsync();
             return locationtypes;
         }
 
@@ -50,11 +51,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblLocationType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblLocationType> Get(int LocationTypeId)
+        public async Task<IEnumerable<TblLocationType>> Get(int LocationTypeId)
         {
-            List<TblLocationType> locationtypes = (from g in _context.TblLocationType
+            List<TblLocationType> locationtypes = await (from g in _context.TblLocationType
                                                    where g.LocationTypeId == LocationTypeId
-                                                   select g).ToList();
+                                                   select g).AsNoTracking().ToListAsync();
             return locationtypes;
         }
 
@@ -67,11 +68,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblLocationType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblLocationType> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblLocationType>> Get(long LastUpdatedTime)
         {
-            List<TblLocationType> locationtypes = (from g in _context.TblLocationType
+            List<TblLocationType> locationtypes = await (from g in _context.TblLocationType
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return locationtypes;
         }
 

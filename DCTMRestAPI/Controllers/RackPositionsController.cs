@@ -38,10 +38,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblRacklPositions), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblRacklPositions> Get()
+        public async Task<IEnumerable<TblRacklPositions>> Get()
         {
-            List<TblRacklPositions> rackPositions = (from g in _context.TblRacklPositions
-                                                     select g).ToList();
+            List<TblRacklPositions> rackPositions = await (from g in _context.TblRacklPositions
+                                                     select g).AsNoTracking().ToListAsync();
             return rackPositions;
         }
 
@@ -55,11 +55,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblRacklPositions), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblRacklPositions> Get(int RackId)
+        public async Task<IEnumerable<TblRacklPositions>> Get(int RackId)
         {
-            List<TblRacklPositions> rackPositions = (from g in _context.TblRacklPositions
+            List<TblRacklPositions> rackPositions = await (from g in _context.TblRacklPositions
                                                      where g.RackId == RackId
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return rackPositions;
         }
 
@@ -71,11 +71,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblRacklPositions), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblRacklPositions> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblRacklPositions>> Get(long LastUpdatedTime)
         {
-            List<TblRacklPositions> racks = (from g in _context.TblRacklPositions
+            List<TblRacklPositions> racks = await (from g in _context.TblRacklPositions
                                              where g.LastUpdatedTime > LastUpdatedTime
-                                             select g).ToList();
+                                             select g).AsNoTracking().ToListAsync();
             return racks;
         }
 
@@ -109,9 +109,9 @@ namespace DCTMRestAPI.Controllers
                 {
                     // check last modified date and see whether Server or client has latest record.
                     // latest record will previal
-                    List<TblRacklPositions> selectedRack = (from g in _context.TblRacklPositions.AsNoTracking()
+                    List<TblRacklPositions> selectedRack = await (from g in _context.TblRacklPositions.AsNoTracking()
                                                      where g.RackId == rp.RackId
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
                     if (selectedRack != null)
                     {
                         if (selectedRack.Count <= 0)

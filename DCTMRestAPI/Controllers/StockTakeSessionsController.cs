@@ -39,10 +39,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStockTakeSession), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStockTakeSession> Get()
+        public async Task<IEnumerable<TblStockTakeSession>> Get()
         {
-            List<TblStockTakeSession> sessions = (from g in _context.TblStockTakeSession
-                                                  select g).ToList();
+            List<TblStockTakeSession> sessions = await (from g in _context.TblStockTakeSession
+                                                  select g).AsNoTracking().ToListAsync();
             return sessions;
         }
 
@@ -56,11 +56,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStockTakeSession), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStockTakeSession> Get(int StockTakeSessionId)
+        public async Task<IEnumerable<TblStockTakeSession>> Get(int StockTakeSessionId)
         {
-            List<TblStockTakeSession> sessions = (from g in _context.TblStockTakeSession
+            List<TblStockTakeSession> sessions = await (from g in _context.TblStockTakeSession
                                                   where g.StockTakeSessionId == StockTakeSessionId
-                                                  select g).ToList();
+                                                  select g).AsNoTracking().ToListAsync();
             return sessions;
         }
 
@@ -72,11 +72,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStockTakeSession), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStockTakeSession> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblStockTakeSession>> Get(long LastUpdatedTime)
         {
-            List<TblStockTakeSession> purposes = (from g in _context.TblStockTakeSession
+            List<TblStockTakeSession> purposes = await (from g in _context.TblStockTakeSession
                                                   where g.LastUpdatedTime > LastUpdatedTime
-                                                  select g).ToList();
+                                                  select g).AsNoTracking().ToListAsync();
             return purposes;
         }
 
@@ -109,9 +109,9 @@ namespace DCTMRestAPI.Controllers
                     _context.Entry(stSession).State = EntityState.Added;
 
                     _context.Database.BeginTransaction();
-                    _context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.tblStockTakeSession ON;");
+                    _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.tblStockTakeSession ON;");
                     await _context.SaveChangesAsync();
-                    _context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.tblStockTakeSession OFF;");
+                    _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.tblStockTakeSession OFF;");
                     _context.Database.CommitTransaction();
 
 

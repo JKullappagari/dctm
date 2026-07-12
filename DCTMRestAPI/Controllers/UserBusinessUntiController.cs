@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblUserBusinessUnit), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblUserBusinessUnit> Get()
+        public async Task<IEnumerable<TblUserBusinessUnit>> Get()
         {
-            List<TblUserBusinessUnit> userBUs = (from g in _context.TblUserBusinessUnit
-                                            select g).ToList();
+            List<TblUserBusinessUnit> userBUs = await (from g in _context.TblUserBusinessUnit
+                                            select g).AsNoTracking().ToListAsync();
             return userBUs;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblUserBusinessUnit), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblUserBusinessUnit> Get(int UserBusinessUnitId)
+        public async Task<IEnumerable<TblUserBusinessUnit>> Get(int UserBusinessUnitId)
         {
-            List<TblUserBusinessUnit> userBUs = (from g in _context.TblUserBusinessUnit
+            List<TblUserBusinessUnit> userBUs = await (from g in _context.TblUserBusinessUnit
                                                    where g.UserBusinessUnitId == UserBusinessUnitId
-                                                 select g).ToList();
+                                                 select g).AsNoTracking().ToListAsync();
             return userBUs;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblUserBusinessUnit), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblUserBusinessUnit> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblUserBusinessUnit>> Get(long LastUpdatedTime)
         {
-            List<TblUserBusinessUnit> userbu = (from g in _context.TblUserBusinessUnit
+            List<TblUserBusinessUnit> userbu = await (from g in _context.TblUserBusinessUnit
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return userbu;
         }
 

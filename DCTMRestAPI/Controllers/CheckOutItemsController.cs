@@ -37,10 +37,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCheckOutItems), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCheckOutItems> Get()
+        public async Task<IEnumerable<TblCheckOutItems>> Get()
         {
-            List<TblCheckOutItems> appStatus = (from g in _context.TblCheckOutItems
-                                            select g).ToList();
+            List<TblCheckOutItems> appStatus = await (from g in _context.TblCheckOutItems
+                                            select g).AsNoTracking().ToListAsync();
             return appStatus;
         }
 
@@ -54,11 +54,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCheckOutItems), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCheckOutItems> Get(int CheckOutSessionId)
+        public async Task<IEnumerable<TblCheckOutItems>> Get(int CheckOutSessionId)
         {
-            List<TblCheckOutItems> appStatus = (from g in _context.TblCheckOutItems
+            List<TblCheckOutItems> appStatus = await (from g in _context.TblCheckOutItems
                                                 where g.CheckOutSessionId == CheckOutSessionId
-                                                select g).ToList();
+                                                select g).AsNoTracking().ToListAsync();
             return appStatus;
         }
 
@@ -71,11 +71,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCheckOutItems), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCheckOutItems> GetLastUpdated(long LastUpdatedTime)
+        public async Task<IEnumerable<TblCheckOutItems>> GetLastUpdated(long LastUpdatedTime)
         {
-            List<TblCheckOutItems> purposes = (from g in _context.TblCheckOutItems
+            List<TblCheckOutItems> purposes = await (from g in _context.TblCheckOutItems
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                 select g).ToList();
+                                                 select g).AsNoTracking().ToListAsync();
             return purposes;
         }
 

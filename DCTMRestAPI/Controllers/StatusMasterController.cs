@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStatusMaster), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStatusMaster> Get()
+        public async Task<IEnumerable<TblStatusMaster>> Get()
         {
-            List<TblStatusMaster> statuses = (from g in _context.TblStatusMaster
-                                            select g).ToList();
+            List<TblStatusMaster> statuses = await (from g in _context.TblStatusMaster
+                                            select g).AsNoTracking().ToListAsync();
             return statuses;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStatusMaster), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStatusMaster> Get(int StatusId)
+        public async Task<IEnumerable<TblStatusMaster>> Get(int StatusId)
         {
-            List<TblStatusMaster> statuses = (from g in _context.TblStatusMaster
+            List<TblStatusMaster> statuses = await (from g in _context.TblStatusMaster
                                                where g.StatusId == StatusId
-                                              select g).ToList();
+                                              select g).AsNoTracking().ToListAsync();
             return statuses;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStatusMaster), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStatusMaster> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblStatusMaster>> Get(long LastUpdatedTime)
         {
-            List<TblStatusMaster> statuses = (from g in _context.TblStatusMaster
+            List<TblStatusMaster> statuses = await (from g in _context.TblStatusMaster
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return statuses;
         }
 

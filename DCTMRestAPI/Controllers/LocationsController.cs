@@ -11,7 +11,6 @@ using DCTMRestAPI.Models.Custom;
 using Microsoft.AspNetCore.JsonPatch.Operations;
 using DCTMRestAPI.Extensions;
 using System.Data;
-using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using Newtonsoft.Json;
@@ -29,10 +28,10 @@ namespace DCTMRestAPI.Controllers
     {
 
         private readonly DCTrackContext _context;
-        private readonly IMapper _mapper;
+        private readonly DctmMapper _mapper;
         private readonly ILogger _logger;
 
-        public LocationsController(DCTrackContext context, IMapper mapper, ILogger<LocationsController> logger)
+        public LocationsController(DCTrackContext context, DctmMapper mapper, ILogger<LocationsController> logger)
         {
             _context = context;
             _mapper = mapper;
@@ -50,10 +49,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblLocation), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblLocation> Get()
+        public async Task<IEnumerable<TblLocation>> Get()
         {
-            List<TblLocation> locations = (from g in _context.TblLocation
-                                           select g).ToList();
+            List<TblLocation> locations = await (from g in _context.TblLocation
+                                           select g).AsNoTracking().ToListAsync();
             return locations;
         }
 
@@ -67,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblLocation), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblLocation> Get(int LocationId)
+        public async Task<IEnumerable<TblLocation>> Get(int LocationId)
         {
-            List<TblLocation> locations = (from g in _context.TblLocation
+            List<TblLocation> locations = await (from g in _context.TblLocation
                                            where g.LocationId == LocationId
-                                           select g).ToList();
+                                           select g).AsNoTracking().ToListAsync();
             return locations;
         }
 
@@ -83,11 +82,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblLocation), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblLocation> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblLocation>> Get(long LastUpdatedTime)
         {
-            List<TblLocation> locations = (from g in _context.TblLocation
+            List<TblLocation> locations = await (from g in _context.TblLocation
                                            where g.LastUpdatedTime > LastUpdatedTime
-                                           select g).ToList();
+                                           select g).AsNoTracking().ToListAsync();
             return locations;
         }
 
@@ -119,9 +118,9 @@ namespace DCTMRestAPI.Controllers
                 {
                     // check last modified date and see whether Server or client has latest record.
                     // latest record will previal
-                    TblLocation selectedLoc = (from g in _context.TblLocation.AsNoTracking()
+                    TblLocation selectedLoc = await (from g in _context.TblLocation.AsNoTracking()
                                                where g.LocationId == loc.LocationId
-                                               select g).First();
+                                               select g).FirstAsync();
                     if (selectedLoc.LastModifiedDate == null || selectedLoc.LastModifiedDate <= loc.LastModifiedDate)
                     {
                         _context.Entry(loc).State = EntityState.Modified;
@@ -257,11 +256,13 @@ namespace DCTMRestAPI.Controllers
 
             foreach (Operation o in patchLocation.Operations)
             {
-                if (o.path.Replace("/", "").ToLower().CompareTo("location") == 0)
+                if (o.path.Replace("/", "").ToLower() == "location")
                 {
-                    string query = " Exec iAssetTrack_Sp_Location_DoesExist " + LocationId.ToString() + ","
-                        + "'" + o.value.ToString() + "'," + location.ParentLocationId.ToString();
-                    DataTable dt = DbExtensions.ExecDataSet(query, _context);
+                    string query = "Exec iAssetTrack_Sp_Location_DoesExist @LocationId, @LocationName, @ParentLocationId";
+                    DataTable dt = DbExtensions.ExecDataSet(query, _context,
+                        ("@LocationId", LocationId),
+                        ("@LocationName", o.value.ToString()),
+                        ("@ParentLocationId", location.ParentLocationId));
 
                     bool locExists = ((int.Parse(dt.Rows[0][0].ToString())) >= 0 ? true : false);
 
@@ -284,7 +285,7 @@ namespace DCTMRestAPI.Controllers
 
             foreach (Operation o in patchLocation.Operations)
             {
-                if (o.path.Replace("/", "").ToLower().CompareTo("parentlocationid") == 0)
+                if (o.path.Replace("/", "").ToLower() == "parentlocationid")
                 {
                     if (location.LocationTypeId.HasValue)
                         locTypeID = location.LocationTypeId.Value;
@@ -295,8 +296,8 @@ namespace DCTMRestAPI.Controllers
                     else
                         parentlocID = 0;
 
-                    List<TblLocationType> locTypes = (from lt in _context.TblLocationType
-                                                      select lt).ToList();
+                    List<TblLocationType> locTypes = await (from lt in _context.TblLocationType
+                                                      select lt).ToListAsync();
 
                     string curlocType = (string)(from lt in locTypes.AsEnumerable()
                                                  where lt.LocationTypeId == location.LocationTypeId
@@ -318,9 +319,9 @@ namespace DCTMRestAPI.Controllers
                             }
                             else
                             {
-                                var parentLocation = (from l in _context.TblLocation
+                                var parentLocation = await (from l in _context.TblLocation
                                                       where l.LocationId == parentlocID
-                                                      select l).First();
+                                                      select l).FirstAsync();
                                 string parentlocType = (string)(from lt in locTypes
                                                                 where lt.LocationTypeId == parentLocation.LocationTypeId
                                                                 select lt.LocationType.First());
@@ -338,13 +339,13 @@ namespace DCTMRestAPI.Controllers
                             }
                             else
                             {
-                                var parentLocation = (from l in _context.TblLocation
+                                var parentLocation = await (from l in _context.TblLocation
                                                       where l.LocationId == parentlocID
-                                                      select l).First();
+                                                      select l).FirstAsync();
                                 string parentlocType = (string)(from lt in locTypes
                                                                 where lt.LocationTypeId == parentLocation.LocationTypeId
                                                                 select lt.LocationType.First());
-                                if (parentlocType.CompareTo("Rack") == 0)
+                                if (parentlocType == "Rack")
                                 {
                                     return BadRequest("Parent location for a rack must be a room or a row");
                                 }
@@ -358,12 +359,12 @@ namespace DCTMRestAPI.Controllers
             foreach (Operation o in patchLocation.Operations)
             {
                 bool tagExists = false;
-                if (o.path.Replace("/", "").ToLower().CompareTo("tagid") == 0)
+                if (o.path.Replace("/", "").ToLower() == "tagid")
                 {
                     tagExists = ((from l in _context.TblLocation.AsEnumerable()
                                   where l.LocationId != LocationId &&
                                   l.TagId != null &&
-                                  l.TagId.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
+                                  l.TagId.ToLower() == o.value.ToString().ToLower()
                                   select l).Count() > 0 ? true : false);
                 }
 
@@ -376,13 +377,13 @@ namespace DCTMRestAPI.Controllers
             foreach (Operation o in patchLocation.Operations)
             {
                 bool snoExists = false;
-                if (o.path.Replace("/", "").ToLower().CompareTo("serialnumber") == 0)
+                if (o.path.Replace("/", "").ToLower() == "serialnumber")
                 {
-                    snoExists = ((from l in _context.TblLocation
+                    snoExists = ((await (from l in _context.TblLocation
                                   where l.LocationId != LocationId &&
                                   l.SerialNumber != null &&
-                                  l.SerialNumber.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
-                                  select l).Count() > 0 ? true : false);
+                                  l.SerialNumber.ToLower() == o.value.ToString().ToLower()
+                                  select l).CountAsync()) > 0 ? true : false);
                 }
 
                 if (snoExists)
@@ -392,18 +393,18 @@ namespace DCTMRestAPI.Controllers
             }
             //do update
 
-            var locDTO = _mapper.Map<LocationDTO>(location);
+            var locDTO = _mapper.ToLocationDto(location);
             patchLocation.ApplyTo(locDTO);
             //update LastMofidiedBy and LastModifiedDate fields.
             string userName = User.Identity.Name;
-            TblUser user = (from u in _context.TblUser
-                            where u.LoginName.ToLower().CompareTo(userName.ToLower()) == 0
-                            select u).First();
+            TblUser user = await (from u in _context.TblUser
+                            where u.LoginName.ToLower() == userName.ToLower()
+                            select u).FirstAsync();
 
             locDTO.LastModifiedDate = DateTime.Now;
             locDTO.LastModifiedBy = user.UserId;
             //
-            _mapper.Map(locDTO, location);
+            _mapper.ApplyTo(locDTO, location);
             _context.Entry(location).State = EntityState.Modified;
             _context.TblLocation.Update(location);
             await _context.SaveChangesAsync();

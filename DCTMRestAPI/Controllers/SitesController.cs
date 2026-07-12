@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblSite), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblSite> Get()
+        public async Task<IEnumerable<TblSite>> Get()
         {
-            List<TblSite> sites = (from g in _context.TblSite
-                                            select g).ToList();
+            List<TblSite> sites = await (from g in _context.TblSite
+                                            select g).AsNoTracking().ToListAsync();
             return sites;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblSite), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblSite> Get(int SiteId)
+        public async Task<IEnumerable<TblSite>> Get(int SiteId)
         {
-            List<TblSite> sites = (from g in _context.TblSite
+            List<TblSite> sites = await (from g in _context.TblSite
                                        where g.SiteId == SiteId
-                                       select g).ToList();
+                                       select g).AsNoTracking().ToListAsync();
             return sites;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblSite), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblSite> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblSite>> Get(long LastUpdatedTime)
         {
-            List<TblSite> sites = (from g in _context.TblSite
+            List<TblSite> sites = await (from g in _context.TblSite
                                          where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return sites;
         }
 

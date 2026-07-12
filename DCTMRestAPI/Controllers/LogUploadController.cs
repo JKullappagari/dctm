@@ -26,11 +26,11 @@ namespace DCTMRestAPI.Controllers
     public class LogUploadController : ControllerBase
     {
 
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly DCTrackContext _context;
         private readonly ILogger _logger;
 
-        public LogUploadController(IHostingEnvironment hostingEnvironment, DCTrackContext context, ILogger<AssetsController> logger)
+        public LogUploadController(IWebHostEnvironment hostingEnvironment, DCTrackContext context, ILogger<AssetsController> logger)
         {
             _hostingEnvironment = hostingEnvironment;
             _context = context;
@@ -61,7 +61,7 @@ namespace DCTMRestAPI.Controllers
                     FileName = uploadFile.FileName;
                     viewModel.FileName = FileName;
                     List<TblMobileDevice> device = (from d in _context.TblMobileDevice
-                                                    where d.DeviceId.ToLower().CompareTo(uploadFile.DeviceId.ToLower()) == 0
+                                                    where d.DeviceId.ToLower() == uploadFile.DeviceId.ToLower()
                                                     select d).ToList();
 
                     //Current root directory will be inetpub\wwwroot\dctmrest folder

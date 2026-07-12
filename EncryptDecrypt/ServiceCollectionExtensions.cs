@@ -1,16 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EncryptDecrypt
 {
@@ -21,18 +15,15 @@ namespace EncryptDecrypt
 
     public class WritableOptions<T> : IWritableOptions<T> where T : class, new()
     {
-        private readonly IHostingEnvironment _environment;
         private readonly IOptionsMonitor<T> _options;
         private readonly string _section;
         private readonly string _file;
 
         public WritableOptions(
-            IHostingEnvironment environment,
             IOptionsMonitor<T> options,
             string section,
             string file)
         {
-            _environment = environment;
             _options = options;
             _section = section;
             _file = file;
@@ -43,11 +34,7 @@ namespace EncryptDecrypt
 
         public void Update(Action<T> applyChanges)
         {
-            //var fileProvider = _environment.ContentRootFileProvider;
-
-            var fileProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
-            var fileInfo = fileProvider.GetFileInfo(_file);
-            var physicalPath = fileInfo.PhysicalPath;
+            var physicalPath = Path.Combine(Directory.GetCurrentDirectory(), _file);
 
             var jObject = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(physicalPath));
             var sectionObject = jObject.TryGetValue(_section, out JToken section) ?
@@ -68,13 +55,11 @@ namespace EncryptDecrypt
             string file = "appsettings.json") where T : class, new()
         {
             services.AddOptions();
-            services.AddSingleton<IHostingEnvironment>(new HostingEnvironment());
             services.Configure<T>(section);
             services.AddTransient<IWritableOptions<T>>(provider =>
             {
-                var environment = (IHostingEnvironment) provider.GetService<IHostingEnvironment>();
                 var options = provider.GetService<IOptionsMonitor<T>>();
-                return new WritableOptions<T>(environment, options, section.Key, file);
+                return new WritableOptions<T>(options, section.Key, file);
             });
         }
     }

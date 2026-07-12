@@ -1,0 +1,89 @@
+using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class AuditCyclesController : Controller
+    {
+        private readonly DCTrackContext _context;
+
+        public AuditCyclesController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+
+        /// <summary>
+        /// Gets all audit cycles details
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/auditcycles
+        [HttpGet]
+        [ProducesResponseType(typeof(TblAuditCycle), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public async Task<IEnumerable<TblAuditCycle>> Get()
+        {
+            List<TblAuditCycle> auditCycles = (from g in _context.TblAuditCycle
+                                            select g).ToList();
+            return auditCycles;
+        }
+
+        /// <summary>
+        /// Gets audit cycle details based on identifier
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        // GET api/auditcycles/5
+        [HttpGet("{Id}")]
+        [ProducesResponseType(typeof(TblAuditCycle), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public async Task<IEnumerable<TblAuditCycle>> Get(int Id)
+        {
+            List<TblAuditCycle> auditCycles = (from g in _context.TblAuditCycle
+                                            where g.Id == Id
+                                            select g).ToList();
+            return auditCycles;
+        }
+
+        /// <summary>
+        /// Gets audit cycle details which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/auditcycles/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblAuditCycle), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public async Task<IEnumerable<TblAuditCycle>> Get(long LastUpdatedTime)
+        {
+            List<TblAuditCycle> cycles = (from g in _context.TblAuditCycle
+                                               where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return cycles;
+        }
+
+        //// POST api/auditcycles
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/auditcycles/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+    }
+}

@@ -38,10 +38,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCheckOutSession), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCheckOutSession> Get()
+        public async Task<IEnumerable<TblCheckOutSession>> Get()
         {
-            List<TblCheckOutSession> checkoutSessions = (from g in _context.TblCheckOutSession
-                                            select g).ToList();
+            List<TblCheckOutSession> checkoutSessions = await (from g in _context.TblCheckOutSession
+                                            select g).AsNoTracking().ToListAsync();
             return checkoutSessions;
         }
 
@@ -55,11 +55,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCheckOutSession), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCheckOutSession> Get(int CheckOutSessionId)
+        public async Task<IEnumerable<TblCheckOutSession>> Get(int CheckOutSessionId)
         {
-            List<TblCheckOutSession> checkoutSessions = (from g in _context.TblCheckOutSession
+            List<TblCheckOutSession> checkoutSessions = await (from g in _context.TblCheckOutSession
                                                   where g.CheckOutSessionId == CheckOutSessionId
-                                                         select g).ToList();
+                                                         select g).AsNoTracking().ToListAsync();
             return checkoutSessions;
         }
 
@@ -72,11 +72,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCheckOutSession), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCheckOutSession> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblCheckOutSession>> Get(long LastUpdatedTime)
         {
-            List<TblCheckOutSession> purposes = (from g in _context.TblCheckOutSession
+            List<TblCheckOutSession> purposes = await (from g in _context.TblCheckOutSession
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                 select g).ToList();
+                                                 select g).AsNoTracking().ToListAsync();
             return purposes;
         }
 
@@ -109,9 +109,9 @@ namespace DCTMRestAPI.Controllers
                     _context.Entry(session).State = EntityState.Added;
 
                     _context.Database.BeginTransaction();
-                    _context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.tblCheckOutSession ON;");
+                    _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.tblCheckOutSession ON;");
                     await _context.SaveChangesAsync();
-                    _context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.tblCheckOutSession OFF;");
+                    _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.tblCheckOutSession OFF;");
                     _context.Database.CommitTransaction();
 
                 }

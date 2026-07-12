@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTenant), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTenant> Get()
+        public async Task<IEnumerable<TblTenant>> Get()
         {
-            List<TblTenant> tenants = (from g in _context.TblTenant
-                                            select g).ToList();
+            List<TblTenant> tenants = await (from g in _context.TblTenant
+                                            select g).AsNoTracking().ToListAsync();
             return tenants;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTenant), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTenant> Get(int TenantId)
+        public async Task<IEnumerable<TblTenant>> Get(int TenantId)
         {
-            List<TblTenant> buSite = (from g in _context.TblTenant
+            List<TblTenant> buSite = await (from g in _context.TblTenant
                                                    where g.TenantId == TenantId
-                                      select g).ToList();
+                                      select g).AsNoTracking().ToListAsync();
             return buSite;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTenant), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTenant> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblTenant>> Get(long LastUpdatedTime)
         {
-            List<TblTenant> busite = (from g in _context.TblTenant
+            List<TblTenant> busite = await (from g in _context.TblTenant
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return busite;
         }
 

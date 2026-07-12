@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAuditCycle), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAuditCycle> Get()
+        public async Task<IEnumerable<TblAuditCycle>> Get()
         {
-            List<TblAuditCycle> auditCycles = (from g in _context.TblAuditCycle
-                                            select g).ToList();
+            List<TblAuditCycle> auditCycles = await (from g in _context.TblAuditCycle
+                                            select g).AsNoTracking().ToListAsync();
             return auditCycles;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAuditCycle), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAuditCycle> Get(int Id)
+        public async Task<IEnumerable<TblAuditCycle>> Get(int Id)
         {
-            List<TblAuditCycle> auditCycles = (from g in _context.TblAuditCycle
+            List<TblAuditCycle> auditCycles = await (from g in _context.TblAuditCycle
                                             where g.Id == Id
-                                            select g).ToList();
+                                            select g).AsNoTracking().ToListAsync();
             return auditCycles;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAuditCycle), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAuditCycle> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblAuditCycle>> Get(long LastUpdatedTime)
         {
-            List<TblAuditCycle> cycles = (from g in _context.TblAuditCycle
+            List<TblAuditCycle> cycles = await (from g in _context.TblAuditCycle
                                                where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return cycles;
         }
 

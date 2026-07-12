@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblUserPassword), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblUserPassword> Get()
+        public async Task<IEnumerable<TblUserPassword>> Get()
         {
-            List<TblUserPassword> passwords = (from g in _context.TblUserPassword
-                                            select g).ToList();
+            List<TblUserPassword> passwords = await (from g in _context.TblUserPassword
+                                            select g).AsNoTracking().ToListAsync();
             return passwords;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblUserPassword), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblUserPassword> Get(int UserId)
+        public async Task<IEnumerable<TblUserPassword>> Get(int UserId)
         {
-            List<TblUserPassword> passwords = (from g in _context.TblUserPassword
+            List<TblUserPassword> passwords = await (from g in _context.TblUserPassword
                                                where g.UserId == UserId
-                                               select g).ToList();
+                                               select g).AsNoTracking().ToListAsync();
             return passwords;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblUserPassword), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblUserPassword> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblUserPassword>> Get(long LastUpdatedTime)
         {
-            List<TblUserPassword> passwords = (from g in _context.TblUserPassword
+            List<TblUserPassword> passwords = await (from g in _context.TblUserPassword
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return passwords;
         }
 

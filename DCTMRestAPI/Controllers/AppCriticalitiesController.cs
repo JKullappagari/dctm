@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +32,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplCriticality), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplCriticality> Get()
+        public async Task<IEnumerable<TblApplCriticality>> Get()
         {
-            List<TblApplCriticality> appCritics = (from g in _context.TblApplCriticality
-                                                    select g).ToList();
+            List<TblApplCriticality> appCritics = await (from g in _context.TblApplCriticality
+                                                    select g).AsNoTracking().ToListAsync();
             return appCritics;
         }
 
@@ -48,11 +49,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplCriticality), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplCriticality> Get(int ApplCriticalityId)
+        public async Task<IEnumerable<TblApplCriticality>> Get(int ApplCriticalityId)
         {
-            List<TblApplCriticality> appCritics = (from g in _context.TblApplCriticality
+            List<TblApplCriticality> appCritics = await (from g in _context.TblApplCriticality
                                                    where g.ApplCriticalityId == ApplCriticalityId
-                                                   select g).ToList();
+                                                   select g).AsNoTracking().ToListAsync();
             return appCritics;
         }
 
@@ -64,11 +65,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplCriticality), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplCriticality> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblApplCriticality>> Get(long LastUpdatedTime)
         {
-            List<TblApplCriticality> criticalities = (from g in _context.TblApplCriticality
+            List<TblApplCriticality> criticalities = await (from g in _context.TblApplCriticality
                                                     where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return criticalities;
         }
 

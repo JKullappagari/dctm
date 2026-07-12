@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCountry), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCountry> Get()
+        public async Task<IEnumerable<TblCountry>> Get()
         {
-            List<TblCountry> afDirections = (from g in _context.TblCountry
-                                                      select g).ToList();
+            List<TblCountry> afDirections = await (from g in _context.TblCountry
+                                                      select g).AsNoTracking().ToListAsync();
             return afDirections;
         }
 
@@ -47,11 +48,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCountry), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCountry> Get(int CountryId)
+        public async Task<IEnumerable<TblCountry>> Get(int CountryId)
         {
-            List<TblCountry> countries = (from g in _context.TblCountry
+            List<TblCountry> countries = await (from g in _context.TblCountry
                                                      where g.CountryId == CountryId
-                                            select g).ToList();
+                                            select g).AsNoTracking().ToListAsync();
             return countries;
         }
 
@@ -63,11 +64,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCountry), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCountry> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblCountry>> Get(long LastUpdatedTime)
         {
-            List<TblCountry> countries = (from g in _context.TblCountry
+            List<TblCountry> countries = await (from g in _context.TblCountry
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return countries;
         }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -6,52 +6,34 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using DCTMRestAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Rewrite;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.HttpOverrides;
 using System.IO;
-using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
 using NetEscapades.AspNetCore.SecurityHeaders;
-using AutoMapper;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Serilog;
 using DCTMRestAPI.Types;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Reflection;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Hosting.Internal;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using DCTMRestAPI.Extensions;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using Serilog;
 
 namespace DCTMRestAPI
 {
     public class Startup
     {
-        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
         public IConfiguration _configuration { get; }
 
-        public Startup(IHostingEnvironment hostingEnvironment, IConfiguration configuration)
+        public Startup(IWebHostEnvironment hostingEnvironment, IConfiguration configuration)
         {
             _hostingEnvironment = hostingEnvironment;
             _configuration = configuration;
-            configuration = new ConfigurationBuilder()
-                                    .SetBasePath(hostingEnvironment.ContentRootPath)
-                                    .AddJsonFile("appsettings.json")
-                                    //.AddCustomConfiguration(hostingEnvironment.ContentRootPath, optional: true, reloadOnChange: true)
-                                    .AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", optional: true, reloadOnChange: true)
-                                    .Build();
-
-            //var builder = new ConfigurationBuilder()
-            //.AddJsonFile("appsettings.json")
-            //.AddCustomConfiguration(hostingEnvironment.ContentRootPath,false,true)
-            //.AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", optional: true);
         }
 
 
@@ -71,19 +53,12 @@ namespace DCTMRestAPI
                     options.UseSqlServer(connString);
                 else
                     options.UseSqlServer(CryptographyUtil.Decrypt(connString));
-
-                options.ConfigureWarnings(x => x.Ignore(RelationalEventId.AmbientTransactionWarning));
-            });
-            //Paging
-            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
-            services.AddScoped<IUrlHelper>(factory =>
-            {
-                var actionContext = factory.GetService<IActionContextAccessor>()
-                                           .ActionContext;
-                return new UrlHelper(actionContext);
             });
 
             //Authentication
+            // Resolve and validate the signing key eagerly so a missing/weak key
+            // fails fast at startup rather than on the first authenticated request.
+            var signingKey = JwtConfig.GetSigningKey(_configuration);
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = "Jwt";
@@ -98,52 +73,56 @@ namespace DCTMRestAPI
                     //ValidIssuer = "the isser you want to validate",
 
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is the phar5e us5d for se3uring the t0ken. This is a scr5t")),
+                    IssuerSigningKey = signingKey,
 
                     ValidateLifetime = true, //validate the expiration and not before values in the token
 
                     ClockSkew = TimeSpan.FromMinutes(5) //5 minute tolerance for the expiration date
                 };
             });
+            services.AddAuthorization();
 
-            //Require HTTPS
-            services.Configure<MvcOptions>(options =>
+            //Require HTTPS (enforced outside Development so both http and https are usable locally)
+            if (!_hostingEnvironment.IsDevelopment())
             {
-                options.Filters.Add(new RequireHttpsAttribute());
-            });
+                services.Configure<MvcOptions>(options =>
+                {
+                    options.Filters.Add(new RequireHttpsAttribute());
+                });
+            }
 
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1.2", new Info { Title = "DCTrackMobile REST API", Version = "v1.2" });
-                c.OperationFilter<FormFileSwaggerFilter>();
+                c.SwaggerDoc("v1.2", new OpenApiInfo { Title = "DCTrackMobile REST API", Version = "v1.2" });
 
                 //Shows Authorize button
                 //User has to enter Bearer followed by JWT token
-                //this will be backup option --
-                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
-                {
-                    { "Bearer", new string[] { } }
-                });
-
-                c.AddSecurityDefinition("Bearer", new ApiKeyScheme()
+                var securityScheme = new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
                     Name = "Authorization",
-                    In = "header"
-
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                };
+                c.AddSecurityDefinition("Bearer", securityScheme);
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    { securityScheme, new string[] { } }
                 });
-
 
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
+                if (File.Exists(xmlPath))
+                    c.IncludeXmlComments(xmlPath);
 
-            });
-            //IIS Option
-            services.Configure<IISOptions>(options =>
-            {
             });
             //Data Protection
             services.AddDataProtection()
@@ -156,17 +135,28 @@ namespace DCTMRestAPI
             // Custom class for accessing Congfiguration section
             //services.Configure<SecurityOptions>(Configuration.GetSection("SecurityOptions"));
 
-            services.AddMvc();
-            //AutoMapper
-            services.AddAutoMapper();
+            // MVC controllers with Newtonsoft.Json serialization (preserves .NET Core 2.2 behavior)
+            services.AddControllers()
+                    .AddNewtonsoftJson();
+            //Object mapping (Mapperly, source-generated)
+            services.AddSingleton<DctmMapper>();
+            //Password hashing (PBKDF2 v2 + legacy verify)
+            services.AddSingleton<DCTMRestAPI.Services.PasswordHasher>();
             //Security Headers
             //services.AddCustomHeaders();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            // Honor X-Forwarded-For / X-Forwarded-Proto from a reverse proxy / IIS so that
+            // Request.IsHttps and the client IP are correct behind TLS termination. Must run
+            // before the HTTPS redirect and auth so downstream middleware sees the real scheme.
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
 
             app.UseSecurityHeaders(new HeaderPolicyCollection()
                 .AddDefaultSecurityHeaders()
@@ -179,15 +169,17 @@ namespace DCTMRestAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-            //else
-            //{
-            //    app.UseExceptionHandler();
-            //}
-            //Redirect from HTTP to HTTPS
-            var options = new RewriteOptions().AddRedirectToHttps();
-            app.UseRewriter(options);
+            //Redirect from HTTP to HTTPS (skipped in Development so plain http also works locally)
+            if (!env.IsDevelopment())
+            {
+                var options = new RewriteOptions().AddRedirectToHttps();
+                app.UseRewriter(options);
+            }
+
+            app.UseRouting();
+
             app.UseAuthentication();
-            app.UseMvcWithDefaultRoute();
+            app.UseAuthorization();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
@@ -197,76 +189,21 @@ namespace DCTMRestAPI
                 c.RoutePrefix = "api-docs";
                 c.DocumentTitle = "DCTrackMobile Rest API";
 
-                //c.IndexStream = () => new FileStream($"{AppDomain.CurrentDomain.BaseDirectory}/wwwroot/swagger/ui/swagger.html", FileMode.Open);
-
 #if DEBUG
                 c.SwaggerEndpoint("/swagger/v1.2/swagger.json", "DCTrackMobile REST API V1.2");
 #else
                 c.SwaggerEndpoint("/dctmrest/swagger/v1.2/swagger.json", "DCTrackMobile REST API v1.2");
 #endif
 
-#if DEBUG
-                //c.InjectOnCompleteJavaScript("../swagger-ui/authorization1.js"); 
-                //c.InjectJavascript("../swagger-ui/authorization1.js");
-#else
-                    //c.InjectJavascript("../swagger-ui/authorization1.js");
-#endif
                 c.DocExpansion(DocExpansion.None);
 
             });
 
-
-
-            // exception handling
-            //app.UseExceptionHandler(errorApp =>
-            //{
-            //    errorApp.Run(async context =>
-            //    {
-            //        context.Response.StatusCode = 500; // or another Status accordingly to Exception Type
-            //        context.Response.ContentType = "application/json";
-
-            //        var error = context.Features.Get<IExceptionHandlerFeature>();
-            //        if (error != null)
-            //        {
-            //            var ex = error.Error;
-
-            //            await context.Response.WriteAsync(new ErrorInfo()
-            //            {
-            //                Entity = 
-            //                Code = < your custom code based on Exception Type >,
-            //                Message = ex.Message // or your custom message
-            //                // other custom data
-            //            }.ToString(), Encoding.UTF8);
-            //        }
-            //    });
-            //});
-            app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapDefaultControllerRoute();
+            });
         }
-    }
-
-    internal static class SwashbuckleExtensions
-    {
-        public static void InjectJavascript(this SwaggerUIOptions options, string path, string type = "text/javascript")
-        {
-            var builder = new StringBuilder(options.HeadContent);
-            builder.AppendLine($"<script src='{path}' type='{type}'></script>");
-            options.HeadContent = builder.ToString();
-        }
-    }
-
-    internal class BasicAuthDocumentFilter : IDocumentFilter
-    {
-        // BasicAuthDocumentFilter.cs
-
-        public void Apply(SwaggerDocument swaggerDoc, DocumentFilterContext context)
-        {
-            var securityRequirements = new Dictionary<string, IEnumerable<string>>()
-        {
-            { "basic", new string[] { } }  // in swagger you specify empty list unless using OAuth2 scopes
-        };
-
-            swaggerDoc.Security = new[] { securityRequirements };
-        }
-
     }
 }

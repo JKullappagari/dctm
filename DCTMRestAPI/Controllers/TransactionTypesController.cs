@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTransactionTypes), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTransactionTypes> Get()
+        public async Task<IEnumerable<TblTransactionTypes>> Get()
         {
-            List<TblTransactionTypes> types = (from g in _context.TblTransactionTypes
-                                            select g).ToList();
+            List<TblTransactionTypes> types = await (from g in _context.TblTransactionTypes
+                                            select g).AsNoTracking().ToListAsync();
             return types;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTransactionTypes), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTransactionTypes> Get(int TransTypeId)
+        public async Task<IEnumerable<TblTransactionTypes>> Get(int TransTypeId)
         {
-            List<TblTransactionTypes> types = (from g in _context.TblTransactionTypes
+            List<TblTransactionTypes> types = await (from g in _context.TblTransactionTypes
                                                    where g.TransTypeId == TransTypeId
-                                               select g).ToList();
+                                               select g).AsNoTracking().ToListAsync();
             return types;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTransactionTypes), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTransactionTypes> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblTransactionTypes>> Get(long LastUpdatedTime)
         {
-            List<TblTransactionTypes> types = (from g in _context.TblTransactionTypes
+            List<TblTransactionTypes> types = await (from g in _context.TblTransactionTypes
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return types;
         }
 

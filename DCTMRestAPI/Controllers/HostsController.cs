@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +34,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblHost), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblHost> Get()
+        public async Task<IEnumerable<TblHost>> Get()
         {
-            List<TblHost> hosts = (from g in _context.TblHost
-                                            select g).ToList();
+            List<TblHost> hosts = await (from g in _context.TblHost
+                                            select g).AsNoTracking().ToListAsync();
             return hosts;
         }
 
@@ -50,11 +51,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblHost), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblHost> Get(int HostId)
+        public async Task<IEnumerable<TblHost>> Get(int HostId)
         {
-            List<TblHost> hosts = (from g in _context.TblHost
-                                       where g.HostId.ToString().ToLower().CompareTo(HostId.ToString().ToLower()) == 0
-                                   select g).ToList();
+            List<TblHost> hosts = await (from g in _context.TblHost
+                                       where g.HostId.ToString().ToLower() == HostId.ToString().ToLower()
+                                   select g).AsNoTracking().ToListAsync();
             return hosts;
         }
 
@@ -66,11 +67,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblHost), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblHost> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblHost>> Get(long LastUpdatedTime)
         {
-            List<TblHost> hosts = (from g in _context.TblHost
+            List<TblHost> hosts = await (from g in _context.TblHost
                                          where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return hosts;
         }
 

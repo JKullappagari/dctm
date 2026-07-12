@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,10 +35,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(401)]
         [ProducesResponseType(403)]
         [Authorize(Roles = "Mobile")]
-        public IEnumerable<TblMobileDevice> Get()
+        public async Task<IEnumerable<TblMobileDevice>> Get()
         {
-            List<TblMobileDevice> devices = (from g in _context.TblMobileDevice
-                                             select g).ToList();
+            List<TblMobileDevice> devices = await (from g in _context.TblMobileDevice
+                                             select g).AsNoTracking().ToListAsync();
             return devices;
         }
 
@@ -53,11 +54,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(401)]
         [ProducesResponseType(403)]
         [Authorize(Roles = "Mobile")]
-        public IEnumerable<TblMobileDevice> Get(string deviceId)
+        public async Task<IEnumerable<TblMobileDevice>> Get(string deviceId)
         {
-            List<TblMobileDevice> devices = (from g in _context.TblMobileDevice
+            List<TblMobileDevice> devices = await (from g in _context.TblMobileDevice
                                              where g.DeviceId.Equals(deviceId, StringComparison.InvariantCultureIgnoreCase)
-                                             select g).ToList();
+                                             select g).AsNoTracking().ToListAsync();
             return devices;
         }
 
@@ -71,11 +72,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(401)]
         [ProducesResponseType(403)]
         [Authorize(Roles = "Mobile")]
-        public IEnumerable<TblMobileDevice> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblMobileDevice>> Get(long LastUpdatedTime)
         {
-            List<TblMobileDevice> devices = (from g in _context.TblMobileDevice
+            List<TblMobileDevice> devices = await (from g in _context.TblMobileDevice
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return devices;
         }
 

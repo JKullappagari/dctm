@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCity), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCity> Get()
+        public async Task<IEnumerable<TblCity>> Get()
         {
-            List<TblCity> afDirections = (from g in _context.TblCity
-                                                      select g).ToList();
+            List<TblCity> afDirections = await (from g in _context.TblCity
+                                                      select g).AsNoTracking().ToListAsync();
             return afDirections;
         }
 
@@ -47,11 +48,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCity), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCity> Get(int CityId)
+        public async Task<IEnumerable<TblCity>> Get(int CityId)
         {
-            List<TblCity> cities = (from g in _context.TblCity
+            List<TblCity> cities = await (from g in _context.TblCity
                                                      where g.CityId == CityId
-                                         select g).ToList();
+                                         select g).AsNoTracking().ToListAsync();
             return cities;
         }
 
@@ -63,11 +64,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCity), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCity> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblCity>> Get(long LastUpdatedTime)
         {
-            List<TblCity> afDirection = (from g in _context.TblCity
+            List<TblCity> afDirection = await (from g in _context.TblCity
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return afDirection;
         }
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.CommandLineUtils;
+﻿using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -10,12 +10,14 @@ namespace EncryptDecrypt
 {
     class Program
     {
+        //
         static void Main(string[] args)
         {
             // Program.exe <-g|--greeting|-$ <greeting>> [name <fullname>]
             // [-?|-h|--help] [-u|--uppercase]
             CommandLineApplication app =
-              new CommandLineApplication(throwOnUnexpectedArg: false);
+              new CommandLineApplication();
+            app.UnrecognizedArgumentHandling = UnrecognizedArgumentHandling.CollectAndContinue;
             app.Name = "cryptosettings";
             app.HelpOption("-? | -h | --help");
             //CommandArgument names = null;

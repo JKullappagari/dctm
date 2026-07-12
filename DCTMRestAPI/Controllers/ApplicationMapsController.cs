@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplicationMap), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplicationMap> Get()
+        public async Task<IEnumerable<TblApplicationMap>> Get()
         {
-            List<TblApplicationMap> appMaps = (from g in _context.TblApplicationMap
-                                                      select g).ToList();
+            List<TblApplicationMap> appMaps = await (from g in _context.TblApplicationMap
+                                                      select g).AsNoTracking().ToListAsync();
             return appMaps;
         }
 
@@ -47,11 +48,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplicationMap), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplicationMap> Get(string ApplMapId)
+        public async Task<IEnumerable<TblApplicationMap>> Get(string ApplMapId)
         {
-            List<TblApplicationMap> appMap = (from g in _context.TblApplicationMap
-                                                     where g.ApplMapId.ToString().ToLower().CompareTo(ApplMapId.ToLower()) == 0
-                                                   select g).ToList();
+            List<TblApplicationMap> appMap = await (from g in _context.TblApplicationMap
+                                                     where g.ApplMapId.ToString().ToLower() == ApplMapId.ToLower()
+                                                   select g).AsNoTracking().ToListAsync();
             return appMap;
         }
 
@@ -63,11 +64,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplicationMap), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplicationMap> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblApplicationMap>> Get(long LastUpdatedTime)
         {
-            List<TblApplicationMap> appMaps = (from g in _context.TblApplicationMap
+            List<TblApplicationMap> appMaps = await (from g in _context.TblApplicationMap
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return appMaps;
         }
 

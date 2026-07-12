@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblDivision), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblDivision> Get()
+        public async Task<IEnumerable<TblDivision>> Get()
         {
-            List<TblDivision> divisions = (from g in _context.TblDivision
-                                                      select g).ToList();
+            List<TblDivision> divisions = await (from g in _context.TblDivision
+                                                      select g).AsNoTracking().ToListAsync();
             return divisions;
         }
 
@@ -47,11 +48,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblDivision), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblDivision> Get(int DivisionId)
+        public async Task<IEnumerable<TblDivision>> Get(int DivisionId)
         {
-            List<TblDivision> divisions = (from g in _context.TblDivision
+            List<TblDivision> divisions = await (from g in _context.TblDivision
                                                      where g.DivisionId == DivisionId
-                                             select g).ToList();
+                                             select g).AsNoTracking().ToListAsync();
             return divisions;
         }
 
@@ -63,11 +64,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblDivision), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblDivision> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblDivision>> Get(long LastUpdatedTime)
         {
-            List<TblDivision> divisions = (from g in _context.TblDivision
+            List<TblDivision> divisions = await (from g in _context.TblDivision
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return divisions;
         }
 

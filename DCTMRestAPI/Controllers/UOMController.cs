@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblUom), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblUom> Get()
+        public async Task<IEnumerable<TblUom>> Get()
         {
-            List<TblUom> uom = (from g in _context.TblUom
-                                            select g).ToList();
+            List<TblUom> uom = await (from g in _context.TblUom
+                                            select g).AsNoTracking().ToListAsync();
             return uom;
         }
 
@@ -47,11 +48,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblUom), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblUom> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblUom>> Get(long LastUpdatedTime)
         {
-            List<TblUom> uom = (from g in _context.TblUom
+            List<TblUom> uom = await (from g in _context.TblUom
                                         where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return uom;
         }
 

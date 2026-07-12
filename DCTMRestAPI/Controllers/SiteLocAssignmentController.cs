@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblSiteLocationAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblSiteLocationAssignment> Get()
+        public async Task<IEnumerable<TblSiteLocationAssignment>> Get()
         {
-            List<TblSiteLocationAssignment> assignments = (from g in _context.TblSiteLocationAssignment
-                                            select g).ToList();
+            List<TblSiteLocationAssignment> assignments = await (from g in _context.TblSiteLocationAssignment
+                                            select g).AsNoTracking().ToListAsync();
             return assignments;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblSiteLocationAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblSiteLocationAssignment> Get(int SiteLocationAssignmentId)
+        public async Task<IEnumerable<TblSiteLocationAssignment>> Get(int SiteLocationAssignmentId)
         {
-            List<TblSiteLocationAssignment> assignments = (from g in _context.TblSiteLocationAssignment
+            List<TblSiteLocationAssignment> assignments = await (from g in _context.TblSiteLocationAssignment
                                                          where g.SiteLocationAssignmentId == SiteLocationAssignmentId
-                                                           select g).ToList();
+                                                           select g).AsNoTracking().ToListAsync();
             return assignments;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblSiteLocationAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblSiteLocationAssignment> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblSiteLocationAssignment>> Get(long LastUpdatedTime)
         {
-            List<TblSiteLocationAssignment> siteloc = (from g in _context.TblSiteLocationAssignment
+            List<TblSiteLocationAssignment> siteloc = await (from g in _context.TblSiteLocationAssignment
                                                            where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return siteloc;
         }
 

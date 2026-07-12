@@ -41,10 +41,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCheckoutPurpose), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCheckoutPurpose> Get()
+        public async Task<IEnumerable<TblCheckoutPurpose>> Get()
         {
-            List<TblCheckoutPurpose> checkoutPurpose = (from g in _context.TblCheckoutPurpose
-                                                        select g).ToList();
+            List<TblCheckoutPurpose> checkoutPurpose = await (from g in _context.TblCheckoutPurpose
+                                                        select g).AsNoTracking().ToListAsync();
             return checkoutPurpose;
         }
 
@@ -58,11 +58,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCheckoutPurpose), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCheckoutPurpose> Get(int CheckoutPurposeId)
+        public async Task<IEnumerable<TblCheckoutPurpose>> Get(int CheckoutPurposeId)
         {
-            List<TblCheckoutPurpose> checkoutPurpose = (from g in _context.TblCheckoutPurpose
+            List<TblCheckoutPurpose> checkoutPurpose = await (from g in _context.TblCheckoutPurpose
                                                         where g.CheckoutPurposeId == CheckoutPurposeId
-                                                        select g).ToList();
+                                                        select g).AsNoTracking().ToListAsync();
             return checkoutPurpose;
         }
 
@@ -74,11 +74,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblCheckoutPurpose), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblCheckoutPurpose> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblCheckoutPurpose>> Get(long LastUpdatedTime)
         {
-            List<TblCheckoutPurpose> purposes = (from g in _context.TblCheckoutPurpose
+            List<TblCheckoutPurpose> purposes = await (from g in _context.TblCheckoutPurpose
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                 select g).ToList();
+                                                 select g).AsNoTracking().ToListAsync();
             return purposes;
         }
 
@@ -113,9 +113,9 @@ namespace DCTMRestAPI.Controllers
                 {
                     // check last modified date and see whether Server or client has latest record.
                     // latest record will previal
-                    List<TblCheckoutPurpose> selectedPurpose = (from g in _context.TblCheckoutPurpose.AsNoTracking()
-                                                                where g.Id.ToString().ToLower().CompareTo(purpose.Id.ToString().ToLower()) == 0
-                                                                select g).ToList();
+                    List<TblCheckoutPurpose> selectedPurpose = await (from g in _context.TblCheckoutPurpose.AsNoTracking()
+                                                                where g.Id.ToString().ToLower() == purpose.Id.ToString().ToLower()
+                                                                select g).AsNoTracking().ToListAsync();
                     
 
                     if (selectedPurpose != null)

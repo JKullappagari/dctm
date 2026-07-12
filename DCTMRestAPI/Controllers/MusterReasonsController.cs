@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblMusterReason), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblMusterReason> Get()
+        public async Task<IEnumerable<TblMusterReason>> Get()
         {
-            List<TblMusterReason> reasons = (from g in _context.TblMusterReason
-                                            select g).ToList();
+            List<TblMusterReason> reasons = await (from g in _context.TblMusterReason
+                                            select g).AsNoTracking().ToListAsync();
             return reasons;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblMusterReason), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblMusterReason> Get(int MusterReasonId)
+        public async Task<IEnumerable<TblMusterReason>> Get(int MusterReasonId)
         {
-            List<TblMusterReason> reasons = (from g in _context.TblMusterReason
+            List<TblMusterReason> reasons = await (from g in _context.TblMusterReason
                                                where g.MusterReasonId == MusterReasonId
-                                             select g).ToList();
+                                             select g).AsNoTracking().ToListAsync();
             return reasons;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblMusterReason), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblMusterReason> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblMusterReason>> Get(long LastUpdatedTime)
         {
-            List<TblMusterReason> reasons = (from g in _context.TblMusterReason
+            List<TblMusterReason> reasons = await (from g in _context.TblMusterReason
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return reasons;
         }
 

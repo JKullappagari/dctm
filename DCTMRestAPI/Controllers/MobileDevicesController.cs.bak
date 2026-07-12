@@ -1,0 +1,95 @@
+using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class MobileDevicesController : Controller
+    {
+        private readonly DCTrackContext _context;
+
+        public MobileDevicesController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+
+        /// <summary>
+        /// Gets all mobile devices details
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/mobiledevices
+        [HttpGet]
+        [ProducesResponseType(typeof(TblMobileDevice), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(403)]
+        [Authorize(Roles = "Mobile")]
+        public async Task<IEnumerable<TblMobileDevice>> Get()
+        {
+            List<TblMobileDevice> devices = (from g in _context.TblMobileDevice
+                                             select g).ToList();
+            return devices;
+        }
+
+        /// <summary>
+        /// Gets mobile devices based on identifier
+        /// </summary>
+        /// <param name="deviceId"></param>
+        /// <returns></returns>
+        // GET api/mobiledevices/deviceid
+        [HttpGet("{deviceId}")]
+        [ProducesResponseType(typeof(TblMobileDevice), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(403)]
+        [Authorize(Roles = "Mobile")]
+        public async Task<IEnumerable<TblMobileDevice>> Get(string deviceId)
+        {
+            List<TblMobileDevice> devices = (from g in _context.TblMobileDevice
+                                             where g.DeviceId.Equals(deviceId, StringComparison.InvariantCultureIgnoreCase)
+                                             select g).ToList();
+            return devices;
+        }
+
+        /// <summary>
+        /// Gets mobile devices details which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/mobiledevices/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblMobileDevice), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        [ProducesResponseType(403)]
+        [Authorize(Roles = "Mobile")]
+        public async Task<IEnumerable<TblMobileDevice>> Get(long LastUpdatedTime)
+        {
+            List<TblMobileDevice> devices = (from g in _context.TblMobileDevice
+                                                 where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return devices;
+        }
+
+        //// POST api/values
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/values/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+    }
+}

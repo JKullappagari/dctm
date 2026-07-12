@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetGroup), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetGroup> Get()
+        public async Task<IEnumerable<TblAssetGroup>> Get()
         {
-            List<TblAssetGroup> assetGroups = (from g in _context.TblAssetGroup
-                                              select g).ToList();
+            List<TblAssetGroup> assetGroups = await (from g in _context.TblAssetGroup
+                                              select g).AsNoTracking().ToListAsync();
             return assetGroups;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetGroup), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetGroup> Get(int AssetGroupId)
+        public async Task<IEnumerable<TblAssetGroup>> Get(int AssetGroupId)
         {
-            List<TblAssetGroup> assetGroups = (from g in _context.TblAssetGroup
+            List<TblAssetGroup> assetGroups = await (from g in _context.TblAssetGroup
                                                where g.AssetGroupId == AssetGroupId
-                                               select g).ToList();
+                                               select g).AsNoTracking().ToListAsync();
             return assetGroups;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetGroup), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetGroup> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblAssetGroup>> Get(long LastUpdatedTime)
         {
-            List<TblAssetGroup> assetgroups = (from g in _context.TblAssetGroup
+            List<TblAssetGroup> assetgroups = await (from g in _context.TblAssetGroup
                                                where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return assetgroups;
         }
 

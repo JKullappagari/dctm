@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetHostAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetHostAssignment> Get()
+        public async Task<IEnumerable<TblAssetHostAssignment>> Get()
         {
-            List<TblAssetHostAssignment> ahAssignments = (from g in _context.TblAssetHostAssignment
-                                                      select g).ToList();
+            List<TblAssetHostAssignment> ahAssignments = await (from g in _context.TblAssetHostAssignment
+                                                      select g).AsNoTracking().ToListAsync();
             return ahAssignments;
         }
 
@@ -47,11 +48,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetHostAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetHostAssignment> Get(string ID)
+        public async Task<IEnumerable<TblAssetHostAssignment>> Get(string ID)
         {
-            List<TblAssetHostAssignment> ahAssignment = (from g in _context.TblAssetHostAssignment
-                                                     where g.Id.ToString().ToLower().CompareTo(ID.ToLower()) == 0
-                                                     select g).ToList();
+            List<TblAssetHostAssignment> ahAssignment = await (from g in _context.TblAssetHostAssignment
+                                                     where g.Id.ToString().ToLower() == ID.ToLower()
+                                                     select g).AsNoTracking().ToListAsync();
             return ahAssignment;
         }
 
@@ -63,11 +64,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetHostAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetHostAssignment> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblAssetHostAssignment>> Get(long LastUpdatedTime)
         {
-            List<TblAssetHostAssignment> ahAssignments = (from g in _context.TblAssetHostAssignment
+            List<TblAssetHostAssignment> ahAssignments = await (from g in _context.TblAssetHostAssignment
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return ahAssignments;
         }
 

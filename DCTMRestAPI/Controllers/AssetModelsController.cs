@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetModel), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetModel> Get()
+        public async Task<IEnumerable<TblAssetModel>> Get()
         {
-            List<TblAssetModel> assetModels = (from g in _context.TblAssetModel
-                                               select g).ToList();
+            List<TblAssetModel> assetModels = await (from g in _context.TblAssetModel
+                                               select g).AsNoTracking().ToListAsync();
             return assetModels;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetModel), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetModel> Get(int ModelId)
+        public async Task<IEnumerable<TblAssetModel>> Get(int ModelId)
         {
-            List<TblAssetModel> assetModels = (from g in _context.TblAssetModel
+            List<TblAssetModel> assetModels = await (from g in _context.TblAssetModel
                                                where g.ModelId == ModelId
-                                               select g).ToList();
+                                               select g).AsNoTracking().ToListAsync();
             return assetModels;
 
 
@@ -67,11 +68,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetModel), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetModel> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblAssetModel>> Get(long LastUpdatedTime)
         {
-            List<TblAssetModel> models = (from g in _context.TblAssetModel
+            List<TblAssetModel> models = await (from g in _context.TblAssetModel
                                                where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return models;
         }
 

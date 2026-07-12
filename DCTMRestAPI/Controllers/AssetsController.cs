@@ -19,10 +19,9 @@ using MimeMapping;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.JsonPatch.Operations;
 using DCTMRestAPI.Extensions;
-using AutoMapper;
 using DCTMRestAPI.Models.Custom;
 using System.Collections;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Text;
@@ -38,15 +37,13 @@ namespace DCTMRestAPI.Controllers
     public class AssetsController : Controller
     {
         private readonly DCTrackContext _context;
-        private readonly IUrlHelper urlHelper;
-        private readonly IMapper _mapper;
+        private readonly DctmMapper _mapper;
         private readonly ILogger _logger;
 
 
-        public AssetsController(DCTrackContext context, IUrlHelper urlHelper, IMapper mapper, ILogger<AssetsController> logger)
+        public AssetsController(DCTrackContext context, DctmMapper mapper, ILogger<AssetsController> logger)
         {
             _context = context;
-            this.urlHelper = urlHelper;
             _mapper = mapper;
             _logger = logger;
         }
@@ -61,10 +58,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetExcel), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            List<TblAssetExcel> assets = _context.TblAssetExcel.FromSql(" iAssetTrack_sp_AssetExcel_Data_API @p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9",
-                 parameters: new[] { "", "", "", "", "", "", "", "", "", "" }).ToList();
+            List<TblAssetExcel> assets = await _context.TblAssetExcel.FromSqlRaw(" iAssetTrack_sp_AssetExcel_Data_API @p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9",
+                 new[] { "", "", "", "", "", "", "", "", "", "" }).ToListAsync();
             return Ok(assets);
         }
 
@@ -84,7 +81,7 @@ namespace DCTMRestAPI.Controllers
         {
             var asset = GetAssets(pagingParams);
 
-            Response.Headers.Add("X-Pagination", asset.GetHeader().ToJson());
+            Response.Headers["X-Pagination"] = asset.GetHeader().ToJson();
 
             var outputAssets = new AssetOutputModel
             {
@@ -106,11 +103,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAsset), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAsset> Get(int AssetId)
+        public async Task<IEnumerable<TblAsset>> Get(int AssetId)
         {
-            List<TblAsset> assets = (from g in _context.TblAsset
+            List<TblAsset> assets = await (from g in _context.TblAsset
                                      where g.AssetId == AssetId
-                                     select g).ToList();
+                                     select g).AsNoTracking().ToListAsync();
             return assets;
         }
 
@@ -125,11 +122,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAsset), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAsset> GetFromTag(string AssetTag)
+        public async Task<IEnumerable<TblAsset>> GetFromTag(string AssetTag)
         {
-            List<TblAsset> assets = (from g in _context.TblAsset
+            List<TblAsset> assets = await (from g in _context.TblAsset
                                      where g.CurrentRfidcardNumber.Trim().Contains(AssetTag.Trim())
-                                     select g).ToList();
+                                     select g).AsNoTracking().ToListAsync();
             return assets;
         }
 
@@ -164,7 +161,7 @@ namespace DCTMRestAPI.Controllers
         {
             return new LinkInfo
             {
-                Href = urlHelper.Link(routeName,
+                Href = Url.Link(routeName,
                             new { PageNumber = pageNumber, PageSize = pageSize }),
                 Rel = rel,
                 Method = method
@@ -181,11 +178,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAsset), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAsset> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblAsset>> Get(long LastUpdatedTime)
         {
-            List<TblAsset> assets = (from g in _context.TblAsset
+            List<TblAsset> assets = await (from g in _context.TblAsset
                                      where g.LastUpdatedTime > LastUpdatedTime
-                                     select g).ToList();
+                                     select g).AsNoTracking().ToListAsync();
             return assets;
         }
 
@@ -219,9 +216,9 @@ namespace DCTMRestAPI.Controllers
 
                     // check last modified date and see whether Server or client has latest record.
                     // latest record will previal
-                    TblAsset selectedAsset = (from g in _context.TblAsset.AsNoTracking()
+                    TblAsset selectedAsset = (await (from g in _context.TblAsset.AsNoTracking()
                                               where g.AssetId == asset.AssetId
-                                              select g).First();
+                                              select g).FirstAsync());
                     if (selectedAsset.LastModifiedDate == null || selectedAsset.LastModifiedDate <= asset.LastModifiedDate)
                     {
 
@@ -295,7 +292,7 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAsset), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetExcel> Get(TblAssetSearch search)
+        public async Task<IEnumerable<TblAssetExcel>> Get(TblAssetSearch search)
         {
             #region oldcode
             //string query = " Select * from tblAsset A where 1 = 1 ";
@@ -477,9 +474,9 @@ namespace DCTMRestAPI.Controllers
             */
             #endregion
 
-            List<TblAssetExcel> assets = _context.TblAssetExcel.FromSql(" iAssetTrack_sp_AssetExcel_Data_API @p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9",
+            List<TblAssetExcel> assets = await _context.TblAssetExcel.FromSqlRaw(" iAssetTrack_sp_AssetExcel_Data_API @p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9",
                  parameters: new[]{search.Site,search.Location,search.Custodian,search.Assettype,search.Tagno,search.Manufacturer,search.Assetmodel,
-                 search.Hostname,search.Serialno,search.Assetname}).ToList();
+                 search.Hostname,search.Serialno,search.Assetname}).ToListAsync();
             return assets;
 
 
@@ -493,7 +490,7 @@ namespace DCTMRestAPI.Controllers
         [HttpGet("search/csv")]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IActionResult GetCSV(TblAssetSearch search)
+        public async Task<IActionResult> GetCSV(TblAssetSearch search)
         {
             #region file generation - commented
             /*
@@ -612,9 +609,9 @@ namespace DCTMRestAPI.Controllers
 
             #endregion
 
-            List<TblAssetExcel> assets = _context.TblAssetExcel.FromSql(" iAssetTrack_sp_AssetExcel_Data_API @p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9",
+            List<TblAssetExcel> assets = await _context.TblAssetExcel.FromSqlRaw(" iAssetTrack_sp_AssetExcel_Data_API @p0,@p1,@p2,@p3,@p4,@p5,@p6,@p7,@p8,@p9",
                  parameters: new[]{search.Site,search.Location,search.Custodian,search.Assettype,search.Tagno,search.Manufacturer,search.Assetmodel,
-                 search.Hostname,search.Serialno,search.Assetname}).ToList();
+                 search.Hostname,search.Serialno,search.Assetname}).ToListAsync();
 
             DataTable table = ToDataTable(assets);
             byte[] streamBytes;
@@ -663,7 +660,7 @@ namespace DCTMRestAPI.Controllers
             }
 
             string fileName = "AssetData.csv";
-            Response.Headers.Add("content-disposition", string.Format("attachment;  filename={0}", fileName));
+            Response.Headers["content-disposition"] = string.Format("attachment;  filename={0}", fileName);
             return File(streamBytes, MimeMapping.MimeUtility.GetMimeMapping(fileName), fileName);
 
             //string filename = "AssetData.xlsx";
@@ -718,7 +715,7 @@ namespace DCTMRestAPI.Controllers
         /// 
         /// </remarks>
         /// <param name="AssetId"></param>
-        /// <param name="PatchAsset"></param>
+        /// <param name="patchAsset"></param>
         /// <returns></returns>
         [HttpPatch("{AssetId:int}")]
         [ProducesResponseType(400)]
@@ -761,20 +758,20 @@ namespace DCTMRestAPI.Controllers
 
             foreach (Operation o in patchAsset.Operations)
             {
-                if (o.path.Replace("/", "").ToLower().CompareTo("serialnumber") == 0)
+                if (o.path.Replace("/", "").ToLower() == "serialnumber")
                     o.path = "/refnumber";
-                if (o.path.Replace("/", "").ToLower().CompareTo("assettag") == 0)
+                if (o.path.Replace("/", "").ToLower() == "assettag")
                     o.path = "/currentrfidcardnumber";
-                if (o.path.Replace("/", "").ToLower().CompareTo("locationid") == 0)
+                if (o.path.Replace("/", "").ToLower() == "locationid")
                     o.path = "/lastseenlocationid";
-                if (o.path.Replace("/", "").ToLower().CompareTo("uposition") == 0)
+                if (o.path.Replace("/", "").ToLower() == "uposition")
                     o.path = "/startpos";
             }
 
             //assets
-            var asset = (from l in _context.TblAsset
+            var asset = (await (from l in _context.TblAsset
                          where l.AssetId == AssetId
-                         select l).First();
+                         select l).FirstAsync());
             // get asset model, asset type and mount type info
             // while updating Standalone will get Front as default orientation
             modelId = asset.ModelId;
@@ -802,13 +799,13 @@ namespace DCTMRestAPI.Controllers
                 bool oCorrectFormat = false;
                 bool snoExists = false;
                 //check asset tag
-                if (o.path.Replace("/", "").ToLower().CompareTo("currentrfidcardnumber") == 0)
+                if (o.path.Replace("/", "").ToLower() == "currentrfidcardnumber")
                 {
-                    tagExists = ((from l in _context.TblAsset
+                    tagExists = ((await (from l in _context.TblAsset
                                   where l.AssetId != AssetId &&
                                   l.CurrentRfidcardNumber != null &&
-                                  l.CurrentRfidcardNumber.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
-                                  select l).Count() > 0 ? true : false);
+                                  l.CurrentRfidcardNumber.ToLower() == o.value.ToString().ToLower()
+                                  select l).CountAsync()) > 0 ? true : false);
                 }
 
                 if (tagExists)
@@ -817,11 +814,11 @@ namespace DCTMRestAPI.Controllers
                 }
 
                 //check orientation
-                if (o.path.Replace("/", "").ToLower().CompareTo("orientation") == 0)
+                if (o.path.Replace("/", "").ToLower() == "orientation")
                 {
-                    oCorrectFormat = ((from or in _context.TblOrientation
-                                       where or.OrientationName.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
-                                       select or).Count()) > 0 ? true : false;
+                    oCorrectFormat = ((await (from or in _context.TblOrientation
+                                       where or.OrientationName.ToLower() == o.value.ToString().ToLower()
+                                       select or).CountAsync())) > 0 ? true : false;
                     if (!oCorrectFormat)
                     {
                         //orientation not found in db, so throw error
@@ -829,13 +826,13 @@ namespace DCTMRestAPI.Controllers
                     }
                 }
                 //check serial number
-                if (o.path.Replace("/", "").ToLower().CompareTo("refnumber") == 0)
+                if (o.path.Replace("/", "").ToLower() == "refnumber")
                 {
-                    snoExists = ((from l in _context.TblAsset
+                    snoExists = ((await (from l in _context.TblAsset
                                   where l.AssetId != AssetId &&
                                   l.RefNumber != null &&
-                                  l.RefNumber.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
-                                  select l).Count() > 0 ? true : false);
+                                  l.RefNumber.ToLower() == o.value.ToString().ToLower()
+                                  select l).CountAsync()) > 0 ? true : false);
                 }
 
                 if (snoExists)
@@ -847,9 +844,9 @@ namespace DCTMRestAPI.Controllers
                 switch (o.path.Replace("/", "").ToLower())
                 {
                     case "orientation":
-                        TblOrientation or = (from ori in _context.TblOrientation
-                                             where ori.OrientationName.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
-                                             select ori).First();
+                        TblOrientation or = (await (from ori in _context.TblOrientation
+                                             where ori.OrientationName.ToLower() == o.value.ToString().ToLower()
+                                             select ori).FirstAsync());
                         if (or != null)
                             oId = or.OrientationId;
 
@@ -869,27 +866,26 @@ namespace DCTMRestAPI.Controllers
             }
 
             //validate hostname
-            bool doAssetHostAssignment = false;
             foreach (Operation o in patchAsset.Operations)
             {
                 bool hostNameExists = false;
-                if (o.path.Replace("/", "").ToLower().CompareTo("hostname") == 0)
+                if (o.path.Replace("/", "").ToLower() == "hostname")
                 {
-                    hostNameExists = ((from h in _context.TblHost
-                                       where h.HostName.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
-                                       select h).Count() > 0 ? true : false);
+                    hostNameExists = ((await (from h in _context.TblHost
+                                       where h.HostName.ToLower() == o.value.ToString().ToLower()
+                                       select h).CountAsync()) > 0 ? true : false);
                     if (hostNameExists)
                     {
                         //check if host name is already associated with asset
                         //if so throw error else associate asset with host name
-                        string hostID = (from h in _context.TblHost
-                                         where h.HostName.ToLower().CompareTo(o.value.ToString().ToLower()) == 0
-                                         select h.HostId).First().ToString();
+                        string hostID = (await (from h in _context.TblHost
+                                         where h.HostName.ToLower() == o.value.ToString().ToLower()
+                                         select h.HostId).FirstAsync()).ToString();
 
-                        bool associatExists = ((from ah in _context.TblAssetHostAssignment
-                                                where ah.HostId.ToString().ToLower().CompareTo(hostID.ToLower()) == 0 &&
+                        bool associatExists = ((await (from ah in _context.TblAssetHostAssignment
+                                                where ah.HostId.ToString().ToLower() == hostID.ToLower() &&
                                                 ah.AssetId == AssetId
-                                                select ah).Count() > 0 ? true : false);
+                                                select ah).CountAsync()) > 0 ? true : false);
 
                         if (associatExists)
                         {
@@ -898,7 +894,6 @@ namespace DCTMRestAPI.Controllers
                         else
                         {
                             //associate asset and host
-                            doAssetHostAssignment = true;
                         }
                     }
                     else
@@ -910,17 +905,17 @@ namespace DCTMRestAPI.Controllers
             }
 
             //location types
-            List<TblLocationType> locTypes = (from lt in _context.TblLocationType
-                                              select lt).ToList();
+            List<TblLocationType> locTypes = (await (from lt in _context.TblLocationType
+                                              select lt).ToListAsync());
 
             if (newLocationId > 0)
             {
-                TblLocation newLocation = (from l in _context.TblLocation
+                TblLocation newLocation = (await (from l in _context.TblLocation
                                            where l.LocationId == newLocationId
-                                           select l).First();
-                string newLocType = (from lt in _context.TblLocationType
+                                           select l).FirstAsync());
+                string newLocType = (await (from lt in _context.TblLocationType
                                      where lt.LocationTypeId == newLocation.LocationTypeId.Value
-                                     select lt.LocationType).First();
+                                     select lt.LocationType).FirstAsync());
                 bool isWriteOffLoc = false;
                 bool isDecomLoc = false;
                 #region write-off/decom check
@@ -945,10 +940,10 @@ namespace DCTMRestAPI.Controllers
                                 parentRoomId = newLocation.ParentLocationId.Value;
                             else
                                 parentRoomId = 0;
-                            TblLocation parentLocation = (from l in _context.TblLocation
+                            TblLocation parentLocation = (await (from l in _context.TblLocation
                                                           where l.LocationId == parentRoomId
                                                           && l.IsSpecialRoom == true
-                                                          select l).First();
+                                                          select l).FirstAsync());
                             if (parentLocation != null)
                             {
                                 if (parentLocation.Location.ToLower().Contains("dispose"))
@@ -969,9 +964,9 @@ namespace DCTMRestAPI.Controllers
                                 parentL1Id = newLocation.ParentLocationId.Value;
                             else
                                 parentL1Id = 0;
-                            TblLocation parentRowLocation = (from l in _context.TblLocation
+                            TblLocation parentRowLocation = (await (from l in _context.TblLocation
                                                              where l.LocationId == parentL1Id
-                                                             select l).First();
+                                                             select l).FirstAsync());
                             if (parentRowLocation != null)
                             {
                                 //room
@@ -980,10 +975,10 @@ namespace DCTMRestAPI.Controllers
                                 else
                                     parentL2Id = 0;
 
-                                List<TblLocation> parentRoomLocation = (from l in _context.TblLocation
+                                List<TblLocation> parentRoomLocation = (await (from l in _context.TblLocation
                                                                         where l.LocationId == parentL2Id
                                                                         && l.IsSpecialRoom == true
-                                                                        select l).ToList();
+                                                                        select l).ToListAsync());
                                 if (parentRoomLocation != null && parentRoomLocation.Count() > 0)
                                 {
                                     if (parentRoomLocation[0].Location.ToLower().Contains("dispose"))
@@ -1015,44 +1010,44 @@ namespace DCTMRestAPI.Controllers
                 #endregion
 
 
-                if (mountType.ToLower().CompareTo("standalone") == 0)
+                if (mountType.ToLower() == "standalone")
                 {
-                    if (newLocType.ToLower().CompareTo("rack") == 0)
+                    if (newLocType.ToLower() == "rack")
                         return BadRequest("Standalone asset can not be placed inside a rack. ");
                 }
-                else if (mountType.ToLower().CompareTo("enclosuremount") == 0)
+                else if (mountType.ToLower() == "enclosuremount")
                 {
                     //child assets
-                    if (newLocType.ToLower().CompareTo("rack") == 0)
+                    if (newLocType.ToLower() == "rack")
                     {
                         if (oId > 0 && parentAssetId > 0 && position > 0
-                            && (orientation.ToLower().CompareTo("front") == 0 || orientation.ToLower().CompareTo("rear") == 0))
+                            && (orientation.ToLower() == "front" || orientation.ToLower() == "rear"))
                         {
-                            TblAsset parentAsset = (from p in _context.TblAsset
+                            TblAsset parentAsset = (await (from p in _context.TblAsset
                                                     where p.AssetId == parentAssetId
-                                                    select p).First();
+                                                    select p).FirstAsync());
                             if (parentAsset != null)
                             {
                                 if (parentAsset.IsParent)
                                 {
-                                    if (orientation.ToLower().CompareTo("front") == 0 || orientation.ToLower().CompareTo("rear") == 0)
+                                    if (orientation.ToLower() == "front" || orientation.ToLower() == "rear")
                                     {
                                         string posString = string.Empty;
                                         ArrayList alPositions = new ArrayList();
                                         int enclFRowCount, enclFColCount, enclRRowCount, enclRColCount;
                                         int bladeRowCount, bladeColCount;
                                         bool positionExists = false;
-                                        if (orientation.ToLower().CompareTo("front") == 0)
+                                        if (orientation.ToLower() == "front")
                                         {
-                                            posString = (from ep in _context.TblEnclPositions
+                                            posString = (await (from ep in _context.TblEnclPositions
                                                          where ep.EnclId == parentAssetId
-                                                         select ep.FrontPositions).First();
+                                                         select ep.FrontPositions).FirstAsync());
                                         }
-                                        else if (orientation.ToLower().CompareTo("rear") == 0)
+                                        else if (orientation.ToLower() == "rear")
                                         {
-                                            posString = (from ep in _context.TblEnclPositions
+                                            posString = (await (from ep in _context.TblEnclPositions
                                                          where ep.EnclId == parentAssetId
-                                                         select ep.RearPositions).First();
+                                                         select ep.RearPositions).FirstAsync());
                                         }
 
                                         if (!string.IsNullOrEmpty(posString))
@@ -1064,9 +1059,9 @@ namespace DCTMRestAPI.Controllers
                                             }
                                         }
                                         //get enclosure model details based on parent asset id
-                                        TblEnclModelDetails enclModel = (from em in _context.TblEnclModelDetails
+                                        TblEnclModelDetails enclModel = (await (from em in _context.TblEnclModelDetails
                                                                          where em.EnclModelId == parentAsset.ModelId
-                                                                         select em).First();
+                                                                         select em).FirstAsync());
                                         if (enclModel != null)
                                         {
                                             enclFRowCount = (enclModel.EnclFrontRowCount.HasValue ? enclModel.EnclFrontRowCount.Value : 0);
@@ -1075,20 +1070,20 @@ namespace DCTMRestAPI.Controllers
                                             enclRColCount = (enclModel.EnclRearColumnCount.HasValue ? enclModel.EnclRearColumnCount.Value : 0);
 
                                             //get blade model details
-                                            TblBladeModelDetails bladeModel = (from bm in _context.TblBladeModelDetails
+                                            TblBladeModelDetails bladeModel = (await (from bm in _context.TblBladeModelDetails
                                                                                where bm.BladeModelId == asset.ModelId
-                                                                               select bm).First();
+                                                                               select bm).FirstAsync());
                                             if (bladeModel != null)
                                             {
                                                 bladeRowCount = (bladeModel.BladeRowCount.HasValue ? bladeModel.BladeRowCount.Value : 0);
                                                 bladeColCount = (bladeModel.BladeColumnCount.HasValue ? bladeModel.BladeColumnCount.Value : 0);
 
-                                                if (orientation.ToLower().CompareTo("front") == 0)
+                                                if (orientation.ToLower() == "front")
                                                 {
                                                     positionExists = bladePositionExists(parentAssetId, orientation,
                                                                                             bladeRowCount, bladeColCount, enclFRowCount, enclFColCount, position, posString);
                                                 }
-                                                else if (orientation.ToLower().CompareTo("rear") == 0)
+                                                else if (orientation.ToLower() == "rear")
                                                 {
                                                     positionExists = bladePositionExists(parentAssetId, orientation,
                                                                                             bladeRowCount, bladeColCount, enclRRowCount, enclRColCount, position, posString);
@@ -1123,10 +1118,10 @@ namespace DCTMRestAPI.Controllers
                     }
 
                 }
-                else if (mountType.ToLower().CompareTo("verticalmount") == 0)
+                else if (mountType.ToLower() == "verticalmount")
                 {
                     //vertical mount
-                    if (newLocType.ToLower().CompareTo("rack") == 0)
+                    if (newLocType.ToLower() == "rack")
                     {
                         if (oId > 0 && orientation.ToLower().CompareTo("front") != 0 && orientation.ToLower().CompareTo("rear") != 0)
                         {
@@ -1141,9 +1136,9 @@ namespace DCTMRestAPI.Controllers
                 else
                 {
                     //rackmount or stack in rack assets
-                    if (newLocType.ToLower().CompareTo("rack") == 0)
+                    if (newLocType.ToLower() == "rack")
                     {
-                        if (oId > 0 && (orientation.ToLower().CompareTo("front") == 0 || orientation.ToLower().CompareTo("rear") == 0)
+                        if (oId > 0 && (orientation.ToLower() == "front" || orientation.ToLower() == "rear")
                             && position > 0)
                         {
 
@@ -1161,13 +1156,13 @@ namespace DCTMRestAPI.Controllers
             }
 
             //do update
-            var assetDTO = _mapper.Map<AssetDTO>(asset);
+            var assetDTO = _mapper.ToAssetDto(asset);
             patchAsset.ApplyTo(assetDTO);
             //update LastMofidiedBy and LastModifiedDate fields.
             string userName = User.Identity.Name;
-            TblUser user = (from u in _context.TblUser
-                            where u.LoginName.ToLower().CompareTo(userName.ToLower()) == 0
-                            select u).First();
+            TblUser user = (await (from u in _context.TblUser
+                            where u.LoginName.ToLower() == userName.ToLower()
+                            select u).FirstAsync());
 
             assetDTO.LastModifiedDate = DateTime.Now;
             assetDTO.LastModifiedBy = user.UserId;
@@ -1180,9 +1175,9 @@ namespace DCTMRestAPI.Controllers
             //}
             //else
             //{
-            TblAssetModel assetModel = (from m in _context.TblAssetModel
+            TblAssetModel assetModel = (await (from m in _context.TblAssetModel
                                         where m.ModelId == asset.ModelId
-                                        select m).First();
+                                        select m).FirstAsync());
 
             string query = "iAssetTrack_Sp_Asset_UpdateNew ";
 
@@ -1229,11 +1224,7 @@ namespace DCTMRestAPI.Controllers
             SqlParameter pResult = new SqlParameter("@pIntResult", SqlDbType.Int) { Direction = ParameterDirection.Output, Value = 0 };
             SqlParameter pMessageCode = new SqlParameter("@pVarMessageCode", SqlDbType.VarChar, 2000) { Direction = ParameterDirection.Output, Value = "" };
 
-                string parameterList = "@pIntAssetID,@pVarRefNumber,@pIntModelID,@pIntAssetGroupID,@pIntDefaultLocationID,@pIntBusinessUnitID,@pIntPrimarySiteID," +
-                    "@pVarAssetName,@pDtAssetCreatedDate,@pIntAssetCreatedBy,@pIntLastSeenLocationID,@pIntCurrentOwnerID,@pIntUpdatedBy," +
-                    "@pVarOS,@pVarCPU,@pIntCPUCount,@pVarCPUCore,@pIntTechID,@pVarRackOrStand,@pIntStartPos,@pIntNoOfRUs,@pBitIsImport ,@pBitSerialModelCheck,@pIntParentAssetID," +
-                    "@PIsParent,@PCurrentRFIDCardNumber,@pVarHost,@POrientation,@pVarApplications,@pVarInternalID,@pVarExternalID,@pFltDeratedPower,@pIntResult,@pVarMessageCode";
-            _context.Database.OpenConnection();
+            await _context.Database.OpenConnectionAsync();
             DbCommand cmd = _context.Database.GetDbConnection().CreateCommand();
 
             cmd.CommandType = CommandType.StoredProcedure;
@@ -1242,11 +1233,11 @@ namespace DCTMRestAPI.Controllers
             cmd.Parameters.Add(pResult);
             cmd.Parameters.Add(pMessageCode);
 
-            using (var reader = cmd.ExecuteReader())
+            using (var reader = await cmd.ExecuteReaderAsync())
             {
                 //List<SpAssetUpdate> assetUpdate = reader.MapToList<SpAssetUpdate>();
             }
-            _context.Entry(asset).Reload();
+            await _context.Entry(asset).ReloadAsync();
 
             if (int.Parse(pResult.Value.ToString()) == -1)
                 return BadRequest(pMessageCode.Value.ToString());

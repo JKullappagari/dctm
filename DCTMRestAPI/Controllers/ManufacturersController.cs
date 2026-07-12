@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +34,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblManufacturer), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblManufacturer> Get()
+        public async Task<IEnumerable<TblManufacturer>> Get()
         {
-            List<TblManufacturer> mfgs = (from g in _context.TblManufacturer
-                                                 select g).ToList();
+            List<TblManufacturer> mfgs = await (from g in _context.TblManufacturer
+                                                 select g).AsNoTracking().ToListAsync();
             return mfgs;
         }
 
@@ -50,11 +51,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblManufacturer), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblManufacturer> Get(int MfgId)
+        public async Task<IEnumerable<TblManufacturer>> Get(int MfgId)
         {
-            List<TblManufacturer> mfgs = (from g in _context.TblManufacturer
+            List<TblManufacturer> mfgs = await (from g in _context.TblManufacturer
                                           where g.MfgId == MfgId
-                                          select g).ToList();
+                                          select g).AsNoTracking().ToListAsync();
             return mfgs;
         }
 
@@ -66,11 +67,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblManufacturer), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblManufacturer> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblManufacturer>> Get(long LastUpdatedTime)
         {
-            List<TblManufacturer> mfgs = (from g in _context.TblManufacturer
+            List<TblManufacturer> mfgs = await (from g in _context.TblManufacturer
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return mfgs;
         }
 

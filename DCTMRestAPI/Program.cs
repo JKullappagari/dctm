@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
@@ -15,19 +11,14 @@ namespace DCTMRestAPI
     {
         public static void Main(string[] args)
         {
-            var currentEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+            // WebApplication.CreateBuilder already sets up configuration
+            // (appsettings.json, appsettings.{Environment}.json, environment variables,
+            //  and user secrets in Development) equivalent to the previous ConfigurationBuilder.
+            var builder = WebApplication.CreateBuilder(args);
 
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json",optional: false,reloadOnChange: true)
-                .AddJsonFile($"appsettings.{currentEnv}.json", optional: true,reloadOnChange: true)
-                .AddEnvironmentVariables()
-                .Build();
-
-            //Serilog.Configuration.ILoggerSettings logSettings = configuration.GetSection("Serilog").;
             //Configure logger
             Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
+                .ReadFrom.Configuration(builder.Configuration)
                 .WriteTo.Console()
                 .CreateLogger();
 
@@ -36,9 +27,24 @@ namespace DCTMRestAPI
             try
             {
                 Log.Information("Starting web host");
-                BuildWebHost(args).Run();
+
+                // Do not emit the Kestrel "Server" response header.
+                builder.WebHost.ConfigureKestrel(options => options.AddServerHeader = false);
+
+                var startup = new Startup(builder.Environment, builder.Configuration);
+                startup.ConfigureServices(builder.Services);
+
+                var app = builder.Build();
+
+                startup.Configure(app, app.Environment, app.Services.GetRequiredService<ILoggerFactory>());
+
+                app.Run();
             }
-            catch (Exception ex)
+            // Let the WebApplicationFactory / test host stop signals propagate instead of
+            // logging them as a fatal crash.
+            catch (Exception ex) when (
+                ex is not Microsoft.Extensions.Hosting.HostAbortedException &&
+                ex.GetType().Name != "StopTheHostException")
             {
                 Log.Fatal(ex, "Web Host terminated unexpectedly");
             }
@@ -46,30 +52,6 @@ namespace DCTMRestAPI
             {
                 Log.CloseAndFlush();
             }
-            //BuildWebHost(args).Run();
         }
-
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseKestrel(options => options.AddServerHeader = false)
-                //.ConfigureAppConfiguration((hostingContext, config) =>
-                //{
-                //    var env = hostingContext.HostingEnvironment;
-                //    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                //          .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
-                //    config.AddEnvironmentVariables();
-
-                //    Log.Logger = new LoggerConfiguration().ReadFrom.Settings(config.Sources.g["Serilog"]).CreateLogger();
-                //})
-                //.ConfigureLogging((hostingContext, logging) =>
-                //{
-                //    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                //    logging.AddSerilog(dispose: true);
-                //    logging.AddConsole();
-                //    logging.AddDebug();
-                //})
-                .UseStartup<Startup>()
-                .Build();
-
     }
 }

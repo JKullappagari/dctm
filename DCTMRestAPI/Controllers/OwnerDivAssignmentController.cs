@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +34,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblOwnerDivisionAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblOwnerDivisionAssignment> Get()
+        public async Task<IEnumerable<TblOwnerDivisionAssignment>> Get()
         {
-            List<TblOwnerDivisionAssignment> assignments = (from g in _context.TblOwnerDivisionAssignment
-                                            select g).ToList();
+            List<TblOwnerDivisionAssignment> assignments = await (from g in _context.TblOwnerDivisionAssignment
+                                            select g).AsNoTracking().ToListAsync();
             return assignments;
         }
 
@@ -50,11 +51,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblOwnerDivisionAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblOwnerDivisionAssignment> Get(int OwnerDivId)
+        public async Task<IEnumerable<TblOwnerDivisionAssignment>> Get(int OwnerDivId)
         {
-            List<TblOwnerDivisionAssignment> assignments = (from g in _context.TblOwnerDivisionAssignment
+            List<TblOwnerDivisionAssignment> assignments = await (from g in _context.TblOwnerDivisionAssignment
                                                           where g.OwnerDivId == OwnerDivId
-                                                          select g).ToList();
+                                                          select g).AsNoTracking().ToListAsync();
             return assignments;
         }
 
@@ -66,11 +67,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblOwnerDivisionAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblOwnerDivisionAssignment> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblOwnerDivisionAssignment>> Get(long LastUpdatedTime)
         {
-            List<TblOwnerDivisionAssignment> ownerdivsions = (from g in _context.TblOwnerDivisionAssignment
+            List<TblOwnerDivisionAssignment> ownerdivsions = await (from g in _context.TblOwnerDivisionAssignment
                                                             where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return ownerdivsions;
         }
 

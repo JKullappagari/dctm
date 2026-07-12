@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +34,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblEntityType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblEntityType> Get()
+        public async Task<IEnumerable<TblEntityType>> Get()
         {
-            List<TblEntityType> entityTypes = (from g in _context.TblEntityType
-                                             select g).ToList();
+            List<TblEntityType> entityTypes = await (from g in _context.TblEntityType
+                                             select g).AsNoTracking().ToListAsync();
             return entityTypes;
         }
 
@@ -50,11 +51,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblEntityType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblEntityType> Get(int EntityTypeId)
+        public async Task<IEnumerable<TblEntityType>> Get(int EntityTypeId)
         {
-            List<TblEntityType> entityTypes = (from g in _context.TblEntityType
+            List<TblEntityType> entityTypes = await (from g in _context.TblEntityType
                                              where g.EntityTypeId == EntityTypeId
-                                               select g).ToList();
+                                               select g).AsNoTracking().ToListAsync();
             return entityTypes;
         }
 
@@ -66,11 +67,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblEntityType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblEntityType> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblEntityType>> Get(long LastUpdatedTime)
         {
-            List<TblEntityType> entitytypes = (from g in _context.TblEntityType
+            List<TblEntityType> entitytypes = await (from g in _context.TblEntityType
                                                where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return entitytypes;
         }
 

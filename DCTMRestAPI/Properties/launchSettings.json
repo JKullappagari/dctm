@@ -11,19 +11,23 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api",
+      "launchUrl": "api-docs",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Jwt__SigningKey": "dev-only-not-for-production-jwt-signing-key-0123456789",
+        "ConnectionStrings__DCTrackDatabase": "data source=.\\SQLEXPRESS;initial catalog=DCTrack;Integrated Security=True;TrustServerCertificate=True;"
       }
     },
     "DCTMRestAPI": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api",
+      "launchUrl": "api-docs",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Jwt__SigningKey": "dev-only-not-for-production-jwt-signing-key-0123456789",
+        "ConnectionStrings__DCTrackDatabase": "data source=.\\SQLEXPRESS;initial catalog=DCTrack;Integrated Security=True;TrustServerCertificate=True;"
       },
-      "applicationUrl": "http://localhost:13163/"
+      "applicationUrl": "https://localhost:7113;http://localhost:13163"
     }
   }
 }

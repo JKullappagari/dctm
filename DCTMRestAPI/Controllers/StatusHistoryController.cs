@@ -38,10 +38,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStatusHistory), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStatusHistory> Get()
+        public async Task<IEnumerable<TblStatusHistory>> Get()
         {
-            List<TblStatusHistory> history = (from g in _context.TblStatusHistory
-                                            select g).ToList();
+            List<TblStatusHistory> history = await (from g in _context.TblStatusHistory
+                                            select g).AsNoTracking().ToListAsync();
             return history;
         }
 
@@ -55,11 +55,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStatusHistory), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStatusHistory> Get(int StatusHistoryId)
+        public async Task<IEnumerable<TblStatusHistory>> Get(int StatusHistoryId)
         {
-            List<TblStatusHistory> history = (from g in _context.TblStatusHistory
+            List<TblStatusHistory> history = await (from g in _context.TblStatusHistory
                                                 where g.StatusHistoryId == StatusHistoryId
-                                                select g).ToList();
+                                                select g).AsNoTracking().ToListAsync();
             return history;
         }
 
@@ -71,11 +71,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStatusHistory), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStatusHistory> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblStatusHistory>> Get(long LastUpdatedTime)
         {
-            List<TblStatusHistory> history = (from g in _context.TblStatusHistory
+            List<TblStatusHistory> history = await (from g in _context.TblStatusHistory
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                 select g).ToList();
+                                                 select g).AsNoTracking().ToListAsync();
             return history;
         }
 
@@ -107,9 +107,9 @@ namespace DCTMRestAPI.Controllers
                     _context.Entry(sh).State = EntityState.Added;
 
                     _context.Database.BeginTransaction();
-                    _context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.tblStatusHistory ON;");
+                    _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.tblStatusHistory ON;");
                     await _context.SaveChangesAsync();
-                    _context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.tblStatusHistory OFF;");
+                    _context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.tblStatusHistory OFF;");
                     _context.Database.CommitTransaction();
 
 

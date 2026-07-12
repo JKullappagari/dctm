@@ -1,97 +1,63 @@
-﻿using DCTMRestAPI.Models;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+using DCTMRestAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DCTMRestAPI.Extensions
 {
-    public class DbExtensions
+    public static class DbExtensions
     {
-        public static List<T> ExecSQL<T>(string query, DCTrackContext context)
+        /// <summary>
+        /// Executes a parameterized SQL query and materializes the result set into a <see cref="DataTable"/>.
+        /// Always pass user-supplied values through <paramref name="parameters"/> (never string concatenation)
+        /// to avoid SQL injection. The <paramref name="context"/> is owned by the DI container and must NOT be
+        /// disposed here; the connection it opens is closed again before returning.
+        /// </summary>
+        public static DataTable ExecDataSet(
+            string query,
+            DCTrackContext context,
+            params (string Name, object Value)[] parameters)
         {
-            using (context)
+            var data = new DataTable();
+
+            using var command = context.Database.GetDbConnection().CreateCommand();
+            command.CommandText = query;
+            command.CommandType = CommandType.Text;
+
+            foreach (var (name, value) in parameters)
             {
-                using (var command = context.Database.GetDbConnection().CreateCommand())
+                var parameter = command.CreateParameter();
+                parameter.ParameterName = name;
+                parameter.Value = value ?? DBNull.Value;
+                command.Parameters.Add(parameter);
+            }
+
+            context.Database.OpenConnection();
+            try
+            {
+                using var result = command.ExecuteReader();
+                if (result.HasRows && result.FieldCount > 0)
                 {
-                    command.CommandText = query;
-                    command.CommandType = CommandType.Text;
-                    context.Database.OpenConnection();
-
-                    using (var result = command.ExecuteReader())
+                    for (int i = 0; i < result.FieldCount; i++)
                     {
-                        List<T> list = new List<T>();
-                        T obj = default(T);
-                        while (result.Read())
-                        {
-                            obj = Activator.CreateInstance<T>();
-                            foreach (PropertyInfo prop in obj.GetType().GetProperties())
-                            {
-                                if (!object.Equals(result[prop.Name], DBNull.Value))
-                                {
-                                    prop.SetValue(obj, result[prop.Name], null);
-                                }
-                            }
-                            list.Add(obj);
-                        }
-                        return list;
+                        var colName = string.IsNullOrEmpty(result.GetName(i)) ? $"col{i}" : result.GetName(i);
+                        data.Columns.Add(colName, result.GetFieldType(i));
+                    }
 
+                    while (result.Read())
+                    {
+                        var newRow = data.Rows.Add();
+                        for (int i = 0; i < result.FieldCount; i++)
+                            newRow[i] = result[i];
                     }
                 }
             }
-        }
-
-        public static DataTable ExecDataSet(string query, DCTrackContext context)
-        {
-            using (context)
+            finally
             {
-                using (var command = context.Database.GetDbConnection().CreateCommand())
-                {
-                    command.CommandText = query;
-                    command.CommandType = CommandType.Text;
-                    context.Database.OpenConnection();
-                    DataTable data = new DataTable();
-
-                    using (var result = command.ExecuteReader())
-                    {
-                        if (result.HasRows)
-                        {
-                            if (result.FieldCount > 0)
-                            {
-                                for (int i = 0; i < result.FieldCount; i++)
-                                {
-                                    Type t = result.GetFieldType(i);
-                                    string colName;
-                                    if (!string.IsNullOrEmpty(result.GetName(i)))
-                                        colName = result.GetName(i);
-                                    else
-                                        colName = "col" + i.ToString();
-                                    data.Columns.Add(colName, t);
-                                }
-                                while (result.Read())
-                                {
-                                    var newRow = data.Rows.Add();
-                                    for(int i=0;i< result.FieldCount; i++)
-                                    {
-                                        newRow[i] = result[i];
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-                    return data;
-
-                }
+                context.Database.CloseConnection();
             }
+
+            return data;
         }
-
-        
-
     }
-
-
 }

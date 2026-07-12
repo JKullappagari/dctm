@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblMountType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblMountType> Get()
+        public async Task<IEnumerable<TblMountType>> Get()
         {
-            List<TblMountType> mountTypes = (from g in _context.TblMountType
-                                            select g).ToList();
+            List<TblMountType> mountTypes = await (from g in _context.TblMountType
+                                            select g).AsNoTracking().ToListAsync();
             return mountTypes;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblMountType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblMountType> Get(int Mounttypeid)
+        public async Task<IEnumerable<TblMountType>> Get(int Mounttypeid)
         {
-            List<TblMountType> mountTypes = (from g in _context.TblMountType
+            List<TblMountType> mountTypes = await (from g in _context.TblMountType
                                             where g.Mounttypeid == Mounttypeid
-                                             select g).ToList();
+                                             select g).AsNoTracking().ToListAsync();
             return mountTypes;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblMountType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblMountType> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblMountType>> Get(long LastUpdatedTime)
         {
-            List<TblMountType> types = (from g in _context.TblMountType
+            List<TblMountType> types = await (from g in _context.TblMountType
                                               where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return types;
         }
 

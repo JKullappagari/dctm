@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplication), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplication> Get()
+        public async Task<IEnumerable<TblApplication>> Get()
         {
-            List<TblApplication> applications = (from g in _context.TblApplication
-                                              select g).ToList();
+            List<TblApplication> applications = await (from g in _context.TblApplication
+                                              select g).AsNoTracking().ToListAsync();
             return applications;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplication), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplication> Get(int ApplId)
+        public async Task<IEnumerable<TblApplication>> Get(int ApplId)
         {
-            List<TblApplication> applications = (from g in _context.TblApplication
+            List<TblApplication> applications = await (from g in _context.TblApplication
                                               where g.ApplId == ApplId
-                                              select g).ToList();
+                                              select g).AsNoTracking().ToListAsync();
             return applications;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplication), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplication> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblApplication>> Get(long LastUpdatedTime)
         {
-            List<TblApplication> apps = (from g in _context.TblApplication
+            List<TblApplication> apps = await (from g in _context.TblApplication
                                                 where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return apps;
         }
 

@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBusinessUnit), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBusinessUnit> Get()
+        public async Task<IEnumerable<TblBusinessUnit>> Get()
         {
-            List<TblBusinessUnit> bu = (from g in _context.TblBusinessUnit
-                                               select g).ToList();
+            List<TblBusinessUnit> bu = await (from g in _context.TblBusinessUnit
+                                               select g).AsNoTracking().ToListAsync();
             return bu;
         }
         /// <summary>
@@ -48,11 +49,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBusinessUnit), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBusinessUnit> Get(int BusinessUnitId)
+        public async Task<IEnumerable<TblBusinessUnit>> Get(int BusinessUnitId)
         {
-            List<TblBusinessUnit> bu = (from g in _context.TblBusinessUnit
+            List<TblBusinessUnit> bu = await (from g in _context.TblBusinessUnit
                                                where g.BusinessUnitId == BusinessUnitId
-                                        select g).ToList();
+                                        select g).AsNoTracking().ToListAsync();
             return bu;
         }
 
@@ -64,11 +65,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBusinessUnit), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBusinessUnit> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblBusinessUnit>> Get(long LastUpdatedTime)
         {
-            List<TblBusinessUnit> bus = (from g in _context.TblBusinessUnit
+            List<TblBusinessUnit> bus = await (from g in _context.TblBusinessUnit
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return bus;
         }
 

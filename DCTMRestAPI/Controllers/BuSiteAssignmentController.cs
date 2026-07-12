@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBusiteAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBusiteAssignment> Get()
+        public async Task<IEnumerable<TblBusiteAssignment>> Get()
         {
-            List<TblBusiteAssignment> buSite = (from g in _context.TblBusiteAssignment
-                                            select g).ToList();
+            List<TblBusiteAssignment> buSite = await (from g in _context.TblBusiteAssignment
+                                            select g).AsNoTracking().ToListAsync();
             return buSite;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBusiteAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBusiteAssignment> Get(int BusiteAssignmentId)
+        public async Task<IEnumerable<TblBusiteAssignment>> Get(int BusiteAssignmentId)
         {
-            List<TblBusiteAssignment> buSite = (from g in _context.TblBusiteAssignment
+            List<TblBusiteAssignment> buSite = await (from g in _context.TblBusiteAssignment
                                                    where g.BusiteAssignmentId == BusiteAssignmentId
-                                                select g).ToList();
+                                                select g).AsNoTracking().ToListAsync();
             return buSite;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBusiteAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBusiteAssignment> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblBusiteAssignment>> Get(long LastUpdatedTime)
         {
-            List<TblBusiteAssignment> busite = (from g in _context.TblBusiteAssignment
+            List<TblBusiteAssignment> busite = await (from g in _context.TblBusiteAssignment
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return busite;
         }
 

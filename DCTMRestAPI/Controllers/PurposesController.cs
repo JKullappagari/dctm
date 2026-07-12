@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblPurpose), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblPurpose> Get()
+        public async Task<IEnumerable<TblPurpose>> Get()
         {
-            List<TblPurpose> purposes = (from g in _context.TblPurpose
-                                            select g).ToList();
+            List<TblPurpose> purposes = await (from g in _context.TblPurpose
+                                            select g).AsNoTracking().ToListAsync();
             return purposes;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblPurpose), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblPurpose> Get(int PurposeId)
+        public async Task<IEnumerable<TblPurpose>> Get(int PurposeId)
         {
-            List<TblPurpose> purposes = (from g in _context.TblPurpose
+            List<TblPurpose> purposes = await (from g in _context.TblPurpose
                                           where g.PurposeId == PurposeId
-                                         select g).ToList();
+                                         select g).AsNoTracking().ToListAsync();
             return purposes;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblPurpose), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblPurpose> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblPurpose>> Get(long LastUpdatedTime)
         {
-            List<TblPurpose> purposes = (from g in _context.TblPurpose
+            List<TblPurpose> purposes = await (from g in _context.TblPurpose
                                             where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return purposes;
         }
 

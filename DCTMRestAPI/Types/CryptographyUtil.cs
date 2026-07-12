@@ -48,18 +48,14 @@ namespace DCTMRestAPI.Types
                 int minSaltSize = 4;
                 int maxSaltSize = 8;
 
-                // Generate a random number for the size of the salt.
-                Random random = new Random();
-                int saltSize = random.Next(minSaltSize, maxSaltSize);
+                // Generate a cryptographically-strong random size for the salt.
+                int saltSize = RandomNumberGenerator.GetInt32(minSaltSize, maxSaltSize);
 
                 // Allocate a byte array, which will hold the salt.
                 saltBytes = new byte[saltSize];
 
-                // Initialize a random number generator.
-                RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-
                 // Fill the salt with cryptographically strong byte values.
-                rng.GetNonZeroBytes(saltBytes);
+                RandomNumberGenerator.Fill(saltBytes);
             }
 
             // Convert plain text into a byte array.
@@ -90,23 +86,23 @@ namespace DCTMRestAPI.Types
             switch (hashAlgorithm.ToUpper())
             {
                 case "SHA1":
-                    hash = new SHA1Managed();
+                    hash = SHA1.Create();
                     break;
 
                 case "SHA256":
-                    hash = new SHA256Managed();
+                    hash = SHA256.Create();
                     break;
 
                 case "SHA384":
-                    hash = new SHA384Managed();
+                    hash = SHA384.Create();
                     break;
 
                 case "SHA512":
-                    hash = new SHA512Managed();
+                    hash = SHA512.Create();
                     break;
 
                 default:
-                    hash = new MD5CryptoServiceProvider();
+                    hash = MD5.Create();
                     break;
             }
 
@@ -218,34 +214,32 @@ namespace DCTMRestAPI.Types
 
         public static string Decrypt(string TextToDecrypt)
         {
-            RijndaelManaged rijndaelCipher = new RijndaelManaged();
-            rijndaelCipher.Mode = CipherMode.CBC;
-            rijndaelCipher.Padding = PaddingMode.PKCS7;
+            // AES-256-CBC / PKCS7 (equivalent to the former RijndaelManaged with a 128-bit block).
+            using Aes aes = Aes.Create();
+            aes.Mode = CipherMode.CBC;
+            aes.Padding = PaddingMode.PKCS7;
 
-            rijndaelCipher.KeySize = 0x80;
-            rijndaelCipher.BlockSize = 0x80;
             byte[] encryptedData = Convert.FromBase64String(TextToDecrypt);
             byte[] pwdBytes = Encoding.UTF8.GetBytes(Key);
-           
+
             byte[] keyArray = new byte[32];
             byte[] ivArray = new byte[16];
             Array.Copy(pwdBytes, 0, keyArray, 0, 32);
             Array.Copy(SaltBytes, 0, ivArray, 0, 16);
 
-            rijndaelCipher.Key = keyArray;
-            rijndaelCipher.IV = ivArray;
-            byte[] plainText = rijndaelCipher.CreateDecryptor().TransformFinalBlock(encryptedData, 0, encryptedData.Length);
+            aes.Key = keyArray;
+            aes.IV = ivArray;
+            byte[] plainText = aes.CreateDecryptor().TransformFinalBlock(encryptedData, 0, encryptedData.Length);
             return Encoding.UTF8.GetString(plainText);
         }
 
         public static string Encrypt(string TextToEncrypt)
         {
-            RijndaelManaged rijndaelCipher = new RijndaelManaged();
-            rijndaelCipher.Mode = CipherMode.CBC;
-            rijndaelCipher.Padding = PaddingMode.PKCS7;
+            // AES-256-CBC / PKCS7 (equivalent to the former RijndaelManaged with a 128-bit block).
+            using Aes aes = Aes.Create();
+            aes.Mode = CipherMode.CBC;
+            aes.Padding = PaddingMode.PKCS7;
 
-            rijndaelCipher.KeySize = 0x80;
-            rijndaelCipher.BlockSize = 0x80;
             byte[] pwdBytes = Encoding.UTF8.GetBytes(Key);
 
             byte[] keyArray = new byte[32];
@@ -253,9 +247,9 @@ namespace DCTMRestAPI.Types
             Array.Copy(pwdBytes, 0, keyArray, 0, 32);
             Array.Copy(SaltBytes, 0, ivArray, 0, 16);
 
-            rijndaelCipher.Key = keyArray;
-            rijndaelCipher.IV = ivArray;
-            ICryptoTransform transform = rijndaelCipher.CreateEncryptor();
+            aes.Key = keyArray;
+            aes.IV = ivArray;
+            ICryptoTransform transform = aes.CreateEncryptor();
             byte[] plainText = Encoding.UTF8.GetBytes(TextToEncrypt);
             return Convert.ToBase64String(transform.TransformFinalBlock(plainText, 0, plainText.Length));
         }

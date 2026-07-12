@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBladeModelDetails), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBladeModelDetails> Get()
+        public async Task<IEnumerable<TblBladeModelDetails>> Get()
         {
-            List<TblBladeModelDetails> bladeModels = (from g in _context.TblBladeModelDetails
-                                            select g).ToList();
+            List<TblBladeModelDetails> bladeModels = await (from g in _context.TblBladeModelDetails
+                                            select g).AsNoTracking().ToListAsync();
             return bladeModels;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBladeModelDetails), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBladeModelDetails> Get(int BladeModelId)
+        public async Task<IEnumerable<TblBladeModelDetails>> Get(int BladeModelId)
         {
-            List<TblBladeModelDetails> bladeModels = (from g in _context.TblBladeModelDetails
+            List<TblBladeModelDetails> bladeModels = await (from g in _context.TblBladeModelDetails
                                                     where g.BladeModelId == BladeModelId
-                                                    select g).ToList();
+                                                    select g).AsNoTracking().ToListAsync();
             return bladeModels;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBladeModelDetails), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBladeModelDetails> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblBladeModelDetails>> Get(long LastUpdatedTime)
         {
-            List<TblBladeModelDetails> blademodels = (from g in _context.TblBladeModelDetails
+            List<TblBladeModelDetails> blademodels = await (from g in _context.TblBladeModelDetails
                                                       where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return blademodels;
         }
 

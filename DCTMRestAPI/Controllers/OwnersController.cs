@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblOwner), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblOwner> Get()
+        public async Task<IEnumerable<TblOwner>> Get()
         {
-            List<TblOwner> owners = (from g in _context.TblOwner
-                                     select g).ToList();
+            List<TblOwner> owners = await (from g in _context.TblOwner
+                                     select g).AsNoTracking().ToListAsync();
             return owners;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblOwner), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblOwner> Get(int OwnerId)
+        public async Task<IEnumerable<TblOwner>> Get(int OwnerId)
         {
-            List<TblOwner> owners = (from g in _context.TblOwner
+            List<TblOwner> owners = await (from g in _context.TblOwner
                                         where g.OwnerId == OwnerId
-                                        select g).ToList();
+                                        select g).AsNoTracking().ToListAsync();
             return owners;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblOwner), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblOwner> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblOwner>> Get(long LastUpdatedTime)
         {
-            List<TblOwner> owners = (from g in _context.TblOwner
+            List<TblOwner> owners = await (from g in _context.TblOwner
                                           where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return owners;
         }
 

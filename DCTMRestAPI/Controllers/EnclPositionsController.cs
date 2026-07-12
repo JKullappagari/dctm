@@ -39,10 +39,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblEnclPositions), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblEnclPositions> Get()
+        public async Task<IEnumerable<TblEnclPositions>> Get()
         {
-            List<TblEnclPositions> encls = (from g in _context.TblEnclPositions
-                                            select g).ToList();
+            List<TblEnclPositions> encls = await (from g in _context.TblEnclPositions
+                                            select g).AsNoTracking().ToListAsync();
             return encls;
         }
 
@@ -56,11 +56,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblEnclPositions), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblEnclPositions> Get(int EnclId)
+        public async Task<IEnumerable<TblEnclPositions>> Get(int EnclId)
         {
-            List<TblEnclPositions> encls = (from g in _context.TblEnclPositions
+            List<TblEnclPositions> encls = await (from g in _context.TblEnclPositions
                                                 where g.EnclId == EnclId
-                                                select g).ToList();
+                                                select g).AsNoTracking().ToListAsync();
             return encls;
         }
 
@@ -72,11 +72,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblEnclPositions), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblEnclPositions> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblEnclPositions>> Get(long LastUpdatedTime)
         {
-            List<TblEnclPositions> encls = (from g in _context.TblEnclPositions
+            List<TblEnclPositions> encls = await (from g in _context.TblEnclPositions
                                            where g.LastUpdatedTime > LastUpdatedTime
-                                           select g).ToList();
+                                           select g).AsNoTracking().ToListAsync();
             return encls;
         }
 
@@ -109,9 +109,9 @@ namespace DCTMRestAPI.Controllers
                 {
                     // check last modified date and see whether Server or client has latest record.
                     // latest record will previal
-                    List<TblEnclPositions> selectedEncl = (from g in _context.TblEnclPositions.AsNoTracking()
+                    List<TblEnclPositions> selectedEncl = await (from g in _context.TblEnclPositions.AsNoTracking()
                                               where g.EnclId == encl.EnclId
-                                              select g).ToList();
+                                              select g).AsNoTracking().ToListAsync();
                     if (selectedEncl != null)
                     {
                         if (selectedEncl.Count <= 0)

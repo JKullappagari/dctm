@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +34,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblEnclModelDetails), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblEnclModelDetails> Get()
+        public async Task<IEnumerable<TblEnclModelDetails>> Get()
         {
-            List<TblEnclModelDetails> enclmodels = (from g in _context.TblEnclModelDetails
-                                                    select g).ToList();
+            List<TblEnclModelDetails> enclmodels = await (from g in _context.TblEnclModelDetails
+                                                    select g).AsNoTracking().ToListAsync();
             return enclmodels;
         }
 
@@ -50,11 +51,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblEnclModelDetails), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblEnclModelDetails> Get(int EnclModelId)
+        public async Task<IEnumerable<TblEnclModelDetails>> Get(int EnclModelId)
         {
-            List<TblEnclModelDetails> enclmodels = (from g in _context.TblEnclModelDetails
+            List<TblEnclModelDetails> enclmodels = await (from g in _context.TblEnclModelDetails
                                                     where g.EnclModelId == EnclModelId
-                                                    select g).ToList();
+                                                    select g).AsNoTracking().ToListAsync();
             return enclmodels;
         }
 
@@ -66,11 +67,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblEnclModelDetails), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblEnclModelDetails> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblEnclModelDetails>> Get(long LastUpdatedTime)
         {
-            List<TblEnclModelDetails> enclmodels = (from g in _context.TblEnclModelDetails
+            List<TblEnclModelDetails> enclmodels = await (from g in _context.TblEnclModelDetails
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return enclmodels;
         }
 

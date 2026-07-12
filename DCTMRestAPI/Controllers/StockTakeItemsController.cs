@@ -38,10 +38,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStockTakeItems), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStockTakeItems> Get()
+        public async Task<IEnumerable<TblStockTakeItems>> Get()
         {
-            List<TblStockTakeItems> stocktakeitems = (from g in _context.TblStockTakeItems
-                                                 select g).ToList();
+            List<TblStockTakeItems> stocktakeitems = await (from g in _context.TblStockTakeItems
+                                                 select g).AsNoTracking().ToListAsync();
             return stocktakeitems;
         }
 
@@ -55,11 +55,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStockTakeItems), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStockTakeItems> Get(int StockTakeSessionId)
+        public async Task<IEnumerable<TblStockTakeItems>> Get(int StockTakeSessionId)
         {
-            List<TblStockTakeItems> stocktakeitems = (from g in _context.TblStockTakeItems
+            List<TblStockTakeItems> stocktakeitems = await (from g in _context.TblStockTakeItems
                                                  where g.StockTakeSessionId == StockTakeSessionId
-                                                      select g).ToList();
+                                                      select g).AsNoTracking().ToListAsync();
             return stocktakeitems;
         }
 
@@ -71,11 +71,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblStockTakeItems), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblStockTakeItems> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblStockTakeItems>> Get(long LastUpdatedTime)
         {
-            List<TblStockTakeItems> purposes = (from g in _context.TblStockTakeItems
+            List<TblStockTakeItems> purposes = await (from g in _context.TblStockTakeItems
                                                  where g.LastUpdatedTime > LastUpdatedTime
-                                                 select g).ToList();
+                                                 select g).AsNoTracking().ToListAsync();
             return purposes;
         }
 

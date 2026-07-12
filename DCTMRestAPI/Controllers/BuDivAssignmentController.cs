@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBudivAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBudivAssignment> Get()
+        public async Task<IEnumerable<TblBudivAssignment>> Get()
         {
-            List<TblBudivAssignment> buDiv = (from g in _context.TblBudivAssignment
-                                            select g).ToList();
+            List<TblBudivAssignment> buDiv = await (from g in _context.TblBudivAssignment
+                                            select g).AsNoTracking().ToListAsync();
             return buDiv;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBudivAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBudivAssignment> Get(int BudivAssignmentId)
+        public async Task<IEnumerable<TblBudivAssignment>> Get(int BudivAssignmentId)
         {
-            List<TblBudivAssignment> buDiv = (from g in _context.TblBudivAssignment
+            List<TblBudivAssignment> buDiv = await (from g in _context.TblBudivAssignment
                                                   where g.BudivAssignmentId == BudivAssignmentId
-                                                  select g).ToList();
+                                                  select g).AsNoTracking().ToListAsync();
             return buDiv;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBudivAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBudivAssignment> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblBudivAssignment>> Get(long LastUpdatedTime)
         {
-            List<TblBudivAssignment> budiv = (from g in _context.TblBudivAssignment
+            List<TblBudivAssignment> budiv = await (from g in _context.TblBudivAssignment
                                                     where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return budiv;
         }
 

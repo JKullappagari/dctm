@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +34,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblInputConnectorType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblInputConnectorType> Get()
+        public async Task<IEnumerable<TblInputConnectorType>> Get()
         {
-            List<TblInputConnectorType> connectorTypes = (from g in _context.TblInputConnectorType
-                                            select g).ToList();
+            List<TblInputConnectorType> connectorTypes = await (from g in _context.TblInputConnectorType
+                                            select g).AsNoTracking().ToListAsync();
             return connectorTypes;
         }
 
@@ -50,11 +51,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblInputConnectorType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblInputConnectorType> Get(int InputConnectorTypeId)
+        public async Task<IEnumerable<TblInputConnectorType>> Get(int InputConnectorTypeId)
         {
-            List<TblInputConnectorType> connectorTypes = (from g in _context.TblInputConnectorType
+            List<TblInputConnectorType> connectorTypes = await (from g in _context.TblInputConnectorType
                                                      where g.InputConnectorTypeId == InputConnectorTypeId
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return connectorTypes;
         }
 
@@ -66,11 +67,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblInputConnectorType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblInputConnectorType> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblInputConnectorType>> Get(long LastUpdatedTime)
         {
-            List<TblInputConnectorType> inputconnectors = (from g in _context.TblInputConnectorType
+            List<TblInputConnectorType> inputconnectors = await (from g in _context.TblInputConnectorType
                                                        where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return inputconnectors;
         }
 

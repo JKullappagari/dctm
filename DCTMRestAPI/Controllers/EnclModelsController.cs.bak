@@ -1,0 +1,90 @@
+using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using DCTMRestAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace DCTMRestAPI.Controllers
+{
+    [Produces("application/json")]
+    [Authorize]
+    [Route("api/[controller]")]
+    public class EnclModelsController : Controller
+    {
+
+        private readonly DCTrackContext _context;
+
+        public EnclModelsController(DCTrackContext context)
+        {
+            _context = context;
+
+        }
+
+        /// <summary>
+        /// Gets all enclosure model specifications
+        /// </summary>
+        /// <returns></returns>
+        // GET: api/enclmodels
+        [HttpGet]
+        [ProducesResponseType(typeof(TblEnclModelDetails), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public async Task<IEnumerable<TblEnclModelDetails>> Get()
+        {
+            List<TblEnclModelDetails> enclmodels = (from g in _context.TblEnclModelDetails
+                                                    select g).ToList();
+            return enclmodels;
+        }
+
+        /// <summary>
+        /// Gets enclosure model specifications based on identifier
+        /// </summary>
+        /// <param name="EnclModelId"></param>
+        /// <returns></returns>
+        // GET api/enclmodels/5
+        [HttpGet("{EnclModelId}")]
+        [ProducesResponseType(typeof(TblEnclModelDetails), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public async Task<IEnumerable<TblEnclModelDetails>> Get(int EnclModelId)
+        {
+            List<TblEnclModelDetails> enclmodels = (from g in _context.TblEnclModelDetails
+                                                    where g.EnclModelId == EnclModelId
+                                                    select g).ToList();
+            return enclmodels;
+        }
+
+        /// <summary>
+        /// Gets enclosure model specifications which are modified after Last Updated datetime
+        /// </summary>
+        // GET api/enclmodels/5
+        [HttpGet("updated/{LastUpdatedTime}")]
+        [ProducesResponseType(typeof(TblEnclModelDetails), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public async Task<IEnumerable<TblEnclModelDetails>> Get(long LastUpdatedTime)
+        {
+            List<TblEnclModelDetails> enclmodels = (from g in _context.TblEnclModelDetails
+                                                     where g.LastUpdatedTime > LastUpdatedTime
+                                                     select g).ToList();
+            return enclmodels;
+        }
+
+        //// POST api/enclmodels
+        //[HttpPost]
+        //public void Post([FromBody]string value)
+        //{
+        //}
+
+        //// DELETE api/enclmodels/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
+    }
+}

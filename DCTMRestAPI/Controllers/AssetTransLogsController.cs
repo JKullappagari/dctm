@@ -38,10 +38,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetTransactionLog), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetTransactionLog> Get()
+        public async Task<IEnumerable<TblAssetTransactionLog>> Get()
         {
-            List<TblAssetTransactionLog> logs = (from g in _context.TblAssetTransactionLog
-                                            select g).ToList();
+            List<TblAssetTransactionLog> logs = await (from g in _context.TblAssetTransactionLog
+                                            select g).AsNoTracking().ToListAsync();
             return logs;
         }
 
@@ -55,11 +55,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetTransactionLog), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetTransactionLog> Get(int Id)
+        public async Task<IEnumerable<TblAssetTransactionLog>> Get(int Id)
         {
-            List<TblAssetTransactionLog> logs = (from g in _context.TblAssetTransactionLog
-                                            where g.Id.CompareTo(Id) == 0
-                                            select g).ToList();
+            List<TblAssetTransactionLog> logs = await (from g in _context.TblAssetTransactionLog
+                                            where g.TransactionId == Id
+                                            select g).AsNoTracking().ToListAsync();
             return logs;
         }
 
@@ -71,11 +71,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAssetTransactionLog), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAssetTransactionLog> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblAssetTransactionLog>> Get(long LastUpdatedTime)
         {
-            List<TblAssetTransactionLog> logs = (from g in _context.TblAssetTransactionLog
+            List<TblAssetTransactionLog> logs = await (from g in _context.TblAssetTransactionLog
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                 select g).ToList();
+                                                 select g).AsNoTracking().ToListAsync();
             return logs;
         }
 

@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTenantApplicationAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTenantApplicationAssignment> Get()
+        public async Task<IEnumerable<TblTenantApplicationAssignment>> Get()
         {
-            List<TblTenantApplicationAssignment> tenants = (from g in _context.TblTenantApplicationAssignment
-                                            select g).ToList();
+            List<TblTenantApplicationAssignment> tenants = await (from g in _context.TblTenantApplicationAssignment
+                                            select g).AsNoTracking().ToListAsync();
             return tenants;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTenantApplicationAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTenantApplicationAssignment> Get(int TenantApplicationId)
+        public async Task<IEnumerable<TblTenantApplicationAssignment>> Get(int TenantApplicationId)
         {
-            List<TblTenantApplicationAssignment> buSite = (from g in _context.TblTenantApplicationAssignment
+            List<TblTenantApplicationAssignment> buSite = await (from g in _context.TblTenantApplicationAssignment
                                                    where g.TenantApplicationId == TenantApplicationId
-                                                           select g).ToList();
+                                                           select g).AsNoTracking().ToListAsync();
             return buSite;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblTenantApplicationAssignment), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblTenantApplicationAssignment> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblTenantApplicationAssignment>> Get(long LastUpdatedTime)
         {
-            List<TblTenantApplicationAssignment> busite = (from g in _context.TblTenantApplicationAssignment
+            List<TblTenantApplicationAssignment> busite = await (from g in _context.TblTenantApplicationAssignment
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return busite;
         }
 

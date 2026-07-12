@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplType> Get()
+        public async Task<IEnumerable<TblApplType>> Get()
         {
-            List<TblApplType> types = (from g in _context.TblApplType
-                                              select g).ToList();
+            List<TblApplType> types = await (from g in _context.TblApplType
+                                              select g).AsNoTracking().ToListAsync();
             return types;
         }
 
@@ -47,11 +48,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplType> Get(int ApplTypeId)
+        public async Task<IEnumerable<TblApplType>> Get(int ApplTypeId)
         {
-            List<TblApplType> types = (from g in _context.TblApplType
+            List<TblApplType> types = await (from g in _context.TblApplType
                                                      where g.ApplTypeId == ApplTypeId
-                                             select g).ToList();
+                                             select g).AsNoTracking().ToListAsync();
             return types;
         }
 
@@ -63,11 +64,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblApplType), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblApplType> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblApplType>> Get(long LastUpdatedTime)
         {
-            List<TblApplType> types = (from g in _context.TblApplType
+            List<TblApplType> types = await (from g in _context.TblApplType
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return types;
         }
 

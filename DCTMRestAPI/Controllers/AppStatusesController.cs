@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,10 +32,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAppStatus), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAppStatus> Get()
+        public async Task<IEnumerable<TblAppStatus>> Get()
         {
-            List<TblAppStatus> appStatuses = (from g in _context.TblAppStatus
-                                               select g).ToList();
+            List<TblAppStatus> appStatuses = await (from g in _context.TblAppStatus
+                                               select g).AsNoTracking().ToListAsync();
             return appStatuses;
         }
 
@@ -48,11 +49,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAppStatus), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAppStatus> Get(int AppStatusID)
+        public async Task<IEnumerable<TblAppStatus>> Get(int AppStatusID)
         {
-            List<TblAppStatus> appStatus = (from g in _context.TblAppStatus
+            List<TblAppStatus> appStatus = await (from g in _context.TblAppStatus
                                           where g.AppStatusId == AppStatusID
-                                            select g).ToList();
+                                            select g).AsNoTracking().ToListAsync();
             return appStatus;
         }
 
@@ -64,11 +65,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblAppStatus), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblAppStatus> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblAppStatus>> Get(long LastUpdatedTime)
         {
-            List<TblAppStatus> statuses = (from g in _context.TblAppStatus
+            List<TblAppStatus> statuses = await (from g in _context.TblAppStatus
                                               where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return statuses;
         }
 

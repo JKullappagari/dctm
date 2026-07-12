@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblMessage), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblMessage> Get()
+        public async Task<IEnumerable<TblMessage>> Get()
         {
-            List<TblMessage> messages = (from g in _context.TblMessage
-                                            select g).ToList();
+            List<TblMessage> messages = await (from g in _context.TblMessage
+                                            select g).AsNoTracking().ToListAsync();
             return messages;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblMessage), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblMessage> Get(int MessageCodeId)
+        public async Task<IEnumerable<TblMessage>> Get(int MessageCodeId)
         {
-            List<TblMessage> messages = (from g in _context.TblMessage
+            List<TblMessage> messages = await (from g in _context.TblMessage
                                           where g.MessageCodeId == MessageCodeId
-                                         select g).ToList();
+                                         select g).AsNoTracking().ToListAsync();
             return messages;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblMessage), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblMessage> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblMessage>> Get(long LastUpdatedTime)
         {
-            List<TblMessage> codes = (from g in _context.TblMessage
+            List<TblMessage> codes = await (from g in _context.TblMessage
                                             where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return codes;
         }
 

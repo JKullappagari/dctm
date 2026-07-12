@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblWorldRegion), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblWorldRegion> Get()
+        public async Task<IEnumerable<TblWorldRegion>> Get()
         {
-            List<TblWorldRegion> regions = (from g in _context.TblWorldRegion
-                                                      select g).ToList();
+            List<TblWorldRegion> regions = await (from g in _context.TblWorldRegion
+                                                      select g).AsNoTracking().ToListAsync();
             return regions;
         }
 
@@ -47,11 +48,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblWorldRegion), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblWorldRegion> Get(int WorldRegionId)
+        public async Task<IEnumerable<TblWorldRegion>> Get(int WorldRegionId)
         {
-            List<TblWorldRegion> regions = (from g in _context.TblWorldRegion
+            List<TblWorldRegion> regions = await (from g in _context.TblWorldRegion
                                                      where g.WorldRegionId == WorldRegionId
-                                            select g).ToList();
+                                            select g).AsNoTracking().ToListAsync();
             return regions;
         }
 
@@ -63,11 +64,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblWorldRegion), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblWorldRegion> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblWorldRegion>> Get(long LastUpdatedTime)
         {
-            List<TblWorldRegion> regions = (from g in _context.TblWorldRegion
+            List<TblWorldRegion> regions = await (from g in _context.TblWorldRegion
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return regions;
         }
 

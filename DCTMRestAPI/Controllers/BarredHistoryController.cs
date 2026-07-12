@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBarredHistory), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBarredHistory> Get()
+        public async Task<IEnumerable<TblBarredHistory>> Get()
         {
-            List<TblBarredHistory> barredHistory = (from g in _context.TblBarredHistory
-                                            select g).ToList();
+            List<TblBarredHistory> barredHistory = await (from g in _context.TblBarredHistory
+                                            select g).AsNoTracking().ToListAsync();
             return barredHistory;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBarredHistory), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBarredHistory> Get(int BarredHistoryId)
+        public async Task<IEnumerable<TblBarredHistory>> Get(int BarredHistoryId)
         {
-            List<TblBarredHistory> barredHistory = (from g in _context.TblBarredHistory
+            List<TblBarredHistory> barredHistory = await (from g in _context.TblBarredHistory
                                             where g.BarredHistoryId == BarredHistoryId
-                                                    select g).ToList();
+                                                    select g).AsNoTracking().ToListAsync();
             return barredHistory;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblBarredHistory), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblBarredHistory> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblBarredHistory>> Get(long LastUpdatedTime)
         {
-            List<TblBarredHistory> history = (from g in _context.TblBarredHistory
+            List<TblBarredHistory> history = await (from g in _context.TblBarredHistory
                                                   where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return history;
         }
 

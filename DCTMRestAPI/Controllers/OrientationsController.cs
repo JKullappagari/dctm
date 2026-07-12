@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,10 +33,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblOrientation), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblOrientation> Get()
+        public async Task<IEnumerable<TblOrientation>> Get()
         {
-            List<TblOrientation> orientations = (from g in _context.TblOrientation
-                                              select g).ToList();
+            List<TblOrientation> orientations = await (from g in _context.TblOrientation
+                                              select g).AsNoTracking().ToListAsync();
             return orientations;
         }
 
@@ -49,11 +50,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblOrientation), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblOrientation> Get(int OrientationId)
+        public async Task<IEnumerable<TblOrientation>> Get(int OrientationId)
         {
-            List<TblOrientation> orientations = (from g in _context.TblOrientation
+            List<TblOrientation> orientations = await (from g in _context.TblOrientation
                                               where g.OrientationId == OrientationId
-                                                 select g).ToList();
+                                                 select g).AsNoTracking().ToListAsync();
             return orientations;
         }
 
@@ -65,11 +66,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblOrientation), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblOrientation> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblOrientation>> Get(long LastUpdatedTime)
         {
-            List<TblOrientation> orientations = (from g in _context.TblOrientation
+            List<TblOrientation> orientations = await (from g in _context.TblOrientation
                                                 where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return orientations;
         }
 

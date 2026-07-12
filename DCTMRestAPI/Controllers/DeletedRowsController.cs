@@ -36,10 +36,10 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblDeletedRows), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblDeletedRows> Get()
+        public async Task<IEnumerable<TblDeletedRows>> Get()
         {
-            List<TblDeletedRows> types = (from g in _context.TblDeletedRows
-                                              select g).ToList();
+            List<TblDeletedRows> types = await (from g in _context.TblDeletedRows
+                                              select g).AsNoTracking().ToListAsync();
             return types;
         }
 
@@ -51,11 +51,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblDeletedRows), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblDeletedRows> Get(string ID)
+        public async Task<IEnumerable<TblDeletedRows>> Get(string ID)
         {
-            List<TblDeletedRows> rows = (from g in _context.TblDeletedRows
-                                                     where g.Id.ToString().ToLower().CompareTo(ID.ToString().ToLower()) == 0
-                                             select g).ToList();
+            List<TblDeletedRows> rows = await (from g in _context.TblDeletedRows
+                                                     where g.Id.ToString().ToLower() == ID.ToString().ToLower()
+                                             select g).AsNoTracking().ToListAsync();
             return rows;
         }
 
@@ -68,11 +68,11 @@ namespace DCTMRestAPI.Controllers
         [ProducesResponseType(typeof(TblDeletedRows), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IEnumerable<TblDeletedRows> Get(long LastUpdatedTime)
+        public async Task<IEnumerable<TblDeletedRows>> Get(long LastUpdatedTime)
         {
-            List<TblDeletedRows> rows = (from g in _context.TblDeletedRows
+            List<TblDeletedRows> rows = await (from g in _context.TblDeletedRows
                                                      where g.LastUpdatedTime > LastUpdatedTime
-                                                     select g).ToList();
+                                                     select g).AsNoTracking().ToListAsync();
             return rows;
         }
 
