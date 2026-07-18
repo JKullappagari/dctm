@@ -1,0 +1,154 @@
+﻿# DCTrack modernization — local development stack (Linux containers)
+# Usage:
+#   1. Copy the legacy backup into ./db/backups (or adjust the volume below
+#      to point at D:\projects\dctm\db).
+#   2. docker compose up --build
+#   3. Master Data API: http://localhost:8081  (OpenAPI at /openapi/v1.json)
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:?set MSSQL_SA_PASSWORD in .env}"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+      - ../db:/backups:ro          # dctrack_25Aug2019.bak lives here
+      - ./db:/scripts:ro
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+
+  db-init:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:?set MSSQL_SA_PASSWORD in .env}"
+    volumes:
+      - ../db:/backups:ro
+      - ./db:/scripts:ro
+    entrypoint: ["/bin/bash", "/scripts/restore-db.sh"]
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: "${KEYCLOAK_ADMIN_PASSWORD:-DevOnly!Keycloak1}"
+    ports:
+      - "8180:8080"
+    volumes:
+      - ./identity/dctrack-realm.json:/opt/keycloak/data/import/dctrack-realm.json:ro
+
+  identity-api:
+    build:
+      context: ./services/identity-access
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+      keycloak:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__IdentityAccess: "Server=sqlserver,1433;Database=dctrack;User ID=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True"
+      Keycloak__MetadataAddress: "http://keycloak:8080/realms/dctrack/.well-known/openid-configuration"
+      Keycloak__ValidIssuers__0: "http://localhost:8180/realms/dctrack"
+      Keycloak__ValidIssuers__1: "http://keycloak:8080/realms/dctrack"
+    ports:
+      - "8082:8080"
+
+  asset-api:
+    build:
+      context: ./services/asset
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+      keycloak:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Asset: "Server=sqlserver,1433;Database=dctrack;User ID=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True"
+      Keycloak__MetadataAddress: "http://keycloak:8080/realms/dctrack/.well-known/openid-configuration"
+      Keycloak__ValidIssuers__0: "http://localhost:8180/realms/dctrack"
+      Keycloak__ValidIssuers__1: "http://keycloak:8080/realms/dctrack"
+      Authorization__Enforce: "true"
+    ports:
+      - "8083:8080"
+
+  reporting-api:
+    build:
+      context: ./services/reporting
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+      keycloak:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Reporting: "Server=sqlserver,1433;Database=dctrack;User ID=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True"
+      Keycloak__MetadataAddress: "http://keycloak:8080/realms/dctrack/.well-known/openid-configuration"
+      Keycloak__ValidIssuers__0: "http://localhost:8180/realms/dctrack"
+      Keycloak__ValidIssuers__1: "http://keycloak:8080/realms/dctrack"
+      Authorization__Enforce: "true"
+    ports:
+      - "8084:8080"
+
+  masterdata-api:
+    build:
+      context: ./services/master-data
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__MasterData: "Server=sqlserver,1433;Database=dctrack;User ID=sa;Password=${MSSQL_SA_PASSWORD};TrustServerCertificate=True"
+      Keycloak__MetadataAddress: "http://keycloak:8080/realms/dctrack/.well-known/openid-configuration"
+      Keycloak__ValidIssuers__0: "http://localhost:8180/realms/dctrack"
+      Keycloak__ValidIssuers__1: "http://keycloak:8080/realms/dctrack"
+      # Enforcement ON: the shell (with JWTs) is the entry point. The tokenless
+      # standalone MFEs on :4201/:4202 are dev-only and require a local API with
+      # Authorization:Enforce=false. no token→401, missing right→403, authorized→200.
+      Authorization__Enforce: "true"
+    ports:
+      - "8081:8080"
+
+  # --- Angular front-ends (nginx static bundles) ---
+  masterdata-mfe:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.mfe
+      args:
+        PROJECT: master-data
+    ports:
+      - "8091:8080"
+
+  assets-mfe:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.mfe
+      args:
+        PROJECT: assets
+    ports:
+      - "8092:8080"
+
+  shell:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.shell
+      args:
+        MASTER_DATA_URL: http://localhost:8091
+        ASSETS_URL: http://localhost:8092
+    depends_on:
+      - masterdata-mfe
+      - assets-mfe
+    ports:
+      - "8090:8080"
+
+volumes:
+  mssql-data:

@@ -1,0 +1,13 @@
+<header class="mfe-banner">
+  <strong>Master Data</strong>
+  <span class="hint">micro-frontend — standalone dev mode</span>
+  <nav>
+    @for (entity of entities; track entity.path) {
+      <a [routerLink]="entity.path" routerLinkActive="active">{{ entity.title }}</a>
+    }
+    @for (a of assignments; track a.path) {
+      <a [routerLink]="'assign/' + a.path" routerLinkActive="active">{{ a.title }}</a>
+    }
+  </nav>
+</header>
+<router-outlet />

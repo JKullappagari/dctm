@@ -1,0 +1,49 @@
+{
+  "realm": "dctrack",
+  "enabled": true,
+  "registrationAllowed": false,
+  "clients": [
+    {
+      "clientId": "dctm-shell",
+      "name": "DCTrack Angular Shell",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": ["http://localhost:4200/*", "http://localhost:8090/*"],
+      "webOrigins": ["http://localhost:4200", "http://localhost:8090"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      }
+    }
+  ],
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "firstName": "Legacy",
+      "lastName": "Admin",
+      "email": "admin@dctrack.local",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "DevOnly!Admin1",
+          "temporary": false
+        }
+      ]
+    },
+    {
+      "username": "droy",
+      "enabled": true,
+      "firstName": "D",
+      "lastName": "Roy",
+      "email": "droy@dctrack.local",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "DevOnly!Droy1",
+          "temporary": false
+        }
+      ]
+    }
+  ]
+}

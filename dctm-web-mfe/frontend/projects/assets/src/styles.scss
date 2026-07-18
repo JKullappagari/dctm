@@ -1,0 +1,11 @@
+@use 'material-icons/iconfont/material-icons.css';
+@use '@angular/material/prebuilt-themes/azure-blue.css';
+
+html, body { height: 100%; margin: 0; }
+body { font-family: Roboto, 'Segoe UI', sans-serif; }
+
+.commit-btn {
+  background: #2196f3; color: #fff; border: 0; border-radius: 6px;
+  padding: 0.2rem 0.7rem; cursor: pointer; font-size: 0.85rem;
+}
+.commit-btn:hover { background: #1976d2; }

@@ -1,0 +1,20 @@
+# Secrets / local config
+.env
+*.user
+.vs/
+
+# .NET build output
+bin/
+obj/
+TestResults/
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+*.log
+npm-debug.log*
+
+# OS
+Thumbs.db
+.DS_Store
