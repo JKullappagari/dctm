@@ -1,0 +1,60 @@
+.igtb_RubberBlackControl
+{
+	background-position:top ;
+	background-image: url(images/menu_bg.gif);
+	border-color:#E1E1E1;
+}
+
+
+.igtb_RubberBlackItem
+{
+	background-color:Transparent;
+}
+
+
+.igtb_RubberBlackButton
+{
+	background-color:Transparent;
+	border:solid 1px Transparent;
+	padding-left:6px;
+}
+
+
+.igtb_RubberBlackButtonHover
+{
+	background-position:center ;
+	background-image: url(images/monthview_header.jpg);
+	border:solid 1px Black;
+	color:White;
+	padding-left:6px;
+}
+
+
+.igtb_RubberBlackButtonPressed
+{
+}
+
+
+.igtb_RubberBlackLabel
+{
+	background-color:Transparent;
+}
+
+
+.igtb_RubberBlackTextBox
+{
+	background-color:White;
+}
+
+
+.igtb_RubberBlackSeparator
+{
+	background-color:Transparent;
+}
+
+
+.igtb_RubberBlackButtonDisabled
+{
+}
+
+

@@ -1,0 +1,90 @@
+.igmn_AppletiniControl
+{
+	background-color:WhiteSmoke;
+	background-repeat:repeat-x;
+	background-position:bottom bottom ;
+	background-image: url(images/footer.gif);
+	border:solid 1px #C3C3C3;
+}
+
+
+.igmn_AppletiniIsland
+{
+	background-color:WhiteSmoke;
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+	border:solid 1px #C3C3C3;
+}
+
+
+.igmn_AppletiniItem
+{
+	background-color:Transparent;
+	border:solid 1px Transparent;
+	cursor:hand;
+}
+
+
+.igmn_AppletiniLeaf
+{
+}
+
+
+.igmn_AppletiniParent
+{
+}
+
+
+.igmn_AppletiniTopLevelLeaf
+{
+}
+
+
+.igmn_AppletiniTopLevelParent
+{
+}
+
+
+.igmn_AppletiniHeader
+{
+}
+
+
+.igmn_AppletiniSeparator
+{
+	background-color:Yellow;
+	color:Black;
+}
+
+
+.igmn_AppletiniHover
+{
+	background-color:Transparent;
+	background-position:center ;
+	background-image: url(images/header.gif);
+	border:solid 1px #7CBA00;
+}
+
+
+.igmn_AppletiniTopLevelHover
+{
+	background-color:Transparent;
+	background-position:center ;
+	background-image: url(images/header.gif);
+	border:solid 1px #7CBA00;
+}
+
+
+.igmn_AppletiniTopSelected
+{
+}
+
+
+.igmn_AppletiniDisabled
+{
+	font-size:x-small;
+	font-family: Verdana;
+	color:#C3C3C3;
+}
+
+

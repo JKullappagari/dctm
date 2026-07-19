@@ -1,0 +1,177 @@
+.iglb_RubberBlackControl
+{
+	font-size:medium;
+	border:solid 1px #4B4B4B;
+	margin-bottom:0px;
+}
+
+
+.iglb_RubberBlackControl_Exp
+{
+	font-size:small;
+	border:solid 1px #4B4B4B;
+}
+
+
+.iglb_RubberBlackButton
+{
+	background-position:center ;
+	background-image: url(images/header.jpg);
+	font-size:small;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:3px;
+	cursor:hand;
+	color:White;
+}
+
+
+.iglb_RubberBlackButtonHover
+{
+	background-position:center ;
+	background-image: url(images/header_hover.jpg);
+	font-size:small;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:3px;
+	cursor:hand;
+	color:White;
+}
+
+
+.iglb_RubberBlackButtonSelected
+{
+	background-position:center ;
+	background-image: url(images/header_hover.jpg);
+	font-size:small;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:3px;
+	cursor:hand;
+	color:White;
+}
+
+
+.iglb_RubberBlackHeaderCollapsed
+{
+	background-position:center ;
+	background-image: url(images/header.jpg);
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:3px;
+	color:White;
+}
+
+
+.iglb_RubberBlackHeaderExpanded
+{
+	background-position:center ;
+	background-image: url(images/header.jpg);
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:3px;
+	color:White;
+}
+
+
+.iglb_RubberBlackHeaderHover
+{
+	background-position:center ;
+	background-image: url(images/header_hover.jpg);
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:3px;
+	cursor:hand;
+	color:White;
+}
+
+
+.iglb_RubberBlackGroup
+{
+}
+
+
+.iglb_RubberBlackGroup_Exp
+{
+	margin-bottom:0px;
+}
+
+
+.iglb_RubberBlackItem
+{
+	font-size:xx-small;
+	margin-top:8px;
+	margin-bottom:3px;
+	padding-left:4px;
+	text-align:left;
+}
+
+
+.iglb_RubberBlackItem_Exp
+{
+	font-size:xx-small;
+	margin-top:4px;
+	margin-bottom:0px;
+	padding-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	text-align:left;
+}
+
+
+.iglb_RubberBlackItemHover
+{
+	font-size:xx-small;
+	margin-top:8px;
+	margin-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:Black;
+	text-align:left;
+	text-decoration:underline;
+}
+
+
+.iglb_RubberBlackItemHover_Exp
+{
+	font-size:xx-small;
+	margin-top:4px;
+	margin-bottom:0px;
+	padding-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:Black;
+	text-align:left;
+	text-decoration:underline;
+}
+
+
+.iglb_RubberBlackItemSelected
+{
+	background-color:Transparent;
+	font-weight:bold;
+	font-size:xx-small;
+	margin-top:8px;
+	margin-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:Black;
+	text-align:left;
+}
+
+
+.iglb_RubberBlackItemSelected_Exp
+{
+	background-color:Transparent;
+	font-weight:bold;
+	font-size:xx-small;
+	margin-top:4px;
+	margin-bottom:0px;
+	padding-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:Black;
+	text-align:left;
+}
+
+

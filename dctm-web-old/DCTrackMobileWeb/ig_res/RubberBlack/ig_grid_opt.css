@@ -1,0 +1,194 @@
+.igtbl_RubberBlackControl
+{
+	border:solid 1px #4B4B4B;
+}
+
+
+.igtbl_RubberBlackPagerArea
+{
+	background-position:bottom ;
+	background-image: url(images/bg.gif);
+	border-width:0px;
+	padding-top:15px;
+	padding-right:15px;
+	padding-bottom:15px;
+}
+
+
+.igtbl_RubberBlackPageCurrent
+{
+	margin-right:10px;
+}
+
+
+.igtbl_RubberBlackPageLink
+{
+	margin-right:10px;
+	color:Black;
+}
+
+
+.igtbl_RubberBlackGroupByBox
+{
+	background-position:center ;
+	background-image: url(images/gradient.png);
+	height: 25px;
+	color:DimGray;
+}
+
+
+.igtbl_RubberBlackAddNewBox
+{
+	background-position:top ;
+	background-image: url(images/menu_bg.gif);
+	cursor:hand;
+}
+
+
+TBODY.igtbl_RubberBlackItem TR TD, THEAD.igtbl_RubberBlackItem TR TH, TFOOT.igtbl_RubberBlackItem TR TH, TBODY.igtbl_RubberBlackItem TR TH
+{
+	background-image: url(images/gradient.png);
+	border-width:0px;
+	border-color:Transparent;
+	border-top:solid 1px LightGrey;
+	height: 30px;
+}
+
+
+.igtbl_RubberBlackFilterOperandButton
+{
+	background-color:Transparent;
+	background-repeat:no-repeat;
+	background-position:center ;
+	background-image: url(images/submit_up.gif);
+	border-width:0px;
+	padding-top:2px;
+	width: 18px;
+}
+
+
+TBODY.igtbl_RubberBlackItem TR.igtbl_RubberBlackAlt TD
+{
+}
+
+
+.igtbl_RubberBlackEdit
+{
+	background-color:White;
+	font-size:x-small;
+	font-family: Verdana;
+	border:solid 1px Transparent;
+	padding-top:7px;
+	text-align:left;
+	vertical-align:middle;
+}
+
+
+.igtbl_RubberBlackButton
+{
+}
+
+
+TBODY.igtbl_RubberBlackItem TR TD.igtbl_RubberBlackFxdCell
+{
+}
+
+
+THEAD.igtbl_RubberBlackHeader TR TH, TFOOT.igtbl_RubberBlackHeader TR TH, TBODY.igtbl_RubberBlackHeader TR TH
+{
+	background-position:center ;
+	background-image: url(images/header.jpg);
+	font-weight:bold;
+	border-width:0px;
+	padding-top:4px;
+	padding-bottom:4px;
+	height: 30px;
+	color:White;
+	text-align:left;
+}
+
+
+TFOOT.igtbl_RubberBlackFooter TR TH
+{
+	background-color:#4B4B4B;
+	background-image:none;
+}
+
+
+TBODY.igtbl_RubberBlackHeader TR TH.igtbl_RubberBlackLabel
+{
+	background-color:#CCCCCC;
+	background-image:none;
+	border-right:solid 1px DarkGray;
+	border-bottom:solid 1px Gray;
+	height: 20px;
+}
+
+
+TBODY.igtbl_RubberBlackHeader TR TH.igtbl_RubberBlackExpArea, TFOOT.igtbl_RubberBlackHeader TR TH.igtbl_RubberBlackExpArea
+{
+	background-color:#4B4B4B;
+	background-image:none;
+	border-top:solid 1px Gray;
+	text-align:left;
+}
+
+
+TBODY.igtbl_RubberBlackHeader TR TH.igtbl_RubberBlackGrpItem
+{
+}
+
+
+THEAD.igtbl_RubberBlackHeader TR TH.igtbl_RubberBlackFxdHeader
+{
+}
+
+
+.igtbl_RubberBlackGroupBandLabel
+{
+}
+
+
+TFOOT.igtbl_RubberBlackHeader TR TH.igtbl_RubberBlackFxdFooter
+{
+}
+
+
+.igtbl_RubberBlackDropDown
+{
+	background-color:WhiteSmoke;
+	font-size:xx-small;
+	font-family: Verdana;
+	border:solid 1px LightGrey;
+}
+
+
+.igtbl_RubberBlackDropDownSel
+{
+}
+
+
+TBODY.igtbl_RubberBlackItem TR.igtbl_RubberBlackSelected TD, TBODY.igtbl_RubberBlackItem TR TD.igtbl_RubberBlackSelected, .igtbl_RubberBlackSelected
+{
+	background-color:DimGray;
+	background-position:center ;
+	background-image: url(images/header_hover.jpg);
+	color:White;
+}
+
+
+TBODY.igtbl_RubberBlackItem TR TD.igtbl_RubberBlackActiveBorderTopBottom, .igtbl_RubberBlackActiveBorderTopBottom
+{
+}
+
+
+TBODY.igtbl_RubberBlackItem TR TD.igtbl_RubberBlackActiveBorderLeft, .igtbl_RubberBlackActiveBorderLeft
+{
+}
+
+
+TBODY.igtbl_RubberBlackItem TR TD.igtbl_RubberBlackActiveBorderRight, .igtbl_RubberBlackActiveBorderRight
+{
+}
+
+

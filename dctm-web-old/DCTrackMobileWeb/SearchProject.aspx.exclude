@@ -1,0 +1,310 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SearchProject.aspx.cs" Inherits="SearchProject"
+    MasterPageFile="~/iAssetTrackMasterPage.master" Theme="SkinFile" Culture="auto"
+    meta:resourcekey="PageResource1" UICulture="auto" %>
+
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.WebUI.WebDataInput.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Src="CustomerPagerControl.ascx" TagName="CustomerPagerControl" TagPrefix="uc1" %>
+<asp:Content ID="Project" ContentPlaceHolderID="Master_ContentPlaceHolder" runat="Server">
+    <script id="Infragistics" type="text/javascript">
+        // <!--
+        function ibDelete_Click(oButton, oEvent) {
+            //Add code to handle your event here.
+            return ValidateDeletionNew(oButton, oEvent, document.forms[0].elements['<%=hdnMessage.ClientID%>'].value);
+        }
+        function ibCreate_JS_Click(oButton, oEvent) {
+
+            document.getElementById('<%=lblMessage.ClientID%>').innerHTML = "";
+        }
+        function searchProjectPopup() {
+
+
+            //            var url = "CustomerSearchPopup.aspx";
+            var url = "ProjectSearchPopup.aspx?BusinessUnit=";
+            url = url + "&DisplayNameField=" + document.getElementById("<%=txtProjectCode.ClientID %>").id;
+            url = url + "&IDField=" + document.getElementById("<%=hdnProjectID.ClientID %>").id;
+            url = url + "&NameField=" + document.getElementById("<%=hdnProjectName.ClientID %>").id;
+            winSettings = "scroll:auto; width=700; height=470;top=50;left=50;status=1; resizable:no; scroll:no; help:no; toolbar:no; edge:raised; menubar:no; status:no; unadorned: yes";
+            var hWnd = window.open(url, "searchsubcon", winSettings)
+
+
+            if ((document.window != null) && (hWnd.opener))
+                hWnd.opener = document.window;
+        }
+        function searchCustomerPopup() {
+
+
+            //            var url = "CustomerSearchPopup.aspx";
+            var url = "CustomerSearchPopup.aspx?BusinessUnit=";
+            url = url + "&IndustryField=" + document.getElementById("<%=hdnIndustry.ClientID %>").id;
+            url = url + "&IDField=" + document.getElementById("<%=hdnCustomerID.ClientID %>").id;
+            url = url + "&NameField=" + document.getElementById("<%=hdnCustomerName.ClientID %>").id;
+            url = url + "&DisplayNameField=" + document.getElementById("<%=txtCustomerCode.ClientID %>").id;
+            winSettings = "scroll:auto; width=700; height=470;top=50;left=50;status=1; resizable:no; scroll:no; help:no; toolbar:no; edge:raised; menubar:no; status:no; unadorned: yes";
+            var hWnd = window.open(url, "searchsubcon", winSettings)
+
+
+            if ((document.window != null) && (hWnd.opener))
+                hWnd.opener = document.window;
+        }
+        // -->
+    </script>
+    <table style="height: 100%; width: 98%;" cellspacing="0" cellpadding="0" border="0">
+        <tr style="width: auto;">
+            <td class="labelTD" align="left" width="100%" colspan="4">
+                <div style="width: 100%;">
+                    <ig:WebExplorerBar ID="wpProject" runat="server" GroupExpandAction="HeaderClick"
+                        meta:resourcekey="wpSearchOptionsResource1" Width="100%" BorderWidth="1px">
+                        <Groups>
+                            <ig:ExplorerBarGroup Text="Search Options" Expanded="true">
+                                <Items>
+                                    <ig:ExplorerBarItem TemplateId="tmpProject">
+                                    </ig:ExplorerBarItem>
+                                </Items>
+                            </ig:ExplorerBarGroup>
+                        </Groups>
+                        <Templates>
+                            <ig:ItemTemplate TemplateID="tmpProject">
+                                <Template>
+                                <br />
+                                    <table id="Table1" align="center" border="0" cellpadding="0" cellspacing="2" style="border-right: gray 1px solid;
+                                        border-top: gray 1px solid; border-left: gray 1px solid; border-bottom: gray 1px solid;
+                                        height: 46px;" width="95%">
+                                        <tr>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                            <td style="width: 138px; height: 27px; text-align: justify;" valign="top" align="left">
+                                                <asp:Label ID="lblCustomerCode" runat="server" CssClass="FieldName" Height="17px"
+                                                    Text="Code" Width="94px"></asp:Label>
+                                            </td>
+                                            <td style="width: 320px; height: 27px; text-align: justify;" valign="top" align="left">
+                                                <asp:TextBox ID="txtCustomerCode" runat="server" CssClass="FieldValue" Enabled="true"
+                                                    MaxLength="150" Width="191px"></asp:TextBox>
+                                                <asp:HyperLink ID="hlSearch" runat="server" ImageUrl="images/search.gif" NavigateUrl="javascript:searchCustomerPopup();"
+                                                    Style="clear: both; left: 955px; top: 117px" TabIndex="5" Text="Search" meta:resourcekey="hlSearchResource1"></asp:HyperLink>
+                                                <%--    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                                            CssClass="ErrValStyle" Width="134px" ControlToValidate="txtProjectName" 
+                                            Height="16px" ErrorMessage ="ProjectName required"></asp:RequiredFieldValidator>
+                                                --%>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td style="width: 138px; height: 27px; text-align: justify;" valign="top" align="left">
+                                                <asp:Label ID="lblProjectCode" runat="server" CssClass="FieldName" Height="17px"
+                                                    Text="Project Code" Width="94px"></asp:Label>
+                                            </td>
+                                            <td style="width: 320px; height: 27px; text-align: justify;" valign="top" align="left">
+                                                <asp:TextBox ID="txtProjectCode" runat="server" CssClass="FieldValue" Enabled="true"
+                                                    MaxLength="150" Width="191px"></asp:TextBox>
+                                                <asp:HyperLink ID="HyperLink1" runat="server" ImageUrl="images/search.gif" NavigateUrl="javascript:searchProjectPopup();"
+                                                    Style="clear: both; left: 955px; top: 117px" TabIndex="5" Text="Search" meta:resourcekey="hlSearchResource1"></asp:HyperLink>
+                                                <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                            CssClass="ErrValStyle" Width="134px" ControlToValidate="txtProjectCode" 
+                                            Height="16px" ErrorMessage ="ProjectCode required"></asp:RequiredFieldValidator>--%>
+                                                <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate ="txtName"></asp:RequiredFieldValidator>--%>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td style="width: 138px; height: 27px; text-align: justify;" valign="top" align="left">
+                                                <%-- <asp:Label ID="lblBusinessUnit" runat="server" CssClass="FieldName" Height="17px" Text="BusinessUnit" Width="94px"></asp:Label>--%>
+                                                <asp:Label ID="lblIndustyType" runat="server" CssClass="FieldName" Height="17px"
+                                                    Text="Industry Type" Width="94px"></asp:Label>
+                                            </td>
+                                            <td style="width: 320px; height: 27px; text-align: justify;" valign="top" align="left">
+                                                <%-- <asp:DropDownList ID="ddlBusinessUnit" runat="server" AutoPostBack="False" CssClass="dropdownText" Width="191px">
+                                     </asp:DropDownList>--%>
+                                                <asp:DropDownList ID="ddlIndustryType" runat="server" AutoPostBack="False" CssClass="dropdownText"
+                                                    Width="193px">
+                                                </asp:DropDownList>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                            <td style="width: 138px; height: 27px; text-align: justify;" valign="top" align="left">
+                                                <asp:Label ID="lblCountry" runat="server" CssClass="FieldName" Height="17px" Text="Country"
+                                                    Width="94px"></asp:Label>
+                                                </td> 
+                                                <td>
+                                                        <asp:DropDownList ID="ddlCountry" runat="server" AutoPostBack="false" CssClass="dropdownText"
+                                                    Width="191px">
+                                                </asp:DropDownList>
+                                            </td>
+                                             <td>
+                                                &nbsp;
+                                            </td>
+                                            <td style="width: 138px; height: 27px; text-align: justify;" valign="top" align="left">
+                                                <asp:Label ID="lblStartDate" runat="server" CssClass="FieldName" Height="17px" Text="Start Date"
+                                                    Width="94px"></asp:Label>
+                                            </td>
+                                            <td style="width: 320px; height: 27px; text-align: justify;" valign="top" align="left">
+                                                <ig:WebDatePicker ID="wdcStartDate" runat="server" MinDate="1900-09-17" NullDateLabel="-- Select --"
+                                                    NullValueRepresentation="Null" TabIndex="16" Width="140px" meta:resourcekey="wdcStartDateResource1">
+                                                </ig:WebDatePicker>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td style="width: 138px; height: 27px; text-align: justify;" valign="top" align="left">
+                                                <asp:Label ID="lblEndDate" runat="server" CssClass="FieldName" Height="17px" Text="End Date"
+                                                    Width="94px"></asp:Label>
+                                            </td>
+                                            <td style="width: 320px; height: 27px; text-align: justify;" valign="top" align="left">
+                                                <ig:WebDatePicker ID="wdcEndDate" runat="server" MinValue="2000-1-1" NullDateLabel="-- Select --"
+                                                    NullValueRepresentation="Null" TabIndex="16" Width="140px" meta:resourcekey="wdcEndDateResource1">
+                                                </ig:WebDatePicker>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br />
+                                    <br />
+                                    <table align="center">
+                                        <tr>
+                                            <td>
+                                                <igtxt:WebImageButton ID="ibSearch" runat="server" UseBrowserDefaults="False" OnClick="ibSearch_Click"
+                                                    TabIndex="3" SkinID="uwButton" ImageDirectory="" Text="Search">
+                                                    <RoundedCorners WidthOfRightEdge="13" HoverImageUrl="blue_button.GIF" PressedImageUrl="blue_button.GIF"
+                                                        RenderingType="FileImages" MaxWidth="63" MaxHeight="18" HeightOfBottomEdge="0"
+                                                        ImageUrl="silver_button.GIF"></RoundedCorners>
+                                                    <Appearance>
+                                                        <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                                                        </ButtonStyle>
+                                                    </Appearance>
+                                                    <ClientSideEvents Click="ibCreate_JS_Click" />
+                                                </igtxt:WebImageButton>
+                                            </td>
+                                            <td>
+                                                <igtxt:WebImageButton ID="ibReset" runat="server" UseBrowserDefaults="False" OnClick="ibReset_Click"
+                                                    CausesValidation="False" SkinID="uwButton" ImageDirectory="" Text="Reset">
+                                                    <RoundedCorners WidthOfRightEdge="13" HoverImageUrl="blue_button.GIF" PressedImageUrl="blue_button.GIF"
+                                                        RenderingType="FileImages" MaxWidth="63" MaxHeight="18" HeightOfBottomEdge="0"
+                                                        ImageUrl="silver_button.GIF"></RoundedCorners>
+                                                    <Appearance>
+                                                        <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                                                        </ButtonStyle>
+                                                    </Appearance>
+                                                </igtxt:WebImageButton>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:Label ID="lblMessage" runat="server" CssClass="ErrMsgSmall" Width="492px" Visible="false"></asp:Label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </Template>
+                            </ig:ItemTemplate>
+                        </Templates>
+                    </ig:WebExplorerBar>
+                </div>
+                <br />
+            </td>
+            <td style="width: 58px;">
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 176px; text-align: left;">
+            </td>
+            <td style="width: 54px">
+            </td>
+            <td style="width: 239px">
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" width="100%" colspan="4">
+                <asp:Panel ID="Panel1" runat="server" Width="100%" meta:resourcekey="Panel1Resource1">
+                    <%--  <asp:Panel ID="Panel1" runat="server" Width="100%">--%>
+                    <ig:WebDataGrid ID="wdgProject" runat="server" AutoGenerateColumns="False" DataKeyFields="ProjectID" OnDataFiltered="wdgProject_DataFiltered"
+                        Width="100%" EnableRelativeLayout="True" Height="300px" DefaultColumnWidth="200px" OnItemCommand="wdgProject_ItemCommand"  OnDataBound="wdgProject_DataBound"
+                        oninitializerow="wdgProject_InitializeRow" 
+                        HeaderCaptionCssClass="GridHeader" TabIndex="6">
+                        <Columns>
+                          
+                            <ig:TemplateDataField Key="ProjectCode">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="ProjectCode" NavigateUrl='<%# "~/ViewProject.aspx?ProjectID=" + DataBinder.Eval(((Infragistics.Web.UI.TemplateContainer)Container).DataItem, "ProjectID") %>'
+                                        runat="server" Text='<%# Bind("ProjectCode") %>' onclick="window.open (this.href, 'popupwindow',  'left=250,width=1000,height=430,scrollbars'); return false;"></asp:HyperLink>
+                                </ItemTemplate>
+                                <Header Text="Project Code" />
+                            </ig:TemplateDataField>
+                            <ig:BoundDataField DataFieldName="BusinessUnit" Key="BusinessUnit">
+                                <Header Text="Project" />
+                            </ig:BoundDataField>
+                              <ig:BoundDataField DataFieldName="ShortName" Key="ShortName">
+                                <Header Text="Customer Code" />
+                            </ig:BoundDataField>
+                            <ig:BoundDataField DataFieldName="Name" Key="Name">
+                                <Header Text="Customer Name" />
+                            </ig:BoundDataField>
+                            <%--<ig:BoundDataField DataFieldName="ProjectName" Key="ProjectName">
+                                <Header Text="Project Name" />
+                            </ig:BoundDataField>--%>
+                            <ig:BoundDataField DataFieldName="StartDate" Key="StartDate">
+                                <Header Text="Start Date" />
+                            </ig:BoundDataField>
+                            <ig:BoundDataField DataFieldName="EndDate" Key="EndDate">
+                                <Header Text="End Date" />
+                            </ig:BoundDataField>
+                            <%-- <ig:BoundDataField DataFieldName="Description" Key="Description">
+                                                                <Header Text="Description" />
+                                                            </ig:BoundDataField>--%>
+                            <ig:BoundDataField DataFieldName="WBSCode" Key="WBSCode">
+                                <Header Text="WBSCode" />
+                            </ig:BoundDataField>
+                            <ig:BoundDataField DataFieldName="ProjectValue" Key="ProjectValue">
+                                <Header Text="Project Value" />
+                            </ig:BoundDataField>
+                             <ig:BoundDataField DataFieldName="CountryName" Key="CountryName">
+                                <Header Text="Country" />
+                            </ig:BoundDataField>
+                            
+                            
+                        </Columns>
+                        <Behaviors>
+                            <ig:EditingCore>
+                            </ig:EditingCore>
+                            <ig:Filtering>
+                            </ig:Filtering>
+                            <ig:Paging PageSize="10" PagerCssClass="igg_CustomPager" PagerAppearance="Top" Enabled="true">
+                                <PagerTemplate>
+                                    <asp:Label ID="Label1" runat="server" Style="text-align: right;" text="Total record Count: "></asp:Label>
+                                     <asp:Label ID="Label2" runat="server" Style="text-align: right;" ><%=totalRecordCount %></asp:Label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                   <uc1:CustomerPagerControl ID="CustomerPager" runat="server" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="Label4" runat="server" Style="text-align: right;" text="Total filtered record Count: "></asp:Label>
+                                                                        <asp:Label ID="Label5" runat="server" Style="text-align: right;" ><%=hdnFilterCount.Value%></asp:Label>
+                                </PagerTemplate>
+                            </ig:Paging>
+                        </Behaviors>
+                        <EmptyRowsTemplate>
+                            <div style="text-align: center;">
+                                <br />
+                                <br />
+                                <img src="images/WebDataGrid/attention.png" alt="" align="middle" />
+                                No records returned.
+                            </div>
+                        </EmptyRowsTemplate>
+                    </ig:WebDataGrid>
+                </asp:Panel>
+            </td>
+            <td>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" id="hdnMessage" runat="server" />
+    <input type="hidden" id="hdnCustomerID" runat="server" />
+    <input type="hidden" id="hdnCustomerName" runat="server" />
+    <input type="hidden" id="hdnIndustry" runat="server" />
+    <input type="hidden" id="hdnProjectID" runat="server" />
+    <input type="hidden" id="hdnProjectName" runat="server" />
+    <input type="hidden" id="hdnFilterCount" runat="server" />
+</asp:Content>

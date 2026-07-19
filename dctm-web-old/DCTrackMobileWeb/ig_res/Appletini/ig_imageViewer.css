@@ -1,0 +1,657 @@
+/* The CSS Class that will be applied to the outer control.*/
+.igiv_AppletiniControl
+{
+	background-color:Transparent;
+	padding-bottom: 30px;
+}
+
+
+/*
+	This class should be used for setting any padding that might be 
+	needed if the Header is placed above the control.
+*/
+.igiv_AppletiniHeaderPadding
+{
+	padding-top: 30px;
+}
+
+
+
+/*
+	This class should be used for adjusting the padding of the control
+	to account for the additional size of the header and footer.
+*/
+.igiv_AppletiniFooterPadding
+{
+	padding-bottom: 30px;
+}
+
+
+/*
+	The CSS class that will be applied to the header. 
+    The header can be absolutely positoned anywhere in the control, because the WebImageViewerhas an internal DIV that
+    wraps the control with a position set to relative. </para>
+*/
+.igiv_AppletiniHeaderContentArea
+{
+	font-weight:bold;
+	font-size:10px;
+	padding-top:3px;
+	position: absolute;
+	top: -20px;
+	left: 0px;
+	width: 100%;
+}
+
+
+/*The CSS class that will be applied to the Left Corner of the Header. */
+.igiv_AppletiniHeaderContentLeft
+{
+}
+
+
+/*The CSS class that will be applied to the actual content of the Header.*/
+.igiv_AppletiniHeaderContent
+{
+}
+
+
+/*The CSS class that will be applied to the Right Corner of the Header. */
+.igiv_AppletiniHeaderContentRight
+{
+}
+
+
+/*
+	A TR that wraps the TopLeft, TopArea, and TopRight elements. 
+    This CSS class is useful in setting the height of the entire row.
+*/
+.igiv_AppletiniHeaderArea
+{
+	border-top:solid 1px #FF0000;
+	height: 1px;
+}
+
+
+/*
+	The CSS class that will be applied to the footer. 
+    The footer can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative. </para>
+*/
+.igiv_AppletiniFooterContentArea
+{
+	font-weight:bold;
+	font-size:10px;
+	padding-bottom:4px;
+	position: absolute;
+	bottom: -30px;
+	width: 100%;
+	float: right;
+	right: 0px;
+	text-align:right;
+}
+
+
+/*The CSS class that will be applied to the Left Corner of the Footer. */
+.igiv_AppletiniFooterContentLeft
+{
+}
+
+
+/*The CSS class that will be applied to the actual content of the Footer.*/
+.igiv_AppletiniFooterContent
+{
+	position: absolute;
+	bottom: 5px;
+	right: 0px;
+}
+
+
+/* The CSS class that will be applied to the Right Corner of the Footer. */
+.igiv_AppletiniFooterContentRight
+{
+}
+
+
+/*
+	 A TR that wraps the BottomLeft, BottomArea, and BottomRight elements. 
+     This CSS class is useful in setting the height of the entire row.
+*/
+.igiv_AppletiniFooterArea
+{
+	height: 1px;
+}
+
+
+/*
+	A TD that wraps the Header.
+    This CSS Class should be used for applying a Background-Image along the top border of the control.
+*/
+.igiv_AppletiniEdgeTop
+{
+	height: 1px;
+}
+
+
+/*
+	A TD on the left side of the ImageArea.
+    This CSS Class should be used for applying a Background-Image along the left border of the control.
+*/
+.igiv_AppletiniEdgeLeft
+{
+	width: 1px;
+}
+
+
+/*
+	A TD that wraps the Footer.
+    This CSS Class should be used for applying a Background-Image along the bottom border of the control.
+*/
+.igiv_AppletiniEdgeBottom
+{
+	font-size:1px;
+	margin-bottom:-10px;
+	height: 1px;
+	width: auto;
+}
+
+
+/*
+	 A TD on the right side of the ImageArea.
+     This CSS Class should be used for applying a Background-Image along the right border of the control.
+       
+*/
+.igiv_AppletiniEdgeRight
+{
+	width: 50px;
+}
+
+
+/*
+	 The Top Left corner of the control.
+     This CSS Class should be used for rounded corners.
+*/
+.igiv_AppletiniCornerTopLeft
+{
+	width: 1px;
+	height: 1px;
+}
+
+
+/*
+	The Top Right corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_AppletiniCornerTopRight
+{
+	width: 1px;
+	height: 1px;
+}
+
+
+/*
+	The Bottom Left corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_AppletiniCornerBottomLeft
+{
+	width: 1px;
+	height: 1px;
+}
+
+
+/*
+	The Bottom Right corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_AppletiniCornerBottomRight
+{
+	width: 1px;
+	height: 1px;
+}
+
+
+/*
+	The CSS class that will be applied to the Container of the Previous Button. 
+    This css Class is the TD in which the Image element is rendered. This style can be used
+    to set the vertical-align CSS attribute.
+*/
+.igiv_AppletiniPrevButtonArea
+{
+	cursor:pointer;
+}
+
+
+/*
+	The CSS class that will be applied to the Previous Button. 
+    The Previous Button can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative. 
+*/
+.igiv_AppletiniPrevButton
+{
+	background-color:Transparent;
+	z-index: 99;
+	position: relative;
+	left: 8px;
+	cursor:pointer;
+}
+
+
+/*
+	The CSS class that will be applied to the Container of the Next Button. 
+    This css Class is the TD in which the Image element is rendered. This style can be used
+    to set the vetical-align CSS attribute.
+*/
+.igiv_AppletiniNextButtonArea
+{
+	background-color:Transparent;
+	z-index: 98;
+	cursor:pointer;
+}
+
+
+/*
+	The CSS class that will be applied to the Next Button. 
+    The Next Button can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative.
+*/
+.igiv_AppletiniNextButton
+{
+	background-color:Transparent;
+	position: relative;
+	right: 43px;
+	cursor:pointer;
+}
+
+
+/*
+	A TD that contains the ImageArea.
+    If you would like a border around the ImageArea, this is the class to use.
+*/
+.igiv_AppletiniImageAreaContainer
+{
+	border:solid 1px #4F7601;
+	padding:1px;
+}
+
+
+/*
+	A DIV that contains all of the Images. 
+    In XHTML, to apply a border around the images a padding-bottom must be set to the size of the 
+	border-top-width plus the border-bottom-width.
+*/
+.igiv_AppletiniImageArea
+{
+	padding-bottom: 2px;
+}
+
+
+/*
+	An IMG element that is contained by the ImageAra.
+    In XHTML, to apply a border around an image a padding-bottom must be set to the size of the 
+	border-top-width plus the border-bottom-width on the ImageArea.
+*/
+.igiv_AppletiniImage
+{
+	padding-right:1px;
+}
+
+
+/*Applied to an IMG when it is selected.*/
+.igiv_AppletiniImageSelected
+{
+}
+
+
+/*Applied to an IMG when the mouse is over it.*/
+.igiv_AppletiniImageHover
+{
+}
+
+
+/*
+	When an image is hovered, this style gets applied to all other images.
+    A good use of this style is to apply an opacity to all other images that aren't being hovered, 
+	so that the hovered image has more focus.
+*/
+.igiv_AppletiniOtherImageHover
+{
+	opacity: .5;
+	filter: alpha(opacity=50);
+}
+
+
+/*Applied to an IMG when the image is disabled.*/
+.igiv_AppletiniImageDisabled
+{
+	opacity: .25;
+	filter: alpha(opacity=25);
+}
+
+
+/**************************** VERTICAL ***************************************/
+/*The CSS Class that will be applied to the outer control.*/
+.igiv_AppletiniControl_Vert
+{
+	background-color:Transparent;
+	margin-top:0px;
+	padding-bottom:30px;
+}
+
+
+/*
+	This class should be used for setting any padding that might be 
+	needed if the Header is placed above the control.
+*/
+.igiv_AppletiniHeaderPadding_Vert
+{
+	padding-top:30px;
+}
+
+
+/*
+	This class should be used for adjusting the padding of the control
+	to account for the additional size of the header and footer.
+*/
+.igiv_AppletiniFooterPadding_Vert
+{
+	padding-bottom:30px;
+}
+
+
+/*
+	The CSS class that will be applied to the header. 
+    The header can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative.
+*/
+.igiv_AppletiniHeaderContentArea_Vert
+{
+	font-weight:bold;
+	font-size:10px;
+	padding-top:3px;
+	position: absolute;
+	left: 0px;
+	width: 100%;
+	top: -20px;
+	text-align:left;
+}
+
+
+/*The CSS class that will be applied to the Left Corner of the Header. */
+.igiv_AppletiniHeaderContentLeft_Vert
+{
+}
+
+
+/*The CSS class that will be applied to the actual content of the Header.*/
+.igiv_AppletiniHeaderContent_Vert
+{
+}
+
+
+/*The CSS class that will be applied to the Right Corner of the Header. */
+.igiv_AppletiniHeaderContentRight_Vert
+{
+}
+
+
+/*
+	A TR that wraps the TopLeft_Vert, TopArea_Vert, and TopRight_Vert elements. 
+    This CSS class is useful in setting the height of the entire row.
+*/
+.igiv_AppletiniHeaderArea_Vert
+{
+	height: 1px;
+	text-align:center;
+}
+
+
+/*
+	The CSS class that will be applied to the footer. 
+    The footer can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative. 
+*/
+.igiv_AppletiniFooterContentArea_Vert
+{
+	font-weight:bold;
+	font-size:10px;
+	padding-bottom:4px;
+	position: absolute;
+	bottom: -30px;
+	width: 100%;
+	float: right;
+	right: 0px;
+	text-align:right;
+}
+
+
+/*The CSS class that will be applied to the Left Corner of the Footer. */
+.igiv_AppletiniFooterContentLeft_Vert
+{
+}
+
+
+/*The CSS class that will be applied to the actual content of the Footer.*/
+.igiv_AppletiniFooterContent_Vert
+{
+	position: absolute;
+	bottom: 5px;
+	right: 0px;
+}
+
+
+/*The CSS class that will be applied to the Right Corner of the Footer. */
+.igiv_AppletiniFooterContentRight_Vert
+{
+}
+
+
+/*
+	A TR that wraps the BottomLeft_Vert, BottomArea_Vert, and BottomRight_Vert elements. 
+    This CSS class is useful in setting the height of the entire row.
+*/
+.igiv_AppletiniFooterArea_Vert
+{
+	height: 1px;
+	text-align:center;
+}
+
+
+/*
+	A TD that wraps the Header_Vert.
+    This CSS Class should be used for applying a Background-Image along the top border of the control.
+*/
+.igiv_AppletiniEdgeTop_Vert
+{
+	height: 1px;
+}
+
+
+/*
+	A TD on the left side of the ImageArea_Vert.
+    This CSS Class should be used for applying a Background-Image along the left border of the control.
+*/
+.igiv_AppletiniEdgeLeft_Vert
+{
+	width: 1px;
+}
+
+
+/*
+	A TD that wraps the Footer_Vert.
+    This CSS Class should be used for applying a Background-Image along the bottom border of the control.
+*/
+.igiv_AppletiniEdgeBottom_Vert
+{
+	height: 1px;
+}
+
+
+/*
+	A TD on the right side of the ImageArea_Vert.
+    This CSS Class should be used for applying a Background-Image along the right border of the control.
+*/
+.igiv_AppletiniEdgeRight_Vert
+{
+	width: 1px;
+}
+
+
+/*
+	The Top Left corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_AppletiniCornerTopLeft_Vert
+{
+	width: 1px;
+}
+
+
+/*
+	The Top Right corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_AppletiniCornerTopRight_Vert
+{
+	width: 1px;
+}
+
+
+/*
+	The Bottom Left corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_AppletiniCornerBottomLeft_Vert
+{
+	width: 1px;
+}
+
+
+/*
+	The Bottom Right corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_AppletiniCornerBottomRight_Vert
+{
+	width: 1px;
+}
+
+
+/*
+	The CSS class that will be applied to the Container of the PreviousButton. 
+    This css Class is the TD in which the Image element is rendered. This style can be used
+    to set the text-align CSS attribute.
+*/
+.igiv_AppletiniPrevButtonArea_Vert
+{
+	top: 1px;
+	position: relative;
+}
+
+
+/*
+	The CSS class that will be applied to the Previous Button. 
+    The Previous Button can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative. 
+*/
+.igiv_AppletiniPrevButton_Vert
+{
+	padding-bottom:-10px;
+	z-index: 99;
+	position: relative;
+	top: 8px;
+	cursor:hand;
+}
+
+
+/*
+	The CSS class that will be applied to the Container of the Next Button. 
+    This css Class is the TD in which the Image element is rendered. This style can be used
+    to set the text-align CSS attribute.
+*/
+.igiv_AppletiniNextButtonArea_Vert
+{
+	position: relative;
+	bottom: 0px;
+}
+
+
+/*
+	The CSS class that will be applied to the Next Button. 
+    The Next Button can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative. 
+*/
+.igiv_AppletiniNextButton_Vert
+{
+	background-color:Transparent;
+	bottom: 43px;
+	position: relative;
+	cursor:pointer;
+}
+
+
+/*
+	A TD that contains the ImageArea.
+    If you would like a border around the ImageArea, this is the class to use.
+*/
+.igiv_AppletiniImageAreaContainer_Vert
+{
+	border:solid 1px #4F7601;
+	padding:1px;
+}
+
+
+/*
+	A DIV that contains all of the Images. 
+    In XHTML, to apply a border around the images a padding-right must be set to the size of the 
+	border-left-width plus the border-right-width.
+*/
+.igiv_AppletiniImageArea_Vert
+{
+	padding-right: 2px;
+}
+
+
+/*
+	An IMG element that is contained by the ImageAra.
+    In XHTML, to apply a border around an image a padding-right must be set to the size of the 
+	border-left-width plus the border-right-width on the ImageArea_Vert.
+*/
+.igiv_AppletiniImage_Vert
+{
+	padding-bottom:1px;
+}
+
+
+/*Applied to an IMG when it is selected.*/
+.igiv_AppletiniImageSelected_Vert
+{
+}
+
+
+/*Applied to an IMG when the mouse is over it.*/
+.igiv_AppletiniImageHover_Vert
+{
+}
+
+
+/*
+	When an image is hovered, this style gets applied to all other images.
+    A good use of this style is to apply an opacity to all other images that aren't being hovered, 
+	so that the hovered image has more focus.
+*/
+.igiv_AppletiniOtherImageHover_Vert
+{
+	opacity: .5;
+	filter: alpha(opacity=50);
+}
+
+
+/*Applied to an IMG when the image is disabled.*/
+.igiv_AppletiniImageDisabled_Vert
+{
+	opacity: .25;
+	filter: alpha(opacity=25);
+}
+
+

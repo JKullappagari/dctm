@@ -1,0 +1,17 @@
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackSecurity\bin\Release\iAssetTrackSecurity.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackSecurity\bin\Release\iAssetTrackSecurity.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackSecurity\obj\Release\iAssetTrackSecurity.csprojResolveAssemblyReference.cache
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackSecurity\obj\Release\iAssetTrackSecurity.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackSecurity\obj\Release\iAssetTrackSecurity.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\bin\Release\iAssetTrackSecurity.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\bin\Release\iAssetTrackSecurity.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\obj\Release\iAssetTrackSecurity.csprojAssemblyReference.cache
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\obj\Release\iAssetTrackSecurity.csproj.CoreCompileInputs.cache
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\obj\Release\iAssetTrackSecurity.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\obj\Release\iAssetTrackSecurity.pdb
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackSecurity\bin\Release\iAssetTrackSecurity.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackSecurity\bin\Release\iAssetTrackSecurity.pdb
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackSecurity\obj\Release\iAssetTrackSecurity.csprojAssemblyReference.cache
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackSecurity\obj\Release\iAssetTrackSecurity.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackSecurity\obj\Release\iAssetTrackSecurity.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackSecurity\obj\Release\iAssetTrackSecurity.pdb

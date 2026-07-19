@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iAssetTrackDALC", "iAssetTrackDALC\iAssetTrackDALC.csproj", "{F90D99A2-5492-4042-AA9E-2E017274AE24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iAssetTrackSecurity", "iAssetTrackSecurity\iAssetTrackSecurity.csproj", "{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iAssetTrackBAL", "iAssetTrackBAL\iAssetTrackBAL.csproj", "{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "DCTrackMobileWeb", "http://localhost:11111", "{C98BC560-FA40-4D08-87BF-9EDD70AE3BA1}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = ""
+		SccAuxPath = ""
+		SccLocalPath = ""
+		SccProvider = ""
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}|iAssetTrackBAL.dll;{F90D99A2-5492-4042-AA9E-2E017274AE24}|iAssetTrackDALC.dll;{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}|iAssetTrackSecurity.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/DCTrackMobileWeb"
+		Debug.AspNetCompiler.PhysicalPath = "DCTrackMobileWeb\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\DCTrackMobileWeb\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/DCTrackMobileWeb"
+		Release.AspNetCompiler.PhysicalPath = "DCTrackMobileWeb\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\DCTrackMobileWeb\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "DCTrackMobileWeb\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptDecryptConfig", "EncryptDecryptConfig\EncryptDecryptConfig.csproj", "{C356E94D-8BFF-48F0-A075-94D05AC2D37D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C98BC560-FA40-4D08-87BF-9EDD70AE3BA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98BC560-FA40-4D08-87BF-9EDD70AE3BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C98BC560-FA40-4D08-87BF-9EDD70AE3BA1}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98BC560-FA40-4D08-87BF-9EDD70AE3BA1}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{C356E94D-8BFF-48F0-A075-94D05AC2D37D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C356E94D-8BFF-48F0-A075-94D05AC2D37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C356E94D-8BFF-48F0-A075-94D05AC2D37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C356E94D-8BFF-48F0-A075-94D05AC2D37D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E2BA5FDC-5F23-44C7-8C2B-883E5B65AE5F}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,177 @@
+.igdw_TrendyControl
+{
+	background-color:Transparent;
+	border-width:0px;
+}
+
+
+.igdw_TrendyHeaderArea
+{
+	font-weight:bold;
+	border-width:0px;
+	height: 29px;
+	cursor:default;
+	color:White;
+}
+
+
+.igdw_TrendyBodyContent
+{
+	background-color:White;
+	border:solid 1px #139C47;
+}
+
+
+.igdw_TrendyHeaderButton
+{
+	margin: 3px, 0px, 0px, 2px;
+	cursor:pointer;
+}
+
+
+.igdw_TrendyHeaderCaption
+{
+	margin-top:16px;
+	margin-left:6px;
+	padding-top:10px;
+	color:White;
+}
+
+
+.igdw_TrendyHeaderButtonArea
+{
+	width: 120px;
+	vertical-align:middle;
+}
+
+
+.igdw_TrendyHeaderImage
+{
+	cursor:default;
+}
+
+
+.igdw_TrendyModalBackground
+{
+	background-color: #FFFFFF;
+	filter: alpha(opacity : 50);
+	opacity: 0.5;
+	z-index: 99999;
+}
+
+
+.igdw_TrendyResizingHandle
+{
+	cursor:se-resize;
+}
+
+
+/* used only when header visible */
+.igdw_TrendyHeaderCornerLeft
+{
+	background-position:top left ;
+	background-image: url(./images/igdw_TopLeft.gif);
+	font-size:1px;
+	width: 4px;
+}
+
+
+/* used only when header visible */
+.igdw_TrendyHeaderContent
+{
+	background-image: url(./images/igdw_top.gif);
+}
+
+
+/* used only when header visible */
+.igdw_TrendyHeaderCornerRight
+{
+	background-position:top right ;
+	background-image: url(./images/igdw_TopRight.gif);
+	font-size:1px;
+	width: 4px;
+}
+
+
+/* used only when header hidden */
+.igdw_TrendyBodyCornerTopLeft
+{
+	background-position:top left ;
+	background-image: url(./images/igdw_TopLeftHidden.gif);
+	font-size:1px;
+	height: 11px;
+	width: 4px;
+}
+
+
+/* used only when header hidden */
+.igdw_TrendyBodyEdgeTop
+{
+	background-image: url(./images/igdw_topHidden.gif);
+	font-size:1px;
+	height: 11px;
+}
+
+
+/* used only when header hidden */
+.igdw_TrendyBodyCornerTopRight
+{
+	background-position:top right ;
+	background-image: url(./images/igdw_TopRightHidden.gif);
+	font-size:1px;
+	height: 11px;
+	width: 4px;
+}
+
+
+.igdw_TrendyBodyEdgeLeft
+{
+	background-position:top left ;
+	background-image: url(./images/igdw_EdgeLeft.gif);
+	font-size:1px;
+	width: 4px;
+}
+
+
+.igdw_TrendyBodyEdgeRight
+{
+	background-position:top right ;
+	background-image: url(./images/igdw_EdgeRight.gif);
+	font-size:1px;
+	width: 4px;
+}
+
+
+.igdw_TrendyBodyCornerBottomLeft
+{
+	background-image: url(./images/igdw_BottomLeft.gif);
+	font-size:1px;
+	width: 4px;
+	height: 12px;
+}
+
+
+.igdw_TrendyBodyContentArea
+{
+	vertical-align:top;
+}
+
+
+.igdw_TrendyBodyCornerBottomRight
+{
+	background-image: url(./images/igdw_BottomRight.gif);
+	background-position:right top;	
+	font-size:1px;
+	width: 4px;
+	height: 12px;
+}
+
+
+.igdw_TrendyBodyEdgeBottom
+{
+	background-image: url(./images/igdw_Bottom.gif);
+	font-size:1px;
+	height: 12px;
+}
+
+

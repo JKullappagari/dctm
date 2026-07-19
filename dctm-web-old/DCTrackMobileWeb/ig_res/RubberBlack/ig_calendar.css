@@ -1,0 +1,95 @@
+.igcal_RubberBlackControl
+{
+	background-color:#F7F7F7;
+	border:solid 1px #4B4B4B;
+	border-bottom-color:DarkGray;
+	cursor:hand;
+	text-align:center;
+}
+
+
+.igcal_RubberBlackCalendar
+{
+}
+
+
+.igcal_RubberBlackDOW
+{
+	font-weight:bold;
+	font-size:xx-small;
+	border-width:0px;
+	border-bottom:solid 1px #555555;
+	padding:5px 0px 0px 0px;
+}
+
+
+.igcal_RubberBlackDay
+{
+	font-size:xx-small;
+	border-width:0px;
+}
+
+
+.igcal_RubberBlackNextPrev
+{
+	background-color:Black;
+	background-repeat:repeat-x;
+	font-size:10px;
+	height: 16px;
+	color:White;
+}
+
+
+.igcal_RubberBlackFooter
+{
+	border-top:solid 1px DarkGray;
+	padding-top:5px;
+	text-align:center;
+}
+
+
+.igcal_RubberBlackHeader
+{
+	background-color:Black;
+	background-repeat:repeat-x;
+	font-size:10px;
+	height: 16px;
+	color:White;
+}
+
+
+.igcal_RubberBlackDropDown
+{
+}
+
+
+.igcal_RubberBlackWeekendDay
+{
+}
+
+
+.igcal_RubberBlackOtherMonthDay
+{
+	color:#B3B3B3;
+}
+
+
+.igcal_RubberBlackWeekendDayMajor
+{
+}
+
+
+.igcal_RubberBlackTodayDay
+{
+	font-weight:bold;
+	border:solid 1px #787878;
+}
+
+
+.igcal_RubberBlackSelectedDay
+{
+	background-color:Black;
+	color:White;
+}
+
+

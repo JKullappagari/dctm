@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Analysis>
+    <AnalysisEngineVersion>1.0.3455.36250</AnalysisEngineVersion>
+    <StartTimeStamp>Thursday, March 23, 2017 11:31:56 AM</StartTimeStamp>
+    <StopTimeStamp>Thursday, March 23, 2017 11:34:30 AM</StopTimeStamp>
+    <ElapsedTime>00:02:33.3062265</ElapsedTime>
+    <User>ASIAPACIFIC\babujag</User>
+    <DataFlowSuperGraph>
+      <Nodes>373738</Nodes>
+      <Edges>540914</Edges>
+    </DataFlowSuperGraph>
+    <Targets>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_ksl50fyp.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_navytcyk.dll</Target>
+      <Target>C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\bin\Release\iAssetTrackSecurity.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_qww2gw5p.dll</Target>
+      <Target>C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackDALC\bin\Release\iAssetTrackDALC.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_expddpvp.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_iwj15riy.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_hmxkam5t.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Code.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_azv4wxwn.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_0edgzl4k.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_bkefkflo.dll</Target>
+      <Target>C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackBAL.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_xwr04hqe.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_53l1z2sq.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_ctdelcmo.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_phbbieoa.dll</Target>
+      <Target>C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_lo0wvdw1.dll</Target>
+    </Targets>
+  </Analysis>
+  <Rules>
+    <Rule>
+      <Name>Process Command Execution</Name>
+      <Identifier>ACESEC02</Identifier>
+      <TotalResults>0</TotalResults>
+      <Results />
+    </Rule>
+    <Rule>
+      <Name>File Canonicalization</Name>
+      <Identifier>ACESEC03</Identifier>
+      <TotalResults>0</TotalResults>
+      <Results />
+    </Rule>
+    <Rule>
+      <Name>Exception Information</Name>
+      <Identifier>ACESEC04</Identifier>
+      <TotalResults>5</TotalResults>
+      <Results>
+        <Result>
+          <Identifier>583cd1d4-9a22-477f-b3af-b6fb282d239c</Identifier>
+          <ResulstHash>Znr/xk3jg7zdfydDsxuZpIExgGo=</ResulstHash>
+          <Color>1459</Color>
+          <Vector>Exception</Vector>
+          <EntryPoint>stack3 := stack3.{System.Exception}get_Message()</EntryPoint>
+          <EntryVariable>stack3</EntryVariable>
+          <ConfidenceReason />
+          <ConfidenceLevel>High</ConfidenceLevel>
+          <Suppressed>false</Suppressed>
+          <SuppressionType>None</SuppressionType>
+          <Resolution>Do not provide the user with specific exception information</Resolution>
+          <ProblemDescription>An information disclosure vulnerability was found through
+		a exception information that enters the application at
+		GeneralErrorPopUp.aspx.cs:54 through the variable stack3 which
+		eventually leads to the disclosure of exception information at
+		GeneralErrorPopUp.aspx.cs:54.</ProblemDescription>
+          <Transformations>
+            <Origin line="54" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralErrorPopUp.aspx.cs">
+              <StatementMethod>GeneralErrorPopup.lnkViewErrReport_Click</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>AssignmentStatement</StatementType>
+              <OutputVariable>stack3</OutputVariable>
+            </Origin>
+            <CallResult line="54" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralErrorPopUp.aspx.cs">
+              <StatementMethod>GeneralErrorPopup.lnkViewErrReport_Click</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>AssignmentStatement</StatementType>
+              <OutputVariable>stack1</OutputVariable>
+              <InputVariable>stack3</InputVariable>
+              <ActualInputVariable>Return from Exception.get_Message</ActualInputVariable>
+              <Method>System.String.Concat</Method>
+              <Argument>stack3</Argument>
+            </CallResult>
+            <MethodBoundary line="54" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralErrorPopUp.aspx.cs">
+              <StatementMethod>GeneralErrorPopup.lnkViewErrReport_Click</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>ExpressionStatement</StatementType>
+              <OutputVariable>stack1</OutputVariable>
+              <InputVariable>stack1</InputVariable>
+              <ActualInputVariable>Return from String.Concat</ActualInputVariable>
+              <Method>System.Web.UI.WebControls.Literal.set_Text</Method>
+            </MethodBoundary>
+          </Transformations>
+        </Result>
+        <Result>
+          <Identifier>b3105c13-1a1c-41d4-8a81-a015e6f51b21</Identifier>
+          <ResulstHash>jsFvoDyEBWzaHmBbInWOYZoW+Ro=</ResulstHash>
+          <Color>1460</Color>
+          <Vector>Exception</Vector>
+          <EntryPoint>stack3 := dex.{System.Exception}get_Message()</EntryPoint>
+          <EntryVariable>stack3</EntryVariable>
+          <ConfidenceReason />
+          <ConfidenceLevel>High</ConfidenceLevel>
+          <Suppressed>false</Suppressed>
+          <SuppressionType>None</SuppressionType>
+          <Resolution>Do not provide the user with specific exception information</Resolution>
+          <ProblemDescription>An information disclosure vulnerability was found through
+		a exception information that enters the application at
+		GeneralErrorPopUp.aspx.cs:103 through the variable stack3 which
+		eventually leads to the disclosure of exception information at
+		GeneralErrorPopUp.aspx.cs:103.</ProblemDescription>
+          <Transformations>
+            <Origin line="103" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralErrorPopUp.aspx.cs">
+              <StatementMethod>GeneralErrorPopup.LogException</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>AssignmentStatement</StatementType>
+              <OutputVariable>stack3</OutputVariable>
+            </Origin>
+            <CallResult line="103" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralErrorPopUp.aspx.cs">
+              <StatementMethod>GeneralErrorPopup.LogException</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>AssignmentStatement</StatementType>
+              <OutputVariable>stack1</OutputVariable>
+              <InputVariable>stack3</InputVariable>
+              <ActualInputVariable>Return from Exception.get_Message</ActualInputVariable>
+              <Method>System.String.Concat</Method>
+              <Argument>stack3</Argument>
+            </CallResult>
+            <MethodBoundary line="103" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralErrorPopUp.aspx.cs">
+              <StatementMethod>GeneralErrorPopup.LogException</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>ExpressionStatement</StatementType>
+              <OutputVariable>stack1</OutputVariable>
+              <InputVariable>stack1</InputVariable>
+              <ActualInputVariable>Return from String.Concat</ActualInputVariable>
+              <Method>System.Web.UI.WebControls.Literal.set_Text</Method>
+            </MethodBoundary>
+          </Transformations>
+        </Result>
+        <Result>
+          <Identifier>7694092c-633d-4c1d-a3dd-828472b77102</Identifier>
+          <ResulstHash>pW6Wf6sjtHpEg2MkClfXwhwbIwo=</ResulstHash>
+          <Color>1467</Color>
+          <Vector>Exception</Vector>
+          <EntryPoint>stack3 := stack3.{System.Exception}get_Message()</EntryPoint>
+          <EntryVariable>stack3</EntryVariable>
+          <ConfidenceReason />
+          <ConfidenceLevel>High</ConfidenceLevel>
+          <Suppressed>false</Suppressed>
+          <SuppressionType>None</SuppressionType>
+          <Resolution>Do not provide the user with specific exception information</Resolution>
+          <ProblemDescription>An information disclosure vulnerability was found through
+		a exception information that enters the application at
+		GeneralError.aspx.cs:99 through the variable stack3 which
+		eventually leads to the disclosure of exception information at
+		GeneralError.aspx.cs:99.</ProblemDescription>
+          <Transformations>
+            <Origin line="99" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralError.aspx.cs">
+              <StatementMethod>GeneralErrorPage.lnkViewErrReport_Click</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>AssignmentStatement</StatementType>
+              <OutputVariable>stack3</OutputVariable>
+            </Origin>
+            <CallResult line="99" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralError.aspx.cs">
+              <StatementMethod>GeneralErrorPage.lnkViewErrReport_Click</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>AssignmentStatement</StatementType>
+              <OutputVariable>stack1</OutputVariable>
+              <InputVariable>stack3</InputVariable>
+              <ActualInputVariable>Return from Exception.get_Message</ActualInputVariable>
+              <Method>System.String.Concat</Method>
+              <Argument>stack3</Argument>
+            </CallResult>
+            <MethodBoundary line="99" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralError.aspx.cs">
+              <StatementMethod>GeneralErrorPage.lnkViewErrReport_Click</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>ExpressionStatement</StatementType>
+              <OutputVariable>stack1</OutputVariable>
+              <InputVariable>stack1</InputVariable>
+              <ActualInputVariable>Return from String.Concat</ActualInputVariable>
+              <Method>System.Web.UI.WebControls.Literal.set_Text</Method>
+            </MethodBoundary>
+          </Transformations>
+        </Result>
+        <Result>
+          <Identifier>42d75f5c-9318-4170-a84b-d14b34bb3370</Identifier>
+          <ResulstHash>pW6Wf6sjtHpEg2MkClfXwhwbIwo=</ResulstHash>
+          <Color>1468</Color>
+          <Vector>Exception</Vector>
+          <EntryPoint>stack3 := stack3.{System.Exception}get_Message()</EntryPoint>
+          <EntryVariable>stack3</EntryVariable>
+          <ConfidenceReason />
+          <ConfidenceLevel>High</ConfidenceLevel>
+          <Suppressed>false</Suppressed>
+          <SuppressionType>None</SuppressionType>
+          <Resolution>Do not provide the user with specific exception information</Resolution>
+          <ProblemDescription>An information disclosure vulnerability was found through
+		a exception information that enters the application at
+		GeneralError.aspx.cs:106 through the variable stack3 which
+		eventually leads to the disclosure of exception information at
+		GeneralError.aspx.cs:106.</ProblemDescription>
+          <Transformations>
+            <Origin line="106" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralError.aspx.cs">
+              <StatementMethod>GeneralErrorPage.lnkViewErrReport_Click</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>AssignmentStatement</StatementType>
+              <OutputVariable>stack3</OutputVariable>
+            </Origin>
+            <CallResult line="106" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralError.aspx.cs">
+              <StatementMethod>GeneralErrorPage.lnkViewErrReport_Click</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>AssignmentStatement</StatementType>
+              <OutputVariable>stack1</OutputVariable>
+              <InputVariable>stack3</InputVariable>
+              <ActualInputVariable>Return from Exception.get_Message</ActualInputVariable>
+              <Method>System.String.Concat</Method>
+              <Argument>stack3</Argument>
+            </CallResult>
+            <MethodBoundary line="106" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralError.aspx.cs">
+              <StatementMethod>GeneralErrorPage.lnkViewErrReport_Click</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>ExpressionStatement</StatementType>
+              <OutputVariable>stack1</OutputVariable>
+              <InputVariable>stack1</InputVariable>
+              <ActualInputVariable>Return from String.Concat</ActualInputVariable>
+              <Method>System.Web.UI.WebControls.Literal.set_Text</Method>
+            </MethodBoundary>
+          </Transformations>
+        </Result>
+        <Result>
+          <Identifier>27cdcadc-0d07-4de7-8417-52bfadce42b8</Identifier>
+          <ResulstHash>Xig3xIDxxXpGmfPuSlAR5dPGo6c=</ResulstHash>
+          <Color>1469</Color>
+          <Vector>Exception</Vector>
+          <EntryPoint>stack3 := dex.{System.Exception}get_Message()</EntryPoint>
+          <EntryVariable>stack3</EntryVariable>
+          <ConfidenceReason />
+          <ConfidenceLevel>High</ConfidenceLevel>
+          <Suppressed>false</Suppressed>
+          <SuppressionType>None</SuppressionType>
+          <Resolution>Do not provide the user with specific exception information</Resolution>
+          <ProblemDescription>An information disclosure vulnerability was found through
+		a exception information that enters the application at
+		GeneralError.aspx.cs:162 through the variable stack3 which
+		eventually leads to the disclosure of exception information at
+		GeneralError.aspx.cs:162.</ProblemDescription>
+          <Transformations>
+            <Origin line="162" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralError.aspx.cs">
+              <StatementMethod>GeneralErrorPage.LogException</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>AssignmentStatement</StatementType>
+              <OutputVariable>stack3</OutputVariable>
+            </Origin>
+            <CallResult line="162" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralError.aspx.cs">
+              <StatementMethod>GeneralErrorPage.LogException</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>AssignmentStatement</StatementType>
+              <OutputVariable>stack1</OutputVariable>
+              <InputVariable>stack3</InputVariable>
+              <ActualInputVariable>Return from Exception.get_Message</ActualInputVariable>
+              <Method>System.String.Concat</Method>
+              <Argument>stack3</Argument>
+            </CallResult>
+            <MethodBoundary line="162" file="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\GeneralError.aspx.cs">
+              <StatementMethod>GeneralErrorPage.LogException</StatementMethod>
+              <Statement>litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</Statement>
+              <StatementType>ExpressionStatement</StatementType>
+              <OutputVariable>stack1</OutputVariable>
+              <InputVariable>stack1</InputVariable>
+              <ActualInputVariable>Return from String.Concat</ActualInputVariable>
+              <Method>System.Web.UI.WebControls.Literal.set_Text</Method>
+            </MethodBoundary>
+          </Transformations>
+        </Result>
+      </Results>
+    </Rule>
+    <Rule>
+      <Name>LDAP Injection</Name>
+      <Identifier>ACESEC08</Identifier>
+      <TotalResults>0</TotalResults>
+      <Results />
+    </Rule>
+    <Rule>
+      <Name>XPath Injection</Name>
+      <Identifier>ACESEC07</Identifier>
+      <TotalResults>0</TotalResults>
+      <Results />
+    </Rule>
+    <Rule>
+      <Name>SQL Injection</Name>
+      <Identifier>ACESEC01</Identifier>
+      <TotalResults>0</TotalResults>
+      <Results />
+    </Rule>
+    <Rule>
+      <Name>Redirection to User Controlled Site</Name>
+      <Identifier>ACESEC06</Identifier>
+      <TotalResults>0</TotalResults>
+      <Results />
+    </Rule>
+    <Rule>
+      <Name>Cross-Site Scripting</Name>
+      <Identifier>ACESEC05</Identifier>
+      <TotalResults>0</TotalResults>
+      <Results />
+    </Rule>
+  </Rules>
+</Report>

@@ -1,0 +1,1000 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ibAssignRFID2Resource1.Text" xml:space="preserve">
+    <value>Print RFID</value>
+  </data>
+  <data name="ibAssignRFID2Resource1.ToolTip" xml:space="preserve">
+    <value>Print RFID Tag</value>
+  </data>
+  <data name="ibAssignRFIDResource1.Text" xml:space="preserve">
+    <value>Print RFID</value>
+  </data>
+  <data name="ibAssignRFIDResource1.ToolTip" xml:space="preserve">
+    <value>Print RFID Tag</value>
+  </data>
+  <data name="ibBarr2Resource1.Text" xml:space="preserve">
+    <value>Restrict Asset</value>
+  </data>
+  <data name="ibBarr2Resource1.ToolTip" xml:space="preserve">
+    <value>Restrict Asset for a period</value>
+  </data>
+  <data name="ibBarrResource1.Text" xml:space="preserve">
+    <value>Restrict Asset</value>
+  </data>
+  <data name="ibBarrResource1.ToolTip" xml:space="preserve">
+    <value>Restrict Asset for a period</value>
+  </data>
+  <data name="ibDeassignRFID2Resource1.Text" xml:space="preserve">
+    <value>DeAssign RFID</value>
+  </data>
+  <data name="ibDeassignRFID2Resource1.ToolTip" xml:space="preserve">
+    <value>DeAssign RFID Card</value>
+  </data>
+  <data name="ibDeassignRFIDResource1.Text" xml:space="preserve">
+    <value>DeAssign RFID</value>
+  </data>
+  <data name="ibDeassignRFIDResource1.ToolTip" xml:space="preserve">
+    <value>DeAssign RFID Card</value>
+  </data>
+  <data name="ibDePermRestrict2Resource1.Text" xml:space="preserve">
+    <value>Remove Perm Restriction</value>
+  </data>
+  <data name="ibDePermRestrict2Resource1.ToolTip" xml:space="preserve">
+    <value>Remove the Permanent Restriction on the Asset</value>
+  </data>
+  <data name="ibDePermRestrictResource1.Text" xml:space="preserve">
+    <value>Remove Perm Restriction</value>
+  </data>
+  <data name="ibDePermRestrictResource1.ToolTip" xml:space="preserve">
+    <value>Remove the Permanent Restriction on the Asset</value>
+  </data>
+  <data name="ibEdit2Resource1.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ibEdit2Resource1.ToolTip" xml:space="preserve">
+    <value>Modify Document</value>
+  </data>
+  <data name="ibEditResource1.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ibEditResource1.ToolTip" xml:space="preserve">
+    <value>Modify Document</value>
+  </data>
+  <data name="ibMuster2Resource1.Text" xml:space="preserve">
+    <value>Decommission</value>
+  </data>
+  <data name="ibMuster2Resource1.ToolTip" xml:space="preserve">
+    <value>Decommission Asset</value>
+  </data>
+  <data name="ibMusterResource1.Text" xml:space="preserve">
+    <value>Decommission</value>
+  </data>
+  <data name="ibMusterResource1.ToolTip" xml:space="preserve">
+    <value>Decommission Asset</value>
+  </data>
+  <data name="ibPermRestrict2Resource1.Text" xml:space="preserve">
+    <value>Perm Restrict</value>
+  </data>
+  <data name="ibPermRestrict2Resource1.ToolTip" xml:space="preserve">
+    <value>Permanently Restrict Asset</value>
+  </data>
+  <data name="ibPermRestrictResource1.Text" xml:space="preserve">
+    <value>Perm Restrict</value>
+  </data>
+  <data name="ibPermRestrictResource1.ToolTip" xml:space="preserve">
+    <value>Permanently Restrict document</value>
+  </data>
+  <data name="ibReinstate2Resource1.Text" xml:space="preserve">
+    <value>Reinstate Asset</value>
+  </data>
+  <data name="ibReinstate2Resource1.ToolTip" xml:space="preserve">
+    <value>Reinstate Written off Asset</value>
+  </data>
+  <data name="ibReinstateResource1.Text" xml:space="preserve">
+    <value>Reinstate Asset</value>
+  </data>
+  <data name="ibReinstateResource1.ToolTip" xml:space="preserve">
+    <value>Reinstate Written off Asset</value>
+  </data>
+  <data name="ibReset2Resource1.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ibReset2Resource1.ToolTip" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ibResetResource1.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ibResetResource1.ToolTip" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ibUnBarr2Resource1.Text" xml:space="preserve">
+    <value>Remove Restriction</value>
+  </data>
+  <data name="ibUnBarr2Resource1.ToolTip" xml:space="preserve">
+    <value>Remove restriction on the asset</value>
+  </data>
+  <data name="ibUnBarrResource1.Text" xml:space="preserve">
+    <value>Remove Restriction</value>
+  </data>
+  <data name="ibUnBarrResource1.ToolTip" xml:space="preserve">
+    <value>Remove restriction on the asset</value>
+  </data>
+  <data name="ibWriteOff2Resource1.Text" xml:space="preserve">
+    <value>Writeoff Asset</value>
+  </data>
+  <data name="ibWriteOff2Resource1.ToolTip" xml:space="preserve">
+    <value>Write-Off Asset</value>
+  </data>
+  <data name="ibWriteOffResource1.Text" xml:space="preserve">
+    <value>Writeoff Asset</value>
+  </data>
+  <data name="ibWriteOffResource1.ToolTip" xml:space="preserve">
+    <value>Write-Off Asset</value>
+  </data>
+  <data name="imgAssociationStatusResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgAssociationStatusResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label1Resource1.Text" xml:space="preserve">
+    <value>Received By</value>
+  </data>
+  <data name="Label1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label2Resource1.Text" xml:space="preserve">
+    <value>Check In Date</value>
+  </data>
+  <data name="Label2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label3Resource1.Text" xml:space="preserve">
+    <value>Restricted From</value>
+  </data>
+  <data name="Label3Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label4Resource1.Text" xml:space="preserve">
+    <value>Restricted To</value>
+  </data>
+  <data name="Label4Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label5Resource1.Text" xml:space="preserve">
+    <value>Permanently Restricted</value>
+  </data>
+  <data name="Label5Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label6Resource1.Text" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Label6Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label7Resource1.Text" xml:space="preserve">
+    <value>Manufacturer</value>
+  </data>
+  <data name="Label7Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label8Resource1.Text" xml:space="preserve">
+    <value>Asset Model</value>
+  </data>
+  <data name="Label8Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblBusinessUnit0Resource1.Text" xml:space="preserve">
+    <value>Technology Category</value>
+  </data>
+  <data name="lblBusinessUnit0Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblBusinessUnitResource1.Text" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="lblBusinessUnitResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCreateDateResource1.Text" xml:space="preserve">
+    <value>Commission Date</value>
+  </data>
+  <data name="lblCreateDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCreatedByResource1.Text" xml:space="preserve">
+    <value>Custodian</value>
+  </data>
+  <data name="lblCreatedByResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCurrentOwnerResource1.Text" xml:space="preserve">
+    <value>Current Owner</value>
+  </data>
+  <data name="lblCurrentOwnerResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDeptResource1.Text" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="lblDeptResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDocGroup0Resource1.Text" xml:space="preserve">
+    <value>Operating System</value>
+  </data>
+  <data name="lblDocGroup0Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDocGroup1Resource1.Text" xml:space="preserve">
+    <value>CPU Core</value>
+  </data>
+  <data name="lblDocGroup1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDocGroup2Resource1.Text" xml:space="preserve">
+    <value>CPU</value>
+  </data>
+  <data name="lblDocGroup2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDocGroup3Resource1.Text" xml:space="preserve">
+    <value>CPU Count</value>
+  </data>
+  <data name="lblDocGroup3Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDocGroupResource1.Text" xml:space="preserve">
+    <value>Asset Type</value>
+  </data>
+  <data name="lblDocGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDocNameResource1.Text" xml:space="preserve">
+    <value>Host Name</value>
+  </data>
+  <data name="lblDocNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDocumentIdResource1.Text" xml:space="preserve">
+    <value>Serial No #</value>
+  </data>
+  <data name="lblDocumentIdResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblExpiryDateResource1.Text" xml:space="preserve">
+    <value>Decommission Date &amp; Reason</value>
+  </data>
+  <data name="lblExpiryDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblIssuedDate0Resource1.Text" xml:space="preserve">
+    <value>Check Out By</value>
+  </data>
+  <data name="lblIssuedDate0Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblIssuedDateResource1.Text" xml:space="preserve">
+    <value>Check Out Date</value>
+  </data>
+  <data name="lblIssuedDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMessageResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMessageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblRefNoDisplayResource1.Text" xml:space="preserve">
+    <value>Serial No #</value>
+  </data>
+  <data name="lblRefNoDisplayResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblRFIDResource1.Text" xml:space="preserve">
+    <value>Barcode/EPC</value>
+  </data>
+  <data name="lblRFIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>View Asset</value>
+  </data>
+  <data name="TabResource1.Text" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="TabResource1.Tooltip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabResource2.Text" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="TabResource2.Tooltip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabResource3.Text" xml:space="preserve">
+    <value>Audit Log</value>
+  </data>
+  <data name="TabResource3.Tooltip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabSeparatorResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtAssetModelResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtAssetModelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtAssetNameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtAssetNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtAssetTypeResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtAssetTypeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtBarredFromResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtBarredFromResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtBarredToResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtBarredToResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtBusinessUnitResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtBusinessUnitResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCheckOutByResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCheckOutByResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCPUCoreResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCPUCoreResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCPUCountResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCPUCountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCPUResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCPUResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCreateDateResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCreateDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCreatedByResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCreatedByResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCurrentOwnerResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCurrentOwnerResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDepartmentResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDepartmentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDocNoDisplayResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDocNoDisplayResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtIsRestrictedResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtIsRestrictedResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtIssuedDateResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtIssuedDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtLabelResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtLabelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtLocationResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtLocationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtMfgResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtMfgResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtMusteringDateResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtMusteringDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtMusterReasonResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtMusterReasonResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtOSResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtOSResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtReceivedByResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtReceivedByResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtReceivedDateResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtReceivedDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtRefNoResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtRefNoResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtRFIDAssignedResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtRFIDAssignedResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtRFIDTagResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtRFIDTagResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtTechCategoryResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtTechCategoryResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.AllString" xml:space="preserve">
+    <value>(All)</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.ContainsString" xml:space="preserve">
+    <value>Contains</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.DoesNotContainString" xml:space="preserve">
+    <value>Does Not Contain</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.DoesNotEndWithString" xml:space="preserve">
+    <value>Does Not End With</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.DoesNotStartWithString" xml:space="preserve">
+    <value>Does Not Start With</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.EmptyString" xml:space="preserve">
+    <value>(Empty)</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.EndsWithString" xml:space="preserve">
+    <value>Ends With</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.EqualsString" xml:space="preserve">
+    <value>Equals</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.GreaterThanOrEqualsString" xml:space="preserve">
+    <value>Greater Than Or Equals</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.GreaterThanString" xml:space="preserve">
+    <value>Greater Than</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.LessThanOrEqualsString" xml:space="preserve">
+    <value>Less Than Or Equals</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.LessThanString" xml:space="preserve">
+    <value>Less Than</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.LikeString" xml:space="preserve">
+    <value>Like</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.NonEmptyString" xml:space="preserve">
+    <value>(NonEmpty)</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.NotEqualsString" xml:space="preserve">
+    <value>Not Equals</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.NotLikeString" xml:space="preserve">
+    <value>Not Like</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.StartsWithString" xml:space="preserve">
+    <value>Starts With</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.AllString" xml:space="preserve">
+    <value>(All)</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.ContainsString" xml:space="preserve">
+    <value>Contains</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.DoesNotContainString" xml:space="preserve">
+    <value>Does Not Contain</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.DoesNotEndWithString" xml:space="preserve">
+    <value>Does Not End With</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.DoesNotStartWithString" xml:space="preserve">
+    <value>Does Not Start With</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.EmptyString" xml:space="preserve">
+    <value>(Empty)</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.EndsWithString" xml:space="preserve">
+    <value>Ends With</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.EqualsString" xml:space="preserve">
+    <value>Equals</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.GreaterThanOrEqualsString" xml:space="preserve">
+    <value>Greater Than Or Equals</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.GreaterThanString" xml:space="preserve">
+    <value>Greater Than</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.LessThanOrEqualsString" xml:space="preserve">
+    <value>Less Than Or Equals</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.LessThanString" xml:space="preserve">
+    <value>Less Than</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.LikeString" xml:space="preserve">
+    <value>Like</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.NonEmptyString" xml:space="preserve">
+    <value>(NonEmpty)</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.NotEqualsString" xml:space="preserve">
+    <value>Not Equals</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.NotLikeString" xml:space="preserve">
+    <value>Not Like</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.StartsWithString" xml:space="preserve">
+    <value>Starts With</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="UltraGridColumnResource1.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource1.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource1.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource1.Header.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource1.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource1.HeaderText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource10.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource10.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource10.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource10.Header.Caption" xml:space="preserve">
+    <value>RFID Card Status</value>
+  </data>
+  <data name="UltraGridColumnResource10.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource10.HeaderText" xml:space="preserve">
+    <value>RFID Card Status</value>
+  </data>
+  <data name="UltraGridColumnResource2.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource2.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource2.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource2.Header.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource2.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource2.HeaderText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource3.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource3.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource3.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource3.Header.Caption" xml:space="preserve">
+    <value>Gantry</value>
+  </data>
+  <data name="UltraGridColumnResource3.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource3.HeaderText" xml:space="preserve">
+    <value>Gantry</value>
+  </data>
+  <data name="UltraGridColumnResource4.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource4.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource4.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource4.Header.Caption" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="UltraGridColumnResource4.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource4.HeaderText" xml:space="preserve">
+    <value>Owner</value>
+  </data>
+  <data name="UltraGridColumnResource5.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource5.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource5.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource5.Header.Caption" xml:space="preserve">
+    <value>Date &amp; Time</value>
+  </data>
+  <data name="UltraGridColumnResource5.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource5.HeaderText" xml:space="preserve">
+    <value>Date &amp; Time</value>
+  </data>
+  <data name="UltraGridColumnResource6.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource6.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource6.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource6.Header.Caption" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="UltraGridColumnResource6.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource6.HeaderText" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="UltraGridColumnResource7.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource7.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource7.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource7.Header.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource7.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource7.HeaderText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource8.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource8.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource8.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource8.Header.Caption" xml:space="preserve">
+    <value>RFID Tag</value>
+  </data>
+  <data name="UltraGridColumnResource8.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource8.HeaderText" xml:space="preserve">
+    <value>RFID Tag</value>
+  </data>
+  <data name="UltraGridColumnResource9.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource9.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource9.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource9.Header.Caption" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="UltraGridColumnResource9.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource9.HeaderText" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.AddNewBox.Prompt" xml:space="preserve">
+    <value>Add...</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.AllString" xml:space="preserve">
+    <value>(All)</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.ContainsString" xml:space="preserve">
+    <value>Contains</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.DoesNotContainString" xml:space="preserve">
+    <value>Does Not Contain</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.DoesNotEndWithString" xml:space="preserve">
+    <value>Does Not End With</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.DoesNotStartWithString" xml:space="preserve">
+    <value>Does Not Start With</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.EmptyString" xml:space="preserve">
+    <value>(Empty)</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.EndsWithString" xml:space="preserve">
+    <value>Ends With</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.EqualsString" xml:space="preserve">
+    <value>Equals</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.GreaterThanOrEqualsString" xml:space="preserve">
+    <value>Greater Than Or Equals</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.GreaterThanString" xml:space="preserve">
+    <value>Greater Than</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.LessThanOrEqualsString" xml:space="preserve">
+    <value>Less Than Or Equals</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.LessThanString" xml:space="preserve">
+    <value>Less Than</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.LikeString" xml:space="preserve">
+    <value>Like</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.NonEmptyString" xml:space="preserve">
+    <value>(NonEmpty)</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.NotEqualsString" xml:space="preserve">
+    <value>Not Equals</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.NotLikeString" xml:space="preserve">
+    <value>Not Like</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.FilterOptionsDefault.StartsWithString" xml:space="preserve">
+    <value>Starts With</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.GroupByBox.Prompt" xml:space="preserve">
+    <value>Drag a column header here to group by that column</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.Pager.NextText" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.DisplayLayout.Pager.PrevText" xml:space="preserve">
+    <value>Prev</value>
+  </data>
+  <data name="uwgDocumentAlertResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="uwtCreateAssetResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblWriteOffResource1.Text" xml:space="preserve">
+    <value>Written Off</value>
+  </data>
+  <data name="lblWriteOffResource1.ToolTip" xml:space="preserve">
+    <value>Written Off</value>
+  </data>
+  <data name="lblParentAssetResource1.Text" xml:space="preserve">
+    <value>Parent Asset</value>
+  </data>
+  <data name="lblAssetNameResource1.Text" xml:space="preserve">
+    <value>Asset Name</value>
+  </data>
+  <data name="lblRUResource1.Text" xml:space="preserve">
+    <value>No of RUs</value>
+  </data>
+  <data name="lblStartPositionResource1.Text" xml:space="preserve">
+    <value>Start Position</value>
+  </data>
+  <data name="txtOrientation.Text" xml:space="preserve">
+    <value>Orientation</value>
+  </data>
+  <data name="lblRackOrStandResource1.Text" xml:space="preserve">
+    <value>Rack/Standalone</value>
+  </data>
+  <data name="lblRackOrStandResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+</root>

@@ -1,0 +1,53 @@
+﻿body
+{
+}
+.igpb_AppletiniBaseLabel
+{
+	text-align:left;
+	white-space:nowrap;
+	position:absolute;
+	padding:2px;
+}
+.igpb_AppletiniBackgroundLabel
+{
+	color:Black;
+}
+.igpb_AppletiniForegroundLabel
+{
+	color:Black;
+}
+.igpb_AppletiniInnerDiv
+{
+	height:100%;
+	width:100%;
+	position:absolute;
+	overflow:hidden;
+	
+}
+.igpb_AppletiniFill_Horiz
+{
+	background-image: url(./images/igpb_horizontalFill.gif);
+	background-repeat: repeat-x;
+	background-color: #ABCE04;
+}
+.igpb_AppletiniFill_Vert
+{
+	background-image: url(./images/igpb_VerticalFill.gif);
+	background-repeat: repeat-y;
+	background-color: #ABCE04;
+}
+.igpb_AppletiniBackground_Horiz
+{
+}
+.igpb_AppletiniBackground_Vert
+{
+	
+}
+.igpb_AppletiniContainer
+{
+	height:100%;
+	width:100%;
+	position:relative;
+	border: solid 1px #4F7600;
+	overflow: hidden;
+}

@@ -1,0 +1,53 @@
+﻿body
+{
+}
+.igpb_TrendyBaseLabel
+{
+	text-align:left;
+	white-space:nowrap;
+	position:absolute;
+	padding:2px;
+}
+.igpb_TrendyBackgroundLabel
+{
+	color:#666666;
+}
+.igpb_TrendyForegroundLabel
+{
+	color:white;
+}
+.igpb_TrendyInnerDiv
+{
+	height:100%;
+	width:100%;
+	position:absolute;
+	overflow:hidden;
+	
+}
+.igpb_TrendyFill_Horiz
+{
+	background-image: url(./images/igpb_horizontalFill.gif);
+	
+	
+}
+.igpb_TrendyFill_Vert
+{
+	background-image: url(./images/igpb_VerticalFill.gif);
+	
+	
+}
+.igpb_TrendyBackground_Horiz
+{
+}
+.igpb_TrendyBackground_Vert
+{
+	
+}
+.igpb_TrendyContainer
+{
+	height:100%;
+	width:100%;
+	position:relative;
+	border:solid 1px #109A48;
+	overflow: hidden;
+}

@@ -1,0 +1,101 @@
+.igcal_AppletiniControl
+{
+	border:solid 1px #4F7600;
+	cursor:hand;
+	text-align:center;
+}
+
+
+.igcal_AppletiniCalendar
+{
+}
+
+
+.igcal_AppletiniDOW
+{
+	font-weight:bold;
+	font-size:xx-small;
+	border-width:0px;
+	border-bottom:solid 1px #4F7600;
+	padding:5px 0px 0px 0px;
+}
+
+
+.igcal_AppletiniDay
+{
+	background-color:White;
+	font-size:11px;
+	border-width:0px;
+	padding-right:6px;
+	padding-bottom:3px;
+	padding-left:3px;
+	text-align:center;
+}
+
+
+.igcal_AppletiniNextPrev
+{
+	background-color:#EBF3DA;
+	padding-right:5px;
+	padding-left:5px;
+}
+
+
+.igcal_AppletiniFooter
+{
+	background-color:#F0F0F0;
+	border-top-width:1px;
+	border-top-style:solid;
+	padding-top:5px;
+	text-align:center;
+}
+
+
+.igcal_AppletiniHeader
+{
+	background-color:#EBF3DA;
+	font-weight:bold;
+	font-size:10px;
+	height: 16px;
+	color:#4F7600;
+}
+
+
+.igcal_AppletiniDropDown
+{
+}
+
+
+.igcal_AppletiniWeekendDay
+{
+}
+
+
+.igcal_AppletiniOtherMonthDay
+{
+	color:#B3B3B3;
+}
+
+
+.igcal_AppletiniWeekendDayMajor
+{
+}
+
+
+.igcal_AppletiniTodayDay
+{
+	background-repeat:no-repeat;
+	background-image: url(images/today.png);
+	font-weight:bold;
+	color:#4F7600;
+}
+
+
+.igcal_AppletiniSelectedDay
+{
+	background-repeat:no-repeat;
+	background-image: url(images/dayactive.png);
+	color:#4F7600;
+}
+
+

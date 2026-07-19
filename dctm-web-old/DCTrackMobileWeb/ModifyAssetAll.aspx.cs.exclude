@@ -1,0 +1,1701 @@
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+//using Infragistics.WebUI.UltraWebListbar;
+
+using iAssetTrack.BAL;
+using iAssetTrack.DALC;
+using iAssetTrackBAL;
+using Infragistics.Web.UI.NavigationControls;
+using System.Web.Services;
+using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
+//using Infragistics.Web.UI.ListControls;
+
+public partial class ModifyAssetAll : System.Web.UI.Page
+{
+    public static ArrayList arrList = new ArrayList();
+    public static ArrayList tempHosts = new ArrayList();
+    static DataTable dt;
+    static int currec, totrec;
+    DataTable _dtRights;
+
+    //private int m_AssetID;
+    private ManufacturerBAL objMfg;
+    private AssetModelBAL objAM;
+    private const string TAB_KEY_SUMMARY = "Summary";
+    private const string TAB_KEY_AUTHORIZATION = "Authorization";
+    private const string TAB_KEY_ASSOCIATION = "Association";
+
+    private const string VIEWSTATE_AUTHORIZATION = "Authorization";
+    private const string VIEWSTATE_ASSOCIATION = "Association";
+    private const string VIEWSTATE_DOCUMENTID = "AssetID";
+
+    private const string ISPARENT_IMAGE = "infragistics/images/Outlook2003/folders.gif";
+    private const string ISCHILD_IMAGE = "infragistics/images/Outlook2003/folder.gif";
+
+    protected string ddlMfgName = string.Empty;
+    protected string ddlMfgID = string.Empty;
+    protected string ddlBusinessUnitVal = string.Empty;
+    protected string ddlSiteVal = string.Empty;
+
+    private bool IsAuthorizationTabInitialized
+    {
+        get { return (ViewState[VIEWSTATE_AUTHORIZATION] != null ? Convert.ToBoolean(ViewState[VIEWSTATE_AUTHORIZATION]) : false); }
+        set { ViewState[VIEWSTATE_AUTHORIZATION] = value; }
+    }
+
+    private bool IsAssociationTabInitialized
+    {
+        get { return (ViewState[VIEWSTATE_ASSOCIATION] != null ? Convert.ToBoolean(ViewState[VIEWSTATE_ASSOCIATION]) : false); }
+        set { ViewState[VIEWSTATE_ASSOCIATION] = value; }
+    }
+
+    private int AssetID
+    {
+        get { return (ViewState[VIEWSTATE_DOCUMENTID] != null ? Convert.ToInt32(ViewState[VIEWSTATE_DOCUMENTID]) : 0); }
+        set { ViewState[VIEWSTATE_DOCUMENTID] = value; }
+    }
+
+    private const string USER_IMAGE_FILE = "MSNExplorer/People.gif"; // "~/images/user.gif";
+
+    //Order the First Column in Sequence for maximum efficiency
+    private String[,] saModuleRightsControlList = new String[10, 3]
+    {
+        {"Create", "ddlBusinessUnit", "Enabled"},
+        {"Create", "ddlSite", "Enabled"},
+        {"Create", "txtAssetID", "Enabled"},
+        {"Create", "txtAssetName", "Enabled"},
+        {"Create", "ddlAssetGroup", "Enabled"},
+        {"Create", "hlSearch", "Visible,Enabled"},
+        {"Create", "wdcCreatedDate", "Enabled"},
+        {"Create", "numPageCount", "Enabled"},
+        //{"Create", "uwtCreateDocument.Summary", "Visible"}, -- Allow to see the summary, but do not allow editing
+        {"Create", "ibCreateAsset", "Enabled"},
+        {"Create", "ibCreateAsset2", "Enabled"},
+        //{"Authorize", "uwtDistributionList", "Enabled"},
+        //{"Authorize", "uwtCreateDocument.Authorization", "Visible"},
+        //{"Associate", "ucxAssetSearchControl", "Visible"},
+        //{"Associate", "uwtCreateDocument.Association", "Visible"}
+
+    };
+
+    [WebMethod]
+    public static string[] getHostNames(string prefixText, int count)
+    {
+        string[] arrHost;
+
+        HostBAL objHost = new HostBAL();
+        DataSet dsHost = objHost.retrieve();
+        arrList.Clear();
+        //tempHosts.Clear();
+        foreach (DataRow dr in dsHost.Tables[0].Rows)
+        {
+            if (dr[1].ToString().ToLower().StartsWith(prefixText.ToLower()))
+            {
+                arrList.Add(dr[1].ToString());
+                //tempHosts.Add(dr[0].ToString() + "#" + dr[1].ToString());
+
+            }
+        }
+        arrHost = (string[])arrList.ToArray(typeof(string));
+        //int index = 0;
+        //foreach (string str in arrList)
+        //{
+        //    arrHost[index] = str;
+        //}
+        //arrHost = (string[])arrList.ToArray();
+        //arrHost = (string[])(from crHost in dsHost.Tables[0].AsEnumerable()
+        //            where crHost["HostName"].ToString().StartsWith(prefixText)
+        //            select crHost["HostName"]).ToArray();
+        return arrHost;
+
+    }
+
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        Session["PageUser"] = System.Configuration.ConfigurationManager.AppSettings["LoginUser"];
+        Session["PageTime"] = System.Configuration.ConfigurationManager.AppSettings["LoginTime"];
+
+        _dtRights = (DataTable)(Session["Rights"]);
+
+        if (_dtRights == null)
+        {
+            Session["RedirectUrl"] = "ModifyAssetAll.aspx";
+            Response.Redirect("Login.aspx");
+        }
+
+        if (!string.IsNullOrEmpty(hdnModelName.Value))
+            txtModel.Text = hdnModelName.Value;
+
+        if (!string.IsNullOrEmpty(hdnLocName.Value))
+            txtLocation.Text = hdnLocName.Value;
+
+
+        if (!Page.IsPostBack)
+        {
+            string strAssetId = Session["AssetIDs"].ToString();
+            dt = GetData(strAssetId);
+            populateBusinessUnitList();
+            populateAssetTypes();
+            populateManufacturerList();
+            PopulatetechList();
+            //*V3.8-Added on 16Oct2013-By Amar Vidya
+            LoadStartPositions();
+            LoadNoofRus();//*
+            populateSites(Convert.ToInt32(1));
+            ShowData(0);
+            currec = 0;
+            totrec = dt.Rows.Count;
+        }
+
+        ScrollControl();
+        AddHostsToList();
+        //Business Unit ID for TreeList call
+        if (ddlBusinessUnit != null && ddlBusinessUnit.Items.Count > 0)
+            ddlBusinessUnitVal = ddlBusinessUnit.SelectedItem.Value;
+        if (ddlMfg != null && ddlMfg.Items.Count > 0)
+        {
+            ddlMfgName = ddlMfg.SelectedItem.Text;
+            ddlMfgID = ddlMfg.SelectedItem.Value;
+        }
+        if (ddlSite != null && ddlSite.Items.Count > 0)
+        {
+            ddlSiteVal = ddlSite.SelectedItem.Value;
+        }
+
+    }
+
+    private void CompareItem(DropDownList ddl, string itemOrigin)
+    {
+        string itemToCompare = string.Empty;
+        foreach (ListItem item in ddl.Items)
+        {
+            itemToCompare = item.Text.ToLower();
+            if (itemOrigin.ToLower().CompareTo(itemToCompare) == 0)
+            {
+                ddl.ClearSelection();
+                item.Selected = true;
+            }
+        }
+    }
+
+    private void populateManufacturerList()
+    {
+        objMfg = new iAssetTrack.BAL.ManufacturerBAL();
+        DataSet dsMfg = objMfg.retrieve();
+        DataTable dtMfg = dsMfg.Tables[0];
+
+        DataRow dr = dtMfg.NewRow();
+        dr[0] = 0;
+        dr[1] = "-Select-";
+        dtMfg.Rows.InsertAt(dr, 0);
+
+        ddlMfg.DataSource = dtMfg;
+        ddlMfg.DataValueField = dtMfg.Columns[0].ToString();
+        ddlMfg.DataTextField = dtMfg.Columns[1].ToString();
+        ddlMfg.DataBind();
+
+    }
+
+    //protected void Page_LoadComplete(object sender, EventArgs e)
+    //{
+    //    //CheckPageControlAccess();
+    //}
+
+
+
+
+    #region Populate Controls
+
+
+    ///// <summary>
+    ///// To Populate the Business Unit List Box
+    ///// </summary>
+    //private void populateBusinessUnitList()
+    //{
+
+    //    if (!ddlBusinessUnit.Visible)
+    //    {
+    //        return;
+    //    }
+
+    //    //ddlBusinessUnit.Items.Clear();
+    //    BusinessUnitBAL busBAL = new BusinessUnitBAL();
+    //    DataSet ds = busBAL.retrieve();
+
+    //    if (ds.Tables[0].Rows.Count > 0)
+    //    {
+    //        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+    //        {
+    //            ListItem item = new ListItem(ds.Tables[0].Rows[i]["BusinessUnit"].ToString(), ds.Tables[0].Rows[i]["BusinessUnitID"].ToString());
+    //            ddlBusinessUnit.Items.Add(item);
+    //        }
+
+
+    //    }
+
+    //}
+
+
+    private void populateBusinessUnitList()
+    {
+        int intUserID = 0;
+        if (Session["UserID"] != null)
+            intUserID = Convert.ToInt32(Session["UserID"].ToString());
+
+        FillDropDownListBU(StoredProcedures.SP_BUSINESSUNIT_LISTBYUSERID, ref ddlBusinessUnit, intUserID);
+    }
+
+
+    private void FillDropDownListBU(string strStoredProc, ref DropDownList ddl, int id)
+    {
+
+        //CommonBAL objCommonBAL = new CommonBAL();
+        //ICommon svcBU = (ICommon)RemotingHelper.CreateProxy(typeof(ICommon));
+        iAssetTrack.BAL.CommonBAL objCommon = new iAssetTrack.BAL.CommonBAL();
+
+        DataTable dt = objCommon.FillDropDownListBU(strStoredProc, "- Select -", id);
+        ddl.DataSource = dt;
+        ddl.DataValueField = dt.Columns[0].ToString();
+        ddl.DataTextField = dt.Columns[1].ToString();
+        ddl.DataBind();
+
+    }
+
+
+    /// <summary>
+    /// Populate the Department for the Selected BU
+    /// </summary>
+    /// <param name="pBusineddUnitId"></param>
+    private void populateSites(int pBusineddUnitId)
+    {
+        ddlSite.Items.Clear();
+
+        if (!ddlSite.Visible) return;
+        if (pBusineddUnitId <= 0) return;
+
+        #region v3.8
+
+        if (bool.Parse(Session["SiteRestrictEnabled"].ToString()) == false)
+        {
+            //existing code
+            ListItem emptyitem = new ListItem("- Select -", "0");
+            ddlSite.Items.Add(emptyitem);
+
+            SitesBAL objsite = new SitesBAL();
+
+            DataSet ds = objsite.retrieveByBusinessUnitId(pBusineddUnitId);
+            DataTable dt = ds.Tables[0];
+            ddlSite.DataSource = dt;
+            ddlSite.DataValueField = dt.Columns["SiteID"].ToString();
+            ddlSite.DataTextField = dt.Columns["Site"].ToString();
+            ddlSite.DataBind();
+            //--//
+        }
+        else
+        {
+            SitesBAL objSitesBAL = new SitesBAL();
+            int loggedInUserID = int.Parse(Session["UserID"].ToString());
+            DataSet dsSites = objSitesBAL.retrieveRestrictedSiteList(pBusineddUnitId, loggedInUserID);
+            DataTable dt = dsSites.Tables[0];
+
+            DataRow dr = dt.NewRow();
+            dr[0] = 0;
+            dr[1] = "- Select -";
+            dr[2] = "- Select -";
+
+            dt.Rows.InsertAt(dr, 0);
+
+            ddlSite.DataSource = dt;
+            ddlSite.DataValueField = dt.Columns[0].ToString();
+            ddlSite.DataTextField = dt.Columns[1].ToString();
+            ddlSite.DataBind();
+        }
+
+        #endregion
+    }
+
+
+    /// <summary>
+    /// Populate All Document Groups
+    /// </summary>
+    private void populateAssetTypes()
+    {
+        if (!ddlAssetGroup.Visible) return;
+
+        //ddlAssetGroup.Items.Clear();
+        AssetGroupBAL dgrpBAL = new AssetGroupBAL();
+        DataSet ds = dgrpBAL.retrieve();
+
+        if (ds.Tables[0].Rows.Count > 0)
+        {
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ListItem item = new ListItem(ds.Tables[0].Rows[i]["AssetGroup"].ToString(), ds.Tables[0].Rows[i]["AssetGroupID"].ToString());
+                ddlAssetGroup.Items.Add(item);
+            }
+
+        }
+    }
+
+
+    //private void populateUsers(int pBusinessUnitID)
+    //{
+
+    //    if (!ddlOwner.Visible) return;
+
+    //    if( pBusinessUnitID <= 0 ) return;
+
+    //    ddlOwner.Items.Clear();
+    //    ListItem emptyitem = new ListItem("- Select -", "-1");
+    //    ddlOwner.Items.Add(emptyitem);
+    //    BusinessUnitBAL busBAL = new BusinessUnitBAL();
+    //    busBAL.BusinessUnitID = pBusinessUnitID;
+
+    //    DataSet ds = busBAL.retrieveUserList();
+
+    //    if (ds.Tables[0].Rows.Count > 0)
+    //    {
+    //        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+    //        {
+    //            ListItem item = new ListItem(ds.Tables[0].Rows[i]["LoginName"].ToString(), ds.Tables[0].Rows[i]["UserID"].ToString());
+    //            ddlOwner.Items.Add(item);
+    //        }
+
+    //    }
+    //    else
+    //    {
+    //        CommonBAL objCommon = new CommonBAL();
+    //        lblMessage.Text = objCommon.displayMessage(MessageCodes.GEN_I_LIST);
+    //        lblMessage.Visible = true;
+    //        return;
+    //    }
+
+    //}
+
+    protected void cusCustom_ServerValidate(object sender, ServerValidateEventArgs e)
+    {
+        int val = Int32.Parse(e.Value);
+        if (val > 0)
+            e.IsValid = true;
+        else
+            e.IsValid = false;
+    }
+
+    protected void cusCustom_ServerValidate_ddlMfg(object sender, ServerValidateEventArgs e)
+    {
+        int val = Int32.Parse(e.Value);
+        if (val > 0)
+            e.IsValid = true;
+        else
+            e.IsValid = false;
+    }
+
+
+
+    #endregion Populate Controls
+
+    #region Database Retrieval and Updates
+
+
+    private void Create()
+    {
+        try
+        {
+
+            AssetBAL docBAL = new AssetBAL();
+
+
+            //docBAL.AssetID = this.AssetID;AssetId
+            docBAL.AssetID = Convert.ToInt32(hdnAssetID.Value);
+            docBAL.RefNumber = this.txtAssetID.Text;
+            //docBAL.CopyNumber = ""; // commented by kjb 21 feb 2011
+            //assetname field will be used to pass comma separated string of host names
+            // which will be later split and asset-host mapping will be created in the sp
+            // created by kjb on 05 sep 2011
+            string strHosts = string.Empty;
+            if (!string.IsNullOrEmpty(hdnHostNames.Value))
+            {
+                strHosts = hdnHostNames.Value.Trim(',');
+            }
+
+            //docBAL.AssetName = strHosts;//Commented on 07May2013
+            //*Added on 07May2013
+            docBAL.HostName = strHosts;
+            docBAL.AssetName = txtAssetNameA.Text;
+            if (!string.IsNullOrEmpty(hdnParentAssetID.Value))
+            {
+                docBAL.IsParent = true;
+                docBAL.AssetParentID = Convert.ToInt32(hdnParentAssetID.Value);
+            }
+            else
+            {
+                docBAL.IsParent = false;
+                docBAL.AssetParentID = 0;
+            }//*
+            //--end--05 Sep 2011
+
+            docBAL.AssetTypeId = Convert.ToInt32(this.ddlAssetGroup.SelectedValue);
+
+            if (!string.IsNullOrEmpty(hdnModelID.Value))
+                docBAL.ModelID = Convert.ToInt32(hdnModelID.Value);
+
+
+            int locationID = 0;
+
+            if (!string.IsNullOrEmpty(hdnLocID.Value))
+            {
+
+                if (!string.IsNullOrEmpty(hdnLocID.Value))
+                    locationID = int.Parse(hdnLocID.Value.ToString());
+
+            }
+
+            docBAL.LastSeenLocationID = locationID;
+            docBAL.DefaultLocationID = locationID;
+            //Tech Category
+            docBAL.TechID = Convert.ToInt32(this.ddlTechCat.SelectedValue);
+
+            docBAL.RackOrStand = this.ddlMount.SelectedItem.Text;
+
+            // model
+            //docBAL.BusinessUnitID = Convert.ToInt32(this.ddlBusinessUnit.SelectedValue);
+            docBAL.BusinessUnitID = 1;
+            // docBAL.PrimarySiteID = Convert.ToInt32(this.ddlSite.SelectedValue); //*V3.8-Commented on 24-Oct-2013- By Amar Vidya 
+            //*V3.8-Added on 24-Oct-2013- By Amar Vidya 
+            if (string.IsNullOrEmpty(hdnParentAssetName.Value))
+            {
+                docBAL.PrimarySiteID = Convert.ToInt32(this.ddlSite.SelectedValue);
+            }
+            else
+            {
+                docBAL.PrimarySiteID = Convert.ToInt32(hdnSiteID.Value);
+            }//*
+            docBAL.AssetCreatedDate = Convert.ToDateTime(this.wdcCreatedDate.Text);
+
+            docBAL.AssetCreatedBy = Convert.ToInt32(Session["UserID"].ToString());
+            if (txtOwner.Text == hdnOwnerName.Value)//Added on 04Mar2013
+            {
+                docBAL.CurrentOwnerID = Convert.ToInt32(Session["CO"]);
+            }
+            else
+            {
+                docBAL.CurrentOwnerID = Convert.ToInt32(this.hdnOwnerID.Value);
+            }
+
+            docBAL.UpdatedBy = Convert.ToInt32(Session["UserID"].ToString());
+
+
+
+            if (txtOS.Text != string.Empty)
+                docBAL.OS = txtOS.Text;
+
+            if (txtCPU.Text != string.Empty)
+                docBAL.CPU = txtCPU.Text;
+
+            if (txtCpuCount.Text != string.Empty)
+                docBAL.CPUCount = Int32.Parse(txtCpuCount.Text);
+
+            if (txtCPUCore.Text != string.Empty)
+                docBAL.CPUCore = txtCPUCore.Text;
+
+            //*V3.8-Commented on 16Oct2013-By Amar Vidya
+            // temp, fields needs to be created on the page by kjb on 04 Oct 2011
+            //docBAL.StartPos = 0;
+            //docBAL.NoOfRUs = 0;//*
+
+            //*V3.8-Added on 16Oct2013-By Amar Vidya
+            if (ddlPosition.SelectedIndex == 0)
+            {
+
+            }
+            else
+            {
+                docBAL.StartPos = Convert.ToInt16(ddlPosition.SelectedValue);
+            }
+            if (ddlNoOfRU.SelectedIndex == 0)
+            {
+
+            }
+            else
+            {
+                docBAL.NoOfRUs = Convert.ToInt16(ddlNoOfRU.SelectedValue);
+            }
+            if (ddlOrientation.SelectedIndex == 0)
+            {
+                // docBAL.Orientation ="";
+            }
+            else
+            {
+                docBAL.Orientation = ddlOrientation.SelectedItem.Text;
+            }//*
+            docBAL.IsImport = false;
+            docBAL.SerialNoModelCheck = (Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["ImportAssetUniqueFilter"].ToString()) == 1 ? true : false);
+            docBAL.AssetTAG = txtBarcode.Text.Trim();
+            docBAL.Persist(DALCOperation.Update);
+
+
+            if (!string.IsNullOrEmpty(hdnOwnerName.Value))
+                txtOwner.Text = hdnOwnerName.Value;
+
+            if (docBAL.Result == 0)
+            {
+                lblMessage.Text = new CommonBAL().displayMessage(MessageCodes.GEN_S_UPDATED);
+                lblMessage.Visible = false;
+                lblMessage.ForeColor = System.Drawing.Color.Black;
+                //
+                lblErrorMsg.Text = lblMessage.Text;
+                lblErrorMsg.Visible = true;
+                lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+                ///ResetForm();
+            }
+            else
+            {
+                lblMessage.Text = new CommonBAL().displayMessage(docBAL.MessageCode);
+                lblMessage.Visible = false;
+                lblMessage.ForeColor = System.Drawing.Color.Red;
+                //
+                lblErrorMsg.Text = lblMessage.Text;
+                lblErrorMsg.Visible = true;
+                lblErrorMsg.ForeColor = System.Drawing.Color.Red;
+                return;
+            }
+
+        }
+        catch (Exception ex)
+        {
+            // added by kjb on 22 feb 2011
+            //lblErrorMsg.Visible = true;
+            //lblErrorMsg.Text = ex.Message;
+            ExceptionPolicy.HandleException(ex, "errDCTrack");
+            throw ex;
+            //lblMessage.Visible = false;
+            //throw (ex);
+        }
+    }
+    private void FillAssetDetailsModifyAll(string pDocumentId)
+    {
+        AssetBAL objBAL = new AssetBAL();
+        LocationBAL ObjLocation = new iAssetTrack.BAL.LocationBAL();
+        ManufacturerBAL objMfg = new ManufacturerBAL();
+        AssetModelBAL objAM = new AssetModelBAL();
+        TechCatBAL objTC = new TechCatBAL();
+
+        //objBAL.AssetIDall = pDocumentId;
+        //DataSet dtModify = objAssetModifyAll.GetAssetDetailsModifyAll();
+        DataSet ds = objBAL.GetAssetDetailsModifyAll(pDocumentId);
+
+
+        if (ds.Tables[0].Rows.Count > 0)
+        {
+            DataRow dr = ds.Tables[0].Rows[0];
+
+
+            txtAssetID.Text = dr["RefNumber"].ToString();
+            AddHostsToList();
+            ddlBusinessUnit.AutoPostBack = false;
+            ddlBusinessUnit.SelectedValue = dr["BusinessUnitID"].ToString();
+            populateSites(Convert.ToInt32(dr["BusinessUnitID"].ToString()));
+            ddlSite.SelectedValue = dr["PrimarySiteID"].ToString();
+            LocationBAL objLoc = new LocationBAL();
+            objLoc.LocationID = Int32.Parse(dr["LastSeenLocationID"].ToString());
+            DataSet dsLoc = objLoc.retrieve();
+            if (dsLoc.Tables[0].Rows.Count > 0)
+            {
+                DataRow drLoc = dsLoc.Tables[0].Rows[0];
+                if (drLoc[DBFields.DBFIELD_LOCATIONID].ToString() == "0" || drLoc[DBFields.DBFIELD_LOCATIONID].ToString() == "")
+                    txtLocation.Text = "";
+                else
+                {
+                    txtLocation.Text = drLoc[DBFields.DBFIELD_LOCATION].ToString();
+                    hdnLocID.Value = drLoc[DBFields.DBFIELD_LOCATIONID].ToString();
+                }
+            }
+
+            //MOdel and Mfg
+            DataSet dsAM = objAM.retrieveByModelID(Int32.Parse(dr["ModelID"].ToString()));
+            if (dsAM.Tables[0].Rows.Count > 0)
+            {
+                int mfgID = Int32.Parse(dsAM.Tables[0].Rows[0]["MfgID"].ToString());
+                objMfg.MFGID = mfgID;
+                DataSet dsMfg = objMfg.retrieve();
+                if (dsMfg.Tables[0].Rows.Count > 0)
+                {
+                    ddlMfg.SelectedValue = dsMfg.Tables[0].Rows[0]["MfgID"].ToString();
+                }
+
+                if (dr[DBFields.DBFIELD_MODELID].ToString() == "0" || dr[DBFields.DBFIELD_MODELID].ToString() == "")
+                    txtModel.Text = "";
+                else
+                {
+                    txtModel.Text = dsAM.Tables[0].Rows[0][DBFields.DBFIELD_MODELNAME].ToString();
+                    hdnModelID.Value = dsAM.Tables[0].Rows[0][DBFields.DBFIELD_MODELID].ToString();
+                }
+            }
+            // Technology Category 
+            if (!string.IsNullOrEmpty(dr[DBFields.DBFIELD_TECHID].ToString()))
+            {
+                ddlTechCat.SelectedValue = dr[DBFields.DBFIELD_TECHID].ToString();
+                ddlTechCat.Items.FindByValue(dr[DBFields.DBFIELD_TECHID].ToString()).Attributes.Add("style", "background-color:LightBlue;");
+
+
+            }
+            else
+            {
+
+                DataSet dsTC = objTC.retrieveByAssetID(Int32.Parse(dr["AssetID"].ToString()));
+                ddlTechCat.SelectedValue = dsTC.Tables[0].Rows[0][DBFields.DBFIELD_TECHID].ToString();
+                ddlTechCat.Items.FindByValue(dsTC.Tables[0].Rows[0][DBFields.DBFIELD_TECHID].ToString()).Attributes.Add("style", "background-color:lightGreen;");
+
+            }
+            //MOunt
+            if (!string.IsNullOrEmpty(dr["RackorStand"].ToString()))
+            {
+                foreach (ListItem item in ddlMount.Items)
+                {
+                    if (item.Text.Equals(dr["RackorStand"].ToString()))
+                    {
+                        ddlMount.SelectedIndex = Int32.Parse(item.Value);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                ddlMount.SelectedIndex = 0;
+            }
+
+
+            ddlBusinessUnit.AutoPostBack = true;
+            ddlAssetGroup.SelectedValue = dr["AssetGroupID"].ToString();
+            hdnOwnerID.Value = dr["AssetCreatedBy"].ToString();
+            hdnLocationID.Value = dr["DefaultLocationID"].ToString();
+
+            bool bIsParent = (dr["IsParent"] == DBNull.Value ? false : Convert.ToBoolean(dr["IsParent"]));
+            bool bIsChild = (dr["ParentAssetID"] != DBNull.Value);
+
+            if (bIsParent)
+            {
+                this.imgAssociationStatus.ImageUrl = ISPARENT_IMAGE;
+            }
+            else if (bIsChild)
+            {
+                this.imgAssociationStatus.ImageUrl = ISCHILD_IMAGE;
+            }
+            else { this.imgAssociationStatus.Visible = false; }
+
+
+            wdcCreatedDate.Value = Convert.ToDateTime(dr["AssetCreatedDate"].ToString());
+
+            OwnerBAL ownerBAL = new OwnerBAL();
+            ownerBAL.OwnerID = Convert.ToInt32(dr["CurrentOwnerID"].ToString());
+            Session["CO"] = Convert.ToInt32(dr["CurrentOwnerID"].ToString());//Added
+            if (ownerBAL.OwnerID > 0)
+            {
+                DataSet dsOwner = ownerBAL.retrieve();
+                hdnOwnerID.Value = dr["CurrentOwnerID"].ToString();
+                hdnOwnerName.Value = dsOwner.Tables[0].Rows[0][DBFields.DBFIELD_OWNER_LNAME].ToString() + "," + dsOwner.Tables[0].Rows[0][DBFields.DBFIELD_OWNER_FNAME].ToString();
+                txtOwner.Text = dsOwner.Tables[0].Rows[0][DBFields.DBFIELD_OWNER_LNAME].ToString() + "," + dsOwner.Tables[0].Rows[0][DBFields.DBFIELD_OWNER_FNAME].ToString();
+            }
+            else
+            {
+                hdnOwnerID.Value = dr["CurrentOwnerID"].ToString();
+                hdnOwnerName.Value = "";
+                txtOwner.Text = "";
+            }
+
+            this.txtRefNo.Text = txtAssetID.Text;
+
+            //Disallow Combining Sub Documents if the document is issued to someone 
+            if (dr["IssuedTo"] != DBNull.Value)
+            {
+                if (Convert.ToInt32((dr["ReceivedBy"] == DBNull.Value ? "0" : dr["ReceivedBy"])) != Convert.ToInt32(Session["UserID"]))
+                {
+                    //this.uwtCreateAsset.Tabs.FromKey(TAB_KEY_ASSOCIATION).Visible = false; // J00006  by kjb on 25 Sep 2012
+                    //this.uwtCreateAsset.Tabs.FindTabFromKey(TAB_KEY_ASSOCIATION).Visible = false;
+                    this.IsAssociationTabInitialized = true; // To Avoid Postback
+                }
+            }
+
+        }
+        else
+        {
+            this.lblRefNoDisplay.Visible = false;
+            this.txtRefNo.Visible = false;
+        }
+
+        if (PageControlAccess.IsAuthorized(this, "Create"))
+        {
+
+        }
+
+        bool bEnableActions = (PageControlAccess.IsAuthorized(this, "Create"));
+
+        ibCreateAsset.Visible = bEnableActions;
+        ibCreateAsset.Enabled = bEnableActions;
+
+        ibCreateAsset2.Visible = bEnableActions;
+        ibCreateAsset2.Enabled = bEnableActions;
+
+        ibResetDocument.Visible = bEnableActions;
+        ibResetDocument.Enabled = bEnableActions;
+
+        ibReset2.Visible = bEnableActions;
+        ibReset2.Enabled = bEnableActions;
+    }
+
+    private void FillAssetDetails(int pDocumentId)
+    {
+        AssetBAL docBAL = new AssetBAL();
+        LocationBAL ObjLocation = new iAssetTrack.BAL.LocationBAL();
+        ManufacturerBAL objMfg = new ManufacturerBAL();
+        AssetModelBAL objAM = new AssetModelBAL();
+        TechCatBAL objTC = new TechCatBAL();
+
+        docBAL.AssetID = pDocumentId;
+        DataSet ds = docBAL.Retrieve();
+
+
+        if (ds.Tables[0].Rows.Count > 0)
+        {
+            DataRow dr = ds.Tables[0].Rows[0];
+
+
+            txtAssetID.Text = dr["RefNumber"].ToString();
+            //txtAssetName.Text = dr["AssetName"].ToString(); -- commented on 06 Sep 2011
+            // to display hstnames in the list box, dr{"AssetName"] will give comma separated host names
+            hdnHostNames.Value = dr["AssetName"].ToString() + ",";
+            AddHostsToList();
+
+            //--end 06 Sep 2011
+            ddlBusinessUnit.AutoPostBack = false;
+            ddlBusinessUnit.SelectedValue = dr["BusinessUnitID"].ToString();
+            populateSites(Convert.ToInt32(dr["BusinessUnitID"].ToString()));
+            //populateAssetTypes();
+            ddlSite.SelectedValue = dr["PrimarySiteID"].ToString();
+            //FillLocationsBySite();
+            //int locationID = 0;
+            LocationBAL objLoc = new LocationBAL();
+            objLoc.LocationID = Int32.Parse(dr["LastSeenLocationID"].ToString());
+            DataSet dsLoc = objLoc.retrieve();
+            if (dsLoc.Tables[0].Rows.Count > 0)
+            {
+                DataRow drLoc = dsLoc.Tables[0].Rows[0];
+
+                if (drLoc[DBFields.DBFIELD_LOCATIONID].ToString() == "0" || drLoc[DBFields.DBFIELD_LOCATIONID].ToString() == "")
+                    txtLocation.Text = "";
+                else
+                {
+                    txtLocation.Text = drLoc[DBFields.DBFIELD_LOCATION].ToString();
+                    hdnLocID.Value = drLoc[DBFields.DBFIELD_LOCATIONID].ToString();
+                }
+            }
+
+            //MOdel and Mfg
+            DataSet dsAM = objAM.retrieveByModelID(Int32.Parse(dr["ModelID"].ToString()));
+            if (dsAM.Tables[0].Rows.Count > 0)
+            {
+                int mfgID = Int32.Parse(dsAM.Tables[0].Rows[0]["MfgID"].ToString());
+                objMfg.MFGID = mfgID;
+                DataSet dsMfg = objMfg.retrieve();
+                if (dsMfg.Tables[0].Rows.Count > 0)
+                {
+                    ddlMfg.SelectedValue = dsMfg.Tables[0].Rows[0]["MfgID"].ToString();
+                }
+
+                if (dr[DBFields.DBFIELD_MODELID].ToString() == "0" || dr[DBFields.DBFIELD_MODELID].ToString() == "")
+                    txtModel.Text = "";
+                else
+                {
+                    txtModel.Text = dsAM.Tables[0].Rows[0][DBFields.DBFIELD_MODELNAME].ToString();
+                    hdnModelID.Value = dsAM.Tables[0].Rows[0][DBFields.DBFIELD_MODELID].ToString();
+                    hdnIsBlade.Value = dsAM.Tables[0].Rows[0][DBFields.DBFIELD_IS_BLADE].ToString();//IsBlade
+                    hdnModelName.Value = dsAM.Tables[0].Rows[0][DBFields.DBFIELD_MODELNAME].ToString();
+                }
+            }
+            // Technology Category by kjb on 06  july 2011
+            if (!string.IsNullOrEmpty(dr[DBFields.DBFIELD_TECHID].ToString()))
+            {
+                ddlTechCat.SelectedValue = dr[DBFields.DBFIELD_TECHID].ToString();
+                //ddlTechCat.Items[0].Attributes.Add("style", "color:gray;"); 
+                //dropdown1.Items.FindByValue("0").Attributes.Add("style", "font-bold:true")
+                //ddlTechCat.Items.FindByValue(dr[DBFields.DBFIELD_TECHID].ToString()).Attributes.Add("style", "color:DarkBlue;");
+                ddlTechCat.Items.FindByValue(dr[DBFields.DBFIELD_TECHID].ToString()).Attributes.Add("style", "background-color:LightBlue;");
+
+
+            }
+            else
+            {
+                //ddlTechCat.SelectedIndex = 0;
+                DataSet dsTC = objTC.retrieveByAssetID(Int32.Parse(dr["AssetID"].ToString()));
+                //ddlTechCat.SelectedValue = dr[DBFields.DBFIELD_TECHNAME].ToString();
+                ddlTechCat.SelectedValue = dsTC.Tables[0].Rows[0][DBFields.DBFIELD_TECHID].ToString();
+                ddlTechCat.Items.FindByValue(dsTC.Tables[0].Rows[0][DBFields.DBFIELD_TECHID].ToString()).Attributes.Add("style", "background-color:lightGreen;");
+                //ddlTechCat.Items.FindByValue("0").Attributes.Add("style", "color:gray;");
+            }
+            //MOunt
+            if (!string.IsNullOrEmpty(dr["RackorStand"].ToString()))
+            {
+                foreach (ListItem item in ddlMount.Items)
+                {
+                    if (item.Text.Equals(dr["RackorStand"].ToString()))
+                    {
+                        ddlMount.SelectedIndex = Int32.Parse(item.Value);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                ddlMount.SelectedIndex = 3; // by kjb on 04 June 2012
+            }
+
+
+            ddlBusinessUnit.AutoPostBack = true;
+            ddlAssetGroup.SelectedValue = dr["AssetGroupID"].ToString();
+            hdnOwnerID.Value = dr["AssetCreatedBy"].ToString();
+            hdnLocationID.Value = dr["DefaultLocationID"].ToString();
+            //txtCopyNum.Text = dr["PrintCopyNumber"].ToString();
+
+            bool bIsParent = (dr["IsParent"] == DBNull.Value ? false : Convert.ToBoolean(dr["IsParent"]));
+            bool bIsChild = (dr["ParentAssetID"] != DBNull.Value);
+
+            if (bIsParent)
+            {
+                this.imgAssociationStatus.ImageUrl = ISPARENT_IMAGE;
+            }
+            else if (bIsChild)
+            {
+                this.imgAssociationStatus.ImageUrl = ISCHILD_IMAGE;
+            }
+            else { this.imgAssociationStatus.Visible = false; }
+
+            //ddlOwner.SelectedValue = dr["AssetCreatedBy"].ToString();
+            //numPageCount.ValueInt = Convert.ToInt32(dr["NoOfPages"].ToString());
+            wdcCreatedDate.Value = Convert.ToDateTime(dr["AssetCreatedDate"].ToString());
+
+            OwnerBAL ownerBAL = new OwnerBAL();
+            ownerBAL.OwnerID = Convert.ToInt32(dr["CurrentOwnerID"].ToString());
+            Session["CO"] = Convert.ToInt32(dr["CurrentOwnerID"].ToString());//Added
+            if (ownerBAL.OwnerID > 0)
+            {
+                DataSet dsOwner = ownerBAL.retrieve();
+                hdnOwnerID.Value = dr["CurrentOwnerID"].ToString();
+                hdnOwnerName.Value = dsOwner.Tables[0].Rows[0][DBFields.DBFIELD_OWNER_LNAME].ToString() + "," + dsOwner.Tables[0].Rows[0][DBFields.DBFIELD_OWNER_FNAME].ToString();
+                txtOwner.Text = dsOwner.Tables[0].Rows[0][DBFields.DBFIELD_OWNER_LNAME].ToString() + "," + dsOwner.Tables[0].Rows[0][DBFields.DBFIELD_OWNER_FNAME].ToString();
+            }
+            else
+            {
+                hdnOwnerID.Value = dr["CurrentOwnerID"].ToString();
+                hdnOwnerName.Value = "";
+                txtOwner.Text = "";
+            }
+
+            this.txtRefNo.Text = txtAssetID.Text;
+
+            //Disallow Combining Sub Documents if the document is issued to someone 
+            if (dr["IssuedTo"] != DBNull.Value)
+            {
+                if (Convert.ToInt32((dr["ReceivedBy"] == DBNull.Value ? "0" : dr["ReceivedBy"])) != Convert.ToInt32(Session["UserID"]))
+                {
+                    this.IsAssociationTabInitialized = true; // To Avoid Postback
+                }
+            }
+            //OS,CPU,Core,Count
+            if (!string.IsNullOrEmpty(dr["OS"].ToString()))
+            {
+                txtOS.Text = dr["OS"].ToString();
+            }
+            if (!string.IsNullOrEmpty(dr["CPU"].ToString()))
+            {
+                txtCPU.Text = dr["CPU"].ToString();
+            }
+            if (!string.IsNullOrEmpty(dr["CPUCount"].ToString()))
+            {
+                txtCpuCount.Text = dr["CPUCount"].ToString();
+            }
+            if (!string.IsNullOrEmpty(dr["CPUCore"].ToString()))
+            {
+                txtCPUCore.Text = dr["CPUCore"].ToString();
+            }
+
+        }
+        else
+        {
+            this.lblRefNoDisplay.Visible = false;
+            this.txtRefNo.Visible = false;
+        }
+
+        if (PageControlAccess.IsAuthorized(this, "Create"))
+        {
+
+        }
+
+        bool bEnableActions = (PageControlAccess.IsAuthorized(this, "Create"));
+
+        ibCreateAsset.Visible = bEnableActions;
+        ibCreateAsset.Enabled = bEnableActions;
+
+        ibCreateAsset2.Visible = bEnableActions;
+        ibCreateAsset2.Enabled = bEnableActions;
+
+        ibResetDocument.Visible = bEnableActions;
+        ibResetDocument.Enabled = bEnableActions;
+
+        ibReset2.Visible = bEnableActions;
+        ibReset2.Enabled = bEnableActions;
+    }
+
+    /// <summary>
+    /// Adds Hostnames to List box from a comma separated string
+    /// <created by> kjb</created>
+    /// <Created on >06 Sep 2011</Created>
+    /// </summary>
+    private void AddHostsToList()
+    {
+        if (!string.IsNullOrEmpty(hdnHostNames.Value))
+        {
+            lstHosts.Items.Clear();
+            string[] items = hdnHostNames.Value.Trim(',').Split(',');
+            ListItem[] lItems = new ListItem[items.Length];
+            int idx = 0;
+            foreach (string item in items)
+            {
+                lItems[idx++] = new ListItem(item, item);
+            }
+            lstHosts.Items.AddRange(lItems);
+        }
+    }
+
+
+    private void ResetForm()
+    {
+        this.IsAssociationTabInitialized = false;
+        this.IsAuthorizationTabInitialized = false;
+
+        if (this.AssetID > 0)
+        {
+            FillAssetDetails(this.AssetID);
+        }
+        else
+        {
+
+            ManageUsersBAL userBAL = new ManageUsersBAL();
+            userBAL.UserID = Convert.ToInt32(Session["UserID"]);
+
+            userBAL.retrieveUserObject();
+
+            this.wdcCreatedDate.Value = DateTime.Today;
+            this.txtAssetID.Text = "";
+            this.txtAssetName.Text = "";
+            this.txtOwner.Text = "";
+            this.ddlTechCat.SelectedIndex = 0;
+            this.ddlMount.SelectedIndex = 0;
+
+            this.hdnOwnerID.Value = "0";
+            //this.numPageCount.ValueInt = 1;
+            this.ddlBusinessUnit.SelectedValue = Convert.ToString(userBAL.BusinessUnitID);
+            populateSites(userBAL.BusinessUnitID);
+
+            // added new code on 12th Oct 2011
+            int locationID = 0;
+            LocationBAL objLoc = new LocationBAL();
+            if (!string.IsNullOrEmpty(hdnLocID.Value))
+                locationID = int.Parse(hdnLocID.Value);
+            if (locationID != 0)
+            {
+                objLoc.LocationID = locationID;
+                DataSet ds = objLoc.retrieve();
+                if (ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    DataRow dr = ds.Tables[0].Rows[0];
+
+                    txtLocation.Text = dr[DBFields.DBFIELD_LOCATION].ToString();
+                    hdnLocID.Value = dr[DBFields.DBFIELD_LOCATIONID].ToString();
+
+                }
+            }
+            else
+            {
+                txtLocation.Text = "";
+                hdnLocID.Value = "";
+            }
+            // model
+            txtModel.Text = "";
+            hdnModelID.Value = "";
+
+            //this.ddlSite.SelectedValue = Convert.ToString(userBAL.DepartmentID);
+            this.ddlAssetGroup.SelectedValue = "-1";
+            // added by kjb 22-feb 2011 to show error details.
+            lblErrorMsg.Visible = false;
+            lblErrorMsg.Text = "";
+
+        }
+        this.ddlSite.Focus();
+        //this.txtAssetID.Focus();
+
+    }
+
+
+    #endregion Database Retrieval and Updates
+
+    protected void ddlBusinessUnit_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        //Business Unit ID for TreeList call
+        if (ddlBusinessUnit != null && ddlBusinessUnit.Items.Count > 0)
+            ddlBusinessUnitVal = ddlBusinessUnit.SelectedItem.Value;
+
+
+        int iBusinessUnitID = Int32.Parse(ddlBusinessUnit.SelectedValue);
+        //populateUsers(iBusinessUnitID);
+        populateSites(iBusinessUnitID);
+        // reset mfg 
+        ddlMfg.SelectedIndex = 0;
+        //LoadModels();
+
+
+    }
+    protected void ibCreateAsset_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        //v3.8
+        // check whether site restriction is enabled or not
+        // if enabled check whether user has write permission on the selected 
+        // if user has write permission than allow the create asset 
+        //else show message and cancel create asset.
+        if (bool.Parse(Session["SiteRestrictEnabled"].ToString()) == false)
+        {
+            //check Mount type selected, if mount type = 'rack mount' than check whether start position and no of rus specified
+            // if not return and ask user to specify start position and no of rus.
+            //if mount type is 'standalone' than these values are optional
+            int locationID = 0;
+            if (!string.IsNullOrEmpty(hdnLocID.Value))
+            {
+                locationID = int.Parse(hdnLocID.Value.ToString());
+                LocationBAL locBAL = new LocationBAL();
+                locBAL.LocationID = locationID;
+                DataSet dsLoc = locBAL.retrieve();
+                if (dsLoc.Tables.Count > 0 && dsLoc.Tables[3].Rows.Count > 0)
+                {
+                    string locType = dsLoc.Tables[3].Rows[0][DBFields.DBFIELD_LOCATIONTYPE].ToString();
+                    if (locType.ToLower().CompareTo("rack") == 0)
+                    {
+                        if (ddlMount.SelectedItem.Text.ToLower().CompareTo("rackmount") == 0)
+                        {
+                            //rack
+
+                            //release current u-position
+                            int startpos, noofrus;
+                            if (!String.IsNullOrEmpty(Session["StartPos"].ToString()))
+                                startpos = int.Parse(Session["StartPos"].ToString());
+                            else
+                            {
+                                startpos = 0;
+                            }
+
+                            if (!String.IsNullOrEmpty(Session["NoOfRUs"].ToString()))
+                                noofrus = int.Parse(Session["NoOfRUs"].ToString());
+                            else
+                            {
+                                noofrus = 0;
+                            }
+
+                            locBAL.UpdateUpositionDetails(locationID, startpos, noofrus, false);
+
+                            locBAL.LocationID = locationID;
+                            DataSet ds = locBAL.retrieveUPositions();
+                            byte[] bytes = (byte[])(ds.Tables[0].Rows[0][DBFields.DBFIELD_UPOSITIONS]);
+
+                            if (ddlPosition.SelectedIndex <= 0 || ddlNoOfRU.SelectedIndex <= 0)
+                            {
+                                lblErrorMsg.Visible = true;
+                                lblErrorMsg.Text = "select Start Position and No of RUs for rack mount asset";
+                                return;
+                            }
+                            else
+                            {
+                                BitArray positions = new BitArray(48);
+                                int idx = 0;
+                                for (int i = 0; i < bytes.Length; i++)
+                                {
+                                    BitArray x = new BitArray(new byte[] { bytes[i] });
+                                    Reverse(x);
+                                    for (int j = 0; j < x.Length; j++)
+                                    {
+                                        positions.Set(idx++, x[j]);
+                                    }
+                                }
+
+
+                                if (!CheckUPosition(int.Parse(ddlPosition.SelectedItem.Text), int.Parse(ddlNoOfRU.SelectedItem.Text), positions))
+                                {
+                                    lblErrorMsg.Visible = true;
+                                    lblErrorMsg.Text = "U-position is in use";
+                                    return;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //standalone optional
+                        }
+                    }
+                    else
+                    {
+                        //Room or Row 
+                    }
+                }
+                else
+                {
+                    lblErrorMsg.Visible = true;
+                    lblErrorMsg.Text = "Invalid location. Select location";
+                    return;
+                }
+            }
+            else
+            {
+                lblErrorMsg.Visible = true;
+                lblErrorMsg.Text = "Invalid location. Select location";
+                return;
+            }
+            Create();
+            //--//
+        }
+        else
+        {
+            //Site restriction enabled
+            SiteRestrictionsBAL objSRBAL = new SiteRestrictionsBAL();
+            objSRBAL.UserID = int.Parse(Session["UserID"].ToString());
+            DataSet dsSR = objSRBAL.RetrieveByUserID();
+            DataTable dtSR = dsSR.Tables[0];
+            //check the dataset to see whether the site has read/write permission than only allow create.
+            //0-no Access, 1- Read,2- Read/Write
+            DataRow[] rows = dtSR.Select("SiteID = " + ddlSite.SelectedItem.Value);
+            int restrictionType = int.Parse(rows[0]["ResTypeID"].ToString());
+            if (restrictionType == 2)
+            {
+                Create();
+            }
+            else
+            {
+                lblErrorMsg.Visible = true;
+                lblErrorMsg.Text = "No write permissions on the selected site. Asset update is cancelled";
+            }
+        }
+        //HIde Location Selection image button (v4.5)
+        //Location change will be disabled in Edit Asset and Modify All pages
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "disableLocButton();", true);
+    }
+
+    protected void ibDeleteHost_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        //if (lstHosts.SelectedIndex > 0)
+        //{
+        //    lstHosts.Items.Remove(lstHosts.SelectedItem);
+        //}
+    }
+
+    protected void ibAddHost_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+
+    }
+
+
+
+
+    protected void ibResetDocument_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        this.IsAssociationTabInitialized = false;
+        this.IsAuthorizationTabInitialized = false;
+        //if (hdnDocId.Value == "")
+        if (this.AssetID == 0)
+        {
+            ResetForm();
+        }
+        else
+        {
+            FillAssetDetails(this.AssetID);
+            //lblMessage.Visible = false;
+            lblErrorMsg.Visible = false;
+        }
+        //this.uwtCreateAsset.SelectedTabIndex = 1; // j00006 by kjb 0n 25 Sep 2012
+        //this.uwtCreateAsset.SelectedIndex = 1; // coomented by kjb on 27 Feb 2013 because its collapsing the tab
+    }
+
+
+    protected void ibClose_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        if (Session["AssetID"] != null)
+        {
+            Response.Redirect("ViewAsset.aspx?ID=" + Session["AssetID"].ToString());
+        }
+    }
+
+    //private void getChildLocations(DataTreeNode node, int LocationID)
+    //{
+    //    DataSet dsLocationbyLocation = objLocation.GetLocationBYLocation(LocationID);
+    //    DataTable dtLocationbyLocation = dsLocationbyLocation.Tables[0];
+
+    //    if (dtLocationbyLocation.Rows.Count > 0)
+    //    {
+    //        using (DataTableReader dtLocationbyLocationRdr = dtLocationbyLocation.CreateDataReader())
+    //        {
+    //            while (dtLocationbyLocationRdr.Read())
+    //            {
+    //                DataTreeNode subLocationNode = new DataTreeNode();
+    //                subLocationNode.Text = dtLocationbyLocationRdr.GetValue(1).ToString();
+    //                subLocationNode.Value = dtLocationbyLocationRdr.GetValue(0).ToString();
+    //                node.Nodes.Add(subLocationNode);
+    //                if (Int32.Parse(dtLocationbyLocationRdr.GetValue(5).ToString()) > 0) // child count
+    //                    getChildLocations(subLocationNode, Convert.ToInt32(dtLocationbyLocationRdr.GetValue(0).ToString()));
+    //            }
+    //        }
+    //    }
+    //}
+
+
+
+    protected void txtAssetID_TextChanged(object sender, EventArgs e)
+    {
+        lblErrorMsg.Visible = false;
+        lblErrorMsg.Text = "";
+    }
+    protected void ddlMfg_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlMfg != null && ddlMfg.Items.Count > 0)
+        {
+            ddlMfgName = ddlMfg.SelectedItem.Text;
+            ddlMfgID = ddlMfg.SelectedItem.Value;
+        }
+
+
+        hdnModelID.Value = "";
+        hdnModelName.Value = "";
+        txtModel.Text = "";
+    }
+
+
+    private void getChildModels(DataTreeNode node, int ModelID)
+    {
+        AssetModelBAL objChildAM = new AssetModelBAL();
+        DataSet dsChildAM = objChildAM.retrieveByParentModelID(ModelID);
+        DataTable dtChildAM = dsChildAM.Tables[0];
+        using (DataTableReader dtModelByModelRdr = dtChildAM.CreateDataReader())
+        {
+            while (dtModelByModelRdr.Read())
+            {
+                DataTreeNode ModelNode = new DataTreeNode();
+                ModelNode.Text = dtModelByModelRdr.GetValue(1).ToString();
+                ModelNode.Value = dtModelByModelRdr.GetValue(0).ToString();
+                node.Nodes.Add(ModelNode);
+                getChildModels(ModelNode, Convert.ToInt32(dtModelByModelRdr.GetValue(0).ToString()));
+            }
+        }
+
+    }
+
+
+    protected void PopulatetechList()
+    {
+        TechCatBAL objTechCal = new TechCatBAL();
+        DataSet dsTechCal = objTechCal.retrieve();
+        DataTable dtTechCal = dsTechCal.Tables[0];
+
+        DataRow dr = dtTechCal.NewRow();
+        dr[0] = 0;
+        dr[1] = "-Select-";
+        dtTechCal.Rows.InsertAt(dr, 0);
+
+        ddlTechCat.DataSource = dtTechCal;
+        ddlTechCat.DataValueField = dtTechCal.Columns[0].ToString();
+        ddlTechCat.DataTextField = dtTechCal.Columns[1].ToString();
+        ddlTechCat.DataBind();
+        //ddlTechCat.SelectedValue = "Network";
+        //ddlTechCat.Items[0].Attributes.Add("style", "color:gray;"); 
+
+    }
+    protected void ddlTechCat_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+    protected void ddlMount_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void ddlSite_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlSite != null && ddlSite.Items.Count > 0)
+        {
+            ddlSiteVal = ddlSite.SelectedItem.Value;
+        }
+        hdnLocID.Value = "";
+        hdnLocName.Value = "";
+        txtLocation.Text = "";
+    }
+
+    protected void btnFirst_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+
+        currec = 0;
+        string strAssetId = Session["AssetIDs"].ToString();
+        dt = GetData(strAssetId);
+        ShowData(currec);
+        ScrollControl();
+        lblErrorMsg.Text = "";
+    }
+
+    protected void btnPrevious_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+
+        currec -= 1;
+        string strAssetId = Session["AssetIDs"].ToString();
+        dt = GetData(strAssetId);
+        ShowData(currec);
+        ScrollControl();
+        lblErrorMsg.Text = "";
+    }
+
+    protected void btnNext_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+
+        currec += 1;
+        string strAssetId = Session["AssetIDs"].ToString();
+        dt = GetData(strAssetId);
+        ShowData(currec);
+        ScrollControl();
+        lblErrorMsg.Text = "";
+    }
+
+    protected void btnLast_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+
+        currec = totrec - 1;
+        string strAssetId = Session["AssetIDs"].ToString();
+        dt = GetData(strAssetId);
+        ShowData(currec);
+        ScrollControl();
+        lblErrorMsg.Text = "";
+    }
+    public void ShowData(int cr)
+    {
+        DataRow dr = dt.Rows[cr];
+        //HIde Location Selection image button (v4.5)
+        //Location change will be disabled in Edit Asset and Modify All pages
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "disableLocButton();", true);
+
+        CompareItem(ddlBusinessUnit, Convert.ToString(dr["BusinessUnit"]));
+        CompareItem(ddlSite, Convert.ToString(dr["Site"]));
+        txtLocation.Text = Convert.ToString(dr["Location"]);
+        txtAssetID.Text = Convert.ToString(dr["RefNo"]);
+        txtRefNo.Text = Convert.ToString(dr["RefNo"]);
+        // txtAssetName.Text = Convert.ToString(dr["HostName"]);
+        // ddlMfg.SelectedItem.Text = Convert.ToString(dr["Mfg"]);
+        ddlMfg.ClearSelection();
+        //if (Convert.ToString(dr["Mfg"]) == "")//Added on 06Mar2013
+        if (string.IsNullOrEmpty(Convert.ToString(dr["Mfg"])))
+        {
+            ddlMfg.SelectedIndex = -1;//Added on 06Mar2013 
+        }
+        else
+        {
+            CompareItem(ddlMfg, Convert.ToString(dr["Mfg"]));
+        }
+        if (string.IsNullOrEmpty(Convert.ToString(dr["Model"])))
+        {
+            txtModel.Text = "No Model";
+            hdnModelName.Value = "No Model";
+        }
+        else
+        {
+            txtModel.Text = Convert.ToString(dr["Model"]);
+            hdnModelName.Value = Convert.ToString(dr["Model"]);
+        }
+
+        Hidden1.Value = Convert.ToString(dr["TechCat"]);
+        //host names
+        // hdnHostNames.Value = dr["AssetName"].ToString() + ",";//Commneted on 07May2013
+        hdnHostNames.Value = dr["HostName"].ToString() + ",";//Added on 07May2013
+        AddHostsToList();
+
+
+        if ((Hidden1.Value == ""))
+        {
+            CompareItem(ddlTechCat, "-Select-");
+        }
+        else
+        {
+            CompareItem(ddlTechCat, Convert.ToString(dr["TechCat"]));
+        }
+        CompareItem(ddlMount, Convert.ToString(dr["RackOrStand"]));
+        CompareItem(ddlAssetGroup, Convert.ToString(dr["AssetGroup"]));
+        txtOS.Text = Convert.ToString(dr["OS"]);
+        txtCPU.Text = Convert.ToString(dr["CPU"]);
+        txtCpuCount.Text = Convert.ToString(dr["CpuCount"]);
+        txtCPUCore.Text = Convert.ToString(dr["CpuCore"]);
+        //txtOwner.Text = Convert.ToString(dr["CreatedBy"]);//Commented on 06Mar2013
+
+        hdnLocID.Value = Convert.ToInt32(dr["DefaultLocationID"]).ToString();
+        hdnOwnerID.Value = Convert.ToString(dr["CurrentOwnerID"]);
+        hdnOwnerName.Value = Convert.ToString(dr["CurrentOwner"]);//Added on on 06Mar2013
+        txtOwner.Text = Convert.ToString(dr["CurrentOwner"]);//Added on on 06Mar2013
+        if (dr["ModelId"].ToString() == "")//Added on on 06Mar2013
+        {
+            hdnModelID.Value = "0";//Added on on 06Mar2013
+        }
+        else
+        {
+            hdnModelID.Value = Convert.ToInt32(dr["ModelId"]).ToString();
+            //if modelid not equal to zero, get IsBlade details
+            objAM = new AssetModelBAL();
+            DataSet dsAM = objAM.retrieveByModelID(Int32.Parse(dr["ModelID"].ToString()));
+            hdnIsBlade.Value = dsAM.Tables[0].Rows[0][DBFields.DBFIELD_IS_BLADE].ToString();//IsBlade
+        }
+        hdnAssetID.Value = Convert.ToInt32(dr["AssetId"]).ToString();
+        wdcCreatedDate.Value = Convert.ToDateTime(dr["AssetCreatedDate"].ToString());
+
+
+        //*Added on on 07May2013
+        txtParentAsset.Text = Convert.ToString(dr["Parent"]);
+        txtAssetNameA.Text = Convert.ToString(dr["AssetName"]);//*
+
+
+        //v3.8
+        // show remove parent only when parent exists.
+        if (!string.IsNullOrEmpty(txtParentAsset.Text))
+        {
+            imgRemoveParent.Visible = true;
+            //hide imgLocButton if parent exists
+            //string script = "<script type='text/javascript'>disableLocButton();</script>";
+            //ClientScript.RegisterClientScriptBlock(this.GetType(), "DisableLocButton", script,false);
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "script", "disableLocButton();", true);
+        }
+
+
+        //v3.8 -- kjb o 04 june 2013
+        txtBarcode.Text = dr["CurrentRFIDCardNumber"].ToString();
+
+        //--end
+        //*V3.8-Added on 16Oct2013-By Amar Vidya
+        if (!string.IsNullOrEmpty(dr["Orientation"].ToString()))
+        {
+            ddlOrientation.SelectedItem.Text = dr["Orientation"].ToString();
+        }
+        if (!string.IsNullOrEmpty(dr["StartPos"].ToString()))
+        {
+            if (dr["StartPos"].ToString().Trim().CompareTo("0") != 0)
+            {
+                Session["StartPos"] = dr["StartPos"].ToString();
+                ddlPosition.SelectedValue = dr["StartPos"].ToString();
+            }
+            else
+            {
+                ddlPosition.SelectedIndex = 0;
+            }
+        }
+        if (!string.IsNullOrEmpty(dr["NoOfRUs"].ToString()))
+        {
+            if (dr["NoOfRUs"].ToString().Trim().CompareTo("0") != 0)
+            {
+                Session["NoOfRUs"] = dr["NoOfRUs"].ToString(); ;
+                ddlNoOfRU.SelectedValue = dr["NoOfRUs"].ToString();
+            }
+            else
+            {
+                ddlNoOfRU.SelectedIndex = 0;
+            }
+        }//*
+    }
+
+
+    public DataTable GetData(string AssetId)
+    {
+        AssetBAL objAssetModifyAll = new AssetBAL();
+        //LocationBAL ObjLocation = new iAssetTrack.BAL.LocationBAL();
+        //ManufacturerBAL objMfg = new ManufacturerBAL();
+        //AssetModelBAL objAM = new AssetModelBAL();
+        //TechCatBAL objTC = new TechCatBAL();
+
+        DataTable DtAsset = new DataTable();
+
+        DataColumn dc = new DataColumn("BusinessUnit", typeof(string));
+
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("Site", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("Location", typeof(string));
+        DtAsset.Columns.Add(dc);
+        //dc = new DataColumn("RefNo", typeof(int));
+        dc = new DataColumn("RefNo", typeof(string));
+        DtAsset.Columns.Add(dc);
+        //dc = new DataColumn("HostName", typeof(string));
+        //DtAsset.Columns.Add(dc);
+        dc = new DataColumn("Mfg", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("Model", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("TechCat", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("RackorStand", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("AssetGroup", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("OS", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("CPU", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("CpuCount", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("CpuCore", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("CreatedBy", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("DefaultLocationID", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("ModelId", typeof(string));
+        //DtEmp.Columns.Add(dc);UserID
+        //dc = new DataColumn("CreatedDate", typeof(DateTime));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("UserID", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("CurrentOwnerID", typeof(string));//Added on 06Mar2013
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("AssetId", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("AssetCreatedDate", typeof(DateTime));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("HostName", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("CurrentOwner", typeof(string));//Added on 06Mar2013
+        DtAsset.Columns.Add(dc);
+        //*Added on 07May2013
+        dc = new DataColumn("Parent", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("AssetName", typeof(string));
+        DtAsset.Columns.Add(dc);//*
+        dc = new DataColumn("CurrentRFIDCardNumber", typeof(string));
+        DtAsset.Columns.Add(dc);//v3.8 -- 04june2013
+
+        //*V3.8-Added on 14Oct2013-By Amar Vidya
+        dc = new DataColumn("Orientation", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("StartPos", typeof(string));
+        DtAsset.Columns.Add(dc);
+        dc = new DataColumn("NoOfRUs", typeof(string));
+        DtAsset.Columns.Add(dc);//*
+
+
+
+        DataSet dtModify = objAssetModifyAll.GetAssetDetailsModifyAll(AssetId);
+
+        for (int i = 0; i <= dtModify.Tables[0].Rows.Count - 1; i++)
+        {
+            DtAsset.Rows.Add(dtModify.Tables[0].Rows[i]["BusinessUnit"].ToString(), dtModify.Tables[0].Rows[i]["Site"].ToString(), dtModify.Tables[0].Rows[i]["LastLocation"].ToString(),
+                dtModify.Tables[0].Rows[i]["RefNumber"].ToString(), dtModify.Tables[0].Rows[i]["MfgName"].ToString(),
+                dtModify.Tables[0].Rows[i]["ModelName"].ToString(), dtModify.Tables[0].Rows[i]["TechName"].ToString(),
+                dtModify.Tables[0].Rows[i]["RackorStand"].ToString(), dtModify.Tables[0].Rows[i]["AssetGroup"].ToString(),
+                dtModify.Tables[0].Rows[i]["OS"].ToString(), dtModify.Tables[0].Rows[i]["CPU"].ToString(),
+                dtModify.Tables[0].Rows[i]["CPUCount"].ToString(), dtModify.Tables[0].Rows[i]["CPUCore"].ToString(),
+                dtModify.Tables[0].Rows[i]["CreatedBy"].ToString(), dtModify.Tables[0].Rows[i]["DefaultLocationID"].ToString(),
+                dtModify.Tables[0].Rows[i]["ModelId"].ToString(), dtModify.Tables[0].Rows[i]["UserID"].ToString(), dtModify.Tables[0].Rows[i]["CurrentOwnerID"].ToString(),//Added on 06Mar2013
+                dtModify.Tables[0].Rows[i]["AssetId"].ToString(), Convert.ToDateTime(dtModify.Tables[0].Rows[i]["CreatedDate"].ToString()), dtModify.Tables[0].Rows[i]["HostName"].ToString(), dtModify.Tables[0].Rows[i]["CurrentOwner"].ToString(),//Added on 06Mar2013
+           dtModify.Tables[0].Rows[i]["Parent"].ToString(), dtModify.Tables[0].Rows[i]["AssetName"].ToString(), dtModify.Tables[0].Rows[i]["CurrentRFIDCardNumber"].ToString(),
+             dtModify.Tables[0].Rows[i]["Orientation"].ToString(), dtModify.Tables[0].Rows[i]["StartPos"].ToString(), dtModify.Tables[0].Rows[i]["NoOfRUs"].ToString());
+
+            if (!string.IsNullOrEmpty(dtModify.Tables[0].Rows[i]["CurrentOwnerID"].ToString().Trim()))
+                Session["CO"] = Convert.ToInt32(dtModify.Tables[0].Rows[i]["CurrentOwnerID"].ToString().Trim());
+            else
+                Session["CO"] = 0;
+
+        }
+
+        return DtAsset;
+    }
+
+
+    void ScrollControl()
+    {
+        if (totrec == 0)
+        {
+            btnFirst.Enabled = false;
+            btnPrevious.Enabled = false;
+            btnNext.Enabled = false;
+            btnLast.Enabled = false;
+        }
+        else if (currec >= totrec - 1)
+        {
+            btnFirst.Enabled = true;
+            btnPrevious.Enabled = true;
+            btnNext.Enabled = false;
+            btnLast.Enabled = false;
+        }
+        else if (currec <= 0)
+        {
+            btnFirst.Enabled = false;
+            btnPrevious.Enabled = false;
+            btnNext.Enabled = true;
+            btnLast.Enabled = true;
+        }
+        else
+        {
+            btnFirst.Enabled = true;
+            btnPrevious.Enabled = true;
+            btnNext.Enabled = true;
+            btnLast.Enabled = true;
+
+        }
+    }
+    //*V3.8-Added on 16Oct2013-By Amar Vidya
+    private void LoadStartPositions()
+    {
+        ddlPosition.Items.Add("--Select--");
+        for (int i = 1; i <= 48; i++)
+        {
+            ddlPosition.Items.Add(i.ToString());
+        }
+    }
+    private void LoadNoofRus()
+    {
+        ddlNoOfRU.Items.Add("--Select--");
+        for (int i = 1; i <= 48; i++)
+        {
+            ddlNoOfRU.Items.Add(i.ToString());
+        }
+    }
+    private bool CheckUPosition(int StartPos, int NoOfRUs, BitArray RackPositions)
+    {
+        bool positionExists = true;
+
+        for (int i = StartPos - 1; i < (StartPos + NoOfRUs - 1); i++)
+        {
+            if (RackPositions.Get(i))
+            {
+                positionExists = false;
+                break;
+            }
+        }
+        return positionExists;
+    }
+
+    private void Reverse(BitArray array)
+    {
+        int length = array.Length;
+        int mid = (length / 2);
+        for (int i = 0; i < mid; i++)
+        {
+            bool bit = array[i];
+            array[i] = array[length - i - 1];
+            array[length - i - 1] = bit;
+        }
+    }
+
+}

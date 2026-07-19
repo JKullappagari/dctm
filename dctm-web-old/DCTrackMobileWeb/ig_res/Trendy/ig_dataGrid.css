@@ -1,0 +1,1074 @@
+.igg_TrendyControl
+{
+	background-position:center ;
+	font-size:11px;
+	border-style:solid;
+	border-width:1px;
+}
+
+.igg_TrendyControl table
+{
+    border-collapse:separate;
+}
+
+.igg_TrendyHeader
+{
+	background-color:#0F9A48;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/header.gif);
+	color:White;
+}
+
+.igg_TrendyHeaderCaption
+{
+	font-size: 12px;
+	padding:3px 0 3px 8px;
+	overflow: hidden;
+	text-align:left;
+	vertical-align:middle;
+	border-top:1px solid #12b956;
+    border-right:1px solid #0c7b3a;
+    border-bottom:1px solid #095c2b;
+    border-left:1px solid #15d865;
+}
+
+.igg_TrendyGroupFieldHeaderCaption
+{
+    text-align: center;
+    text-shadow: 1px 1px #042e15;
+    font-size: 14px;
+}
+
+.igg_TrendyFooter
+{
+	background-color:#E4F0FA;
+	background-position:center ;
+	background-image: url(images/igg_footer.gif);
+	height: 21px;
+	line-height: 21px;
+}
+
+
+.igg_TrendyFooterCaption
+{
+	font-weight:normal;
+	font-size:10px;
+	padding-left:8px;
+	overflow: hidden;
+	text-align:left;
+}
+
+
+tbody.igg_TrendyItem>tr>td
+{
+	background-color:White;
+	border-top:solid 1px #D8D8D8;
+	height: 20px;
+	line-height: 20px;
+	padding:5px 8px 5px 8px;
+	overflow: hidden;
+	text-align:left;
+	vertical-align:middle;
+}
+
+
+.igg_TrendyScrollbarIntersection
+{
+}
+
+
+.igg_TrendyRowSelector
+{
+	background-color:White;
+	border-right:solid 1px #D8D8D8;
+	border-top:solid 1px #D8D8D8;
+	border-left:solid 1px #D8D8D8;
+	width: 35px;
+	color:Black;
+	text-align:center;
+	vertical-align:middle;
+}
+
+
+.igg_TrendyPager
+{
+	background-position:bottom ;
+	background-image: url(images/igg_footer.gif);
+	border-width:0px;
+	border-top:solid 1px #D8D8D8;
+	padding-top:10px;
+	padding-right:10px;
+	padding-bottom:10px;
+	text-align:right;
+}
+
+
+.igg_TrendyPageLink
+{
+	margin-right:10px;
+	cursor:pointer;
+	color:#999999;
+}
+
+
+.igg_TrendyFilterRuleDropDown
+{
+	background-attachment:scroll;
+	background-color:#DDF4E3;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_summarydropdownbg.png);
+	border:solid 1px #119A49;
+	font-size:xx-small;
+	font-family: verdana;
+	width: 150px;
+	overflow-x:hidden!important;
+	overflow-y: auto;
+	max-height: 150px;
+	height: auto !important;
+	height: 150px;
+	box-shadow: 0 4px 8px 0 #5A5A5A;
+	filter: progid : DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#5A5A5A');
+}
+
+
+.igg_TrendyFilterButton
+{
+	background-color:Transparent;
+	border-style:solid;
+	border-width:0px;
+	height: 18px;
+}
+
+
+.igg_TrendyResizeIndicator
+{
+	background-color:#0F9A48;
+	width: 2px;
+}
+
+
+.igg_TrendyFixedColumnSeparatorCssClass
+{
+	background-color:#33CCFF;
+	width: 3px;
+}
+
+
+.igg_TrendyFixedColumnPinButtonCssClass
+{
+	padding-top:0px;
+	padding-right:3px;
+	cursor:pointer;
+	vertical-align:middle;
+}
+
+
+.igg_TrendyVirtualScrollTooltip
+{
+	background-image: url(images/igg_header.gif);
+	font-size:10px;
+	border:solid 1px #109A48;
+	padding:3px;
+	color:White;
+	text-align:center;
+}
+
+
+.igg_TrendyTopDragIndicator
+{
+	background-repeat:no-repeat;
+	background-image: url(images/igg_topdragindicator.png);
+	margin-top:2px;
+	width: 11px;
+	height: 6px;
+	z-index: 100;
+}
+
+
+.igg_TrendyMiddleDragIndicator
+{
+	background-repeat:repeat-y;
+	background-position:center ;
+	background-image: url(images/igg_middledragindicator.png);
+	width: 11px;
+}
+
+
+.igg_TrendyBottomDragIndicator
+{
+	background-repeat:no-repeat;
+	background-image: url(images/igg_bottomdragindicator.png);
+	margin-top:-2px;
+	width: 11px;
+	height: 6px;
+	position: absolute;
+	z-index: 100;
+}
+
+
+.igg_TrendyDragMarkup
+{
+}
+
+
+.igg_TrendySummary
+{
+	font-weight:bold;
+	font-size:9px;
+	border-bottom:solid 1px #CBCBCB;
+	overflow: hidden;
+	line-height: 20px;
+	color:#444444;
+	text-align:right;
+}
+
+
+.igg_TrendySummaryButton
+{
+	background-color: none;
+	border-style:none;
+	border-color: medium;
+	margin:0px;
+	padding:0px;
+	cursor:pointer;
+}
+
+
+.igg_TrendySummaryDropDown
+{
+	background-attachment:scroll;
+	background-color:#DDF4E3;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_summarydropdownbg.png);
+	border:solid 1px #119A49;
+	font-size:11px;
+	font-family: verdana;
+	padding:12px;
+	width: 146px;
+	_overflow: hidden!important;
+	box-shadow: 0 4px 8px 0 #5A5A5A;
+	filter: progid : DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#5A5A5A');
+}
+
+
+.igg_TrendySummaryDropDownItem
+{
+	font-weight:normal;
+	cursor:default;
+	color:Black;
+}
+
+
+.igg_TrendySummaryRow
+{
+}
+
+
+.igg_TrendyFixedColumnHeaderCssClass
+{
+}
+
+
+tbody>tr.igg_TrendyAlt>td
+{
+	background-color:#F4F4F4;
+	background-image:none;
+}
+
+
+.igg_TrendyHeaderRowSelector
+{
+    background-color: Transparent;
+    border-color: #12B956 #0C7B3A #095C2B #15D865;
+    border-style: solid;
+    border-width: 1px;
+}
+
+
+.igg_TrendyFooterRowSelector
+{
+	background-color:Transparent;
+	border-width:0px;
+}
+
+
+.igg_TrendySelectedHeader
+{
+}
+
+
+.igg_TrendyPageCurrent
+{
+	padding-right:10px;
+	color:#109A48;
+}
+
+
+tr.igg_TrendyAddNewRow>td
+{
+	background-color:#F7F7F7;
+	font-size:10px;
+	border-top:solid 1px #CCCCCC;
+	border-right:solid 1px #CCCCCC;
+	border-bottom-style:none;
+	border-left-style:none;
+	padding-left:7px;
+	height: 22px;
+	overflow: hidden;
+	color:Black;
+}
+
+
+.igg_TrendyAddNewRowSelectorImageCssClass
+{
+	background-color:Transparent;
+	background-repeat:no-repeat;
+	background-position:center ;
+	background-image: url(images/addnewrow_image.gif);
+}
+
+
+.igg_TrendyAddNewRowSelectorCssClass
+{
+	background-color:#F7F7F7;
+	border-top:solid 1px #CCCCCC;
+	border-right:solid 1px #CCCCCC;
+	border-bottom-style:none;
+	height: 22px;
+}
+
+
+.igg_TrendyAddNewRowExpansionColumnCssClass
+{
+}
+
+
+.igg_TrendyFilterRow
+{
+	font-size:10px;
+	border-top:solid 0px #CCCCCC;
+	border-right:solid 0px #CCCCCC;
+	border-bottom:solid 1px #CCCCCC;
+	border-left:solid 1px #CCCCCC;
+	height: 22px;
+}
+
+
+.igg_TrendyFilterRuleDropDownItem
+{
+	font-size:11px;
+	padding:1px 3px 1px 3px;
+}
+
+
+.igg_TrendyFilterRowSelectorImage
+{
+}
+
+
+.igg_TrendyFilterRowSelectorCssClass
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_filterrow.gif);
+	border-top:solid 1px #CCCCCC;
+	border-right:solid 1px #CCCCCC;
+	border-bottom:solid 0px #CCCCCC;
+	border-left:solid 0px #CCCCCC;
+	height: 22px;
+	color:Black;
+}
+
+
+tr.igg_TrendyFilterRow>td
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_filterrow.gif);
+	border-top:solid 1px #CCCCCC;
+	border-right:solid 1px #CCCCCC;
+	border-bottom:solid 0px #CCCCCC;
+	border-left:solid 0px #CCCCCC;
+	color:Black;
+}
+
+
+.igg_TrendyFilterRowExpansionColumnCssClass
+{
+}
+
+
+tbody.igg_TrendyFixedColumnCellCssClass>tr>td
+{
+}
+
+
+.igg_TrendyFixedColumnFooterCssClass
+{
+	font-weight:bold;
+}
+
+
+.igg_TrendyHeaderScrollbarIntersection
+{
+}
+
+
+.igg_TrendyFooterScrollbarIntersection
+{
+}
+
+
+.igg_TrendySelectedRowSelector
+{
+	background-color:#4CB13F;
+	background-repeat:no-repeat;
+	background-position:left center ;
+	background-image: url(images/selectedrowselector.gif);
+}
+
+
+.igg_TrendySelectedRowSelectorImage
+{
+	color:White;
+}
+
+
+tr.igg_TrendyAddNewRowTop>td
+{
+}
+
+
+tr.igg_TrendyAddNewRowBottom>td
+{
+}
+
+
+.igg_TrendyFilterRowTop
+{
+}
+
+
+.igg_TrendyFilterRowBottom
+{
+}
+
+
+.igg_TrendyFilterRuleDropDownSelectedItem
+{
+	background-color:#0F9A48;
+	background-image: url(images/header.gif);
+	font-size:11px;
+	padding:1px 3px 1px 3px;
+	color:White;
+}
+
+
+tr.igg_TrendyFilterRowTop>td
+{
+}
+
+
+tr.igg_TrendyFilterRowBottom>td
+{
+}
+
+
+tbody>tr>td.igg_TrendySelectedCell
+{
+    background-color:#009BFF;
+    background-repeat:repeat-x;
+	background-image: url(images/igg_selected.gif);
+	color:White;
+}
+
+
+.igg_TrendyAddNewRowScrollbarIntersection
+{
+	background-color:#F7F7F7;
+	border-top:solid 1px #CCCCCC;
+	border-right:solid 0px #CCCCCC;
+	border-bottom:solid 0px #CCCCCC;
+	border-left:solid 0px #CCCCCC;
+}
+
+
+.igg_TrendyFilterDisabled
+{
+}
+
+
+.igg_TrendyFilterScrollbarIntersection
+{
+	background-color:#EEEEEE;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_filterrow.gif);
+	border-top:solid 1px #CCCCCC;
+	border-right:solid 0px #CCCCCC;
+	border-bottom:solid 0px #CCCCCC;
+	border-left:solid 0px #CCCCCC;
+	height: 22px;
+}
+
+
+tbody>tr>td.igg_TrendyActiveCell
+{
+}
+
+
+.igg_TrendyActiveRow
+{
+}
+
+
+.igg_TrendyActiveColumn
+{
+}
+
+
+.igg_TrendyActiveRowSelectorImage
+{
+	color:White;
+}
+
+
+.igg_TrendyActiveRowSelector
+{
+	background-color:#4CB13F;
+	background-repeat:no-repeat;
+	background-position:left center ;
+	background-image: url(images/selectedrowselector.gif);
+}
+
+
+.igg_TrendyFilterRuleDropDownHoverItem
+{
+	background-color:#0F9A48;
+	background-image: url(images/header.gif);
+	font-size:11px;
+	padding:1px 3px 1px 3px;
+	color:White;
+}
+
+
+.igg_TrendyEditCell
+{
+	background-color:White;
+	border:solid 1px #AAAAAA !important;
+}
+
+.igg_TrendyEditCell::-ms-clear
+{
+	display: none;
+}
+
+.igg_TrendySummaryDropDown input
+{
+	background-attachment:scroll;
+	background-color:#63B93B;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_buttonsbg.png);
+	border:solid 1px #119A49;
+	margin-top:10px;
+	margin-right:3px;
+	width: 70px;
+	color:#FFFFFF;
+}
+
+
+tbody.igg_TrendyItemIE6 tr td
+{
+	background-color:White;
+	border-bottom:solid 1px #D8D8D8;
+	padding:5px 8px 5px 8px;
+	overflow: hidden;
+	text-align:left;
+	vertical-align:middle;
+}
+
+
+tbody tr.igg_TrendyAltIE6 td
+{
+	background-color:#F4F4F4;
+	background-image:none;
+	padding:5px 8px 5px 8px;
+	text-align:left;
+	vertical-align:middle;
+}
+
+
+tbody tr td.igg_TrendySelectedCellIE6
+{
+	background-color:#009BFF;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_selected.gif);
+	color:White;
+}
+
+
+.igg_TrendySummaryRow th
+{
+	background-color:#F7F7F7;
+	border-bottom:solid 1px #CCCCCC;
+}
+
+
+tbody tr td.igg_TrendyActiveCellIE6
+{
+}
+
+
+tr.igg_TrendyFilterRowIE6 td
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_filterrow.gif);
+	border-top:solid 1px #CCCCCC;
+	border-right:solid 1px #CCCCCC;
+	border-bottom:solid 0px #CCCCCC;
+	border-left:solid 0px #CCCCCC;
+	color:Black;
+}
+
+
+tr.igg_TrendyAddNewRowTopIE6 td
+{
+}
+
+
+.igg_TrendySummaryDropDownItem img
+{
+	margin-right:5px;
+	cursor:pointer;
+}
+
+
+tr.igg_TrendyFilterRowBottomIE6 td
+{
+}
+
+
+.igg_TrendyFilterButton>td
+{
+	border-top:solid 0px Transparent;
+	border-right:solid 0px Transparent;
+	border-bottom:solid 0px Transparent;
+	border-left:solid 0px Transparent;
+}
+
+
+.igg_TrendyFooter tr[mkr="columnheaderrow"] th
+{
+	background-color:#F7F7F7;
+	border-top:solid 1px #CCCCCC;
+	border-bottom:solid 1px #CCCCCC;
+	line-height: 20px;
+}
+
+
+tr.igg_TrendyAddNewRowIE6 td
+{
+	background-color:#F7F7F7;
+	font-size:10px;
+	border-top:solid 1px #CCCCCC;
+	border-right:solid 1px #CCCCCC;
+	border-bottom:solid 1px #CCCCCC;
+	border-left:solid 0px #CCCCCC;
+	padding-left:7px;
+	height: 22px;
+	overflow: hidden;
+}
+
+
+
+tr.igg_TrendyFilterRowTopIE6 td
+{
+}
+
+
+tr.igg_TrendyAddNewRowBottomIE6 td
+{
+}
+
+
+/******************/
+
+/*Batch Editing*/
+
+@-webkit-keyframes addingHighlight {
+	0% {background-color:#7fcfff;}
+	100% {background-color:#ffffff;}
+	}
+@-moz-keyframes addingHighlight {
+	 0% {background-color:#7fcfff;}	
+	 100% {background-color:#ffffff;}
+	}
+
+tbody>tr.igg_TrendyAddingRow>td
+{	
+   	background-image: none;
+
+	-webkit-animation-name: addingHighlight;
+	-webkit-animation-timing-function: ease-in-out;
+	-webkit-animation-duration: 2s;
+		
+	-moz-animation-name: addingHighlight;
+	-moz-animation-timing-function: ease-in-out;
+	-moz-animation-duration: 2s;	
+	
+    -o-animation-name: addingHighlight;
+	-o-animation-timing-function: ease-in-out;
+	-o-animation-duration: 2s;
+	
+    animation-name: addingHighlight;
+	animation-timing-function: ease-in-out;
+	animation-duration: 2s;
+}
+
+tbody tr.igg_TrendyAddedRow td
+{
+   	background-color: #FFFFFF;
+	color:#666;
+    font-style: italic;
+	background-image: none;
+}
+
+.igg_TrendyDeletedRow
+{
+    color: #9F9F9F;
+    font-style: italic;
+    text-decoration: line-through;
+}
+.igg_TrendyDeletedRow td
+{
+    color: #9F9F9F;
+    font-style: italic;
+    text-decoration: line-through;
+}
+.igg_TrendyDeletedRow th
+{
+    color: #9F9F9F;
+    font-style: italic;
+    text-decoration: line-through;
+}
+
+.igg_TrendyUndoButton 
+{
+   	background-color: #24A244;
+	background-image: url(images/igte_spinbuttonbg.gif);
+	background-position:top left;
+	background-repeat: repeat-x;
+	line-height:normal;
+	border:solid 1px #109A48;
+	color: #FFFFFF;
+	cursor: pointer;
+	padding:3px;
+	
+	-webkit-border-radius:2px;
+    -moz-border-radius:2px;
+    -o-border-radius:2px;
+    -ms-border-radius:2px;
+    -khtml-border-radius:2px;
+    border-radius:2px;
+    
+    -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; 
+}
+    
+.igg_TrendyUndoButtonHover 
+{
+    background-color: #269bc5;
+	background-image: url(images/igte_spinbuttonbghover.gif);
+	border:solid 1px #269bc5;
+}
+
+.igg_TrendyUndoButtonPressed
+{
+	background-color: #33CCFF;
+	background-image: url(images/igte_spinbuttonbgpressed.gif);
+}
+
+.igg_TrendyUpdatedRow
+{    
+	 color:#666;
+     font-style: italic;
+}
+
+.igg_TrendyAddedRow th
+{    
+	 color:#666;
+     font-style: italic;
+}
+
+tbody > tr.igg_TrendyUpdatedRow td.igg_TrendyMergedCell
+{    
+	 color:#666;
+     font-style: italic;
+}
+
+.igg_TrendyAlt.igg_TrendyUpdatedRow td
+{    
+	 color:#666;
+     font-style: italic;
+}
+
+tbody > tr.igg_TrendyUpdatedRow td.igg_TrendySelectedCell
+{    
+    color: white;
+}
+
+.igg_TrendyUpdatedRow th {color:#666;}
+.igg_TrendyAlt.igg_TrendyUpdatedRow th {color:#666;}
+.igg_TrendyAddedRow th {color:#666;}
+.igg_TrendyAlt.igg_TrendyAddedRow th {color:#666;}
+
+.igg_TrendyUpdatedRow .igg_TrendyActiveRowSelectorImage {color:#ddd;}
+.igg_TrendyAlt.igg_TrendyUpdatedRow .igg_TrendyActiveRowSelectorImage {color:#ddd;}
+.igg_TrendyAddedRow .igg_TrendyActiveRowSelectorImage {color:#ddd;}
+.igg_TrendyAlt.igg_TrendyAddedRow .igg_TrendyActiveRowSelectorImage {color:#ddd;}
+
+
+/********************/
+/**  Cell Merging  **/
+/********************/
+/*Any future change please port it to WHDG*/
+
+tbody>tr>td.igg_TrendyMergedCellVisible
+{
+    color: Black;
+}
+
+tbody>tr>td.igg_TrendyMergedCell /*tbody>tr>td.igg_TrendyMergedCellAlt*/
+{
+    color: #FFF;
+    background-color: #FFF;
+    
+    border-top-width: 0;
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+}
+
+tbody>tr>td.igg_TrendyMergedCellTop /*tbody>tr>td.igg_TrendyMergedCellAltTop*/
+{
+    color:Black;
+    border-top: 1px solid #d8d8d8;
+}
+
+tbody>tr>td.igg_TrendyMergedCell.igg_TrendySelectedCell /*tbody>tr>td.igg_TrendyMergedCellAlt.igg_TrendySelectedCell*/
+{
+    color: #FFFFFF;
+    background-color: #009bff;
+    background-image: none; 
+    
+    border-top: 1px solid #d8d8d8;
+    border-left: 1px dotted #d8d8d8;
+    border-right: 1px dotted #d8d8d8;                 
+}
+
+tbody>tr>td.igg_TrendyMergedCellTop.igg_TrendySelectedCell /*tbody>tr>td.igg_TrendyMergedCellAltTop.igg_TrendySelectedCell*/
+{
+    color: #FFFFFF;
+}
+
+.igg_TrendyMergedCell.igg_TrendyActiveCell
+{
+    color: Black
+}
+
+tbody>tr>td.igg_TrendyMergedCellVisible
+{
+    color: Black;
+}
+
+
+/*********************/
+/**  Filter styles **/
+/*********************/
+
+.igg_TrendyFilterRuleDropDown 
+{
+	color: #000;
+	max-height: 180px;
+	min-width:160px;
+	height: auto;
+	width: auto;
+	padding: 12px;
+    
+    /*Rounded corners*/
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	
+    /*Shadow*/
+	-moz-box-shadow: 0 4px 8px 0 #5A5A5A;
+	-webkit-box-shadow: 0 4px 8px 0 #5A5A5A;
+	box-shadow : 0 4px 8px 0 #5A5A5A; /* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#5A5A5A')"; /* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#5A5A5A');
+}
+
+.igg_TrendyFilterRuleDropDown input
+{
+    margin-top:10px;
+    margin-right:3px;
+    width:70px;		
+   
+	background-attachment:scroll;
+	background-color:#63B93B;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_buttonsbg.png);
+	border:solid 1px #119A49;
+	color:#FFFFFF;
+		
+    -webkit-border-radius: 3px;    
+    -moz-border-radius: 3px;
+}    
+
+.igg_TrendyFilterRuleDropDown img
+{
+    margin-right: 5px;
+    vertical-align: bottom;
+}
+
+.igg_TrendyFilterCheckboxList li
+{
+    list-style-type: none;
+    margin-bottom: 3px;
+    line-height: 15px;
+}
+
+.igg_TrendyFilterCheckboxList
+{
+    margin: 10px 0 0 0;
+    height: auto;
+    max-height: 120px;
+    overflow: auto;
+    width: 160px;
+}
+
+/* Row Editing Styles */
+
+.igg_TrendyRowEditingContainer
+{
+	position:relative !important;
+	height:1px !important;
+	line-height:normal !important;
+	margin:-5px 7px 4px -8px;
+	font-size:12px;
+	font-family: Verdana, Arial, Sans-Serif;
+}
+.igg_TrendyRowEditingTD
+{
+	overflow:visible !important;
+	vertical-align:top !important;
+}
+.igg_TrendyRowEditingDialog
+{
+	position:absolute;
+	line-height:20px;
+	white-space:nowrap;
+	cursor:default;
+	padding:2px 6px 2px 6px;
+	/* values copied from igg_SummaryDropDown */
+	
+	background-attachment:scroll;
+	background-color:#DDF4E3;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_summarydropdownbg.png);
+	border:solid 1px #119A49;
+	font-size:11px;
+	font-family: verdana;	
+	padding:12px;
+	_overflow: hidden!important;
+	box-shadow: 0 4px 8px 0 #5A5A5A;
+	filter: progid : DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#5A5A5A');
+}
+.igg_TrendyRowEditingButton
+{
+	margin:2px;
+	padding:3px 6px 3px 6px;
+	display:inline-block;
+	cursor:pointer;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	/* values copied from igg_SummaryDropDown input */	
+	
+	background-attachment:scroll;
+	background-color:#63B93B;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_buttonsbg.png);
+	border:solid 1px #119A49;;
+	color:#FFFFFF;
+	margin-right:3px;
+}
+.igg_TrendyRowEditingDone
+{
+}
+.igg_TrendyRowEditingCancel
+{
+}
+.igg_TrendyRowEditingButtonHover
+{   
+    background-color: #269bc5;
+	background-image: url(images/igte_spinbuttonbghover.gif);
+	border:solid 1px #269bc5;
+}
+
+.igg_TrendyRowEditingButtonFocus
+{	
+	background-color: #33CCFF;
+	background-image: url(images/igte_spinbuttonbgpressed.gif);
+}
+.igg_TrendyRowDeletingButton
+{
+	position:absolute;
+	display:inline-block;
+	min-width:16px;
+	min-height:16px;
+	z-index:10000;
+	cursor:pointer;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+    
+	background-attachment:scroll;
+	background-color:#63B93B;
+	background-repeat:repeat-x;
+	background-image: url(images/igg_buttonsbg.png);
+	border:solid 1px #119A49;
+	color:#FFFFFF;
+	font-size:13px;
+    padding:2px;
+}
+.igg_TrendyRowDeletingButton:before {
+        content:'x';
+        font-family: sans-serif;
+        font-weight:bold;
+        text-align:center;
+        margin: 4px;
+        font-size:13px;
+    }
+.igg_TrendyRowDeletingButtonHover
+{
+    background-color: #269bc5;
+	background-image: url(images/igte_spinbuttonbghover.gif);
+	border:solid 1px #269bc5;
+}
+.igg_TrendyRowDeletingButtonPressed
+{
+	background-color: #33CCFF;
+	background-image: url(images/igte_spinbuttonbgpressed.gif);
+}
+
+
+
+
+@media print{.igg_TrendyControl, 
+.igg_TrendyControl tr[mkr="columnHeaderRow"] div,
+.igg_TrendyControl div[mkr="container"],
+.igg_TrendyControl div[mkr="hScrBar"],
+.igg_TrendyControl div[mkr="vScrBar"]{width:auto !important; height:auto !important; overflow: visible !important;}
+}

@@ -1,0 +1,2147 @@
+/*
+* IG for jQuery UI
+*/
+/*
+ * jQuery UI CSS Framework @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Theming/API
+ */
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled { cursor: default !important }
+/* Icons
+----------------------------------*/
+/* states and images */
+.ui-icon {
+    display: block;
+    text-indent: -99999px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+/* Misc visuals
+----------------------------------*/
+/* Overlays */
+.ui-widget-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+/*
+ * jQuery UI CSS Framework @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Theming/API
+ *
+ * To view and modify this theme, visit http://jqueryui.com/themeroller/?ctl=themeroller
+ */
+/* Component containers
+----------------------------------*/
+.ui-widget {
+    font-family: "Segoe UI",Arial,sans-serif;
+    outline: none;
+    font-size: 1.1em;
+}
+/* A.T. 13 Sept. 2011 */
+/* .ui-widget a { outline: none } */
+.ui-widget .ui-widget { font-size: 1em }
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-size: 1em;
+}
+.ui-widget-content {
+    border: 1px solid #b1b1b1;
+    color: #333333;
+    background: #FFFFFF;
+}
+.ui-widget-content a { color: #333333 }
+.ui-widget-header {
+    border: 1px solid #535353;
+    background: #4F4F4F url(images/gradient_1.png) repeat-x;
+    color: #ffffff;
+    font-weight: normal;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+.ui-widget-header a {
+    color: #ffffff;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+/* Interaction states
+----------------------------------*/
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    border: 1px solid #535353;
+    background: #4F4F4F url(images/gradient_1.png) repeat-x;
+    color: #ffffff;
+    font-weight: normal;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+    color: #ffffff;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover {
+    background-color: #2686AE;
+    background: #2686AE url(images/gradient_2.png) repeat-x;
+    border: 1px solid #2788B1;
+}
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+    background: #333333 url(images/gradient_5.png) repeat-x;
+    border: 1px solid #3AB5E9;
+}
+.ui-state-hover a,
+.ui-state-hover a:hover {
+    color: #ffffff;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+    border: 1px solid #2788B1;
+    background: #3BB7EB url(images/gradient_6.png) repeat-x;
+}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+     text-decoration: none;
+}
+
+.ui-widget-header.ui-state-default {
+    background: #4F4F4F url(images/gradient_1.png) repeat-x 0 0;
+    color: #ffffff;
+    font-weight: normal;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+.ui-widget-header.ui-state-active {
+    background: #2686AE url(images/gradient_2.png) repeat-x 0 0;
+    color: #ffffff;
+    font-weight: normal;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+    border: 1px solid #2788B1;
+}
+.ui-widget-header.ui-state-hover {
+    background: #2686AE url(images/gradient_2.png) repeat-x 0 0;
+    color: #ffffff;
+    font-weight: normal;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+    border: 1px solid #2788B1;
+}
+.ui-widget-header.ui-state-default a,
+.ui-widget-header.ui-state-active a,
+.ui-widget-header.ui-state-hover a {
+    color: #ffffff;
+    font-weight: normal;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+    background: #A1A1A1 url(images/gradient_3.png) repeat-x 0 0;
+    font-weight: normal;
+    color: #333333;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    border: 1px solid #B1B1B1;
+}
+.ui-state-highlight a,
+.ui-widget-content .ui-state-highlight a,
+.ui-widget-header .ui-state-highlight a { color: #0c2837 }
+.ui-state-error,
+.ui-widget-content .ui-state-error,
+.ui-widget-header .ui-state-error {
+    border: 1px solid #D3404B;
+    background: #f9e6e7;
+    color: #3a0d11;
+    -moz-border-radius: 0px !important;
+    -webkit-border-radius: 0px !important;
+    border-radius: 0px !important;
+}
+.ui-state-error a,
+.ui-widget-content .ui-state-error a,
+.ui-widget-header .ui-state-error a { color: #3a0d11 }
+.ui-state-error-text,
+.ui-widget-content .ui-state-error-text,
+.ui-widget-header .ui-state-error-text { color: #3a0d11 }
+.ui-priority-primary,
+.ui-widget-content .ui-priority-primary,
+.ui-widget-header .ui-priority-primary { font-weight: bold }
+.ui-priority-secondary,
+.ui-widget-content .ui-priority-secondary,
+.ui-widget-header .ui-priority-secondary {
+    opacity: .7;
+    filter: Alpha(Opacity=70);
+    font-weight: normal;
+}
+.ui-state-disabled,
+.ui-widget-content .ui-state-disabled,
+.ui-widget-header .ui-state-disabled {
+    opacity: .35;
+    nowhitespace: afterproperty;
+    filter: Alpha(Opacity=35);
+}
+.ui-state-highlight p,
+.ui-state-error p {
+    font-size: 0.8em;
+    line-height: 16px;
+}
+.ui-state-highlight p .ui-icon,
+.ui-state-error p .ui-icon {}
+/* Icons
+----------------------------------*/
+/* states and images */
+.ui-icon {
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    background-image: url(images/ui-icons_222222_256x240.png);
+}
+.ui-widget-content .ui-icon { background-image: url(images/ui-icons_222222_256x240.png) }
+.ui-widget-header .ui-icon { background-image: url(images/ui-icons_ffffff_256x240.png) }
+.ui-state-default .ui-icon { background-image: url(images/ui-icons_ffffff_256x240.png) }
+.ui-state-hover .ui-icon,
+.ui-state-focus .ui-icon { background-image: url(images/ui-icons_ffffff_256x240.png) }
+.ui-state-active .ui-icon { background-image: url(images/ui-icons_ffffff_256x240.png) }
+.ui-state-highlight .ui-icon { background-image: url(images/ui-icons_ffffff_256x240.png) }
+
+/* positioning */
+.ui-icon-carat-1-n { background-position: 0 0 }
+.ui-icon-carat-1-ne { background-position: -16px 0 }
+.ui-icon-carat-1-e { background-position: -32px 0 }
+.ui-icon-carat-1-se { background-position: -48px 0 }
+.ui-icon-carat-1-s { background-position: -64px 0 }
+.ui-icon-carat-1-sw { background-position: -80px 0 }
+.ui-icon-carat-1-w { background-position: -96px 0 }
+.ui-icon-carat-1-nw { background-position: -112px 0 }
+.ui-icon-carat-2-n-s { background-position: -128px 0 }
+.ui-icon-carat-2-e-w { background-position: -144px 0 }
+.ui-icon-triangle-1-n { background-position: 0 -16px }
+.ui-icon-triangle-1-ne { background-position: -16px -16px }
+.ui-icon-triangle-1-e { background-position: -32px -16px }
+.ui-icon-triangle-1-se { background-position: -48px -16px }
+.ui-icon-triangle-1-s { background-position: -64px -16px }
+.ui-icon-triangle-1-sw { background-position: -80px -16px }
+.ui-icon-triangle-1-w { background-position: -96px -16px }
+.ui-icon-triangle-1-nw { background-position: -112px -16px }
+.ui-icon-triangle-2-n-s { background-position: -128px -16px }
+.ui-icon-triangle-2-e-w { background-position: -144px -16px }
+.ui-icon-arrow-1-n { background-position: 0 -32px }
+.ui-icon-arrow-1-ne { background-position: -16px -32px }
+.ui-icon-arrow-1-e { background-position: -32px -32px }
+.ui-icon-arrow-1-se { background-position: -48px -32px }
+.ui-icon-arrow-1-s { background-position: -64px -32px }
+.ui-icon-arrow-1-sw { background-position: -80px -32px }
+.ui-icon-arrow-1-w { background-position: -96px -32px }
+.ui-icon-arrow-1-nw { background-position: -112px -32px }
+.ui-icon-arrow-2-n-s { background-position: -128px -32px }
+.ui-icon-arrow-2-ne-sw { background-position: -144px -32px }
+.ui-icon-arrow-2-e-w { background-position: -160px -32px }
+.ui-icon-arrow-2-se-nw { background-position: -176px -32px }
+.ui-icon-arrowstop-1-n { background-position: -192px -32px }
+.ui-icon-arrowstop-1-e { background-position: -208px -32px }
+.ui-icon-arrowstop-1-s { background-position: -224px -32px }
+.ui-icon-arrowstop-1-w { background-position: -240px -32px }
+.ui-icon-arrowthick-1-n { background-position: 0 -48px }
+.ui-icon-arrowthick-1-ne { background-position: -16px -48px }
+.ui-icon-arrowthick-1-e { background-position: -32px -48px }
+.ui-icon-arrowthick-1-se { background-position: -48px -48px }
+.ui-icon-arrowthick-1-s { background-position: -64px -48px }
+.ui-icon-arrowthick-1-sw { background-position: -80px -48px }
+.ui-icon-arrowthick-1-w { background-position: -96px -48px }
+.ui-icon-arrowthick-1-nw { background-position: -112px -48px }
+.ui-icon-arrowthick-2-n-s { background-position: -128px -48px }
+.ui-icon-arrowthick-2-ne-sw { background-position: -144px -48px }
+.ui-icon-arrowthick-2-e-w { background-position: -160px -48px }
+.ui-icon-arrowthick-2-se-nw { background-position: -176px -48px }
+.ui-icon-arrowthickstop-1-n { background-position: -192px -48px }
+.ui-icon-arrowthickstop-1-e { background-position: -208px -48px }
+.ui-icon-arrowthickstop-1-s { background-position: -224px -48px }
+.ui-icon-arrowthickstop-1-w { background-position: -240px -48px }
+.ui-icon-arrowreturnthick-1-w { background-position: 0 -64px }
+.ui-icon-arrowreturnthick-1-n { background-position: -16px -64px }
+.ui-icon-arrowreturnthick-1-e { background-position: -32px -64px }
+.ui-icon-arrowreturnthick-1-s { background-position: -48px -64px }
+.ui-icon-arrowreturn-1-w { background-position: -64px -64px }
+.ui-icon-arrowreturn-1-n { background-position: -80px -64px }
+.ui-icon-arrowreturn-1-e { background-position: -96px -64px }
+.ui-icon-arrowreturn-1-s { background-position: -112px -64px }
+.ui-icon-arrowrefresh-1-w { background-position: -128px -64px }
+.ui-icon-arrowrefresh-1-n { background-position: -144px -64px }
+.ui-icon-arrowrefresh-1-e { background-position: -160px -64px }
+.ui-icon-arrowrefresh-1-s { background-position: -176px -64px }
+.ui-icon-arrow-4 { background-position: 0 -80px }
+.ui-icon-arrow-4-diag { background-position: -16px -80px }
+.ui-icon-extlink { background-position: -32px -80px }
+.ui-icon-newwin { background-position: -48px -80px }
+.ui-icon-refresh { background-position: -64px -80px }
+.ui-icon-shuffle { background-position: -80px -80px }
+.ui-icon-transfer-e-w { background-position: -96px -80px }
+.ui-icon-transferthick-e-w { background-position: -112px -80px }
+.ui-icon-folder-collapsed { background-position: 0 -96px }
+.ui-icon-folder-open { background-position: -16px -96px }
+.ui-icon-document { background-position: -32px -96px }
+.ui-icon-document-b { background-position: -48px -96px }
+.ui-icon-note { background-position: -64px -96px }
+.ui-icon-mail-closed { background-position: -80px -96px }
+.ui-icon-mail-open { background-position: -96px -96px }
+.ui-icon-suitcase { background-position: -112px -96px }
+.ui-icon-comment { background-position: -128px -96px }
+.ui-icon-person { background-position: -144px -96px }
+.ui-icon-print { background-position: -160px -96px }
+.ui-icon-trash { background-position: -176px -96px }
+.ui-icon-locked { background-position: -192px -96px }
+.ui-icon-unlocked { background-position: -208px -96px }
+.ui-icon-bookmark { background-position: -224px -96px }
+.ui-icon-tag { background-position: -240px -96px }
+.ui-icon-home { background-position: 0 -112px }
+.ui-icon-flag { background-position: -16px -112px }
+.ui-icon-calendar { background-position: -32px -112px }
+.ui-icon-cart { background-position: -48px -112px }
+.ui-icon-pencil { background-position: -64px -112px }
+.ui-icon-clock { background-position: -80px -112px }
+.ui-icon-disk { background-position: -96px -112px }
+.ui-icon-calculator { background-position: -112px -112px }
+.ui-icon-zoomin { background-position: -128px -112px }
+.ui-icon-zoomout { background-position: -144px -112px }
+.ui-icon-search { background-position: -160px -112px }
+.ui-icon-wrench { background-position: -176px -112px }
+.ui-icon-gear { background-position: -192px -112px }
+.ui-icon-heart { background-position: -208px -112px }
+.ui-icon-star { background-position: -224px -112px }
+.ui-icon-link { background-position: -240px -112px }
+.ui-icon-cancel { background-position: 0 -128px }
+.ui-icon-plus { background-position: -16px -128px }
+.ui-icon-plusthick { background-position: -32px -128px }
+.ui-icon-minus { background-position: -48px -128px }
+.ui-icon-minusthick { background-position: -64px -128px }
+.ui-icon-close { background-position: -80px -128px }
+.ui-icon-closethick { background-position: -96px -128px }
+.ui-icon-key { background-position: -112px -128px }
+.ui-icon-lightbulb { background-position: -128px -128px }
+.ui-icon-scissors { background-position: -144px -128px }
+.ui-icon-clipboard { background-position: -160px -128px }
+.ui-icon-copy { background-position: -176px -128px }
+.ui-icon-contact { background-position: -192px -128px }
+.ui-icon-image { background-position: -208px -128px }
+.ui-icon-video { background-position: -224px -128px }
+.ui-icon-script { background-position: -240px -128px }
+.ui-icon-alert { background-position: 0 -144px }
+.ui-icon-info { background: url(images/icon_sprite.png) 0px 0px no-repeat !important }
+.ui-icon-notice { background-position: -32px -144px }
+.ui-icon-help { background-position: -48px -144px }
+.ui-icon-check { background-position: -64px -144px }
+.ui-icon-bullet { background-position: -80px -144px }
+.ui-icon-radio-off { background-position: -96px -144px }
+.ui-icon-radio-on { background-position: -112px -144px }
+.ui-icon-pin-w { background-position: -128px -144px }
+.ui-icon-pin-s { background-position: -144px -144px }
+.ui-icon-play { background-position: 0 -160px }
+.ui-icon-pause { background-position: -16px -160px }
+.ui-icon-seek-next { background-position: -32px -160px }
+.ui-icon-seek-prev { background-position: -48px -160px }
+.ui-icon-seek-end { background-position: -64px -160px }
+.ui-icon-seek-start { background-position: -80px -160px }
+/* ui-icon-seek-first is deprecated, use ui-icon-seek-start instead */
+.ui-icon-seek-first { background-position: -80px -160px }
+.ui-icon-stop { background-position: -96px -160px }
+.ui-icon-eject { background-position: -112px -160px }
+.ui-icon-volume-off { background-position: -128px -160px }
+.ui-icon-volume-on { background-position: -144px -160px }
+.ui-icon-power { background-position: 0 -176px }
+.ui-icon-signal-diag { background-position: -16px -176px }
+.ui-icon-signal { background-position: -32px -176px }
+.ui-icon-battery-0 { background-position: -48px -176px }
+.ui-icon-battery-1 { background-position: -64px -176px }
+.ui-icon-battery-2 { background-position: -80px -176px }
+.ui-icon-battery-3 { background-position: -96px -176px }
+.ui-icon-circle-plus { background-position: 0 -192px }
+.ui-icon-circle-minus { background-position: -16px -192px }
+.ui-icon-circle-close { background-position: -32px -192px }
+.ui-icon-circle-triangle-e { background-position: -48px -192px }
+.ui-icon-circle-triangle-s { background-position: -64px -192px }
+.ui-icon-circle-triangle-w { background-position: -80px -192px }
+.ui-icon-circle-triangle-n { background-position: -96px -192px }
+.ui-icon-circle-arrow-e { background-position: -112px -192px }
+.ui-icon-circle-arrow-s { background-position: -128px -192px }
+.ui-icon-circle-arrow-w { background-position: -144px -192px }
+.ui-icon-circle-arrow-n { background-position: -160px -192px }
+.ui-icon-circle-zoomin { background-position: -176px -192px }
+.ui-icon-circle-zoomout { background-position: -192px -192px }
+.ui-icon-circle-check { background-position: -208px -192px }
+.ui-icon-circlesmall-plus { background-position: 0 -208px }
+.ui-icon-circlesmall-minus { background-position: -16px -208px }
+.ui-icon-circlesmall-close { background-position: -32px -208px }
+.ui-icon-squaresmall-plus { background-position: -48px -208px }
+.ui-icon-squaresmall-minus { background-position: -64px -208px }
+.ui-icon-squaresmall-close { background-position: -80px -208px }
+.ui-icon-grip-dotted-vertical { background-position: 0 -224px }
+.ui-icon-grip-dotted-horizontal { background-position: -16px -224px }
+.ui-icon-grip-solid-vertical { background-position: -32px -224px }
+.ui-icon-grip-solid-horizontal { background-position: -48px -224px }
+.ui-icon-gripsmall-diagonal-se { background-position: -64px -224px }
+.ui-icon-grip-diagonal-se { background-position: -80px -224px }
+/* Misc visuals
+----------------------------------*/
+/* Corner radius */
+.ui-corner-tl {
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+.ui-corner-tr {
+    -moz-border-radius-topright: 4px;
+    -webkit-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.ui-corner-bl {
+    -moz-border-radius-bottomleft: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.ui-corner-br {
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.ui-corner-top {
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -webkit-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+.ui-corner-bottom {
+    -moz-border-radius-bottomleft: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.ui-corner-right {
+    -moz-border-radius-topright: 4px;
+    -webkit-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.ui-corner-left {
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.ui-corner-all {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+/* Overlays */
+.ui-widget-overlay {
+    background: #222;
+    opacity: .70;
+    filter: Alpha(Opacity=70)!important; /*!important needed for ie7 and ie8*/
+}
+.ui-widget-shadow {
+    margin: -5px 0 0 -5px;
+    padding: 5px;
+    background: #000000 url(images/ui-bg_flat_10_000000_40x100.png) 50% 50% repeat-x;
+    opacity: .20;
+    filter: Alpha(Opacity=20);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+/*
+ * jQuery UI Resizable @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Resizable#theming
+ */
+.ui-resizable { position: relative }
+.ui-resizable-handle {
+    position: absolute;
+    font-size: 0.1px;
+    z-index: 99999;
+    display: block;
+}
+.ui-resizable-disabled .ui-resizable-handle,
+.ui-resizable-autohide .ui-resizable-handle { display: none }
+.ui-resizable-n {
+    cursor: n-resize;
+    height: 7px;
+    width: 100%;
+    top: -5px;
+    left: 0;
+}
+.ui-resizable-s {
+    cursor: s-resize;
+    height: 7px;
+    width: 100%;
+    bottom: -5px;
+    left: 0;
+}
+.ui-resizable-e {
+    cursor: e-resize;
+    width: 7px;
+    right: -5px;
+    top: 0;
+    height: 100%;
+}
+.ui-resizable-w {
+    cursor: w-resize;
+    width: 7px;
+    left: -5px;
+    top: 0;
+    height: 100%;
+}
+.ui-resizable-se {
+    cursor: se-resize;
+    width: 12px;
+    height: 12px;
+    right: 1px;
+    bottom: 1px;
+}
+.ui-resizable-sw {
+    cursor: sw-resize;
+    width: 9px;
+    height: 9px;
+    left: -5px;
+    bottom: -5px;
+}
+.ui-resizable-nw {
+    cursor: nw-resize;
+    width: 9px;
+    height: 9px;
+    left: -5px;
+    top: -5px;
+}
+.ui-resizable-ne {
+    cursor: ne-resize;
+    width: 9px;
+    height: 9px;
+    right: -5px;
+    top: -5px;
+}
+/*
+ * jQuery UI Selectable @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Selectable#theming
+ */
+.ui-selectable-helper {
+    position: absolute;
+    z-index: 100;
+    border: 1px dotted black;
+}
+/*
+ * jQuery UI Accordion @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Accordion#theming
+ */
+/* IE/Win - Fix animation bug - #4615 */
+.ui-accordion { width: 100% }
+.ui-accordion .ui-accordion-header {
+    cursor: pointer;
+    position: relative;
+    margin-top: 1px;
+    zoom: 1;
+    background: #4F4F4F url(images/gradient_1.png) repeat-x;
+}
+.ui-accordion .ui-accordion-header .ui-state-default {background: #2686AE url(images/gradient_2.png) repeat-x; }
+.ui-accordion .ui-accordion-header.ui-state-active {
+    background: #2686AE url(images/gradient_2.png) repeat-x;
+    border-color: #2788B1!important;
+}
+.ui-accordion .ui-accordion-header.ui-state-hover { border-color: #39B1E4 }
+.ui-accordion h3.ui-state-default {}
+.ui-accordion .ui-accordion-li-fix { display: inline }
+.ui-accordion .ui-accordion-header-active { border-bottom: 0 !important }
+.ui-accordion .ui-accordion-header a {
+    display: block;
+    padding: .5em .5em .5em .7em;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0px 1px 0px rgba(83,83,83,0.8);
+    text-decoration: none;
+}
+.ui-accordion-icons .ui-accordion-header a { padding-left: 2.2em; }
+.ui-accordion .ui-accordion-header .ui-icon {
+    position: absolute;
+    left: .5em;
+    top: 50%;
+    margin-top: -8px;
+}
+.ui-accordion .ui-accordion-content {
+    background: #f8fcfe;
+    padding: 1em 2.2em;
+    border:1px solid #B1B1B1;
+    border-top: 0;
+    margin-top: -2px;
+    position: relative;
+    top: 1px;
+    margin-bottom: 2px;
+    overflow: auto;
+    display: none;
+    zoom: 1;
+}
+.ui-accordion .ui-accordion-content-active { display: block }
+.ui-accordion .ui-accordion-header,
+.ui-accordion .ui-accordion-content {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+.ui-accordion .ui-state-active { }
+/*
+ * jQuery UI Autocomplete @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Autocomplete#theming
+ */
+.ui-autocomplete {
+    position: absolute;
+    z-index: 2 !important;
+    cursor: default;
+    background: #FFFFFF;
+    border: 0px none !important;
+    padding: 0px !important;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.ui-autocomplete-loading { background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat }
+.ui-autocomplete .ui-menu-item a.ui-state-hover,
+.ui-autocomplete .ui-menu-item a.ui-state-active { margin: 0!important }
+/* workarounds */
+* html .ui-autocomplete { width: 1px } /* without this, the menu expands to 100% in IE6 */
+/*
+ * jQuery UI Menu @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Menu#theming
+ */
+.ui-menu {
+    list-style: none;
+    padding: 2px;
+    margin: 0;
+    display: block;
+    float: left;
+}
+.ui-menu .ui-menu { margin-top: -3px }
+.ui-menu .ui-menu-item {
+    margin: 0;
+    padding: 0;
+    zoom: 1;
+    float: left;
+    clear: left;
+    width: 100%;
+}
+.ui-menu .ui-menu-item a {
+    text-decoration: none;
+    display: block;
+    border: 0px none;
+    padding: .2em .4em;
+    line-height: 1.2;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    zoom: 1;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+    background: #2686AE url(images/gradient_2.png) repeat-x !important;
+    color: #FFFFFF;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+    font-weight: normal;
+    margin: -1px;
+}
+/*
+ * jQuery UI Button @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Button#theming
+ */
+
+/*.ui-button.ui-state-hover {-moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3); -webkit-box-shadow: 0px 0px 8px rgba(212,212,212,1); box-shadow: 0px 0px 8px rgba(212,212,212,1)}*/
+/* === INPUT:SUBMIT BUG FIX === */
+input.ui-button {
+    background: #4F4F4F url(images/gradient_1.png) repeat-x !important;
+    color: #ffffff;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+
+}
+input.ui-button:hover {
+    background: #2686AE url(images/gradient_2.png) repeat-x !important;
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 0px 8px rgba(212,212,212,1);
+    box-shadow: 0px 0px 8px rgba(212,212,212,1);
+}
+input.ui-button:active {
+    background: #3BB7EB url(images/gradient_6.png) repeat-x !important;
+    border-color: #b6b6b6;
+}
+/* === IE6 AND IE7 BUTTON WIDTH FIX === */
+.ui-button { *display: inline}
+.ui-state-default .ui-button-text {
+    color: #ffffff;
+}
+.ui-state-hover .ui-button-text {
+    color: #ffffff;
+    -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 0px 8px rgba(212,212,212,1);
+    box-shadow: 0px 0px 8px rgba(212,212,212,1);
+}
+.ui-state-active .ui-button-text {
+    color: #ffffff;
+}
+/*button text element */
+.ui-button .ui-button-text {
+    text-shadow: 0px 1px 0px rgba(83,83,83,0.8);
+}
+.ui-buttonset .ui-state-active .ui-button-text {
+    background: #2686AE url(images/gradient_2.png) repeat-x !important;
+    color: #ffffff;
+    border-color: #2788B1;
+}
+
+
+/*
+ * jQuery UI Dialog @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Dialog#theming
+ */
+.ui-dialog {
+    position: absolute;
+    padding: 0;
+    width: 300px;
+    overflow: hidden;
+    background: #FFFFFF;
+    -moz-box-shadow: 0px 5px 8px rgba(0,0,0,0.8);
+    -webkit-box-shadow: 0px 5px 8px rgba(0,0,0,0.8);
+    box-shadow: 0px 5px 8px rgba(0,0,0,0.8);
+}
+.ui-dialog .ui-dialog-titlebar {
+    padding: .5em 1em .3em;
+    position: relative;
+    border-width: 0px 0px 1px 0px;
+    border-color: #979797;
+    background: #A1A1A1 url(images/gradient_3.png) 0px 0px repeat-x;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+.ui-dialog .ui-dialog-title {
+    float: left;
+    margin: .1em 16px .2em 0;
+    color: #333333;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.8);
+    font-weight: normal;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    width: 16px;
+    margin: -9px 0 0 0;
+    height: 16px;
+    padding:1px;
+}
+.ui-dialog .ui-dialog-titlebar-close span {
+    display: block;
+    margin:1px;
+    background: url(images/icon_sprite.png) 0px -16px no-repeat;
+}
+.ui-dialog-titlebar .ui-state-hover {
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border: 0px none;
+    background: transparent;
+}
+.ui-dialog .ui-dialog-titlebar-close.ui-state-hover span { background-position: -16px -16px }
+.ui-dialog .ui-dialog-titlebar-close:hover,
+.ui-dialog .ui-dialog-titlebar-close:focus { padding:1px; }
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: .5em 1em;
+    background: none;
+    overflow: auto;
+    zoom: 1;
+}
+.ui-dialog .ui-dialog-buttonpane {
+    text-align: left;
+    border-width: 1px 0 0 0;
+    background-image: none;
+    margin: .5em 0 0 0;
+    padding: .3em 1em .5em .4em;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset { float: right }
+.ui-dialog .ui-dialog-buttonpane button {
+    float: right;
+    margin: .5em .4em .5em 0;
+    cursor: pointer;
+    line-height: 1.4em;
+    width: auto;
+    overflow: visible;
+}
+.ui-dialog .ui-resizable-se {
+    width: 14px;
+    height: 14px;
+    right: 3px;
+    bottom: 3px;
+}
+.ui-draggable .ui-dialog-titlebar { cursor: move }
+/*
+ * jQuery UI Slider @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Slider#theming
+ */
+.ui-slider {
+    position: relative;
+    text-align: left;
+    border: 0px none;
+}
+.ui-state-focus .ui-slider-handle { border: 0px none }
+.ui-slider .ui-slider-handle {
+    background: url(images/slider_handles.png) 0px -23px no-repeat;
+    position: absolute;
+    z-index: 2;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+}
+.ui-slider .ui-state-hover { background-position: 0px 0px !important }
+.ui-slider .ui-slider-range {
+    position: absolute;
+    z-index: 1;
+    font-size: .7em;
+    display: block;
+    border: 0;
+}
+.ui-slider .ui-state-default { border: 0px none }
+.ui-slider-horizontal {
+    height: 4px;
+    background: url(images/slider_h_bg.gif) 0px 0px repeat-x;
+}
+.ui-slider-horizontal .ui-slider-handle {
+    top: -9px;
+    margin-left: -12px;
+}
+.ui-slider-horizontal .ui-slider-range {
+    top: 0;
+    height: 100%;
+    background: url(images/slider_h_bg.gif) 0px -4px repeat-x;
+}
+.ui-slider-horizontal .ui-slider-range-min { left: 0 }
+.ui-slider-horizontal .ui-slider-range-max { right: 0 }
+.ui-slider-vertical {
+    width: 4px;
+    height: 100px;
+    background: url(images/slider_v_bg.gif) -4px 0px repeat-y;
+}
+.ui-slider-vertical .ui-slider-handle {
+    left: -9px;
+    margin-left: 0;
+    margin-bottom: -9px;
+    background-position: 0px -66px !important;
+}
+.ui-slider-vertical .ui-state-hover { background-position: 0px -43px !important }
+.ui-slider-vertical .ui-slider-range {
+    left: 0;
+    width: 100%;
+    background: url(images/slider_v_bg.gif) 0px 0px repeat-y;
+}
+.ui-slider-vertical .ui-slider-range-min { bottom: 0 }
+.ui-slider-vertical .ui-slider-range-max { top: 0 }
+/*
+ * jQuery UI Tabs @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Tabs#theming
+ */
+.ui-tabs {
+    background: #FFFFFF;
+    position: relative;
+    padding: .2em;
+    zoom: 1;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border: 0px none;
+} /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+.ui-tabs .ui-tabs-nav {
+    border-color: #a8a8a8;
+    border-width: 0px 0px 1px 0px;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+.ui-tabs .ui-tabs-nav li {
+    list-style: none;
+    float: left;
+    position: relative;
+    top: 1px;
+    margin: 0 .2em 1px 0;
+    border-bottom: 0 !important;
+    padding: 0;
+    white-space: nowrap;
+    -moz-border-radius-topleft: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -webkit-border-top-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.ui-tabs .ui-tabs-nav li a {
+    float: left;
+    padding: .5em 1em;
+    text-decoration: none;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected {
+    margin-bottom: 0;
+    padding-bottom: 1px;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a,
+.ui-tabs .ui-tabs-nav li.ui-state-disabled a,
+.ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text }
+.ui-tabs .ui-tabs-nav li a,
+.ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+.ui-tabs .ui-tabs-panel {
+    display: block;
+    border: 1px solid #B1B1B1;
+    padding: 1em 1.4em;
+    background: none;
+    border-color: #a8a8a8;
+    /*border-width: 0px 1px 1px 1px;*/
+    border-style: solid;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+.ui-tabs .ui-tabs-hide { display: none !important }
+.ui-tabs .ui-tabs-nav li.ui-state-default {
+    background: #A1A1A1 url(images/gradient_3.png) 0 0 repeat-x;
+    border-color: #a8a8a8;
+}
+.ui-tabs .ui-tabs-nav li.ui-state-default a {
+    color: #333333!important;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.8);
+}
+.ui-tabs .ui-tabs-nav li.ui-state-hover { background: #2686AE url(images/gradient_2.png) repeat-x; }
+.ui-tabs .ui-tabs-nav li.ui-state-hover a {
+    color: #ffffff!important;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+.ui-tabs .ui-tabs-nav li.ui-state-active { background: #FFFFFF!important }
+.ui-tabs .ui-tabs-nav li.ui-state-active a {
+    color: #333333!important;
+    text-shadow: 0px 1px 0px rgba(255,255,255,0.8);
+}
+.ui-tabs-panel .ui-button {
+}
+/*
+ * jQuery UI Datepicker @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Datepicker#theming
+ */
+.ui-datepicker {
+    padding: 0.2em 0.2em 0;
+    background: #FFFFFF none;
+    width: 17em; /*IE7 needs this otherwise it stretches to full width*/
+    -moz-box-shadow: 0px 5px 10px rgba(0,0,0,0.8);
+    -webkit-box-shadow: 0px 5px 10px rgba(0,0,0,0.8);
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.8);
+}
+.ui-datepicker .ui-datepicker-header {
+    position: relative;
+    padding: 0.2em 0;
+    background: url("images/gradient_1.png") repeat-x scroll 0 0 #4F4F4F;
+    border: 0px none;
+    /*remove bottom borders*/
+    -moz-border-radius-bottomleft: 0;
+    -webkit-border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+    position: absolute;
+    top: 2px;
+    width: 1.8em;
+    height: 1.8em;
+    border: none;
+    cursor: pointer;
+}
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover { top: 1px }
+.ui-datepicker .ui-datepicker-prev { left: 2px }
+.ui-datepicker .ui-datepicker-next { right: 2px }
+.ui-datepicker .ui-datepicker-prev-hover {left:1px;}
+.ui-datepicker .ui-datepicker-next-hover { right: 1px }
+.ui-datepicker .ui-datepicker-header .ui-state-hover {
+    background: transparent;
+    border: 1px solid #535353;
+}
+.ui-datepicker .ui-datepicker-prev span { background-position: 0px -32px !important }
+.ui-datepicker .ui-datepicker-next span { background-position: -16px -32px !important }
+.ui-datepicker .ui-datepicker-prev-hover span { background-position: 0px -48px !important }
+.ui-datepicker .ui-datepicker-next-hover span { background-position: -16px -48px !important }
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;
+    top: 50%;
+    margin-top: -7px;
+    background: url(images/icon_sprite.png) no-repeat;
+}
+.ui-datepicker thead{
+    background: url("images/gradient_7.png") repeat-x scroll left bottom #FAFAFA;
+    border-top: 1px solid #B1B1B1;
+    border-bottom: 1px solid #DCDCDC;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    margin: 0 2.3em;
+    line-height: 1.8em;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 0px 1px 0px rgba(83,83,83,0.8);
+}
+.ui-datepicker .ui-datepicker-title select {
+    font-size: 1em;
+    margin: 1px 0;
+}
+.ui-datepicker select.ui-datepicker-month-year { width: 100% }
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year { width: 49% }
+.ui-datepicker table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 .4em;
+}
+.ui-datepicker th {
+    padding: .3em .3em!important; /*!important needed to override jquery's default padding */
+    text-align: center;
+    font-weight: bold;
+    border: 0;
+    font-size: 0.9em;
+}
+.ui-datepicker td {
+    border: 0;
+    padding: 1px;
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+    display: block;
+    padding: 2px 3px 3px;
+    text-align: right;
+    text-decoration: none;
+}
+.ui-datepicker .ui-datepicker-buttonpane {
+    background-image: none;
+    margin: .7em 0 0 0;
+    padding: 0 .2em;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+.ui-datepicker .ui-datepicker-buttonpane button {
+    float: right;
+    margin: .5em .2em .4em;
+    cursor: pointer;
+    padding: .2em .6em .3em .6em;
+    width: auto;
+    overflow: visible;
+}
+.ui-datepicker-buttonpane  button {
+    background: #4F4F4F url(images/gradient_1.png) 0 0 repeat-x !important;
+    color: #ffffff !important;
+    border-color: #b6b6b6 !important;
+    font-weight: bold !important;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float: left }
+.ui-datepicker .ui-datepicker-calendar a {
+    background: transparent;
+    border: 0px none;
+    text-shadow: none;
+    color: #333333;
+}
+.ui-datepicker .ui-datepicker-calendar a.ui-state-active { color: #37ADDF }
+.ui-datepicker .ui-datepicker-calendar a.ui-state-hover {
+    background: #3BB7EB;
+    color: #FFFFFF !important;
+    text-shadow: 0px 1px 1px #2788B1;
+}
+.ui-datepicker .ui-datepicker-current-day .ui-state-default {
+    color: #37ADDF !important;
+    text-shadow: none;
+}
+/* with multiple calendars */
+.ui-datepicker.ui-datepicker-multi { width: auto }
+.ui-datepicker-multi .ui-datepicker-group {
+    float: left;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+.ui-datepicker-multi .ui-datepicker-group table {
+    margin: 0 auto .4em;
+}
+.ui-datepicker-multi-2 .ui-datepicker-group { width: 48% }
+.ui-datepicker-multi-3 .ui-datepicker-group { width: 31.3% }
+.ui-datepicker-multi-4 .ui-datepicker-group { width: 23% }
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header { border-left-width: 0 }
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header { border-left-width: 0 }
+.ui-datepicker-multi .ui-datepicker-buttonpane { clear: left }
+.ui-datepicker-row-break {
+    clear: both;
+    width: 100%;
+}
+/* RTL support */
+.ui-datepicker-rtl { direction: rtl }
+.ui-datepicker-rtl .ui-datepicker-prev {
+    right: 2px;
+    left: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-next {
+    left: 2px;
+    right: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-prev:hover {
+    right: 1px;
+    left: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-next:hover {
+    left: 1px;
+    right: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane { clear: right }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button { float: left }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current { float: right }
+.ui-datepicker-rtl .ui-datepicker-group { float: right }
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header {
+    border-right-width: 0;
+    border-left-width: 1px;
+}
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+    border-right-width: 0;
+    border-left-width: 1px;
+}
+/* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
+.ui-datepicker-cover {
+    display: none; /*sorry for IE5*/
+    display: block; /*sorry for IE5*/
+    position: absolute; /*must have*/
+    z-index: -1; /*must have*/
+    filter: mask(); /*must have*/
+    top: -4px; /*must have*/
+    left: -4px; /*must have*/
+    width: 200px; /*must have*/
+    height: 200px; /*must have*/
+}
+/*
+ * jQuery UI Progressbar @VERSION
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Progressbar#theming
+ */
+.ui-progressbar {
+    height: 13px;
+    overflow: hidden;
+    text-align: left;
+    background: url(images/progress_bar.gif) 0px -13px repeat-x;
+    line-height: 1%;
+}
+.ui-progressbar .ui-progressbar-value {
+    margin: -1px;
+    height: 100%;
+    background: url(images/progress_bar.gif) 0px 0px repeat-x;
+}
+
+
+
+/*******************************
+*   Infragistics stuff begins  *
+*******************************/
+/*******************************
+*       jQuery UI IGGrid       *
+*******************************/
+.ui-iggrid {
+}
+.ui-iggrid .ui-iggrid-content {
+ border-color: #b1b1b1;
+}
+.ui-iggrid-scrolldiv {
+ background-color: #f3f3f3;
+ border-bottom: 1px solid #DCDCDC !important; /* !important needed because layout css removes borders */
+} 
+.ui-iggrid .ui-iggrid-scrolldiv:first-child {
+ border-top: 1px solid #DCDCDC!important; /* border-top for tables without headers */
+} 
+.ui-iggrid th,
+.ui-iggrid th.ui-state-default {
+ border-color: #535353 #535353 #535353 #757575;
+}
+ 
+.ui-iggrid th,
+.ui-iggrid th.ui-state-default,
+.ui-iggrid th.ui-state-hover,
+.ui-iggrid th.ui-state-active {
+}
+.ui-iggrid th a,
+.ui-iggrid th.ui-state-default a,
+.ui-iggrid th.ui-state-hover a,
+.ui-iggrid th.ui-state-active a {
+ color: #ffffff;
+ text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+.ui-iggrid th.ui-state-hover {
+ background: #2686AE url(images/gradient_2.png) repeat-x;
+ border: 1px solid #2788B1;
+}
+.ui-iggrid th.ui-state-active {
+ background: #757575 url(images/gradient_4.png) repeat-x;
+ border: 1px solid #2788B1;
+}
+.ui-iggrid th.ui-state-focus {
+ background: #333333 url(images/gradient_5.png) repeat-x;
+ border: 1px solid #2788B1;
+}
+.ui-iggrid .ui-iggrid-footer,
+.ui-iggrid .ui-iggrid-toolbar {
+ background-color: #A1A1A1;
+ background: #A1A1A1 url(images/gradient_3.png) repeat-x;
+ font-weight: normal;
+ text-align: left;
+ color: #333333;
+ text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+ border: 1px solid #B1B1B1;
+ border-top: none;
+ display: block;
+}
+.ui-iggrid .ui-iggrid-footer .ui-state-default,
+.ui-iggrid .ui-iggrid-toolbar .ui-state-default,
+.ui-iggrid .ui-iggrid-addrow td, .ui-iggrid .ui-iggrid-addrow th {
+ background-color: #A1A1A1;
+ background: #A1A1A1 url(images/gradient_3.png) repeat-x;
+ border: 1px solid #B1B1B1;
+ color: #333;
+ text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+ text-decoration: none;
+}
+.ui-iggrid .ui-iggrid-footer .ui-state-default a,
+.ui-iggrid .ui-iggrid-toolbar .ui-state-default a,
+.ui-iggrid .ui-iggrid-addrow td a {
+ color: #333;
+ text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+ text-decoration: none;
+}
+.ui-iggrid tbody .ui-icon,
+.ui-iggrid .ui-iggrid-addrow td .ui-icon {
+ background-image: url("images/ui-icons_222222_256x240.png")
+}
+.ui-iggrid th .ui-icon,
+.ui-iggrid thead .ui-icon,
+.ui-iggrid .ui-state-default .ui-icon {
+ background-image: url("images/ui-icons_ffffff_256x240.png")
+}
+.ui-iggrid .ui-iggrid-addrow td.ui-state-hover {
+ border: 1px solid #B1B1B1
+}
+.ui-iggrid tbody td,
+.ui-iggrid tbody th.ui-iggrid-rowselector-class,
+.ui-iggrid thead .ui-iggrid-editingcell {
+ border-width: 1px;
+ border-style: solid;
+ border-color: #FFFFFF #DCDCDC #DCDCDC #FFFFFF;
+}
+
+    .ui-iggrid .ui-iggrid-editingcell .ui-iggrid-editor .ui-igedit-field{
+     box-shadow: 0 3px 2px rgba(100, 100, 100, 0.1) inset;
+    }
+
+.ui-iggrid .ui-ig-altrecord {
+ background-color: #EBEBEB
+}
+.ui-iggrid .ui-ig-altrecord td,
+.ui-iggrid .ui-ig-altrecord th.ui-iggrid-rowselector-class,
+.ui-iggrid tbody .ui-ig-altrecord td.ui-state-default {
+ border-color: #EBEBEB #DCDCDC #DCDCDC #EBEBEB;
+}
+
+/*sorting*/
+.ui-iggrid td.ui-state-highlight {
+ background: none;
+ background-color: #c2e8f8;
+ color: #333333;
+ font-weight: normal;
+ border-color: #b3e2f6!important; /*!important needed to override default cell colour */
+}
+
+/* hover */
+.ui-iggrid td.ui-state-hover,
+.ui-iggrid .ui-ig-altrecord td.ui-state-hover,
+.ui-iggrid .ui-ig-altrecord td.ui-state-default.ui-state-hover,
+
+.ui-iggrid th.ui-iggrid-rowselector-class.ui-state-hover,
+.ui-iggrid .ui-ig-altrecord th.ui-iggrid-rowselector-class.ui-state-hover,
+.ui-iggrid .ui-ig-altrecord th.ui-iggrid-rowselector-class.ui-state-default.ui-state-hover {
+ color: #333333;
+ border-color: #FFFFFF #DCDCDC #DCDCDC #FFFFFF;
+ background: #FAFAFA url(images/gradient_7.png) repeat-x left bottom;
+}
+.ui-iggrid td.ui-state-hover a,
+.ui-iggrid .ui-ig-altrecord td.ui-state-hover a {
+ color: #333333;
+ text-shadow: none;
+}
+.ui-iggrid td.ui-state-hover a:hover,
+.ui-iggrid .ui-ig-altrecord td.ui-state-hover a:hover {
+ color: #37ADDF
+}
+.ui-iggrid tbody td:first-child,
+.ui-iggrid tbody .ui-ig-altrecord td:first-child,
+.ui-iggrid tbody th.ui-iggrid-rowselector-class:first-child,
+.ui-iggrid th.ui-iggrid-rowselector-class.ui-state-hover,
+.ui-iggrid .ui-ig-altrecord th.ui-iggrid-rowselector-class.ui-state-hover,
+.ui-iggrid .ui-ig-altrecord th.ui-iggrid-rowselector-class.ui-state-default.ui-state-hover {
+ border-left-color: #DCDCDC;
+}
+
+/* active cells */
+.ui-iggrid td.ui-state-focus {
+ border-color: #185170!important;
+ background: #FFFFFF none;
+}
+.ui-ig-altrecord td.ui-state-focus {
+ border-color: #185170!important;
+ background: #EBEBEB none;
+}
+/* active rows */
+.ui-iggrid tr.ui-state-focus {
+ background: #FFFFFF none
+}
+.ui-iggrid .ui-ig-altrecord.ui-state-focus {
+ background: #EBEBEB none
+}
+.ui-iggrid tr.ui-state-focus td,
+.ui-iggrid tr.ui-state-focus th {
+ border-top-color: #185170!important;
+ border-bottom-color: #185170!important;
+}
+.ui-iggrid .ui-ig-altrecord.ui-state-focus td,
+.ui-iggrid .ui-ig-altrecord.ui-state-focus th {
+ border-top-color: #185170!important;
+ border-bottom-color: #185170!important;
+}
+
+/* selected rows */
+.ui-iggrid td.ui-state-active,
+.ui-iggrid .ui-ig-altrecord td.ui-state-active,
+.ui-iggrid th.ui-iggrid-rowselector-class.ui-state-active,
+.ui-iggrid .ui-ig-altrecord th.ui-iggrid-rowselector-class.ui-state-active {
+ /* blue gradient */
+ background: none;
+ background-color: #4EB7E2;
+ background-image: -moz-linear-gradient(top, #4EB7E2, #2381A9); /*  FF3.6 */
+ background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #4EB7E2),color-stop(1, #2381A9)); /*Saf4+, Chrome */
+ color: White;
+ font-weight: normal;
+ border-color: #4EB7E2 transparent #2788B1;
+ text-shadow: none;
+}
+
+    
+/* Focus state on paging buttons */
+
+.ui-iggrid .ui-iggrid-paging-item.ui-state-focus,
+.ui-iggrid .ui-iggrid-paging-item.ui-state-default.ui-state-focus,
+.ui-iggrid .ui-iggrid-page.ui-state-focus,
+.ui-iggrid .ui-iggrid-pageui-state-default.ui-state-focus {
+ background: #333333 url(images/gradient_5.png) repeat-x;
+ border: 1px solid #2788B1;
+}
+.ui-iggrid .ui-iggrid-paging-item.ui-state-focus span,
+.ui-iggrid .ui-iggrid-paging-item.ui-state-default.ui-state-focus span,
+.ui-iggrid .ui-iggrid-page.ui-state-focus a,
+.ui-iggrid .ui-iggrid-pageui-state-default.ui-state-focus a {
+ color: #fff;
+ text-shadow: none;
+}
+.ui-iggrid .ui-iggrid-paging-item.ui-state-focus .ui-icon,
+.ui-iggrid .ui-iggrid-paging-item.ui-state-default.ui-state-focus .ui-icon {
+ background-image: url(images/ui-icons_ffffff_256x240.png)
+}
+
+
+/* Dropdowns */
+
+.ui-menu .ui-icon {
+ background-image: url("images/ui-icons_222222_256x240.png")
+}
+.ui-igedit-list .ui-igedit-listitem {
+ font-size: 1em;
+ line-height: 1.4em;
+}
+.ui-iggrid-filterbutton {
+ border: 1px solid transparent
+}
+.ui-iggrid-filterbutton.ui-state-hover,
+.ui-iggrid-filterbutton.ui-state-active,
+.ui-iggrid-filterbutton.ui-state-focus {
+ border: 1px solid #2788B1;
+}
+.ui-iggrid-filterdd,
+.ui-iggrid-featurechooser-dropdown-dialog {
+ background: #ffffff;
+ border: 1px solid #B1B1B1;
+}
+.ui-igedit-list .ui-igedit-listitem.ui-state-default,
+.ui-iggrid-filterddlist li.ui-state-default,
+.ui-iggrid-featurechooser-list li.ui-state-default,
+.ui-igcombo-listitemholder li.ui-state-default {
+ background: #ffffff none;
+ color: #333333;
+ text-shadow: none;
+ border: none;
+}
+.ui-igedit-list .ui-igedit-listitem.ui-state-hover,
+.ui-igedit-list .ui-igedit-listitem.ui-state-active,
+.ui-iggrid-filterddlist li.ui-state-hover,
+.ui-iggrid-filterddlist li.ui-state-active,
+.ui-iggrid-filterddlistitem.ui-state-hover a,
+.ui-iggrid-filterddlistitem.ui-state-active a,
+.ui-iggrid-featurechooser-list li.ui-state-hover,
+.ui-iggrid-featurechooser-list li.ui-state-active,
+.ui-iggrid-featurechooser-list.ui-state-hover a,
+.ui-iggrid-featurechooser-list.ui-state-active a,
+.ui-igcombo-listitemholder li.ui-state-hover,
+.ui-igcombo-listitemholder li.ui-state-active,
+.ui-igcombo-listitemholder li.ui-state-hover a,
+.ui-igcombo-listitemholder li.ui-state-active a {
+ background: #2686AE url(images/gradient_2.png) repeat-x;
+ color: #FFFFFF;
+ text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+ border: none;
+}
+.ui-igedit-list .ui-igedit-listitem.ui-state-highlight,
+.ui-igcombo-listitemholder li.ui-state-highlight,
+.ui-igcombo-listitemholder li.ui-state-highlight a {
+ background: #A1A1A1 url(images/gradient_3.png) repeat-x 0 0;
+ color: #333333;
+ text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+ border: none;
+}
+.ui-igedit-list .ui-igedit-listitem.ui-state-hover a,
+.ui-igedit-list .ui-igedit-listitem.ui-state-active a {
+ color: #FFFFFF;
+ text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+
+
+/* Group by */
+
+.ui-iggrid-groupbylabelrightedgeend {
+}
+.ui-iggrid-groupbylabelrightedge.ui-state-default {
+}
+.ui-iggrid tbody td.ui-iggrid-nongrouprowemptycell,
+.ui-iggrid tbody .ui-ig-altrecord td.ui-iggrid-nongrouprowemptycell
+{
+    background-color: white;
+}
+.ui-iggrid tbody td.ui-iggrid-nongrouprowemptycell.ui-state-hover
+{
+    background-image:none;
+}
+
+.ui-draggable-dragging .ui-iggrid-headertext
+{
+     font-family: "Segoe UI",Arial,sans-serif;
+}
+
+/* Hierarchical grid */
+
+.ui-iggrid-expandcolumn-expanded {
+ border-bottom: none!important; /*tabbed look*/
+}
+.ui-iggrid-altrecord + tr>td.ui-iggrid-childarea {
+ background-color: #EBEBEB; /* expanded from altrecord should have the same bg colour */
+ border-color: #EBEBEB #DCDCDC #DCDCDC;
+}
+
+/* Feature Chooser */
+
+.ui-iggrid-featurechooser-list .item-selected .ui-iggrid-featurechooserddlistitemtext {
+ text-shadow: none
+}
+
+
+/* Summaries */
+.ui-widget-footer 
+{
+    border-bottom:1px solid #DCDCDC;
+    border-right:1px solid #DCDCDC;
+}
+
+.ui-iggrid tfoot td.ui-widget-content,
+.ui-iggrid tfoot td.ui-state-default {
+ background-color: transparent;
+ color: #333333;
+ border-color: #DCDCDC;
+ border-style: solid;
+}
+.ui-iggrid tfoot td.ui-state-hover {
+ background-color: #EBEBEB
+}
+.ui-iggrid tfoot td.ui-state-default .ui-icon {
+ background-image: url("images/ui-icons_222222_256x240.png")
+}
+
+
+/* Grid Updating */
+
+@-webkit-keyframes addingHighlight {
+	0% {background-color:#4EB7E2;}
+	100% {background-color: transparent;}
+	}
+@-moz-keyframes addingHighlight {
+	 0% {background-color:#4EB7E2;}	
+	 100% {background-color: transparent;}
+	}
+
+.ui-iggrid-modifiedrecord>td
+{	
+    -webkit-animation-name: addingHighlight;
+	-webkit-animation-timing-function: ease-in-out;
+	-webkit-animation-duration: 1s;
+		
+	-moz-animation-name: addingHighlight;
+	-moz-animation-timing-function: ease-in-out;
+	-moz-animation-duration: 1s;	
+	
+    -o-animation-name: addingHighlight;
+	-o-animation-timing-function: ease-in-out;
+	-o-animation-duration: 1s;
+	
+    animation-name: addingHighlight;
+	animation-timing-function: ease-in-out;
+	animation-duration: 1s;
+}
+
+.ui-iggrid-modifiedrecord>td
+{
+    background-color: transparent;
+    color: #666666;
+}
+
+
+
+/******************
+*    igRating     *
+******************/
+.ui-igrating, .ui-igrating.ui-state-default {
+    background: transparent none;
+    border: none;
+}
+.ui-icon.ui-igrating-vote, .ui-iggrid .ui-icon.ui-igrating-vote {
+    background-image: url(images/igRating/ig-rating.png);
+    background-position: -75px 0;
+    width: 20px;
+    height: 20px;
+}
+.ui-icon.ui-igrating-voteselected, .ui-iggrid .ui-icon.ui-igrating-voteselected {
+    background-image: url(images/igRating/ig-rating.png);
+    background-position: 0 0;
+    width: 20px;
+    height: 20px;
+}
+.ui-icon.ui-igrating-votehover, .ui-iggrid .ui-icon.ui-igrating-votehover {
+    background-image: url(images/igRating/ig-rating.png);
+    background-position: -25px 0;
+    width: 20px;
+    height: 20px;
+}
+.ui-icon.ui-igrating-votedisabled, .ui-iggrid .ui-icon.ui-igrating-votedisabled {
+    background-image: url(images/igRating/ig-rating.png);
+    background-position: -100px 0;
+    width: 20px;
+    height: 20px;
+}
+.ui-icon.ui-igrating-votedisabledselected, .ui-iggrid .ui-icon.ui-igrating-votedisabledselected {
+    background-image: url(images/igRating/ig-rating.png);
+    background-position: -50px 0;
+    width: 20px;
+    height: 20px;
+}
+
+
+/******************
+*  igVideoPlayer  *
+******************/
+.ui-igplayer { }
+/*	Globals */
+.ui-igplayer video { }
+.ui-igplayer a { }
+.ui-igplayer .ui-igplayer-controls {
+    background: url("images/igVideoPlayer/igVPBackground.png") repeat-x;
+    border: none;
+}
+
+/* Screen Modes classes */
+.ui-igplayer-normal-screen-mode { }
+
+/* FUll screen mode*/
+.ui-igplayer-full-screen-mode { }
+.ui-igplayer-full-screen-mode .ui-igplayer-controls { }
+.ui-igplayer-full-screen-mode video:after { }
+/* Creates some "shim" when we are on fullscren mode to overlay elements on page  */
+.ui-igplayer-full-screen-mode .ui-igplayer:before {
+    background: #4c4c4c;
+    background: rgba(0,0,0, 0.5);
+    background: -moz-linear-gradient(top, #000000 0%, #4c4c4c 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #000000), color-stop(100%, #4c4c4c));
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#4c4c4c',GradientType=0 );
+    /*background: -moz-radial-gradient(50% 50%, farthest-side, #4c4c4c, #000000);
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#4c4c4c), to(#000000));*/
+}
+
+/* Autohide behavior */
+.ui-igplayer-controls-show { }
+.ui-igplayer-controls-hide { }
+
+/* Layout elements */
+.ui-igplayer .ui-igplayer-playbutton {
+
+    font-weight: normal;
+    text-shadow: none;
+    /*rounded corners*/
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+    .ui-igplayer .ui-igplayer-playbutton .ui-icon-pause{
+        background-image: url("images/igVideoPlayer/igVideoPlayerIcons.png");
+        background-repeat: no-repeat;
+        background-position: -23px -1px;
+    }
+	
+	/* K.D. May 31st, 2011 Bug #77271 The play icon is overriden by jQuery themeswitcher */
+	.ui-igplayer .ui-igplayer-playbutton .ui-icon-play{
+        background-image: url("images/igVideoPlayer/igVideoPlayerIcons.png");
+        background-repeat: no-repeat;
+        background-position: -1px -1px;
+    }
+
+.ui-igplayer .ui-igplayer-playbutton-icon 
+{
+    background-image: url("images/igVideoPlayer/igVideoPlayerIcons.png");
+    background-repeat: no-repeat;
+    background-position: -1px -1px;
+}
+
+.ui-igplayer .ui-igplayer-playbutton-text {
+    background: none!important;
+    border: none;
+    font-size: 11px;
+    text-shadow: 0 1px 0 rgba(83, 83, 83, 0.8);
+}
+.ui-igplayer .ui-igplayer-progressbar { }
+.ui-igplayer .ui-igslider-handle {
+    /*rounded corners*/
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.ui-igplayer .ui-igprogressbar {
+    border: none;
+}
+.ui-igplayer .ui-igprogressbar-range {
+    height: 2px;
+    background-color: -moz-linear-gradient(center top , rgba(59, 183, 235, 1), rgba(38, 134, 174, 1));
+    background-image: -moz-linear-gradient(top, rgba(59, 183, 235, 1), rgba(38, 134, 174, 1));
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #3BB7EB),color-stop(1, #2686AE));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#3BB7EB', EndColorStr='#2686AE');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#3BB7EB', EndColorStr='#2686AE')";
+    border: 1px solid #288BB4;
+}
+
+.ui-igplayer .ui-igplayer-volumecontrol { }
+
+    .ui-igplayer .ui-igplayer-volumecontrol .ui-icon-volume-on
+    {
+        background-image: url("images/igVideoPlayer/igVideoPlayerIcons.png");
+        background-repeat: no-repeat;
+        background-position: -62px -2px;    
+    }
+    
+    .ui-igplayer .ui-igplayer-volumecontrol .ui-icon-volume-off
+    {
+        background-image: url("images/igVideoPlayer/igVideoPlayerIcons.png");
+        background-repeat: no-repeat;
+        background-position: -82px -2px;    
+    }
+
+.ui-igplayer-fullscreen-button { margin: 5px }
+
+    .ui-igplayer .ui-igplayer-fullscreen-button .ui-icon-arrow-4-diag
+    {
+        background-image: url("images/igVideoPlayer/igVideoPlayerIcons.png");
+        background-repeat: no-repeat;
+        background-position: -102px -2px;    
+    }
+
+    .ui-igplayer .ui-igplayer-fullscreen-button .ui-icon-closethick
+    {
+        background-image: url("images/igVideoPlayer/igVideoPlayerIcons.png");
+        background-repeat: no-repeat;
+        background-position: -122px -2px;    
+    }
+    
+.ui-igplayer .ui-igplayer-volumeslider {
+    width: 10px;
+    height: 40px;
+    position: absolute;
+}
+
+.ui-igplayer-related-video-replay  {
+    margin: 5px;
+    height:25px; 
+}
+
+    .ui-igplayer .ui-igplayer-related-video-replay .ui-icon-arrowrefresh-1-s
+    {
+        background-image: url("images/igVideoPlayer/igVideoPlayerIcons.png");
+        background-repeat: no-repeat;
+        background-position: -43px -2px;    
+    }
+    .ui-igplayer .ui-igplayer-related-video-replay .ui-button-text
+    {
+        font-size: 13px;
+        line-height: 17px;
+    }
+    
+.ui-igplayer .ui-igplayer-progresslabel { color: #FFFFFF }
+.ui-igplayer .ui-igplayer-centerplaybutton-play { }
+.ui-igplayer .ui-igplayer-centerplaybutton-play:active,
+.ui-igplayer-centerplaybutton-pause:active { }
+.ui-igplayer  .ui-igplayer-centerplaybutton-play span,
+.ui-igplayer .ui-igplayer-centerplaybutton-pause span { }
+.ui-igplayer .ui-igplayer-centerplaybutton-pause { }
+.ui-igplayer .ui-igplayer-centerplaybutton-icon { color: white }
+.ui-igplayer .ui-igplayer-waiting { }
+.ui-igplayer .ui-igplayer-waiting-icon { }
+.ui-igplayer-title-controls { }
+/* Single play button and video title */
+.ui-igplayer-video-title { color: white }
+.ui-igplayer-playback-alone { padding-right: 5px }
+.ui-igplayer-playback-with-time { }
+/* Videoplayer state:active */
+.ui-igplayer.ui-igplayer-active video { }
+/****************************************/
+/***** These should be removed once *****/
+/***** the igButton is fixed        *****/
+/****************************************/
+.ui-igvideoplayerbutton { }
+.ui-igplayer-bookmark-container {
+    color: #4D4D4D;
+    background: #DADADA;
+    background-color: -moz-linear-gradient(center top , #FFFFFF, #DADADA);
+    background-image: -moz-linear-gradient(top, #FFFFFF, #DADADA);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #FFFFFF),color-stop(1, #DADADA));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(100%, #DADADA));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#FFFFFF', EndColorStr='#DADADA');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#FFFFFF', EndColorStr='#DADADA')";
+}
+.ui-igplayer-bookmark-header {
+    border: 1px solid #4F4F4F;
+    color: White;
+    background : #4F4F4F;
+    background-color: -moz-linear-gradient(center top , #757575, #4F4F4F);
+    background-image: -moz-linear-gradient(top, #757575, #4F4F4F);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #757575),color-stop(1, #4F4F4F));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#757575), color-stop(100%, #4F4F4F));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#757575', EndColorStr='#4F4F4F');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#757575', EndColorStr='#4F4F4F')";
+}
+.ui-igplayer-bookmark-list { border: 1px solid #B1B1B1 }
+.ui-igplayer-bookmark-list > li { }
+.ui-igplayer-bookmark-list > li:hover { border-color: #3AB5E9 }
+.ui-igplayer-bookmark-list > li.ui-igplayer-bookmark-active-item {
+    color: #333333;
+    background-color: #F3F3F3;
+    border: 1px solid #B1B1B1;
+}
+.ui-igplayer-bookmark-active-item .ui-igplayer-bookmark-item-time { }
+.ui-igplayer-bookmark-item-time { }
+.ui-igplayer-bookmark-list > li:hover .ui-igplayer-bookmark-item-time { }
+.ui-igplayer-bookmark-item-title { }
+/* Custom tooltip for bookmarks used on igVideoPlayer */
+.ui-igslider .ui-igslider-bookmark-tooltip .ui-widget-content {
+    border: 1px solid #288BB4;
+    padding: 4px 10px;
+    background-color: #2686AE;
+    background-image: none;
+    color: White;
+    background-color: -moz-linear-gradient(center top , #3BB7EB, #2686AE);
+    background-image: -moz-linear-gradient(top, #3BB7EB, #2686AE);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #3BB7EB),color-stop(1, #2686AE));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3BB7EB), color-stop(100%, #2686AE));
+}
+.ui-igslider .ui-igslider-bookmark-tooltip .ui-igtooltip-arrow-bottom {
+    background: url("images/igVideoPlayer/igVPBookmarkSprite.png") repeat-x 0px -40px transparent;
+    height: 8px;
+}
+.ui-igplayer-bookmark-item-title:hover { text-decoration: none }
+
+/* igProgressBar */
+.ui-igprogressbar {
+    background-color: -moz-linear-gradient(center top , rgba(141, 141, 141, 1), rgba(239, 239, 239, 1));
+    background-image: -moz-linear-gradient(top, rgba(141, 141, 141, 1), rgba(239, 239, 239, 1));
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #8D8D8D),color-stop(1, #EFEFEF));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#8D8D8D', EndColorStr='#EFEFEF');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#8D8D8D', EndColorStr='#EFEFEF')";
+}
+.ui-igprogressbar-range {
+    background-color: -moz-linear-gradient(center top , rgba(59, 183, 235, 1), rgba(38, 134, 174, 1));
+    background-image: -moz-linear-gradient(top, rgba(59, 183, 235, 1), rgba(38, 134, 174, 1));
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #3BB7EB),color-stop(1, #2686AE));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#3BB7EB', EndColorStr='#2686AE');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#3BB7EB', EndColorStr='#2686AE')";
+    border: 1px solid #288BB4;
+}
+
+
+/******************
+*  igupload  *
+******************/
+
+/*.ui-iguploadmultiple .ui-igupload-container.ui-widget-content { border-color: #2884ac }*/
+.ui-igupload-progressbar-icon-default,
+.ui-igupload-progressbar-icon-default { background: url(images/icon_sprite.png) 0px -128px no-repeat !important }
+.ui-igupload-progressbar-icon-exe { background: url(images/icon_sprite.png) 0px -144px no-repeat !important }
+.ui-igupload-progressbar-icon-images { background: url(images/icon_sprite.png) 0px -160px no-repeat !important }
+.ui-igupload-progressbar-icon-music { background: url(images/icon_sprite.png) 0px -176px no-repeat !important }
+.ui-igupload-progressbar-icon-video { background: url(images/icon_sprite.png) 0px -192px no-repeat !important }
+
+.ui-igupload-cancel-button .ui-button-icon-primary { background-image: url("images/ui-icons_222222_256x240.png")}
+.ui-state-hover.ui-igupload-cancel-button { background-color: transparent!important }
+.ui-igupload-cancel-button.ui-state-hover .ui-button-text {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+    .ui-igupload-cancel-button.ui-state-hover .ui-icon-closethick,
+    .ui-igupload-cancel-button.ui-state-focus .ui-icon-closethick
+    {
+        background-image: url("images/ui-icons_228ef1_256x240.png");
+    }
+
+
+.ui-igupload .ui-igprogressbar {
+    background-color: -moz-linear-gradient(center top , #e0e0e0, #f9f9f9);
+    background-image: -moz-linear-gradient(top, #e0e0e0, #f9f9f9);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #e0e0e0),color-stop(1, #f9f9f9));
+    filter          : progid:DXImageTransform.Microsoft.gradient(startColorStr='#e0e0e0', EndColorStr='#f9f9f9');
+    -ms-filter      : "progid:DXImageTransform.Microsoft.gradient(startColorStr='#e0e0e0', EndColorStr='#f9f9f9')";
+}
+
+/* OPERA FIX */
+/*.ui-igupload .ui-widget-header {
+    background-image: url("http://localhost/test/themes/ig/images/gradient_2.png");
+}*/
+
+.ui-igupload-progress-container {
+   background: none repeat scroll 0 0 #E0E0E0;
+}
+
+.ui-igupload-progressbar-filesize {
+    color:gray;
+}
+
+.ui-igupload-summaryprogress-label {
+    color:gray;
+}
+
+.ui-igupload-summaryprogress-secondary-label
+{
+   color: white; 
+}
+.ui-iggrid-summaries-footer-icon-container 
+{
+}
+
+.ui-iggrid-summaries-dropdown-listcontainer 
+{    
+}
+
+/*******************
+*    IE6 fixes     *
+*******************/
+
+.ui-ie6 .ui-igprogressbar-range {
+    filter:none!important;
+    background-image:none!important;
+    background-color:#2686AE!important;
+}
+.ui-ie6 .ui-igupload-summaryprogres_summpbar_progress {
+    filter:none;
+    background-image:none;
+    background-color:#2686AE!important;
+}
+
+.ui-ie6 .ui-igprogressbar {
+    filter:none;
+    background-image:none;
+    background-color:#F9F9F9;
+}
+
+.ui-ie6 .ui-igupload-uploadprogress {
+    filter:none;
+    background-image:none;
+}
+
+
+/*******************
+*    Opera fixes   *
+*******************/
+
+.ui-opera .ui-igprogressbar-range{
+    background-image:url(images/gradient_2.png)!important; 
+    background-color:#2686AE!important;
+}
+
+
+/*******************
+*   igTree styles  *
+*******************/
+
+.ui-widget-content.ui-igtree-root {
+	background: none;
+	border: none;
+}
+
+.ui-igtree a {
+ color: #333333
+}
+.ui-igtree a.ui-state-hover,
+.ui-igtree a.ui-state-active
+{
+ color: #ffffff
+}
+.ui-igtree a.ui-state-focus 
+{
+    color:#333333;
+    background:#94D7F3 none;
+    border:1px solid #3AB5E9;
+    outline:none;
+}
+
+
+/*******************
+*   Checkbox styles  *
+*******************/
+.ui-igcheckbox-small.ui-state-default,
+.ui-igcheckbox-normal.ui-state-default,
+.ui-igcombo-checkbox.ui-state-default 
+{
+    background-image:none;
+    background-color: #ffffff;
+    border-color:#B2B2B2;
+}
+.ui-igcheckbox-small.ui-corner-all,
+.ui-igcheckbox-normal.ui-corner-all,
+.ui-igcombo-checkbox.ui-corner-all 
+{
+    border-radius: 2px;
+}
+.ui-igcheckbox-small.ui-state-hover, 
+.ui-igcheckbox-normal.ui-state-hover, 
+.ui-igcombo-checkbox.ui-state-hover
+{
+    background-color:#e7f6fc; 
+    border-color:#84D1F1;
+}
+.ui-igcheckbox-small.ui-state-focus, 
+.ui-igcheckbox-normal.ui-state-focus, 
+.ui-igcombo-checkbox.ui-state-focus 
+{
+    border-color:#18A6E2;
+}
+
+.ui-igcombo-checkbox.ui-state-default,
+.ui-igcombo-checkbox.ui-state-hover,
+.ui-igcombo-checkbox.ui-state-focus
+{
+    background-image:none;
+}
+.ui-igcheckbox-small .ui-icon,
+.ui-igcheckbox-normal .ui-icon,
+.ui-iggrid th .ui-igcheckbox-normal.ui-state-default .ui-icon,
+.ui-igcombo-checkbox .ui-icon
+{
+    background-image:url("images/ui-icons_222222_256x240.png");
+}
+
+/*******************
+*   ComboBox styles  *
+*******************/
+.ui-igcombo-clear .ui-icon {
+ background-image: url("images/ui-icons_222222_256x240.png")
+}
+.ui-igcombo-clear.ui-state-hover .ui-icon {
+ background-image: url("images/ui-icons_ffffff_256x240.png")
+}
+
+
+/************************
+*   HTML Editor styles  *
+*************************/
+
+.ui-ightmleditor
+{
+	background-color:#ffffff;
+    border:1px solid #B1B1B1;
+    
+    background-image: -moz-linear-gradient(top, #ffffff, #e0e0e0);
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#ffffff), to(#e0e0e0));
+    background-image: -o-linear-gradient(top, #ffffff, #e0e0e0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e0e0e0');
+    /*INNER ELEMENTS MUST NOT BREAK THIS ELEMENTS BOUNDARIES*/
+    /*Element must have a height (not auto)*/
+    /*All filters must be placed together*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e0e0e0')";
+    /*Element must have a height (not auto)*/
+    /*All filters must be placed together*/
+    background-image: linear-gradient(top, #ffffff, #e0e0e0);
+}
+	.ui-ightmleditor .ui-igtoolbar {
+		background:transparent;
+	}
+    .ui-ightmleditor .ui-igtoolbar-wrap .ui-igbutton.ui-igbutton,
+	.ui-ightmleditor .ui-igtoolbar .ui-igbutton {
+        border-radius:0;
+		/*min-width: 18px;
+		min-height: 18px;*/
+    }
+    .ui-ightmleditor .ui-igtoolbar-wrap .ui-igbutton.ui-state-default,
+	.ui-ightmleditor .ui-igtoolbar .ui-igbutton.ui-state-default {    
+        background-color:transparent;
+		background-image:none;
+        border-color:transparent;
+    }
+
+    .ui-ightmleditor .ui-igtoolbar-wrap .ui-igbutton.ui-state-hover,
+	.ui-ightmleditor .ui-igtoolbar .ui-igbutton.ui-state-hover {
+		background-color: #2686AE;
+		background: #2686AE url(images/gradient_2.png) repeat-x;
+		border: 1px solid #2788B1;
+    }
+
+    .ui-ightmleditor .ui-igtoolbar-wrap .ui-igbutton.ui-state-focus,
+	.ui-ightmleditor .ui-igtoolbar .ui-igbutton.ui-state-focus {
+		background: #333333 url(images/gradient_5.png) repeat-x;
+		border: 1px solid #3AB5E9;
+    }
+
+    .ui-ightmleditor .ui-igtoolbar-wrap .ui-igbutton.ui-state-active,
+	.ui-ightmleditor .ui-igtoolbar .ui-igbutton.ui-state-active {
+		border: 1px solid #2788B1;
+		background: #3BB7EB url(images/gradient_6.png) repeat-x;
+    }
+	
+.ui-ightmleditor  .ui-igcombo-fieldholder {
+	border-color:#b1b1b1;
+}
+
+.ui-ightmleditor-content iframe 
+{
+    border              : 1px solid #B1B1B1;
+    
+    -webkit-box-shadow  : inset 2px 2px 3px rgba rgba(0, 0, 0, 0.1);
+    -moz-box-shadow     : inset 2px 2px 3px rgba rgba(0, 0, 0, 0.1);
+    box-shadow          : inset 2px 2px 3px rgba(0, 0, 0, 0.1); 
+    
+}
+
+/******************
+*    igCombo     *
+******************/
+.ui-igcombo-field,
+ui-igcombo-fieldholder, .ui-igcombo-fieldholder-ltr {
+    box-shadow: 0px 3px 2px rgba(100, 100, 100, 0.1) inset;
+}

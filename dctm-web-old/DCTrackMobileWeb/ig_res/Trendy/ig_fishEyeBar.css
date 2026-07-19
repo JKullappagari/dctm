@@ -1,0 +1,41 @@
+﻿.igfeb_TrendyControl
+{
+	background-color: Transparent;
+}
+
+.igfeb_TrendyControlHover
+{
+				
+				
+}
+
+.igfeb_TrendyFishEyeItemLabel
+{
+}
+
+.igfeb_TrendyFishEyeItem
+{
+}
+
+.igfeb_TrendyFishEyeItemHover
+{			
+}
+
+.igfeb_TrendyFishEyeItemDisabled
+{
+				
+				
+}
+
+.igfeb_TrendyControlFocus
+{
+				
+				
+}
+
+.igfeb_TrendyFishEyeItemSelected
+{
+	background-position: bottom;
+	background-image: url(images/igfeb_itemselected.png);	
+	background-repeat:  no-repeat;
+}

@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ModuleRightsGroups>
+  <ModuleRightsGroup Group="Admins">
+    <MainModule name="Masters">
+      <Module name ="Asset Model">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Host">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Location">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Manufacturer">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Purpose">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Register Device">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <!--<Module name ="Site">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>-->
+      <Module name ="Technology Category">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Audit Cycle">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Division">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Reason">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Owner">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Import Asset Models">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="4" Description="View" />
+      </Module>
+    </MainModule>
+    <MainModule name="Assignment">
+      <!--<Module name ="Assign Sites to Company">
+        <Rights Id="25" Description="Assignment" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Site and Location Assignment">
+        <Rights Id="25" Description="Assignment" />
+        <Rights Id="4" Description="View" />
+      </Module>-->
+      <Module name ="Company and Division Assignment">
+        <Rights Id="25" Description="Assignment" />
+        <Rights Id="4" Description="View" />
+      </Module>
+    </MainModule>
+    <MainModule name="Asset">
+      <Module name ="Create Asset">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Search Asset">
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="4" Description="View" />
+        <Rights Id="7" Description="Bar" />
+        <Rights Id="8" Description="UnBar" />
+        <Rights Id="9" Description="Restrict" />
+        <Rights Id="10" Description="Revoke Perm Restrict" />
+        <Rights Id="13" Description="Decommission" />
+        <Rights Id="20" Description="Asset Write Off" />
+      </Module>
+      <Module name ="Import Asset">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Inventory Update">
+        <Rights Id="22" Description="Inventory Update" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Import Blades">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="4" Description="View" />
+      </Module>
+    </MainModule>
+    <MainModule name="Reports">
+      <Module name ="Asset Movement Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Asset Transaction Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Asset History Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Audit Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Rack Inventory Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="App Summary - Rack">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Asset Data - Excel">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Capacity Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+    </MainModule>
+    <MainModule name="User Administration">
+      <Module name ="Group">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Group Module Access Rights Assignment">
+        <Rights Id="24" Description="Assign Rights" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Manage Users">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="User Search">
+        <Rights Id="23" Description="Modify User" />
+        <Rights Id="5" Description="Assign Group to User" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Change Password">
+        <Rights Id="4" Description="View" />
+      </Module>
+    </MainModule>
+    <MainModule name="Application">
+      <Module name ="Create Application">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Application Criticality">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Application Map">
+        <Rights Id="26" Description="Map" />
+        <Rights Id="27" Description="Unmap" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Application Type">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Import Applications">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Import Asset-App Map">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="4" Description="View" />
+      </Module>
+
+    </MainModule>
+  </ModuleRightsGroup>
+  <ModuleRightsGroup Group="Users">
+    <MainModule name="Masters">
+      <Module name ="Asset Model">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Host">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Location">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Manufacturer">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Purpose">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <!--<Module name ="Register Device">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>-->
+      <Module name ="Technology Category">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Division">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Reason">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Owner">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="3" Description="Delete" />
+        <Rights Id="4" Description="View" />
+      </Module>
+    </MainModule>
+    <MainModule name="Assignment">
+      <!--<Module name ="Company and Division Assignment">
+        <Rights Id="25" Description="Assignment" />
+        <Rights Id="4" Description="View" />
+      </Module>-->
+    </MainModule>
+    <MainModule name="Asset">
+      <Module name ="Create Asset">
+        <Rights Id="1" Description="Create" />
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Search Asset">
+        <Rights Id="2" Description="Modify" />
+        <Rights Id="4" Description="View" />
+      </Module>
+    </MainModule>
+    <MainModule name="Reports">
+      <Module name ="Asset Movement Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Asset Transaction Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Asset History Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Audit Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Rack Inventory Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="App Summary - Rack">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Asset Data - Excel">
+        <Rights Id="4" Description="View" />
+      </Module>
+      <Module name ="Capacity Report">
+        <Rights Id="4" Description="View" />
+      </Module>
+    </MainModule>
+    <MainModule name="User Administration">
+      <Module name ="Change Password">
+        <Rights Id="4" Description="View" />
+      </Module>
+    </MainModule>
+    <MainModule name="Application">
+      <Module name ="Application Criticality">
+        <Rights Id="4" Description="View" />
+      </Module>
+    </MainModule>
+  </ModuleRightsGroup>
+</ModuleRightsGroups>
+

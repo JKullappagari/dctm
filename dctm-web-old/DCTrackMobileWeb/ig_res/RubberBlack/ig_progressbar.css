@@ -1,0 +1,54 @@
+﻿body
+{
+}
+.igpb_RubberBlackBaseLabel
+{
+	text-align:left;
+	white-space:nowrap;
+	position:absolute;
+	padding:2px;
+}
+.igpb_RubberBlackBackgroundLabel
+{
+	color:Black;
+}
+.igpb_RubberBlackForegroundLabel
+{
+	color:White;
+}
+.igpb_RubberBlackInnerDiv
+{
+	height:100%;
+	width:100%;
+	position:absolute;
+	overflow:hidden;
+	
+}
+.igpb_RubberBlackFill_Horiz
+{
+
+	background-color: #000000;
+
+}
+.igpb_RubberBlackFill_Vert
+{
+	background-color: #000000;
+
+}
+.igpb_RubberBlackBackground_Horiz
+{
+	background-color:#EDEDED;
+	
+}
+.igpb_RubberBlackBackground_Vert
+{
+	background-color:#EDEDED;
+}
+.igpb_RubberBlackContainer
+{
+	height:100%;
+	width:100%;
+	position:relative;
+	border: solid 1px #A9A9A9;
+	overflow: hidden;
+}

@@ -1,0 +1,81 @@
+﻿<%--
+Default skin template. The following skins are provided as examples only.
+
+1. Named control skin. The SkinId should be uniquely defined because
+   duplicate SkinId's per control type are not allowed in the same theme.
+
+<asp:GridView runat="server" SkinId="gridviewSkin" BackColor="White" >
+   <AlternatingRowStyle BackColor="Blue" />
+</asp:GridView>
+
+2. Default skin. The SkinId is not defined. Only one default 
+   control skin per control type is allowed in the same theme.
+
+<asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
+--%>
+
+<%@ Register Assembly="Infragistics45.WebUI.WebDataInput.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<igtxt:WebImageButton SkinID="uwButton" runat="server" Height="100px" 
+   UseBrowserDefaults="False">
+    <RoundedCorners HeightOfBottomEdge="0" 
+    HoverImageUrl="images/Buttob/ig_butMacb2.gif" ImageUrl="images/Buttob/ig_butMacb1.gif"
+        MaxHeight="23" MaxWidth="500" PressedImageUrl="images/Buttob/ig_butMacb4.gif" RenderingType="FileImages"
+        WidthOfRightEdge="13" />
+     <Appearance>
+               <Style Cursor="Hand" Font-Names="Arial" Font-Size="8pt"></Style>
+                <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt"></ButtonStyle>
+     </Appearance>
+<%--    <HoverAppearance>
+        <ButtonStyle Cursor="Hand">
+        </ButtonStyle>
+    </HoverAppearance> 
+ --%>
+</igtxt:WebImageButton>
+
+<igtxt:WebImageButton SkinID="buttonGreen" runat="server" Height="87px" 
+   UseBrowserDefaults="False" >
+    <RoundedCorners HeightOfBottomEdge="0" HoverImageUrl="images/button-green2.png" ImageUrl="images/button-green1.png"
+        MaxHeight="50" MaxWidth="500" RenderingType="FileImages" PressedImageUrl="images/button-green1.png"
+        WidthOfRightEdge="13" />
+     <Appearance>
+               <Style Cursor="Hand" Font-Names="Arial" Font-Size="8pt"   ></Style>
+                <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="12pt" backColor="Green" foreColor="white" Font-Bold="true" ></ButtonStyle>
+     </Appearance>
+   <HoverAppearance>
+        <ButtonStyle Cursor="Hand">
+        </ButtonStyle>
+    </HoverAppearance> 
+
+</igtxt:WebImageButton>
+
+<igtxt:WebImageButton SkinID="buttonPurple" runat="server" Height="87px" 
+   UseBrowserDefaults="False" >
+    <RoundedCorners HeightOfBottomEdge="0" HoverImageUrl="images/button-Purple2.png" ImageUrl="images/button-Purple1.png"
+        MaxHeight="50" MaxWidth="500" RenderingType="FileImages" PressedImageUrl="images/button-Purple1.png"
+        WidthOfRightEdge="13" />
+     <Appearance>
+               <Style Cursor="Hand" Font-Names="Arial" Font-Size="8pt"   ></Style>
+                <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="12pt" backColor="Green" foreColor="white" Font-Bold="true" ></ButtonStyle>
+     </Appearance>
+   <HoverAppearance>
+        <ButtonStyle Cursor="Hand">
+        </ButtonStyle>
+    </HoverAppearance> 
+
+</igtxt:WebImageButton>
+
+<igtxt:WebImageButton SkinID="uwSearch" runat="server" Height="50px" width="25px"
+   UseBrowserDefaults="False">
+    <RoundedCorners HeightOfBottomEdge="0" 
+     ImageUrl="images/search.gif"
+         />
+    
+</igtxt:WebImageButton>
+
+ <ig:WebDataGrid  SkinID= "FacilityDetailsGrid" runat="server" AutoGenerateColumns="False" DefaultColumnWidth="100px" Width="98%"
+                    EnableDataViewState="True" Height="400px" >
+                    
+
+</ig:WebDataGrid>
+       

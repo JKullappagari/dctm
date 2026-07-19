@@ -1,0 +1,676 @@
+/* The CSS Class that will be applied to the outer control.*/
+.igiv_TrendyControl
+{
+	background-color:Transparent;
+	border-width:0px;
+	border: 0px;
+	border-color:Transparent;
+	padding-right: 20px;
+	padding-left:  20px;
+	padding-bottom: 50px;
+}
+
+
+/*
+	This class should be used for setting any padding that might be 
+	needed if the Header is placed above the control.
+*/
+.igiv_TrendyHeaderPadding
+{
+	padding-top: 50px;
+}
+
+
+/*
+	This class should be used for adjusting the padding of the control
+	to account for the additional size of the header and footer.
+*/
+.igiv_TrendyFooterPadding
+{
+	padding-bottom: 50px;
+}
+
+
+/*
+	The CSS class that will be applied to the header. 
+    The header can be absolutely positoned anywhere in the control, because the WebImageViewerhas an internal DIV that
+    wraps the control with a position set to relative. </para>
+*/
+.igiv_TrendyHeaderContentArea
+{
+	font-size:14px;
+	padding-top:5px;
+	width: 100%;
+	position: absolute;
+	top: -27px;
+	right: 0px;
+	color:#006F4A;
+	text-align:left;
+}
+
+
+/*The CSS class that will be applied to the Left Corner of the Header. */
+.igiv_TrendyHeaderContentLeft
+{
+}
+
+
+/*The CSS class that will be applied to the actual content of the Header.*/
+.igiv_TrendyHeaderContent
+{
+	/* padding-top:-5px; */
+	padding-left:3px;
+}
+
+
+/*The CSS class that will be applied to the Right Corner of the Header. */
+.igiv_TrendyHeaderContentRight
+{
+}
+
+
+/*
+	A TR that wraps the TopLeft, TopArea, and TopRight elements. 
+    This CSS class is useful in setting the height of the entire row.
+*/
+.igiv_TrendyHeaderArea
+{
+	height: 3px;
+}
+
+
+/*
+	The CSS class that will be applied to the footer. 
+    The footer can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative. </para>
+*/
+.igiv_TrendyFooterContentArea
+{
+	font-size:14px;
+	/* width: 100%; */
+	position: absolute;
+	bottom: -43px;
+	right: 0px;
+	color:#006F4A;
+	text-align:right;
+}
+
+
+/*The CSS class that will be applied to the Left Corner of the Footer. */
+.igiv_TrendyFooterContentLeft
+{
+}
+
+
+/*The CSS class that will be applied to the actual content of the Footer.*/
+.igiv_TrendyFooterContent
+{
+}
+
+
+/* The CSS class that will be applied to the Right Corner of the Footer. */
+.igiv_TrendyFooterContentRight
+{
+}
+
+
+/*
+	 A TR that wraps the BottomLeft, BottomArea, and BottomRight elements. 
+     This CSS class is useful in setting the height of the entire row.
+*/
+.igiv_TrendyFooterArea
+{
+	height: 3px;
+}
+
+
+/*
+	A TD that wraps the Header.
+    This CSS Class should be used for applying a Background-Image along the top border of the control.
+*/
+.igiv_TrendyEdgeTop
+{
+	background-repeat:repeat-x;
+	background-image: url(./images/igiv_EdgeTop.gif);
+	height: 3px;
+}
+
+
+/*
+	A TD on the left side of the ImageArea.
+    This CSS Class should be used for applying a Background-Image along the left border of the control.
+*/
+.igiv_TrendyEdgeLeft
+{
+	background-repeat:repeat-y;
+	background-image: url(./images/igiv_EdgeLeft.gif);
+	/* width: 12px; */
+}
+
+
+/*
+	A TD that wraps the Footer.
+    This CSS Class should be used for applying a Background-Image along the bottom border of the control.
+*/
+.igiv_TrendyEdgeBottom
+{
+	background-repeat:repeat-x;
+	background-image: url(./images/igiv_EdgeBottom.gif);
+}
+
+
+/*
+	 A TD on the right side of the ImageArea.
+     This CSS Class should be used for applying a Background-Image along the right border of the control.
+       
+*/
+.igiv_TrendyEdgeRight
+{
+	background-repeat:repeat-y;
+	background-image: url(./images/igiv_EdgeRight.gif);
+	width: 3px;
+}
+
+
+/*
+	 The Top Left corner of the control.
+     This CSS Class should be used for rounded corners.
+*/
+.igiv_TrendyCornerTopLeft
+{
+	background-repeat:no-repeat;
+	background-image: url(./images/igiv_CornerTopLeft.gif);
+	width: 3px;
+}
+
+
+/*
+	The Top Right corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_TrendyCornerTopRight
+{
+	background-repeat:no-repeat;
+	background-position:right ;
+	background-image: url(./images/igiv_CornerTopRight.gif);
+	width: 3px;
+}
+
+
+/*
+	The Bottom Left corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_TrendyCornerBottomLeft
+{
+	background-repeat:no-repeat;
+	background-image: url(./images/igiv_CornerBottomLeft.gif);
+}
+
+
+/*
+	The Bottom Right corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_TrendyCornerBottomRight
+{
+	background-repeat:no-repeat;
+	background-position:top right ;
+	background-image: url(./images/igiv_CornerBottomRight.gif);
+}
+
+
+/*
+	The CSS class that will be applied to the Container of the Previous Button. 
+    This css Class is the TD in which the Image element is rendered. This style can be used
+    to set the vertical-align CSS attribute.
+*/
+.igiv_TrendyPrevButtonArea
+{
+	vertical-align:middle;
+}
+
+
+/*
+	The CSS class that will be applied to the Previous Button. 
+    The Previous Button can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative. 
+*/
+.igiv_TrendyPrevButton
+{
+	position: relative;
+	left: -12px;
+	padding-left:2px;
+	cursor:pointer;
+}
+
+
+/*
+	The CSS class that will be applied to the Container of the Next Button. 
+    This css Class is the TD in which the Image element is rendered. This style can be used
+    to set the vetical-align CSS attribute.
+*/
+.igiv_TrendyNextButtonArea
+{
+}
+
+
+/*
+	The CSS class that will be applied to the Next Button. 
+    The Next Button can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative.
+*/
+.igiv_TrendyNextButton
+{
+	padding-left:3px;
+	position: relative;
+	right: -3px;
+	cursor:pointer;
+	vertical-align:middle;
+}
+
+
+/*
+	A TD that contains the ImageArea.
+    If you would like a border around the ImageArea, this is the class to use.
+*/
+.igiv_TrendyImageAreaContainer
+{
+	background-color:White;
+	border:solid 1px #0F8840;
+	padding:4px;
+}
+
+
+/*
+	A DIV that contains all of the Images. 
+    In XHTML, to apply a border around the images a padding-bottom must be set to the size of the 
+	border-top-width plus the border-bottom-width.
+*/
+.igiv_TrendyImageArea
+{
+	background-color:White;
+}
+
+
+/*
+	An IMG element that is contained by the ImageAra.
+    In XHTML, to apply a border around an image a padding-bottom must be set to the size of the 
+	border-top-width plus the border-bottom-width on the ImageArea.
+*/
+.igiv_TrendyImage
+{
+	background-color:White;
+	padding-right:4px;
+}
+
+
+/*Applied to an IMG when it is selected.*/
+.igiv_TrendyImageSelected
+{
+}
+
+
+/*Applied to an IMG when the mouse is over it.*/
+.igiv_TrendyImageHover
+{
+}
+
+
+/*
+	When an image is hovered, this style gets applied to all other images.
+    A good use of this style is to apply an opacity to all other images that aren't being hovered, 
+	so that the hovered image has more focus.
+*/
+.igiv_TrendyOtherImageHover
+{
+	opacity: .5;
+	filter: alpha(opacity=50);
+}
+
+
+/*Applied to an IMG when the image is disabled.*/
+.igiv_TrendyImageDisabled
+{
+	opacity: .25;
+	filter: alpha(opacity=25);
+}
+
+
+/**************************** VERTICAL ***************************************/
+/*The CSS Class that will be applied to the outer control.*/
+.igiv_TrendyControl_Vert
+{
+	background-color:Transparent;
+	border-color:Transparent;
+	border-width:0px;
+	border: 0px;
+	padding-bottom: 35px;
+}
+
+
+/*
+	This class should be used for setting any padding that might be 
+	needed if the Header is placed above the control.
+*/
+.igiv_TrendyHeaderPadding_Vert
+{
+	padding-top: 35px;
+}
+
+
+/*
+	This class should be used for adjusting the padding of the control
+	to account for the additional size of the header and footer.
+*/
+.igiv_TrendyFooterPadding_Vert
+{
+	padding-bottom: 35px;
+}
+
+
+/*
+	The CSS class that will be applied to the header. 
+    The header can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative.
+*/
+.igiv_TrendyHeaderContentArea_Vert
+{
+	font-size:14px;
+	margin-left:-3px;
+	padding-top:-7px;
+	width: 100%;
+	position: absolute;
+	top: -30px;
+	color:#006F4A;
+	text-align:left;
+}
+
+
+/*The CSS class that will be applied to the Left Corner of the Header. */
+.igiv_TrendyHeaderContentLeft_Vert
+{
+}
+
+
+/*The CSS class that will be applied to the actual content of the Header.*/
+.igiv_TrendyHeaderContent_Vert
+{
+}
+
+
+/*The CSS class that will be applied to the Right Corner of the Header. */
+.igiv_TrendyHeaderContentRight_Vert
+{
+}
+
+
+/*
+	A TR that wraps the TopLeft_Vert, TopArea_Vert, and TopRight_Vert elements. 
+    This CSS class is useful in setting the height of the entire row.
+*/
+.igiv_TrendyHeaderArea_Vert
+{
+	height: 3px;
+}
+
+
+/*
+	The CSS class that will be applied to the footer. 
+    The footer can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative. 
+*/
+.igiv_TrendyFooterContentArea_Vert
+{
+	font-size:14px;
+	/* width: 100%; */
+	position: absolute;
+	bottom: -45px;
+	right: 0px;
+	color:#006F4A;
+	text-align:right;
+}
+
+
+/*The CSS class that will be applied to the Left Corner of the Footer. */
+.igiv_TrendyFooterContentLeft_Vert
+{
+}
+
+
+/*The CSS class that will be applied to the actual content of the Footer.*/
+.igiv_TrendyFooterContent_Vert
+{
+}
+
+
+/*The CSS class that will be applied to the Right Corner of the Footer. */
+.igiv_TrendyFooterContentRight_Vert
+{
+}
+
+
+/*
+	A TR that wraps the BottomLeft_Vert, BottomArea_Vert, and BottomRight_Vert elements. 
+    This CSS class is useful in setting the height of the entire row.
+*/
+.igiv_TrendyFooterArea_Vert
+{
+	height: 3px;
+}
+
+
+/*
+	A TD that wraps the Header_Vert.
+    This CSS Class should be used for applying a Background-Image along the top border of the control.
+*/
+.igiv_TrendyEdgeTop_Vert
+{
+	background-repeat:repeat-x;
+	background-image: url(./images/igiv_EdgeTop_Vert.gif);
+	height: 3px;
+}
+
+
+/*
+	A TD on the left side of the ImageArea_Vert.
+    This CSS Class should be used for applying a Background-Image along the left border of the control.
+*/
+.igiv_TrendyEdgeLeft_Vert
+{
+	background-repeat:repeat-y;
+	background-image: url(./images/igiv_EdgeLeft_Vert.gif);
+	height: 3px;
+}
+
+
+/*
+	A TD that wraps the Footer_Vert.
+    This CSS Class should be used for applying a Background-Image along the bottom border of the control.
+*/
+.igiv_TrendyEdgeBottom_Vert
+{
+	background-repeat:repeat-x;
+	background-position:bottom ;
+	background-image: url(./images/igiv_EdgeBottom_Vert.gif);
+	height: 3px;
+}
+
+
+/*
+	A TD on the right side of the ImageArea_Vert.
+    This CSS Class should be used for applying a Background-Image along the right border of the control.
+*/
+.igiv_TrendyEdgeRight_Vert
+{
+	background-repeat:repeat-y;
+	background-position:right top ;
+	background-image: url(./images/igiv_EdgeRight_Vert.gif);
+	height: 3px;
+}
+
+
+/*
+	The Top Left corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_TrendyCornerTopLeft_Vert
+{
+	background-repeat:no-repeat;
+	background-image: url(./images/igiv_CornerTopLeft_Vert.gif);
+	width: 3px;
+	height: 3px;
+}
+
+
+/*
+	The Top Right corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_TrendyCornerTopRight_Vert
+{
+	background-repeat:no-repeat;
+	background-position:right top ;
+	background-image: url(./images/igiv_CornerTopRight_Vert.gif);
+	width: 3px;
+	height: 3px;
+}
+
+
+/*
+	The Bottom Left corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_TrendyCornerBottomLeft_Vert
+{
+	background-repeat:no-repeat;
+	background-position:bottom ;
+	background-image: url(./images/igiv_CornerBottomLeft_Vert.gif);
+}
+
+
+/*
+	The Bottom Right corner of the control.
+    This CSS Class should be used for rounded corners.
+*/
+.igiv_TrendyCornerBottomRight_Vert
+{
+	background-repeat:no-repeat;
+	background-position:bottom right ;
+	background-image: url(./images/igiv_CornerBottomRight_Vert.gif);
+}
+
+
+/*
+	The CSS class that will be applied to the Container of the PreviousButton. 
+    This css Class is the TD in which the Image element is rendered. This style can be used
+    to set the text-align CSS attribute.
+*/
+.igiv_TrendyPrevButtonArea_Vert
+{
+	text-align:center;
+}
+
+
+/*
+	The CSS class that will be applied to the Previous Button. 
+    The Previous Button can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative. 
+*/
+.igiv_TrendyPrevButton_Vert
+{
+	position: relative;
+	top: -12px;
+	padding-top:2px;
+}
+
+
+/*
+	The CSS class that will be applied to the Container of the Next Button. 
+    This css Class is the TD in which the Image element is rendered. This style can be used
+    to set the text-align CSS attribute.
+*/
+.igiv_TrendyNextButtonArea_Vert
+{
+	text-align:center;
+}
+
+
+/*
+	The CSS class that will be applied to the Next Button. 
+    The Next Button can be absolutely positoned anywhere in the control, because the WebImageViewer has an internal DIV that
+    wraps the control with a position set to relative. 
+*/
+.igiv_TrendyNextButton_Vert
+{
+	position: relative;
+	top: 2px;
+	padding-top:3px;
+}
+
+
+/*
+	A TD that contains the ImageArea.
+    If you would like a border around the ImageArea, this is the class to use.
+*/
+.igiv_TrendyImageAreaContainer_Vert
+{
+	background-color:White;
+	border:solid 1px #0F8840;
+	padding:4px;
+}
+
+
+/*
+	A DIV that contains all of the Images. 
+    In XHTML, to apply a border around the images a padding-right must be set to the size of the 
+	border-left-width plus the border-right-width.
+*/
+.igiv_TrendyImageArea_Vert
+{
+}
+
+
+/*
+	An IMG element that is contained by the ImageAra.
+    In XHTML, to apply a border around an image a padding-right must be set to the size of the 
+	border-left-width plus the border-right-width on the ImageArea_Vert.
+*/
+.igiv_TrendyImage_Vert
+{
+	padding-bottom:4px;
+}
+
+
+/*Applied to an IMG when it is selected.*/
+.igiv_TrendyImageSelected_Vert
+{
+}
+
+
+/*Applied to an IMG when the mouse is over it.*/
+.igiv_TrendyImageHover_Vert
+{
+}
+
+
+/*
+	When an image is hovered, this style gets applied to all other images.
+    A good use of this style is to apply an opacity to all other images that aren't being hovered, 
+	so that the hovered image has more focus.
+*/
+.igiv_TrendyOtherImageHover_Vert
+{
+	opacity: .5;
+	filter: alpha(opacity=50);
+}
+
+
+/*Applied to an IMG when the image is disabled.*/
+.igiv_TrendyImageDisabled_Vert
+{
+	opacity: .25;
+	filter: alpha(opacity=25);
+}
+
+

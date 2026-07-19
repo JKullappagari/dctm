@@ -1,0 +1,98 @@
+.igcmb_RubberBlackControl
+{
+	border:solid 1px #4B4B4B;
+}
+
+
+.igcmb_RubberBlackEditWithButtons
+{
+	border:solid 1px #E1E1E1;
+	cursor:hand;
+}
+
+
+.igcmb_RubberBlackPagerArea
+{
+}
+
+
+.igcmb_RubberBlackPageCurrent
+{
+}
+
+
+.igcmb_RubberBlackPageLink
+{
+}
+
+
+.igcmb_RubberBlackItem
+{
+	background-image: url(images/gradient.png);
+	border-width:0px;
+	border-color:Transparent;
+	border-top:solid 1px LightGrey;
+}
+
+
+.igcmb_RubberBlackAlt
+{
+}
+
+
+.igcmb_RubberBlackHeader
+{
+	background-repeat:repeat-x;
+	background-position:center ;
+	background-image: url(images/header.jpg);
+	font-weight:bold;
+	border-width:0px;
+	padding-top:4px;
+	padding-bottom:4px;
+	color:White;
+	text-align:left;
+}
+
+
+.igcmb_RubberBlackFooter
+{
+}
+
+
+.igcmb_RubberBlackLabel
+{
+	background-color:#CCCCCC;
+	background-image:none;
+	border-right:solid 1px #A9A9A9;
+}
+
+
+.igcmb_RubberBlackSelected
+{
+	background-color:DimGray;
+	background-position:center ;
+	background-image: url(images/header_hover.jpg);
+	color:White;
+}
+
+
+.igcmb_RubberBlackEditSelected
+{
+}
+
+
+.igcmb_RubberBlackActiveBorderTopBottom
+{
+}
+
+
+.igcmb_RubberBlackActiveBorderLeft
+{
+}
+
+
+.igcmb_RubberBlackActiveBorderRight
+{
+}
+
+

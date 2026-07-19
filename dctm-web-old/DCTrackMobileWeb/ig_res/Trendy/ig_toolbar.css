@@ -1,0 +1,59 @@
+.igtb_TrendyControl
+{
+	background-color:#F0F0F0;
+	background-image: url(images/bg_diagonal.gif);
+	border-color:Transparent;
+}
+
+
+.igtb_TrendyItem
+{
+	background-color:Transparent;
+}
+
+
+.igtb_TrendyButton
+{
+	background-color:Transparent;
+	border:solid 1px Transparent;
+	padding-left:4px;
+}
+
+
+.igtb_TrendyButtonHover
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	border:solid 1px #E1E1E1;
+	color:White;
+	padding-left:4px;
+}
+
+
+.igtb_TrendyButtonPressed
+{
+}
+
+
+.igtb_TrendyLabel
+{
+}
+
+
+.igtb_TrendyTextBox
+{
+	background-color:White;
+}
+
+
+.igtb_TrendySeparator
+{
+	background-color:Transparent;
+}
+
+
+.igtb_TrendyButtonDisabled
+{
+}
+
+

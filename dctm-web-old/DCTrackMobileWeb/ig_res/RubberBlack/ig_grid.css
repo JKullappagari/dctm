@@ -1,0 +1,194 @@
+.igtbl_RubberBlackControl
+{
+	border:solid 1px #4B4B4B;
+}
+
+
+.igtbl_RubberBlackPagerArea
+{
+	background-position:bottom ;
+	background-image: url(images/bg.gif);
+	border-width:0px;
+	padding-top:15px;
+	padding-right:15px;
+	padding-bottom:15px;
+}
+
+
+.igtbl_RubberBlackPageCurrent
+{
+	margin-right:10px;
+}
+
+
+.igtbl_RubberBlackPageLink
+{
+	margin-right:10px;
+	color:Black;
+}
+
+
+.igtbl_RubberBlackGroupByBox
+{
+	background-position:center ;
+	background-image: url(images/gradient.png);
+	height: 25px;
+	color:DimGray;
+}
+
+
+.igtbl_RubberBlackAddNewBox
+{
+	background-position:top ;
+	background-image: url(images/menu_bg.gif);
+	cursor:hand;
+}
+
+
+.igtbl_RubberBlackItem
+{
+	background-image: url(images/gradient.png);
+	border-width:0px;
+	border-color:Transparent;
+	border-top:solid 1px LightGrey;
+	height: 30px;
+}
+
+
+.igtbl_RubberBlackFilterOperandButton
+{
+	background-color:Transparent;
+	background-repeat:no-repeat;
+	background-position:center ;
+	background-image: url(images/submit_up.gif);
+	border-width:0px;
+	padding-top:2px;
+	width: 18px;
+}
+
+
+.igtbl_RubberBlackAlt
+{
+}
+
+
+.igtbl_RubberBlackEdit
+{
+	background-color:White;
+	font-size:x-small;
+	font-family: Verdana;
+	border:solid 1px Transparent;
+	padding-top:7px;
+	text-align:left;
+	vertical-align:middle;
+}
+
+
+.igtbl_RubberBlackButton
+{
+}
+
+
+.igtbl_RubberBlackFxdCell
+{
+}
+
+
+.igtbl_RubberBlackHeader
+{
+	background-position:center ;
+	background-image: url(images/header.jpg);
+	font-weight:bold;
+	border-width:0px;
+	padding-top:4px;
+	padding-bottom:4px;
+	height: 30px;
+	color:White;
+	text-align:left;
+}
+
+
+.igtbl_RubberBlackFooter
+{
+	background-color:#4B4B4B;
+	background-image:none;
+}
+
+
+.igtbl_RubberBlackLabel
+{
+	background-color:#CCCCCC;
+	background-image:none;
+	border-right:solid 1px DarkGray;
+	border-bottom:solid 1px Gray;
+	height: 20px;
+}
+
+
+.igtbl_RubberBlackExpArea
+{
+	background-color:#4B4B4B;
+	background-image:none;
+	border-top:solid 1px Gray;
+	text-align:left;
+}
+
+
+.igtbl_RubberBlackGrpItem
+{
+}
+
+
+.igtbl_RubberBlackFxdHeader
+{
+}
+
+
+.igtbl_RubberBlackGroupBandLabel
+{
+}
+
+
+.igtbl_RubberBlackFxdFooter
+{
+}
+
+
+.igtbl_RubberBlackDropDown
+{
+	background-color:WhiteSmoke;
+	font-size:xx-small;
+	font-family: Verdana;
+	border:solid 1px LightGrey;
+}
+
+
+.igtbl_RubberBlackDropDownSel
+{
+}
+
+
+.igtbl_RubberBlackSelected
+{
+	background-color:DimGray;
+	background-position:center ;
+	background-image: url(images/header_hover.jpg);
+	color:White;
+}
+
+
+.igtbl_RubberBlackActiveBorderTopBottom
+{
+}
+
+
+.igtbl_RubberBlackActiveBorderLeft
+{
+}
+
+
+.igtbl_RubberBlackActiveBorderRight
+{
+}
+
+

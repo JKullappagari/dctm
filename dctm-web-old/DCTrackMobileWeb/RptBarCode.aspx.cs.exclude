@@ -1,0 +1,408 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using Microsoft.Reporting.WebForms;
+
+using iAssetTrack.BAL;
+using iAssetTrack.DALC;
+using iAssetTrackBAL;
+using Infragistics.Web.UI.NavigationControls;
+using System.Web.Services;
+//using Microsoft.SqlServer.ReportingServices2005.Execution;
+using System.IO;
+//using Microsoft.SqlServer.ReportingServices2005.Execution;
+
+
+
+public partial class RptBarCode : System.Web.UI.Page
+{
+    
+    private LocationBAL objLocation;
+    private ManufacturerBAL objMfg;
+    private AssetModelBAL objAM;
+    private CommonBAL objCommon;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!string.IsNullOrEmpty(hdnLocName.Value))
+            txtLocation.Text = hdnLocName.Value;
+        if (!Page.IsPostBack)
+        {
+
+
+            populateBusinessUnitList();
+         
+            populateManufacturerList();
+          
+          
+        }
+        lblModels.Visible = false;
+    }
+    private void populateManufacturerList()
+    {
+        objMfg = new iAssetTrack.BAL.ManufacturerBAL();
+        DataSet dsMfg = objMfg.retrieve();
+        DataTable dtMfg = dsMfg.Tables[0];
+
+        DataRow dr = dtMfg.NewRow();
+        dr[0] = 0;
+        dr[1] = "-Select-";
+        dtMfg.Rows.InsertAt(dr, 0);
+
+        //lstManufacturer.DataSource = dtMfg;
+        //lstManufacturer.DataValueField = dtMfg.Columns[0].ToString();
+        //lstManufacturer.DataTextField = dtMfg.Columns[1].ToString();
+        //lstManufacturer.DataBind();
+
+        ddlMfg.DataSource = dtMfg;
+        ddlMfg.DataValueField = dtMfg.Columns[0].ToString();
+        ddlMfg.DataTextField = dtMfg.Columns[1].ToString();
+        ddlMfg.DataBind();
+
+    }
+    protected void ddlBusinessUnit_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+        int iBusinessUnitID = Int32.Parse(ddlBusinessUnit.SelectedValue);
+        
+        populateSites(iBusinessUnitID);
+       
+        //ddlMfg.SelectedIndex = 0;
+       
+    }
+    protected void ddlSite_SelectedIndexChanged(object sender, EventArgs e)
+    {
+       
+    }
+
+    protected void StreamReport()
+    {
+        //ReportingService rs = new ReportingService();
+        //rs.Credentials = System.Net.CredentialCache.DefaultCredentials;
+
+        //byte[] result;
+        //byte[] image;
+        //string[] streamIDs;
+        //string optionalString = null;
+        //ParameterValue[] optionalParams = null;
+        //Warning[] optionalWarnings = null;
+
+        //// Render the report to HTML4.0
+        //result = rs.Render("/SampleReports/Product Line Sales", "HTML4.0", null,
+        //   "<DeviceInfo><StreamRoot>/WebApplication1/</StreamRoot></DeviceInfo>",
+        //   null, null, null, out optionalString, out optionalString, out optionalParams,
+        //   out optionalWarnings, out streamIDs);
+
+        //// For each image stream returned by the call to render,
+        //// render the stream and save it to the application root
+        //foreach (string streamID in streamIDs)
+        //{
+        //    image = rs.RenderStream("/SampleReports/Product Line Sales", "HTML4.0", streamID,
+        //       null, null, null, out optionalString, out optionalString);
+
+        //    FileStream stream = File.OpenWrite(@"C:\Inetpub\wwwroot\WebApplication1\" + streamID);
+        //    stream.Write(image, 0, image.Length);
+        //    stream.Close();
+        //}
+
+        //// Write the rendered report to the Web form
+        //Response.BinaryWrite(result);
+    }
+    //protected void ReportViewer1_Drillthrough(object sender, DrillthroughEventArgs e)
+    //{
+    //    ReportParameterInfoCollection DrillThroughValues = e.Report.GetParameters();
+
+    //    this.ReportViewer1.ServerReport.Refresh();
+    //    this.ReportViewer1.Width = 820;
+    //    this.ReportViewer1.Height = 550;
+    //    this.ReportViewer1.ShowToolBar =true;
+    //}
+    protected void btnShowReport_Click(object sender, EventArgs e)
+    {
+        lblModels.Visible = true;
+
+        ReportParameter[] parameters = new ReportParameter[3];
+
+
+
+        //string strLocation= txtLocation.Text;
+        string strLocation = txtLocation.Text;
+        string strManufacture = ddlMfg.SelectedItem.Text;
+
+
+        string strModel = ChkModels.SelectedValue;
+
+        // if Location (All) selected than 0 will be passed to represent all locations
+        //if (string.IsNullOrEmpty(srcLoc))
+        //    srcLoc = "0";
+        //if (string.IsNullOrEmpty(dstLoc))
+        //    dstLoc = "0";
+
+        //for (int i = 0; i < ChkModels.CheckedItems.Count; i++)
+        //{
+        //    listBox1.Items.Add(ChkModels.CheckedItems[i]);
+        //}
+        string strModels = "";
+        //ArrayList values = new ArrayList();
+        for (int counter = 0; counter < ChkModels.Items.Count; counter++)
+        {
+            if (ChkModels.Items[counter].Selected)
+            {
+                ///values.Add(ChkModels.Items[counter].Value);
+                strModels = strModels + ChkModels.Items[counter].Value + ',';
+                // parameters[2] = new ReportParameter("Model", ChkModels.Items[counter].Value);
+            }
+        }
+
+
+
+        parameters[0] = new ReportParameter("Location", strLocation);
+        parameters[1] = new ReportParameter("Manufacturer", strManufacture);
+        parameters[2] = new ReportParameter("sParameterString", strModels.Trim(','));
+        // parameters[2] = new ReportParameter("Model", strModel);
+
+
+
+
+
+        ReportViewer1.ShowParameterPrompts = false;
+        //ReportViewer1.ServerReport.ReportServerCredentials = new ReportCredentials("Reportfolder Name", "Password of the folder", "");
+
+        string user = ConfigurationManager.AppSettings["ReportServerUser"]; 
+
+        string pass = ConfigurationManager.AppSettings["ReportServerPass"];
+
+        string domain = ConfigurationManager.AppSettings["ReportServerDomain"];
+
+        ReportViewer1.ServerReport.ReportServerCredentials = new ReportCredentials(user, pass, domain);
+
+        ReportViewer1.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
+        ReportViewer1.ServerReport.ReportServerUrl = new System.Uri(ConfigurationManager.AppSettings["ReportServerUrl"]);
+        ReportViewer1.ServerReport.ReportPath = ConfigurationManager.AppSettings["ReportServerFolder"] + "Test";
+        ReportViewer1.ServerReport.SetParameters(parameters);
+        ReportViewer1.ServerReport.Refresh();
+
+        ReportViewer1.Visible = true;
+        //ReportViewer1.ShowReportBody = true;
+
+        //ReportViewer1.ShowPrintButton = true;
+       // ReportViewer1.ShowToolBar = true;
+        
+        ReportViewer1.ShowPromptAreaButton = false;
+        ReportViewer1.ShowToolBar = true ;
+        ReportViewer1.ShowPrintButton = true;
+        ReportViewer1.ShowZoomControl = false;
+        ReportViewer1.ShowRefreshButton = false;
+        ReportViewer1.ShowPageNavigationControls = false;
+        ReportViewer1.ShowExportControls = false;
+        ReportViewer1.ShowBackButton = false;
+        ReportViewer1.ShowDocumentMapButton = false;
+        ReportViewer1.ShowFindControls = false;
+        ReportViewer1.Height = 0;
+      
+        //string mimeType = null;
+        //string encoding=null;
+        //ReportViewer1.ServerReport.RenderStream("HTML4.0", "BarcodeReport", "<DeviceInfo><StreamRoot>/WebApplication1/</StreamRoot></DeviceInfo>",
+        //    out mimeType, out encoding);
+        //FileStream stream = File.OpenWrite(@"C:\Inetpub\wwwroot\WebApplication1\"+ );
+       // //ReportViewer1.ServerReport.RenderStream("HTML4.0","Barcodes","kjb",
+        
+       // //byte[] result;
+       // //byte[] image;
+       // //string[] streamIDs;
+       // //string optionalString = null;
+       // ////ParameterValue[] optionalParams = null;
+       // //Microsoft.Reporting.WebForms.Warning[] optionalWarnings = null;
+
+       // //// Render the report to HTML4.0
+       // //result = ReportViewer1.ServerReport.RenderStream("HTML4.0", null,
+       // //       null, out optionalString, out optionalString);
+
+       // //// For each image stream returned by the call to render,
+       // //// render the stream and save it to the application root
+       // //foreach (string streamID in streamIDs)
+       // //{
+       // //    image = ReportViewer1.ServerReport.RenderStream("HTML4.0", streamID,
+       // //       null, out optionalString, out optionalString);
+
+       // //    FileStream stream = File.OpenWrite(@"C:\Inetpub\wwwroot\WebApplication1\" + streamID);
+       // //    stream.Write(image, 0, image.Length);
+       // //    stream.Close();
+       // //}
+
+       // // Write the rendered report to the Web form
+       // Response.BinaryWrite(result);
+        parameters = null;
+    }
+  
+
+    private void populateBusinessUnitList()
+    {
+        int intUserID = 0;
+        if (Session["UserID"] != null)
+            intUserID = Convert.ToInt32(Session["UserID"].ToString());
+
+        FillDropDownListBU(StoredProcedures.SP_BUSINESSUNIT_LISTBYUSERID, ref ddlBusinessUnit, intUserID);
+    }
+    private void FillDropDownListBU(string strStoredProc, ref DropDownList ddl, int id)
+    {
+
+      
+        iAssetTrack.BAL.CommonBAL objCommon = new iAssetTrack.BAL.CommonBAL();
+
+        DataTable dt = objCommon.FillDropDownListBU(strStoredProc, "- Select -", id);
+        ddl.DataSource = dt;
+        ddl.DataValueField = dt.Columns[0].ToString();
+        ddl.DataTextField = dt.Columns[1].ToString();
+        ddl.DataBind();
+
+    }
+    private void populateSites(int pBusineddUnitId)
+    {
+        ddlSite.Items.Clear();
+
+        if (!ddlSite.Visible) return;
+        if (pBusineddUnitId <= 0) return;
+
+        ListItem emptyitem = new ListItem("- Select -", "0");
+        ddlSite.Items.Add(emptyitem);
+
+        SitesBAL objsite = new SitesBAL();
+
+        DataSet ds = objsite.retrieveByBusinessUnitId(pBusineddUnitId);
+        DataTable dt = ds.Tables[0];
+        ddlSite.DataSource = dt;
+        ddlSite.DataValueField = dt.Columns["SiteID"].ToString();
+        ddlSite.DataTextField = dt.Columns["Site"].ToString();
+        ddlSite.DataBind();
+
+     
+
+
+
+    }
+
+
+    private void getChildLocations(DataTreeNode node, int LocationID)
+    {
+        DataSet dsLocationbyLocation = objLocation.GetLocationBYLocation(LocationID);
+        DataTable dtLocationbyLocation = dsLocationbyLocation.Tables[0];
+
+        if (dtLocationbyLocation.Rows.Count > 0)
+        {
+            using (DataTableReader dtLocationbyLocationRdr = dtLocationbyLocation.CreateDataReader())
+            {
+                while (dtLocationbyLocationRdr.Read())
+                {
+                    DataTreeNode subLocationNode = new DataTreeNode();
+                    subLocationNode.Text = dtLocationbyLocationRdr.GetValue(1).ToString();
+                    subLocationNode.Value = dtLocationbyLocationRdr.GetValue(0).ToString();
+                    node.Nodes.Add(subLocationNode);
+                    if (Int32.Parse(dtLocationbyLocationRdr.GetValue(5).ToString()) > 0) // child count
+                        getChildLocations(subLocationNode, Convert.ToInt32(dtLocationbyLocationRdr.GetValue(0).ToString()));
+                }
+            }
+        }
+    }
+    private void getChildModels(DataTreeNode node, int ModelID)
+    {
+        AssetModelBAL objChildAM = new AssetModelBAL();
+        DataSet dsChildAM = objChildAM.retrieveByParentModelID(ModelID);
+        DataTable dtChildAM = dsChildAM.Tables[0];
+        using (DataTableReader dtModelByModelRdr = dtChildAM.CreateDataReader())
+        {
+            while (dtModelByModelRdr.Read())
+            {
+                DataTreeNode ModelNode = new DataTreeNode();
+                ModelNode.Text = dtModelByModelRdr.GetValue(1).ToString();
+                ModelNode.Value = dtModelByModelRdr.GetValue(0).ToString();
+                node.Nodes.Add(ModelNode);
+                getChildModels(ModelNode, Convert.ToInt32(dtModelByModelRdr.GetValue(0).ToString()));
+            }
+        }
+
+    }
+
+    protected void ddlMfg_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        //string test = ddlMfg.SelectedValue;
+        checkBoxPanel.Visible = true;
+        AssetModelBAL objAM = new AssetModelBAL();
+        DataSet dsMfg = objAM.retrieveByMfg(Convert.ToInt32(ddlMfg.SelectedValue), Convert.ToInt32(ddlBusinessUnit.SelectedValue));
+         if (dsMfg.Tables[0].Rows.Count > 0)
+        {
+            DataRow dr = dsMfg.Tables[0].Rows[0]; 
+
+        //if (ddlMfg.Items.Count > 0)
+        //{
+            //for (int i = 0; i < ddlMfg.Items.Count; i++)
+              for (int i = 0; i <= dsMfg.Tables[0].Rows.Count - 1; i++)
+            {
+                //if (ddlMfg.Items[i].Selected)
+                //{
+                    lblModels.Visible = true;
+                    //string selectedItem = ddlMfg.Items[i].Value;
+
+
+                   ChkModels.Items.Add(dsMfg.Tables[0].Rows[i]["ModelName"].ToString());
+
+
+
+                    //CheckBox chkModels = new CheckBox();
+
+                    //chkModels.ID = i.ToString();
+                    //chkModels.Text = dsMfg.Tables[0].Rows[i]["ModelName"].ToString();
+                    //TableRow row = new TableRow();
+
+                    //TableCell cell1 = new TableCell();
+                    //cell1.Controls.Add(chkModels);
+                    //row.Cells.Add(cell1);
+
+                    //Table1.Rows.Add(row);
+
+
+                }
+           }
+        //}
+    }
+
+
+
+    //protected void lstManufacturer_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    if (lstManufacturer.Items.Count > 0)
+    //    {
+    //        for (int i = 0; i < lstManufacturer.Items.Count; i++)
+    //        {
+    //            if (lstManufacturer.Items[i].Selected)
+    //            {
+    //                lblModels.Visible = true;
+    //                string selectedItem = lstManufacturer.Items[i].Value;
+                  
+                   
+    //                CheckBox chkModels = new CheckBox();
+                  
+    //                chkModels.ID = i.ToString();
+    //                chkModels.Text = lstManufacturer.Items[i].Text;
+    //                TableRow row = new TableRow();
+
+    //                TableCell cell1 = new TableCell();
+    //                cell1.Controls.Add(chkModels);
+    //                row.Cells.Add(cell1);
+
+    //                Table1.Rows.Add(row);
+
+                    
+    //            }
+    //        }
+    //    }
+    //}
+    
+}

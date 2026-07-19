@@ -1,0 +1,61 @@
+.igtr_RubberBlackControl
+{
+	border-width:0px;
+	color:Black;
+}
+
+
+.igtr_RubberBlackIsland
+{
+}
+
+
+.igtr_RubberBlackNode
+{
+	cursor:hand;
+	color:Black;
+}
+
+
+.igtr_RubberBlackParent
+{
+}
+
+
+.igtr_RubberBlackLeaf
+{
+}
+
+
+.igtr_RubberBlackEdit
+{
+}
+
+
+.igtr_RubberBlackRoot
+{
+	font-weight:bold;
+	cursor:hand;
+}
+
+
+.igtr_RubberBlackHover
+{
+	color:Black;
+	text-decoration:underline;
+}
+
+
+.igtr_RubberBlackSelected
+{
+	background-color:#E5E5E6;
+	color:Black;
+}
+
+
+.igtr_RubberBlackDisabled
+{
+	color:#E1E1E1;
+}
+
+

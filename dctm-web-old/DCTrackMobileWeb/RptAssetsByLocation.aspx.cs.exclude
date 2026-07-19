@@ -1,0 +1,191 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using Infragistics.Web.UI.NavigationControls;
+using System.Configuration;
+using Microsoft.Reporting.WebForms;
+
+public partial class RptAssetsByLocation : System.Web.UI.Page
+{
+    #region "Declarations"
+    private iAssetTrack.BAL.BusinessUnitBAL objBU;
+    private iAssetTrack.BAL.SitesBAL objSite;
+    private iAssetTrack.BAL.LocationBAL objLocation;
+    DataTable _dtRights;
+    #endregion
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        _dtRights = (DataTable)(Session["Rights"]);
+
+        if (_dtRights == null)
+        {
+            Session["RedirectUrl"] = "RptAssetsByLocation.aspx";
+            Response.Redirect("Login.aspx");
+        }
+
+        bool blfoundPage = false;
+
+        if (_dtRights.Select("Module = 'Assets By Location' and Rights = '" + "View" + "'").Length != 0)
+        {
+            blfoundPage = true;
+        }
+
+        if (blfoundPage == false)
+        {
+            Response.Redirect("AccessDeniedPage.aspx");
+            return;
+        }
+
+        if (!IsPostBack)
+        {
+            LoadLocations();
+        }
+        lblMessage.Enabled = false;
+        lblMessage.Text = string.Empty;
+    }
+
+    private void LoadLocations()
+    {
+
+        objBU = new iAssetTrack.BAL.BusinessUnitBAL();
+        DataSet dsBU = objBU.retrieve();
+        DataTable dtBU = dsBU.Tables[0];
+        objSite = new iAssetTrack.BAL.SitesBAL();
+        //DataSet dsSite = objSite.retrieve();
+        //DataTable dtSite = dsSite.Tables[0];
+        objLocation = new iAssetTrack.BAL.LocationBAL();
+        //DataSet dsLocation = objLocation.retrieve();
+        //DataTable dtLocation = dsLocation.Tables[0];
+
+        WebDataTree loctree = (WebDataTree)this.TreeLocation;
+        loctree.Nodes.Clear();
+        // add BUs
+        DataTreeNode clearNode = new DataTreeNode();
+        using (DataTableReader dtBURdr = dtBU.CreateDataReader())
+        {
+            while (dtBURdr.Read())
+            {
+
+                DataTreeNode buNode = new DataTreeNode();
+                buNode.Text = dtBURdr.GetValue(1).ToString();
+                buNode.Value = dtBURdr.GetValue(0).ToString();
+                buNode.Enabled = false;
+                buNode.CssClass = ".TreeNodeDisabled";
+                loctree.Nodes.Add(buNode);
+                DataSet dsSiteByLocation = objSite.retrieveByBusinessUnitId(Convert.ToInt32(dtBURdr.GetValue(0)));
+                DataTable dtSiteByLocation = dsSiteByLocation.Tables[0];
+                using (DataTableReader dtsitebyBURdr = dtSiteByLocation.CreateDataReader())
+                {
+                    while (dtsitebyBURdr.Read())
+                    {
+                        DataTreeNode siteNode = new DataTreeNode();
+                        siteNode.Text = dtsitebyBURdr.GetValue(1).ToString();
+                        siteNode.Value = dtsitebyBURdr.GetValue(0).ToString();
+                        siteNode.Enabled = false;
+                        siteNode.CssClass = ".TreeNodeDisabled";
+                        buNode.Nodes.Add(siteNode);
+
+                        objLocation.SiteID = Convert.ToInt32(dtsitebyBURdr.GetValue(0));
+                        DataSet dsLocationbySite = objLocation.GetLocationBYSite();
+                        DataTable dtLocationbySite = dsLocationbySite.Tables[0];
+
+                        using (DataTableReader dtLocationbySiteRdr = dtLocationbySite.CreateDataReader())
+                        {
+                            while (dtLocationbySiteRdr.Read())
+                            {
+                                DataTreeNode LocationNode = new DataTreeNode();
+                                LocationNode.Text = dtLocationbySiteRdr.GetValue(1).ToString();
+                                LocationNode.Value = dtLocationbySiteRdr.GetValue(0).ToString();
+                                siteNode.Nodes.Add(LocationNode);
+                                if (int.Parse(dtLocationbySiteRdr.GetValue(2).ToString()) > 0) //Child location count
+                                    getChildLocations(LocationNode, Convert.ToInt32(dtLocationbySiteRdr.GetValue(0).ToString()));
+
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+
+    }
+
+    private void getChildLocations(DataTreeNode node, int LocationID)
+    {
+        DataSet dsLocationbyLocation = objLocation.GetLocationBYLocation(LocationID);
+        DataTable dtLocationbyLocation = dsLocationbyLocation.Tables[0];
+
+        using (DataTableReader dtLocationbyLocationRdr = dtLocationbyLocation.CreateDataReader())
+        {
+            while (dtLocationbyLocationRdr.Read())
+            {
+                DataTreeNode subLocationNode = new DataTreeNode();
+                subLocationNode.Text = dtLocationbyLocationRdr.GetValue(1).ToString();
+                subLocationNode.Value = dtLocationbyLocationRdr.GetValue(0).ToString();
+                node.Nodes.Add(subLocationNode);
+                if (int.Parse(dtLocationbyLocationRdr.GetValue(5).ToString()) > 0) //Child location count
+                    getChildLocations(subLocationNode, Convert.ToInt32(dtLocationbyLocationRdr.GetValue(0).ToString()));
+            }
+        }
+    }
+
+    protected void btnShowReport_Click(object sender, EventArgs e)
+    {
+        string locList = string.Empty;
+       // ReportViewer1.ServerReport.Refresh();
+
+        foreach (DataTreeNode node in TreeLocation.CheckedNodes)
+        {
+            // level = 0 indicates BU, level = 1 indicates Site and level 2,3,4.... indicates locations
+            // and sub locations
+            //if (node.Level == 1)
+            //{
+
+            //}
+            if (node.Level >= 2)
+            {
+                locList = locList + node.Value + ",";
+            }
+        }
+        if (!string.IsNullOrEmpty(locList))
+        {
+            ReportParameter[] param = new ReportParameter[1];
+            param[0] = new ReportParameter("LocList", locList.Trim(','));
+
+            //ReportViewer1.ServerReport.ReportServerCredentials = new ReportCredentials("Reportfolder Name", "Password of the folder", "");
+            string user = ConfigurationManager.AppSettings["ReportServerUser"];
+
+            string pass = ConfigurationManager.AppSettings["ReportServerPass"];
+
+            string domain = ConfigurationManager.AppSettings["ReportServerDomain"];
+
+            ReportViewer1.ServerReport.ReportServerCredentials = new ReportCredentials(user, pass, domain);
+
+
+            ReportViewer1.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
+            ReportViewer1.ServerReport.ReportServerUrl = new System.Uri(ConfigurationManager.AppSettings["ReportServerUrl"]);
+            ReportViewer1.ServerReport.ReportPath = ConfigurationManager.AppSettings["ReportServerFolder"] + "AssetByLocation";
+            ReportViewer1.ServerReport.SetParameters(param);
+            ReportViewer1.ServerReport.Refresh();
+            ReportViewer1.Visible = true;
+            param = null;
+
+            
+        }
+        else
+        {
+            ReportViewer1.Visible = false;
+            lblMessage.Text = "Select atleast one location";
+            lblMessage.Enabled = true;
+        }
+        
+        
+    }
+}

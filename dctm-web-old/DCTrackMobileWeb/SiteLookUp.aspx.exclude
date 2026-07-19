@@ -1,0 +1,249 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true"  Theme="SkinFile" masterpagefile="~/PopupMaster.master"  CodeFile="SiteLookUp.aspx.cs" Inherits="ASPX_SubConLkUp" culture="auto" meta:resourcekey="PageResource1" uiculture="auto" %>
+
+<%@ Register Assembly="Infragistics35.WebUI.WebCombo.v10.2, Version=10.2.20102.2248, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebCombo" TagPrefix="igcmbo" %>
+
+<%@ Register Assembly="Infragistics35.WebUI.UltraWebGrid.v10.2, Version=10.2.20102.2248, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.UltraWebGrid" TagPrefix="igtbl" %>
+
+<%@ Register Assembly="Infragistics35.WebUI.WebDataInput.v10.2, Version=10.2.20102.2248, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+
+
+<asp:Content id="ContentMainPage" contentplaceholderid="GeneralPopupContentPlaceHolder" runat="Server">
+
+
+<script language="javascript" type="text/javascript">
+    
+    <!--
+  
+//Places the selected one from the lookup page in the textbox
+function selectSubcontractor(code,desc)
+{	
+    var tradecode = code;
+    var tradedescription = desc.replace(/~~~/g,"'");
+    //var ret = new Array(code,desc);
+    
+     if(window.opener.closed)
+     {
+     self.close();
+     }
+     else
+     {
+        window.opener.document.forms[0].ctl00$Master_ContentPlaceHolder$hdnSubcontractorID.value = tradecode;
+
+        window.opener.document.forms[0].ctl00$Master_ContentPlaceHolder$hdnSubcontractorName.value = tradedescription;
+
+        window.opener.document.getElementById("ctl00$Master_ContentPlaceHolder$txtSubcontractor").value=tradedescription;
+
+        //alert(window.opener.document.getElementById("ctl00_Master_ContentPlaceHolder_txtSubcontractor").innerText); 
+        window.returnValue =tradedescription ;//+ "," + tradecode;
+        window.opener.loadWorker();
+        self.close();
+    }
+    
+}
+
+//Places the selected one from the lookup page in the textbox
+function userSelected(tradecode,tradedescription)
+{	
+    var code = tradecode;
+    var desc = tradedescription.replace(/~~~/g,"'");
+    var ret = new Array(code,desc);
+    //alert(window.opener.status);
+     if(window.opener.closed)
+     {
+        //self.close();
+     }
+     else
+     {
+           
+        //window.opener.document.forms[0].ctl00$Master_ContentPlaceHolder$hdnUserID.value = code;        
+
+        //window.opener.document.forms[0].ctl00$Master_ContentPlaceHolder$hdnUserName.value = desc;
+        
+        //window.opener.document.getElementById("ctl00$Master_ContentPlaceHolder$txtUser").value = desc;
+        
+        window.opener.document.getElementById("<%=this.IDField %>").value = code;
+        window.opener.document.getElementById("<%=this.NameField %>").value = desc;
+        
+
+        //alert(window.opener.document.getElementById("ctl00_Master_ContentPlaceHolder_txtSubcontractor").innerText); 
+        window.returnValue =tradedescription ;//+ "," + tradecode;
+        
+        self.close();
+    }
+}
+
+    -->
+    </script>
+
+     <table id="Table3" border="0" cellpadding="2" height="300" >
+				     <tr style="height: 19px;">
+				      <td align="left" valign="top">
+                          <asp:ScriptManager id="ScriptManager1" runat="server">
+                          </asp:ScriptManager>
+                          <table id="tblSearch" width="100%" style="border-right: gray 1px solid; border-top: gray 1px solid; border-left: gray 1px solid; border-bottom: gray 1px solid; height: 46px;" align="center" border="0" cellpadding="4" cellspacing="0">
+                        <tr bgcolor="black">
+                            <td class="FilterHeading" colspan=4 style="height: 14px" >
+                                Location Lookup </td>
+                        </tr>
+                            <tr style="height: 19px">
+                                <td class="labelTD" style="height: 7px;" valign="bottom">
+                                    &nbsp;<asp:label id="lblBusinessUnit" runat="server" CssClass="FieldName" 
+                                        Width="92px" meta:resourcekey="lblBusinessUnitResource1" ></asp:label>&nbsp;</td>
+                                <td class="ControlTD" style="height: 7px;" valign="bottom">
+                                    <asp:UpdatePanel id="UpdatePanelBU" runat="server" UpdateMode="Conditional">
+                                        <contenttemplate>
+                                    <asp:DropDownList ID="ddlBusinessUnit" runat="server" Width="140px" 
+                                                CssClass="dropdownText" 
+                                                OnSelectedIndexChanged="ddlBusinessUnit_SelectedIndexChanged" 
+                                                AutoPostBack="True" meta:resourcekey="ddlBusinessUnitResource1">
+                            </asp:DropDownList> 
+</contenttemplate>
+                                    </asp:UpdatePanel></td>
+                                <td class="labelTD" style="height: 7px;" valign="bottom">
+                                    &nbsp;<asp:Label ID="lblSubconType" runat="server" CssClass="FieldName" 
+                                        Width="91px" meta:resourcekey="lblSubconTypeResource1"></asp:Label></td>
+                                <td class="ControlTD" style="width: 138px; height: 7px;" valign="bottom">
+                                    <asp:UpdatePanel id="UpdatePanelSite" runat="server" UpdateMode="Conditional">
+                                        <contenttemplate>
+                                    <asp:DropDownList ID="ddlSite" runat="server" CssClass="dropdownText" TabIndex="8"
+                                Width="166px" meta:resourcekey="ddlSiteResource1">
+                                    
+                                </asp:DropDownList>
+</contenttemplate>
+                                    </asp:UpdatePanel></td>
+                            </tr>
+                            <tr style="height: 19px">
+                                <td class="labelTD" style="height: 19px;">
+                                    &nbsp;
+                                    <asp:Label ID="lblName" runat="server" CssClass="FieldName" 
+                                        meta:resourcekey="lblNameResource1"></asp:Label></td>
+                                <td align="right" style="text-align: left">
+                            <asp:TextBox ID="txtName" runat="server" CssClass="FieldValue" MaxLength="150" 
+                                        TabIndex="1" Width="231px" meta:resourcekey="txtNameResource1"
+                                ></asp:TextBox></td>
+                                <td class="labelTD" style="height: 19px;">
+                                    &nbsp;</td>
+                                <td class="ControlTD" style="height: 19px;">
+                            </td>
+                            </tr>
+                            <tr style="height: 19px">
+                                <td colspan="4" style="" align="right" >
+                            
+
+                                    <igtxt:webimagebutton  id="wibSearch" runat="server" 
+                                                usebrowserdefaults="False" 
+                                        OnClick="wibSearch_Click" SkinID="uwButton" Width="75px" ImageDirectory="" 
+                                        meta:resourcekey="wibSearchResource1" >
+                                                <RoundedCorners WidthOfRightEdge="13" RenderingType="FileImages" MaxWidth="63" MaxHeight="18" HeightOfBottomEdge="0"></RoundedCorners>
+
+                                                <Appearance>
+                                                <Style Cursor="Hand" Font-Size="8pt" Font-Names="Arial"></Style>
+
+<ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt"></ButtonStyle>
+
+                                                </Appearance>
+                                                </igtxt:webimagebutton>
+                                    &nbsp;
+                                    <igtxt:webimagebutton id="wibReset" runat="server" 
+                                                usebrowserdefaults="False"  
+                                        OnClick="wibReset_Click" CausesValidation="False" SkinID="uwButton" 
+                                        Width="75px" ImageDirectory="" meta:resourcekey="wibResetResource1" >
+                                        <RoundedCorners HeightOfBottomEdge="0"
+                                            MaxHeight="18" MaxWidth="63" RenderingType="FileImages"
+                                            WidthOfRightEdge="13" />
+                                        <Appearance>
+                                            <Style Cursor="Hand" Font-Names="Arial" Font-Size="8pt"></Style>
+<ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt"></ButtonStyle>
+                                        </Appearance>
+                                    </igtxt:WebImageButton>
+                            </td>
+                            </tr>
+					</table>
+					
+					<table id="Table1" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" height="250">
+					    <tr>
+					        <td>
+                                <br />
+					                                      <igtbl:ultrawebgrid Height="230px" id="UWGSubCon" 
+                                    runat="server" Width="100%" OnInitializeRow="UWGSubCon_InitializeRow" 
+                                    SkinID="uwGrid" OnPageIndexChanged="UWGSubCon_PageIndexChanged" 
+                                    ImageDirectory="" meta:resourcekey="UWGSubConResource1"><Bands>
+                                                              <igtbl:UltraGridBand>
+                                                                  <AddNewRow View="NotSet" Visible="NotSet">
+                                                                  </AddNewRow>
+                                                                  <Columns>
+                                                                      <igtbl:UltraGridColumn BaseColumnName="LocationID" HeaderText="LocationID">
+                                                                          <HeaderStyle Height="20px" />
+                                                                          <Header Caption="Location">
+                                                                          </Header>
+                                                                      </igtbl:UltraGridColumn>
+                                                                      <igtbl:UltraGridColumn BaseColumnName="Location" HeaderText="Name" Type="HyperLink" Width="200px">
+                                                                          <Header Caption="Name">
+                                                                              <RowLayoutColumnInfo OriginX="1" />
+                                                                          </Header>
+                                                                          <Footer>
+                                                                              <RowLayoutColumnInfo OriginX="1" />
+                                                                          </Footer>
+                                                                      </igtbl:UltraGridColumn>
+                                                                      
+                                                                      
+                                                                  </Columns>
+                                                              </igtbl:UltraGridBand>
+</Bands>
+
+                                <DisplayLayout Version="4.00" Name="UWGSubCon" SelectTypeRowDefault="Single" CellClickActionDefault="RowSelect" CellPaddingDefault="3" AllowColSizingDefault="Free" AllowColumnMovingDefault="OnServer" RowsRange="0" AutoGenerateColumns="False" ScrollBarView="Vertical" JavaScriptFileName="" JavaScriptFileNameCommon="" ScrollBar="Always" RowHeightDefault="10px">
+                                <GroupByBox>
+                                <Style BorderColor="Window" BackColor="ActiveBorder"></Style>
+<BoxStyle BackColor="ActiveBorder" BorderColor="Window"></BoxStyle>
+                                </GroupByBox>
+                                <RowStyleDefault BorderWidth="0px" BorderColor="Gray"  BorderStyle="Solid" BackColor="#EEEEEE" ForeColor="Black" Font-Names="arial,verdana">
+                                <BorderDetails ColorTop="White" ColorLeft="White"></BorderDetails>
+                                <Padding Left="3px"></Padding>
+                                </RowStyleDefault>
+
+                                <HeaderStyleDefault BorderStyle="Solid" BackColor="#2B64A7" BorderColor="Black" ForeColor="White" Font-Bold="True" Font-Size="11px">
+                                    <BorderDetails ColorTop="White" WidthLeft="1px" WidthTop="1px" ColorLeft="White"></BorderDetails>
+                                </HeaderStyleDefault>
+
+                                <FrameStyle BorderWidth="1px" BorderColor="Teal" BorderStyle="Solid" Font-Size="12px" Font-Names="Verdana" Width="100%" Cursor="Default" Height="230px"></FrameStyle>
+                                <Pager AllowPaging="True" Alignment="Left" PageSize="6">
+                                    <Style BorderWidth="1px" BorderStyle="Solid" BackColor="LightGray">
+                                        <BorderDetails ColorTop="White" WidthLeft="1px" WidthTop="1px" ColorLeft="White"></BorderDetails>
+                                    </Style>
+<PagerStyle BackColor="LightGray" BorderWidth="1px" BorderStyle="Solid">
+<BorderDetails ColorLeft="White" ColorTop="White" WidthLeft="1px" WidthTop="1px"></BorderDetails>
+</PagerStyle>
+                                </Pager>
+
+                                <AddNewBox>
+                                     <Style BorderWidth="1px" BorderColor="InactiveCaption" BorderStyle="Solid" BackColor="Window">
+                                            <BorderDetails ColorTop="White" WidthLeft="1px" WidthTop="1px" ColorLeft="White"></BorderDetails>
+                                    </Style>
+<BoxStyle BackColor="Window" BorderColor="InactiveCaption" BorderWidth="1px" BorderStyle="Solid">
+<BorderDetails ColorLeft="White" ColorTop="White" WidthLeft="1px" WidthTop="1px"></BorderDetails>
+</BoxStyle>
+                                </AddNewBox>
+                                <ActivationObject BorderStyle="None">
+                                </ActivationObject>
+                                <SelectedRowStyleDefault BackColor="Beige" ForeColor="Black" Font-Bold="True" Font-Size="11px">
+                                </SelectedRowStyleDefault>
+
+
+
+<Images  ImageDirectory=""></Images>
+
+                                <RowAlternateStyleDefault BackColor="White">        
+                                </RowAlternateStyleDefault>
+                                <ImageUrls BlankImage="" CollapseImage="" CurrentEditRowImage="" CurrentRowImage=""
+                                ExpandImage="" FixedHeaderOffImage="" FixedHeaderOnImage="" GridCornerImage=""
+                                GroupByImage="" GroupDownArrow="" GroupUpArrow="" ImageDirectory="" NewRowImage=""
+                                RowLabelBlankImage="" SortAscending="" SortDescending="" UnGroupByImage="" />
+                            </DisplayLayout>
+                        </igtbl:ultrawebgrid>
+		            </td>
+	    	    </tr>
+    		</table>
+		</td>
+	</tr>
+</table>
+</asp:Content>

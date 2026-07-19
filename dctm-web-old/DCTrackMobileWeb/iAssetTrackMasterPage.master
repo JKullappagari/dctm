@@ -1,0 +1,294 @@
+﻿<%@ Master Language="C#" CodeFile="iAssetTrackMasterPage.master.cs" Inherits="iAssetTrackMasterPage" %>
+
+<%@ Register Src="iAssetTrackMenu.ascx" TagName="iAssetTrackMenu" TagPrefix="uc2" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.Web.UI" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.WebUI.WebDataInput.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>DCTrackMobileWeb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/text.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+    <script type="text/javascript" src="Scripts/jquery-2.0.0.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-ui.min.js"></script>
+    <script src="Scripts/JScript.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var validNavigation = false;
+        var lastkey;
+        var keynum;
+        var leave_message = 'Are you sure want to leave?'
+
+        function goodbye(e) {
+
+            var hdnSrcTarget = $("#__EVENTTARGET")[0];
+            if (hdnSrcTarget != null && hdnSrcTarget != 'undefined') {
+                if (hdnSrcTarget.value == '')
+                    isPostBack = false;
+                else
+                    isPostBack = true;
+            }
+
+            var condition = !(validNavigation || isPostBack)
+
+            if (condition) {
+                var mywindow = window.open("logoutme.aspx", "", "width=200, height=100");
+                mywindow.close();
+
+//                if (!e) e = window.event;
+//                //e.cancelBubble is supported by IE - this will kill the bubbling process.
+//                e.cancelBubble = true;
+//                e.returnValue = leave_message;
+//                //e.stopPropagation works in Firefox.
+//                if (e.stopPropagation) {
+//                    e.stopPropagation();
+//                    e.preventDefault();
+//                }
+//                //return works for Chrome and Safari
+//                return leave_message;
+            }
+
+        }
+
+
+//        window.onbeforeunload = goodbye;
+
+        function wireUpEvents() {
+
+            // Attach the event keypress to exclude the F5 refresh
+            $(document).bind('keypress', function (e) {
+                if (e.keyCode == 116) {
+                    validNavigation = true;
+                }
+                // Capture and remap F-key
+                keynum = e.keyCode;
+                if (lastkey == 18 && keynum == 115)
+                    validNavigation = false;
+
+                lastkey = keynum;
+
+            });
+
+            // Attach the event click for all links in the page
+            $("a").bind("click", function () {
+                validNavigation = true;
+            });
+
+            // Attach the event submit for all forms in the page
+            $("form").bind("submit", function () {
+                validNavigation = true;
+            });
+
+            // Attach the event when the dropdown option is changed
+            $("select#dropdownId").bind("change", function () {
+                validNavigation = true;
+            });
+
+            // Attach the event click for all inputs in the page
+            $("input[type=submit]").bind("click", function () {
+                validNavigation = true;
+            });
+
+            $('a:not(a[href^=javascript])').click(function () {
+                validNavigation = true;
+            });
+
+            $("input:image").click(function () {
+                validNavigation = true;
+            });
+
+        }
+
+        // Wire up the events as soon as the DOM tree is ready
+        $(document).ready(function () {
+            wireUpEvents();
+        });
+
+        function MenuItem_CLick(menu, eventArgs) {
+            validNavigation = true;
+        }
+
+    </script>
+    <style type="text/css">
+        .style1
+        {
+            width: 100%;
+        }
+        .style3
+        {
+            width: 80%;
+        }
+        .style4
+        {
+            width: 482px;
+        }
+        .style5
+        {
+            width: 238px;
+        }
+        .style6
+        {
+            width: 194px;
+        }
+        .body
+        {
+            padding: 0;
+        }
+        .content
+        {
+            position: absolute;
+            width: 100%;
+            bottom: 20px;
+        }
+        .footer
+        {
+            text-align: center;
+            position: absolute;
+            height: 20px;
+            bottom: 0;
+        }
+        .disabled
+        {
+            display: none;
+        }
+        
+        .enabled
+        {
+            display: inline;
+        }
+    </style>
+</head>
+<body style="margin-left: 0px; margin-right: 0px; margin-top: 0px; margin-bottom: 0px;
+    height: 100%; overflow-y: scroll">
+    <form id="frmISRP" runat="server">
+    <ig:WebScriptManager ID="WebScriptManager1" runat="server" EnablePageMethods="true"
+        ScriptMode="Release">
+    </ig:WebScriptManager>
+    <div align="center">
+        <table border="0px" cellspacing="0" cellpadding="0" class="style3">
+            <tr bgcolor="#000000" style="height: 10%;">
+                <td style="font-family: Arial, Helvetica, sans-serif; font-size: x-large; font-weight: lighter;
+                    font-style: italic; color: #FFFFFF;" align="left" class="style4" valign="middle">
+                    &nbsp;<img alt="" src="images/Infrastructure_white.png" style="width: 40px; height: 40px;
+                        vertical-align: middle;" />
+                    DCTrackMobileWeb
+                </td>
+                <td style="font-family: Arial, Helvetica, sans-serif; font-size: x-large; font-weight: lighter;
+                    font-style: italic; color: #FFFFFF;" align="right" class="style5" valign="middle">
+                    <table style="width: 180px">
+                        <tr>
+                            <td>
+                                <asp:Label ID="lblWelCome" runat="server" CssClass="displayText" ForeColor="White"
+                                    Font-Size="9px" Text="Welcome "></asp:Label>
+                                <asp:Label ID="lblUser" runat="server" CssClass="Pagetext1" ForeColor="White" Font-Size="11px"></asp:Label>
+                                <img alt="" src="images/user-icon.png" style="width: 32px; height: 32px; vertical-align: middle;" />
+                            </td>
+                            <td>
+                                <table class="style1">
+                                    <tr>
+                                        <td>
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="font-family: Arial, Helvetica, sans-serif; font-size: smaller; font-weight: lighter;
+                    color: #FFFFFF;" align="center" valign="middle" class="style6">
+                    <%--<asp:HyperLink ID="hlLogout" runat="server" ImageUrl="~/images/WindowClose_32.png"
+                        NavigateUrl="~/LogoutMe.aspx"></asp:HyperLink>--%>
+                    <asp:HyperLink ID="lnkHelp" Target="_blank" runat="server" ForeColor="White" NavigateUrl="~/HelpFiles/index.html">
+                        <asp:Label ID="Label1" runat="server" CssClass="Pagetext1" ForeColor="White" Font-Size="11px">Help</asp:Label></asp:HyperLink>&nbsp;&nbsp;
+                    <asp:HyperLink ID="hlChangePass" runat="server" ForeColor="White" NavigateUrl="~/UserChangePass.aspx">
+                        <asp:Label ID="Label2" runat="server" CssClass="Pagetext1" ForeColor="White" Font-Size="11px">Change password</asp:Label></asp:HyperLink>
+                    &nbsp;&nbsp;<asp:HyperLink ID="hlLogout" runat="server" ForeColor="White" NavigateUrl="~/LogoutMe.aspx">
+                        <asp:Label ID="Label3" runat="server" CssClass="Pagetext1" ForeColor="White" Font-Size="11px">Logout</asp:Label></asp:HyperLink>
+                </td>
+            </tr>
+            <tr style="height: 5%;">
+                <td style="background-image: url('ig_res/RubberBlack/images/igdm_RootHover.png');
+                    background-color: Black; background-repeat: repeat-x; background-position: top;
+                    white-space: normal; overflow: hidden; cursor: default;" valign="top" colspan="3">
+                    <uc2:iAssetTrackMenu ID="iAssetTrackMenu1" runat="server" />
+                </td>
+            </tr>
+            <tr style="height: 84%;">
+                <td valign="top" style="background-color: #FEFEFE;" colspan="3">
+                    <div id="a" style="position: relative; width: 100%; height: 100%; top: 0px; left: 0px;">
+                        <table id="Table1" border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+                            <tr>
+                                <td>
+                                    <table id="Table26" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="width: 16px; height: 31px">
+                                                <img alt="" src="images/table_left_top1.gif" />
+                                            </td>
+                                            <td style="background-image: url(images/table_top_middle1.gif); height: 31px; text-align: left;">
+                                                <div class="text">
+                                                    <asp:Label ID="lblPageName" CssClass="text" runat="server"></asp:Label>
+                                                    &nbsp;</div>
+                                            </td>
+                                            <td style="height: 31px">
+                                                <img alt="" src="images/table_top_right1.gif" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-image: url(images/table_left_middle1.gif); height: 100%" valign="top">
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <asp:ContentPlaceHolder ID="Master_ContentPlaceHolder" runat="server">
+                                                    </asp:ContentPlaceHolder>
+                                                </div>
+                                            </td>
+                                            <td style="background-image: url(images/table_right_middle1.gif); height: 100%">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img alt="" src="images/table_bottom_left.gif" />
+                                            </td>
+                                            <td style="background-image: url(images/table_bottom_middle.gif);">
+                                            </td>
+                                            <td style="width: 15px">
+                                                <img alt="" src="images/table_bottom_right.gif" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr style="height: 1%;">
+                <td height="100%" colspan="4" valign="bottom" align="center">
+                    <div style="color: Gray; text-align: center;">
+                         DCTrackMobile,v5.4.
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="mDialog">
+    </div>
+    <div id="tDialog" style="display: none">
+        Session will expire in <span id="timeinsec"></span>sec(s), do you want to extend?
+    </div>
+    <input type="hidden" id="hdnArgs" runat="server" />
+    <asp:Button ID="btnSTReload" runat="server" Style="display: none;" CausesValidation="false"
+        OnClick="btnSTReload_Click"></asp:Button>
+    <asp:Button ID="btnForceLogout" runat="server" Style="display: none" CausesValidation="false"
+        OnClick="btnForceLogout_Click"></asp:Button>
+    </form>
+</body>
+</html>

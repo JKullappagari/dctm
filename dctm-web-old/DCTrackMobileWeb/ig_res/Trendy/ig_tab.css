@@ -1,0 +1,401 @@
+.igtab_TrendyControl
+{
+	background-image: url(images/bg_diagonal.gif);
+	border:solid 1px #109A48;
+}
+
+
+.igtab_TrendyControl_Outer
+{
+	border-left-width:0px;
+	border-left-style:solid;
+}
+
+
+.igtab_TrendyDefaultTab_Top
+{
+	background-color:Transparent;
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px Transparent;
+	border-bottom-color:#109A48;
+	padding:2px 8px 2px 8px;
+	text-align:center;
+}
+
+
+.igtab_TrendyDefaultTab_Top_Rounded
+{
+	background-color:Transparent !important;
+	font-size:10pt;
+	font-family: Tahoma;
+	border-style:solid;
+	border-width:0px;
+	border-bottom-width:1px;
+	border-bottom-color:#109A48;
+	padding:2px 6px 1px 10px;
+	height: 100%;
+	cursor:pointer;
+	color:#006F4A;
+	text-align:center;
+}
+
+
+.igtab_TrendyDefaultTab_Top_Edge
+{
+	background-position:right top ;
+	font-size:2px;
+	padding:0px;
+}
+
+
+.igtab_TrendyButton
+{
+}
+
+
+.igtab_TrendyDefaultTab_Bottom
+{
+	background-color:Transparent;
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px Transparent;
+	border-top-color:#109A48;
+	padding:2px;
+}
+
+
+.igtab_TrendyDefaultTab_Bottom_Rounded
+{
+	background-color:Transparent !important;
+	background-repeat:no-repeat;
+	background-position:left bottom ;
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px #535353;
+	border-right-width:0px;
+	border-bottom-width:0px;
+	border-left-width:0px;
+	padding:3px 8px 4px 11px;
+	height: 100%;
+	cursor:pointer;
+	color:#006F4A;
+}
+
+
+.igtab_TrendyDefaultTab_Bottom_Edge
+{
+	background-position:right bottom ;
+	font-size:2px;
+	padding:4px;
+}
+
+
+.igtab_TrendyDefaultTab_Left
+{
+	background-color:Transparent;
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px Transparent;
+	border-right-color:#109A48;
+	padding:5px 2px 5px 2px;
+}
+
+
+.igtab_TrendyDefaultTab_Left_Rounded
+{
+	background-color:Transparent !important;
+	background-repeat:no-repeat;
+	background-position:left top ;
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px #535353;
+	border-top-width:0px;
+	border-bottom-width:0px;
+	border-left-width:0px;
+	margin-top:0px;
+	margin-right:5px;
+	margin-bottom:0px;
+	padding:5px 0px 0px 4px;
+	cursor:pointer;
+	color:#006F4A;
+	text-align:left;
+}
+
+
+.igtab_TrendyDefaultTab_Left_Edge
+{
+	background-position:left bottom ;
+	font-size:2px;
+	padding:1px;
+}
+
+
+.igtab_TrendyDefaultTab_Right
+{
+	background-color:Transparent;
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px Transparent;
+	border-left-color:#109A48;
+	padding:5px 2px 5px 2px;
+}
+
+
+.igtab_TrendyDefaultTab_Right_Rounded
+{
+	background-color:Transparent !important;
+	background-repeat:no-repeat;
+	background-position:right top ;
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px #535353;
+	border-top-width:0px;
+	border-right-width:0px;
+	border-bottom-width:0px;
+	padding:5px 4px 6px 0px;
+	cursor:pointer;
+	color:#006F4A;
+	text-align:right;
+}
+
+
+.igtab_TrendyDefaultTab_Right_Edge
+{
+	background-position:right bottom ;
+	font-size:2px;
+	padding:0px;
+}
+
+
+.igtab_TrendyButtonHover
+{
+}
+
+
+.igtab_TrendyButtonPressed
+{
+}
+
+
+.igtab_TrendyButtonDisabled
+{
+}
+
+
+.igtab_TrendyHoverTab_Top
+{
+	background-color:White;
+	background-image: url(images/tab_top_hover_f.gif);
+}
+
+
+.igtab_TrendySeparator_Top
+{
+	border-bottom:solid 1px #109A48;
+	border-top-width:0px;
+	border-right-width:0px;
+	border-left-width:0px;
+}
+
+
+.igtab_TrendyHoverTab_Top_Rounded
+{
+	background-image: url(images/tab_top_hover.gif);
+	border-bottom:solid 1px #535353;
+	color:Black;
+}
+
+
+.igtab_TrendyHoverTab_Bottom
+{
+	background-color:White;
+	background-position:bottom ;
+	background-image: url(images/tab_bottom_hover_f.gif);
+}
+
+
+.igtab_TrendySeparator_Bottom
+{
+	border-top:solid 1px #535353;
+	border-right-width:0px;
+	border-bottom-width:0px;
+	border-left-width:0px;
+}
+
+
+.igtab_TrendyHoverTab_Bottom_Rounded
+{
+	background-image: url(images/tab_bottom_hover.gif);
+	color:Black;
+}
+
+
+.igtab_TrendyHoverTab_Left
+{
+	background-color:White;
+	background-image: url(images/tab_left_hover_f.gif);
+}
+
+
+.igtab_TrendySeparator_Left
+{
+	border-right:solid 1px #535353;
+	border-top-width:0px;
+	border-bottom-width:0px;
+	border-left-width:0px;
+}
+
+
+.igtab_TrendyHoverTab_Left_Rounded
+{
+	background-image: url(images/tab_left_hover.gif);
+	color:Black;
+}
+
+
+.igtab_TrendyHoverTab_Right
+{
+	background-color:White;
+	background-image: url(images/tab_right_hover_f.gif);
+}
+
+
+.igtab_TrendySeparator_Right
+{
+	border-left:solid 1px #535353;
+	border-top-width:0px;
+	border-right-width:0px;
+	border-bottom-width:0px;
+}
+
+
+.igtab_TrendyHoverTab_Right_Rounded
+{
+	background-image: url(images/tab_right_hover.gif);
+	color:Black;
+}
+
+
+.igtab_TrendySelectedTab_Top
+{
+	background-color:#109A48;
+	background-image: url(images/tab_top_f.gif);
+	border-color:#109A48;
+	border-bottom-color:#535353;
+	color:White;
+}
+
+
+.igtab_TrendySelectedTab_Top_Rounded
+{
+	background-image: url(images/tab_top.gif);
+	border-width:0px;
+	border-bottom:solid 1px #109A48;
+	cursor:default;
+	color:White;
+}
+
+
+.igtab_TrendySelectedTab_Bottom
+{
+	background-color:#109A48;
+	background-position:bottom ;
+	background-image: url(images/tab_bottom_f.gif);
+	border-color:#109A48;
+	color:White;
+}
+
+
+.igtab_TrendySelectedTab_Bottom_Rounded
+{
+	background-image: url(images/tab_bottom.gif);
+	cursor:default;
+	color:White;
+}
+
+
+.igtab_TrendySelectedTab_Left
+{
+	background-color:#109A48;
+	background-image: url(images/tab_left_f.gif);
+	border-color:#109A48;
+	color:White;
+}
+
+
+.igtab_TrendySelectedTab_Left_Rounded
+{
+	background-image: url(images/tab_left.gif);
+	border-color:#535353;
+	cursor:default;
+	color:White;
+}
+
+
+.igtab_TrendySelectedTab_Right
+{
+	background-color:#109A48;
+	background-position:right ;
+	background-image: url(images/tab_right_f.gif);
+	border-color:#109A48;
+	color:White;
+}
+
+
+.igtab_TrendySelectedTab_Right_Rounded
+{
+	background-image: url(images/tab_right.gif);
+	cursor:default;
+	color:White;
+}
+
+
+.igtab_TrendyDisabledTab_Top
+{
+	color:WhiteSmoke;
+}
+
+
+.igtab_TrendyDisabledTab_Top_Rounded
+{
+	color:Gainsboro;
+}
+
+
+.igtab_TrendyDisabledTab_Bottom
+{
+	color:Gainsboro;
+}
+
+
+.igtab_TrendyDisabledTab_Bottom_Rounded
+{
+	color:Gainsboro;
+}
+
+
+.igtab_TrendyDisabledTab_Left
+{
+	color:Gainsboro;
+}
+
+
+.igtab_TrendyDisabledTab_Left_Rounded
+{
+	color:Gainsboro;
+}
+
+
+.igtab_TrendyDisabledTab_Right
+{
+	color:Gainsboro;
+}
+
+
+.igtab_TrendyDisabledTab_Right_Rounded
+{
+	color:Gainsboro;
+}
+
+

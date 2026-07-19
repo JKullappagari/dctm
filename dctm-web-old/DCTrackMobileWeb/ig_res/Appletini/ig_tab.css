@@ -1,0 +1,413 @@
+.igtab_AppletiniControl
+{
+	background-color:White;
+	background-position:bottom ;
+	background-image:none;
+	border:solid 1px #98C208;
+}
+
+
+.igtab_AppletiniControl_Outer
+{
+	background-color:White;
+	border-left-width:0px;
+	border-left-style:solid;
+}
+
+
+.igtab_AppletiniDefaultTab_Top
+{
+	background-color:#D0D0F0;
+	background-image: url(images/tab_top_normal_f.gif);
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px #98C208;
+	padding:2px;
+	text-align:center;
+}
+
+
+.igtab_AppletiniDefaultTab_Top_Rounded
+{
+	background-color:Transparent !important;
+	background-image: url(images/tab_top_hover.gif);
+	font-size:10pt;
+	font-family: Tahoma;
+	border-style:solid;
+	border-width:0px;
+	border-bottom-width:1px;
+	border-bottom-color:#98C208;
+	padding:2px 8px 1px 10px;
+	height: 100%;
+	cursor:pointer;
+	color:#A5A5A5;
+	text-align:center;
+}
+
+
+.igtab_AppletiniDefaultTab_Top_Edge
+{
+	background-position:right top ;
+	font-size:2px;
+	padding:0px;
+}
+
+
+.igtab_AppletiniButton
+{
+}
+
+
+.igtab_AppletiniDefaultTab_Bottom
+{
+	background-color:#D0D0F0;
+	background-position:bottom ;
+	background-image: url(images/tab_bottom_normal_f.gif);
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px #98C208;
+	padding:2px;
+}
+
+
+.igtab_AppletiniDefaultTab_Bottom_Rounded
+{
+	background-color:Transparent !important;
+	background-repeat:no-repeat;
+	background-position:left bottom ;
+	background-image: url(images/tab_bottom_hover.gif);
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px #98C208;
+	border-right-width:0px;
+	border-bottom-width:0px;
+	border-left-width:0px;
+	padding:4px 5px 5px 8px;
+	height: 100%;
+	cursor:pointer;
+	color:#969696;
+}
+
+
+.igtab_AppletiniDefaultTab_Bottom_Edge
+{
+	background-position:right bottom ;
+	font-size:2px;
+	padding:0px;
+}
+
+
+.igtab_AppletiniDefaultTab_Left
+{
+	background-color:#D0D0F0;
+	background-image: url(images/tab_left_normal_f.gif);
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px #98C208;
+	padding:5px 2px 5px 2px;
+}
+
+
+.igtab_AppletiniDefaultTab_Left_Rounded
+{
+	background-color:Transparent !important;
+	background-repeat:no-repeat;
+	background-position:left top ;
+	background-image: url(images/tab_left_hover.gif);
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px #98C208;
+	border-top-width:0px;
+	border-bottom-width:0px;
+	border-left-width:0px;
+	margin-top:0px;
+	margin-right:5px;
+	margin-bottom:0px;
+	padding-top:10px;
+	padding-right:0px;
+	padding-left:4px;
+	cursor:pointer;
+	color:#878787;
+	text-align:left;
+}
+
+
+.igtab_AppletiniDefaultTab_Left_Edge
+{
+	background-position:left bottom ;
+	font-size:2px;
+	padding:3px;
+}
+
+
+.igtab_AppletiniDefaultTab_Right
+{
+	background-color:#D0D0F0;
+	background-position:right ;
+	background-image: url(images/tab_right_normal_f.gif);
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px #98C208;
+	padding:5px 2px 5px 2px;
+}
+
+
+.igtab_AppletiniDefaultTab_Right_Rounded
+{
+	background-color:Transparent !important;
+	background-repeat:no-repeat;
+	background-position:right top ;
+	background-image: url(images/tab_right_hover.gif);
+	font-size:9pt;
+	font-family: Tahoma;
+	border:solid 1px #98C208;
+	border-top-width:0px;
+	border-right-width:0px;
+	border-bottom-width:0px;
+	padding:5px 4px 5px 0px;
+	cursor:pointer;
+	color:#969696;
+	text-align:right;
+}
+
+
+.igtab_AppletiniDefaultTab_Right_Edge
+{
+	background-position:right bottom ;
+	font-size:2px;
+	padding:0px;
+}
+
+
+.igtab_AppletiniButtonHover
+{
+}
+
+
+.igtab_AppletiniButtonPressed
+{
+}
+
+
+.igtab_AppletiniButtonDisabled
+{
+}
+
+
+.igtab_AppletiniHoverTab_Top
+{
+	background-color:#F0F0FF;
+	background-image: url(images/tab_top_hover_f.gif);
+}
+
+
+.igtab_AppletiniSeparator_Top
+{
+	border-bottom:solid 1px #98C208;
+	border-top-width:0px;
+	border-right-width:0px;
+	border-left-width:0px;
+}
+
+
+.igtab_AppletiniHoverTab_Top_Rounded
+{
+	background-image: url(images/tab_top_hover.gif);
+	border-bottom:solid 1px #98C208;
+	color:Black;
+}
+
+
+.igtab_AppletiniHoverTab_Bottom
+{
+	background-color:#F0F0FF;
+	background-image: url(images/tab_bottom_hover_f.gif);
+}
+
+
+.igtab_AppletiniSeparator_Bottom
+{
+	border-top:solid 1px #98C208;
+	border-right-width:0px;
+	border-bottom-width:0px;
+	border-left-width:0px;
+}
+
+
+.igtab_AppletiniHoverTab_Bottom_Rounded
+{
+	background-image: url(images/tab_bottom_hover.gif);
+	color:Black;
+}
+
+
+.igtab_AppletiniHoverTab_Left
+{
+	background-color:#F0F0FF;
+	background-image: url(images/tab_left_hover_f.gif);
+}
+
+
+.igtab_AppletiniSeparator_Left
+{
+	border-right:solid 1px #98C208;
+	border-top-width:0px;
+	border-bottom-width:0px;
+	border-left-width:0px;
+}
+
+
+.igtab_AppletiniHoverTab_Left_Rounded
+{
+	background-image: url(images/tab_left_hover.gif);
+	color:Black;
+}
+
+
+.igtab_AppletiniHoverTab_Right
+{
+	background-color:#F0F0FF;
+	background-image: url(images/tab_right_hover_f.gif);
+}
+
+
+.igtab_AppletiniSeparator_Right
+{
+	border-left:solid 1px #98C208;
+	border-top-width:0px;
+	border-right-width:0px;
+	border-bottom-width:0px;
+}
+
+
+.igtab_AppletiniHoverTab_Right_Rounded
+{
+	background-image: url(images/tab_right_hover.gif);
+	color:Black;
+}
+
+
+.igtab_AppletiniSelectedTab_Top
+{
+	background-color:#FEF0F0;
+	background-image: url(images/tab_top_f.gif);
+	border-color:#98C208;
+	border-bottom-color:Transparent;
+}
+
+
+.igtab_AppletiniSelectedTab_Top_Rounded
+{
+	background-image: url(images/tab_top.gif);
+	border-width:0px;
+	border-bottom:solid 1px #98C208;
+	cursor:default;
+	color:Black;
+}
+
+
+.igtab_AppletiniSelectedTab_Bottom
+{
+	background-color:#FEF0F0;
+	background-image: url(images/tab_bottom_f.gif);
+	border-color:#98C208;
+	border-top-color:Transparent;
+}
+
+
+.igtab_AppletiniSelectedTab_Bottom_Rounded
+{
+	background-image: url(images/tab_bottom.gif);
+	cursor:default;
+	color:Black;
+}
+
+
+.igtab_AppletiniSelectedTab_Left
+{
+	background-color:#FEF0F0;
+	background-image: url(images/tab_left_f.gif);
+	border-color:#98C208;
+	border-right-width:0px;
+}
+
+
+.igtab_AppletiniSelectedTab_Left_Rounded
+{
+	background-image: url(images/tab_left.gif);
+	border-color:#535353;
+	border-right-color:#98C208;
+	cursor:default;
+	color:Black;
+}
+
+
+.igtab_AppletiniSelectedTab_Right
+{
+	background-color:#FEF0F0;
+	background-image: url(images/tab_right_f.gif);
+	border-color:#98C208;
+	border-left-color:Transparent;
+}
+
+
+.igtab_AppletiniSelectedTab_Right_Rounded
+{
+	background-image: url(images/tab_right.gif);
+	cursor:default;
+	color:Black;
+}
+
+
+.igtab_AppletiniDisabledTab_Top
+{
+	color:#C3C3C3;
+}
+
+
+.igtab_AppletiniDisabledTab_Top_Rounded
+{
+	background-image: url(images/tab_top_normal.gif);
+	color:#C3C3C3;
+}
+
+
+.igtab_AppletiniDisabledTab_Bottom
+{
+	color:#C3C3C3;
+}
+
+
+.igtab_AppletiniDisabledTab_Bottom_Rounded
+{
+	background-image: url(images/tab_bottom_normal.gif);
+	color:#C3C3C3;
+}
+
+
+.igtab_AppletiniDisabledTab_Left
+{
+	color:#C3C3C3;
+}
+
+
+.igtab_AppletiniDisabledTab_Left_Rounded
+{
+	background-image: url(images/tab_left_normal.gif);
+	color:#C3C3C3;
+}
+
+
+.igtab_AppletiniDisabledTab_Right
+{
+	color:#C3C3C3;
+}
+
+
+.igtab_AppletiniDisabledTab_Right_Rounded
+{
+	background-image: url(images/tab_right_normal.gif);
+	color:#C3C3C3;
+}
+
+

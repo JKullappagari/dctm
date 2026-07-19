@@ -1,0 +1,840 @@
+.MessageStyle
+{
+    font-family: verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: Navy;
+}
+.uwButtonStyle
+{
+}
+.text
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.checkBoxText
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000000;
+    padding: 0px;
+}
+.errorText
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+}
+.smallesttext
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    font-style: normal;
+}
+
+.ms-Menu
+{
+    font: arial, verdana;
+    font-size: 0.8em;
+    font-weight: Bold;
+    background-color: Transparent;
+    color: #666666;
+}
+
+
+.ms-SubMenu
+{
+    background-image: url(../images/menuSpacer.gif);
+    background-repeat: no-repeat;
+    font: arial, verdana;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+.bodyStyle
+{
+    background-color: #041433;
+}
+
+.Heading
+{
+    font-family: "Century Gothic";
+    font-weight: bold;
+    font-size: 20pt;
+    color: #333333;
+    padding-top: 0px;
+    text-align: center;
+}
+
+.Heading2
+{
+    font-family: "Century Gothic";
+    font-weight: bold;
+    font-size: 18pt;
+    color: #333333;
+    padding-top: 0px;
+    text-align: left;
+}
+
+.Heading3
+{
+    font-family: "Century Gothic";
+    font-weight: bold;
+    font-size: 16pt;
+    color: #333333;
+    padding-top: 0px;
+    text-align: left;
+}
+
+.Heading4
+{
+    font-family: "Century Gothic";
+    font-weight: bold;
+    font-size: 14pt;
+    color: #333333;
+    padding-top: 0px;
+    text-align: left;
+    text-decoration: none;
+}
+
+.Heading5
+{
+    font-family: "Century Gothic";
+    font-weight: bold;
+    font-size: 12pt;
+    color: #333333;
+    padding-top: 0px;
+    text-align: left;
+    text-decoration: none;
+}
+
+
+.FilterHeading
+{
+    font-family: Verdana,Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: bold;
+    font-variant: normal;
+    text-transform: none;
+    color: #FFFFFF;
+}
+
+
+.headertitle
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: bold;
+    font-variant: normal;
+    text-transform: none;
+    color: #660066;
+}
+
+.textlight
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: bold;
+    font-variant: normal;
+    color: #996699;
+    border: none;
+}
+
+.copyright
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    color: #DDB5F4;
+    background-color: #d4a6d8; /*background-color: #996699;*/
+}
+
+
+
+.info
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: normal;
+    color: #996699;
+    border: none;
+}
+
+.navbar
+{
+    background-color: #660066;
+}
+
+
+.timer
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: normal;
+    color: White;
+}
+
+.ErrSummaryNew
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    color: red;
+}
+.Pagetext
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000066;
+}
+
+
+.Pagetext1
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000066;
+}
+
+.tableheaders
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: bold;
+    font-variant: normal;
+    color: #FFFFFF;
+}
+
+.tableborder
+{
+    border: thin solid #996699;
+    color: #FF80FF;
+}
+
+
+
+.tblHeader
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: black;
+    font-weight: bold;
+}
+
+
+
+
+
+.tblItem
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: Silver;
+    background-color: White;
+    font-weight: bold;
+}
+
+
+
+
+
+.tblItemWithoutBG
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.label
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: Black;
+}
+
+.labelTD
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: Black;
+    font-weight: bold;
+    background-color: transparent;
+    vertical-align: top;
+}
+
+
+
+.ControlTD
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: Transparent;
+    font-weight: bold;
+    text-align: left;
+    vertical-align: top;
+}
+
+
+
+.tblValue
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #996699;
+    font-weight: bold;
+}
+
+
+
+.lnk
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: blue;
+    font-weight: normal;
+}
+
+.FilterFieldName
+{
+    font: Arial;
+    font-size: 10px;
+}
+
+.LabelView
+{
+    font: Arial;
+    font-size: 10px;
+}
+
+.gridStyle
+{
+    font: Arial;
+    font-size: 12px;
+    color: White; /*Horizontal Align: Center;*/
+    width: 811px;
+}
+
+
+
+.gridItemHeader
+{
+    font-family: Verdana,Helvetica,Arial,sans-serif;
+    font-size: 11px;
+    color: white;
+    background-color: #2B64A7;
+    font-weight: bold;
+    border-width: 0px;
+    text-align: center; /*padding:3px;*/
+}
+
+
+
+
+.gridEmptyRow
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: small;
+    color: black;
+    background-color: #C7D5E8;
+    border-width: 1px;
+    border-color: Gray;
+    border-style: solid;
+    vertical-align: top;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+
+
+.gridItemFooter
+{
+    font-family: Arial, verdana, Helvetica, sans-serif;
+    font-size: 8px; /*color : #470e49;*/
+    color: White;
+    background-color: #507CD1;
+    font-weight: bold;
+    border-width: 0px;
+}
+
+.gridPagerStyle
+{
+    font-family: Verdana, Helvetica,arial, sans-serif;
+    font-size: 11px;
+    text-align: left;
+    color: white;
+    background-color: #2B64A7;
+    border-width: 1px;
+    border-color: Gray;
+    border-style: solid;
+    vertical-align: top;
+}
+
+
+.gridEditRow
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 8px; /*color : black;*/
+    color: #94008c;
+    background-color: #C7D5E8;
+    border-width: 1px;
+    border-color: Gray;
+    border-style: solid;
+    vertical-align: top;
+}
+
+
+
+.gridItemRow
+{
+    font-family: Arial,verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    color: black;
+    background-color: #C7D5E8;
+    border-width: 1px;
+    border-color: Gray;
+    border-style: solid;
+    vertical-align: top;
+    text-align: left;
+}
+
+
+
+.gridAltRow
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: black;
+    background-color: #E9E9F7;
+    border-width: 1px;
+    border-color: Gray;
+    border-style: solid;
+    vertical-align: top;
+    text-align: left;
+    font-weight: normal;
+}
+
+
+
+.editText
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #996699;
+}
+
+.gridSelectedRow
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px; /*color : black;*/
+    color: #333333;
+    font-weight: bold;
+    background-color: #d1ddf1;
+    border-width: 1px;
+    border-color: Gray;
+    border-style: solid;
+    vertical-align: top;
+}
+
+
+
+.smallTitle
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: bold;
+    font-variant: normal;
+    text-transform: none;
+    color: #660066;
+}
+
+
+
+.ErrMsgSmall
+{
+    font-family: arial, verdana;
+    padding-left: 40px;
+    font-size: 7.5pt;
+    color: Red;
+    text-align: center;
+    font-weight: bold;
+}
+
+.ErrMsgSmallTextBox
+{
+    font-family: arial, verdana;
+    padding-left: 40px;
+    font-size: 7.5pt;
+    color: Red;
+    text-align: center;
+    font-weight: bold;
+    border-style: inset;
+    border: 0px;
+}
+
+
+
+.ErrValStyle
+{
+    font-family: arial, verdana;
+    padding-left: 5px;
+    font-size: 7.5pt;
+    color: Red;
+    font-weight: bold;
+    margin-left: auto;
+    vertical-align: middle;
+}
+
+.ErrValStyleLarge
+{
+    font-family: arial, verdana;
+    padding-left: 5px;
+    font-size: 11pt;
+    color: Red;
+    font-weight: bold;
+    margin-left: auto;
+    vertical-align: middle;
+}
+
+
+.ErrValSummary
+{
+    font-family: arial, verdana;
+    padding-left: 40px;
+    font-size: 7.5p;
+}
+
+.FieldName
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #000000;
+    font-weight: bold;
+    color: Black;
+    padding-left: 8px;
+    margin-left: 3px;
+    text-align: left;
+    margin-bottom: 0px;
+}
+
+
+
+.MandatoryFieldName
+{
+    font-family: Arial, arial, verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: Black;
+    text-align: left;
+}
+
+
+.viewfieldvalue
+{
+    font-family: arial, verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    color: Black;
+    border-style: inset;
+    border: 0px;
+}
+
+.viewtabfieldvalue
+{
+    font-family: Tahoma, arial, verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    color: Black;
+    border-style: inset;
+    border: 0px;
+    background-color: Transparent;
+}
+
+.FieldValue
+{
+    font-family: Tahoma, arial, verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    color: Black;
+    border-style: inset;
+    text-align: left;
+    overflow: hidden;
+}
+
+.RadioValue
+{
+    font-family: arial, verdana, Helvetica, sans-serif;
+    font-size: 9px;
+    color: Black;
+    font-weight: bold;
+}
+
+.tblBGClr
+{
+    /*background-color :#CC99CC ;*/ /*background-color: #e7cfe7;*/
+    background-color: #efdff1;
+}
+
+
+
+.tblHeaders
+{
+    /*background-color :#a56ba5;  */ /*background-color: #cb98cb;*/
+    background-color: #d4a6d8;
+    font-family: arial, verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #87008b;
+}
+
+
+
+.tblLeft
+{
+    /*background-color :#cc99cc;  */ /*background-color: #e7cfe7;*/
+    background-color: #efdff1;
+}
+
+
+.displayText
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #000000;
+}
+
+
+
+.dropdownText
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 11px; /*color: #000000;*/
+    color: #000000;
+}
+
+.dropdownText16
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: 16px; /*color: #000000;*/
+    color: #000000;
+}
+
+.listboxText
+{
+    font-family: arial, verdana, Helvetica, sans-serif;
+    font-size: 11px; /*color: #000000;*/
+    color: #94008c;
+    background-color: White;
+    padding-left: 10px;
+    text-align: center;
+    vertical-align: middle;
+    width: 268px;
+}
+
+body
+{
+    margin-left: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+}
+
+.tabHeaderDefault
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: Transparent;
+    color: #FFFFFF;
+    font-weight: normal;
+    text-align: left;
+    vertical-align: top;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.tabHeaderSelected
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: Transparent;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-align: left;
+    vertical-align: top;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.panel
+{
+    font-family: arial, verdana, Arial, Helvetica, sans-serif;
+    font-size: 12.5px;
+    font-weight: bold;
+    border-color: #0056D7;
+    border-style: solid;
+    border-width: 1px;
+}
+.GridHeader
+{
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+    color: White;
+    background-color: Black;
+    border-color: Black;
+    border-style: none;
+    cursor: hand;
+}
+.TreeNodeDisabled
+{
+    color: Gray;
+}
+
+.buttonGreen
+{
+    padding: 5px;
+    background-color: #008424;
+    border: 1px solid #008424;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    color: White;
+}
+
+.igg_CustomPager
+{
+    font-size: 11px;
+    margin-right: 30px;
+    background-color: transparent; /* you need to use the !important modifier, so that text-align: center remains after the update panel updates */
+    text-align: center !important;
+    vertical-align: middle;
+    background-image: url(../images/WebDataGrid/pagerBG.gif);
+}
+
+.disabled
+{
+    display: none;
+}
+
+.enabled
+{
+    display: inline;
+}
+
+.leftaligned
+{
+    margin-left: 0;
+    margin-right: auto;
+    border: 0;
+    border-left: 0;
+}
+
+.modal
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: 99;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    -moz-opacity: 0.8;
+    min-height: 100%;
+    width: 100%;
+}
+.loading
+{
+    font-family: Arial;
+    font-size: 10pt;
+    border: 5px solid #67CFF5;
+    width: 200px;
+    height: 230px;
+    display: none;
+    position: fixed;
+    background-color: White;
+    z-index: 999;
+}
+
+.loadingTimeOut
+{
+    font-family: Arial;
+    font-size: 10pt;
+    border: 5px solid #67CFF5;
+    width: 200px;
+    height: 100px;
+    display: none;
+    position: fixed;
+    background-color: White;
+    z-index: 999;
+}
+
+.sessionTimeoutDialog
+{
+    font-family: Arial;
+    font-size: 10pt;
+    border: 5px solid #67CFF5;
+    display: none;
+    position: fixed;
+    background-color: White;
+    z-index: 999;
+}
+
+.hidden
+{
+    display: none;
+}
+.hidden2
+{
+    display: none;
+}
+
+.repViewer
+{
+    overflow:
+    overflow-y: auto !important;
+}
+
+/*Barcode
+.scrollingControlContainer 
+{ 
+    overflow-x: hidden; 
+    overflow-y: scroll; 
+} 
+ 
+.scrollingCheckBoxList 
+{ 
+    border: 1px #808080 solid; 
+    margin: 10px 10px 10px 10px; 
+    height: 300px; 
+}*/

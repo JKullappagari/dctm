@@ -1,0 +1,87 @@
+.igtxt_RubberBlackEditWithButtons
+{
+	background-position:top;
+	background-image:url(images/gradient.png);
+	font-family: Verdana;
+	font-size:10px;
+	line-height:1px;
+	height:20px;
+	width:130px;
+	border:solid 1px DimGray;
+}
+
+
+.igtxt_RubberBlackEdit
+{
+	background-color:#F0F0F0;
+	background-position:top;
+	background-image:url(images/gradient.png);
+	border:solid 1px DimGray;
+	outline:0;
+}
+
+.igtxt_RubberBlackTextArea
+{
+	background:#F0F0F0 top url(images/gradient.png);
+	border:solid 1px DimGray;
+	font-family:arial;
+	font-size:12px;
+	outline:0;
+}
+
+.igtxt_RubberBlackEditInContainer
+{
+	background-color:#F0F0F0;
+	background-position:top ;
+	background-image: url(images/gradient.png);
+	border-width:0px;
+	margin:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+	outline:0;
+}
+
+.igtxt_RubberBlackFocus
+{
+	border-color:#C0C080;
+}
+
+.igtxt_RubberBlackButtonSize
+{
+	width:15px;
+	height:100%;
+}
+
+.igtxt_RubberBlackButton
+{
+	background-color:Silver;
+	line-height:normal;
+	border:solid 1px WhiteSmoke;
+}
+
+.igtxt_RubberBlackButtonFocus
+{
+	background-color:#F0F0B0;
+}
+
+.igtxt_RubberBlackButtonHover
+{
+	background-color:#F0F0F0;
+	border:solid 0px Blue;
+}
+
+
+.igtxt_RubberBlackButtonPressed
+{
+	background-color:#BBBCBE;
+	border:solid 0px White;
+}
+
+
+.igtxt_RubberBlackButtonDisabled
+{
+	background-color:Gainsboro;
+	border:solid 1px White;
+}
+
+

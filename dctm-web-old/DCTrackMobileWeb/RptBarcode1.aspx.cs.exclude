@@ -1,0 +1,521 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using iAssetTrackBAL;
+using Microsoft.Reporting.WebForms;
+using iAssetTrack.BAL;
+using Infragistics.Web.UI.NavigationControls;
+using System.IO;
+
+
+
+public partial class RptSPCModelCount : System.Web.UI.Page
+{
+    ReportParameter[] parm = new ReportParameter[5];
+    LocationBAL objLocation;
+    DataTable _dtRights;
+
+    // J00007 by kjb on 25 Sep 2012
+    # region new control declaration
+    protected DropDownList ddlBusinessUnit, ddlPrimarySite, ddlMfg;
+    protected TextBox txtParentLocation,txtModel;
+    protected RequiredFieldValidator rfvModel;
+    # endregion
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // J00007 by kjb on 25 Sep 2012
+        # region New controls initialization
+        ddlBusinessUnit = (DropDownList)this.wpSearchOptions.Groups[0].Items[0].FindControl("ddlBusinessUnit");
+        ddlPrimarySite = (DropDownList)this.wpSearchOptions.Groups[0].Items[0].FindControl("ddlPrimarySite");
+        ddlMfg = (DropDownList)this.wpSearchOptions.Groups[0].Items[0].FindControl("ddlMfg");
+       
+        txtModel = (TextBox)this.wpSearchOptions.Groups[0].Items[0].FindControl("txtModel");
+        txtParentLocation = (TextBox)this.wpSearchOptions.Groups[0].Items[0].FindControl("txtParentLocation");
+
+        rfvModel = (RequiredFieldValidator)this.wpSearchOptions.Groups[0].Items[0].FindControl("rfvModel");
+        # endregion
+
+        Session["PageHeader"] = "Barcode Generator";
+        _dtRights = (DataTable)(Session["Rights"]);
+
+        if (_dtRights == null)
+        {
+            Session["RedirectUrl"] = "RptBarcode1.aspx";
+            Response.Redirect("Login.aspx");
+        }
+
+        bool blfoundPage = false;
+
+        if (_dtRights.Select("Module = 'Barcode Generator' and Rights = '" + "View" + "'").Length != 0)
+        {
+            blfoundPage = true;
+        }
+
+        if (blfoundPage == false)
+        {
+            Response.Redirect("AccessDeniedPage.aspx");
+            return;
+        }
+        
+        if (!Page.IsPostBack)
+        {
+            // report viewer settings
+
+            // fill drop down lists
+            FillDropDownLists();
+           
+            // mfg
+            ddlBusinessUnit.SelectedIndex = 1;
+            ddlBusinessUnit.Enabled = false;
+            FillDropdownsByBU();
+
+        }
+        txtModel.Text = "";
+        rfvModel.Visible = true;
+        
+    }
+
+
+    private void FillDropDownLists(string strStoredProc, DropDownList ddl)
+    {
+        TechCatBAL objTechCat = new TechCatBAL();
+        DataSet dsTC = objTechCat.retrieve();
+        DataTable dtTC = dsTC.Tables[0];
+
+        DataRow dr = dtTC.NewRow();
+        dr[0] = "0";
+        //dr[1] = "(All)";
+        dr[1] = "-- Select --";
+        dtTC.Rows.InsertAt(dr, 0);
+
+        ddl.DataSource = dtTC;
+        ddl.DataValueField = dtTC.Columns[0].ToString();
+        ddl.DataTextField = dtTC.Columns[1].ToString();
+        ddl.DataBind();
+    }
+
+
+
+    private void FillDropdownsByBU()
+    {
+        int intBusinessUnitID = 0;
+        if (ddlBusinessUnit.SelectedValue != "")
+            intBusinessUnitID = Convert.ToInt32(ddlBusinessUnit.SelectedValue);
+        FillDropDownList(StoredProcedures.SP_SITEBYBU_LIST, ref ddlPrimarySite, intBusinessUnitID);
+        //txtParentLocation.Text = "(All)";
+        //hdnParentLocationID.Value = "0";
+    }
+
+    private void FillDropDownList(string strStoredProc, ref DropDownList ddl, int id)
+    {
+        //ICommon svc = (ICommon)RemotingHelper.CreateProxy(typeof(ICommon));
+        iAssetTrack.BAL.CommonBAL objCommon = new iAssetTrack.BAL.CommonBAL();
+        //DataTable dt = objCommon.FillDropDownList(strStoredProc, "(All)", id);
+        DataTable dt = objCommon.FillDropDownList(strStoredProc, "-- Select --", id);
+        ddl.DataSource = dt;
+        ddl.DataValueField = dt.Columns[0].ToString();
+        ddl.DataTextField = dt.Columns[1].ToString();
+        ddl.DataBind();
+    }
+
+
+
+    //private void FillLocationsBySite()
+    //{
+    //    //ddlLocation.Items.Clear();
+    //    int intSiteID = 0;
+    //    if (ddlPrimarySite.SelectedValue != "")
+    //        intSiteID = Convert.ToInt32(ddlPrimarySite.SelectedValue);
+    //    objLocation = new iAssetTrack.BAL.LocationBAL();
+    //    objLocation.SiteID = intSiteID;
+    //    DataSet ds = objLocation.GetLocationBYSite();
+
+
+    //    WebDataTree lt = (WebDataTree)ddlLocation.Items[0].FindControl("TreeLoc");
+    //    lt.Nodes.Clear();
+    //    // add BUs
+    //    DataTreeNode clearNode = new DataTreeNode();
+    //    clearNode.Text = "(All)";
+    //    clearNode.Value = "0";
+    //    lt.Nodes.Add(clearNode);
+
+
+    //    using (DataTableReader dtLocationbySiteRdr = ds.Tables[0].CreateDataReader())
+    //    {
+    //        while (dtLocationbySiteRdr.Read())
+    //        {
+    //            DataTreeNode LocationNode = new DataTreeNode();
+    //            LocationNode.Text = dtLocationbySiteRdr.GetValue(1).ToString();
+    //            LocationNode.Value = dtLocationbySiteRdr.GetValue(0).ToString();
+    //            lt.Nodes.Add(LocationNode);
+    //            if (Int32.Parse(dtLocationbySiteRdr.GetValue(2).ToString()) > 0)
+    //                getChildLocations(LocationNode, Convert.ToInt32(dtLocationbySiteRdr.GetValue(0).ToString()));
+
+    //        }
+    //    }
+
+
+
+    //}
+
+    //private void getChildLocations(DataTreeNode node, int LocationID)
+    //{
+    //    DataSet dsLocationbyLocation = objLocation.GetLocationBYLocation(LocationID);
+    //    DataTable dtLocationbyLocation = dsLocationbyLocation.Tables[0];
+
+    //    if (dtLocationbyLocation.Rows.Count > 0)
+    //    {
+    //        using (DataTableReader dtLocationbyLocationRdr = dtLocationbyLocation.CreateDataReader())
+    //        {
+    //            while (dtLocationbyLocationRdr.Read())
+    //            {
+    //                DataTreeNode subLocationNode = new DataTreeNode();
+    //                subLocationNode.Text = dtLocationbyLocationRdr.GetValue(1).ToString();
+    //                subLocationNode.Value = dtLocationbyLocationRdr.GetValue(0).ToString();
+    //                node.Nodes.Add(subLocationNode);
+    //                if (Int32.Parse(dtLocationbyLocationRdr.GetValue(5).ToString()) > 0)
+    //                    getChildLocations(subLocationNode, Convert.ToInt32(dtLocationbyLocationRdr.GetValue(0).ToString()));
+    //            }
+    //        }
+    //    }
+    //}
+
+    private void FillDropDownListBU(string strStoredProc, ref DropDownList ddl, int id)
+    {
+
+        //CommonBAL objCommonBAL = new CommonBAL();
+        //ICommon svcBU = (ICommon)RemotingHelper.CreateProxy(typeof(ICommon));
+        iAssetTrack.BAL.CommonBAL objCommon = new iAssetTrack.BAL.CommonBAL();
+
+        DataTable dt = objCommon.FillDropDownListBU(strStoredProc, "-- Select --", id);
+        ddl.DataSource = dt;
+        ddl.DataValueField = dt.Columns[0].ToString();
+        ddl.DataTextField = dt.Columns[1].ToString();
+        ddl.DataBind();
+
+    }
+
+    protected void ddlMfg_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        txtParentLocation.Text = hdnLocName.Value;
+        txtModel.Text = "";
+        //txtModel.Text = hdnModelName.Value;
+        //txtModel.Text = "(All)";
+        //hdnModelID.Value = "0";
+    }
+
+    private void FillDropDownLists()
+    {
+
+        int intUserID = 0;
+        if (Session["UserID"] != null)
+            intUserID = Convert.ToInt32(Session["UserID"].ToString());
+
+        FillDropDownListBU(StoredProcedures.SP_BUSINESSUNIT_LISTBYUSERID, ref ddlBusinessUnit, intUserID);
+
+        //Mfg
+        PopulateMfgList();
+    }
+
+    private void PopulateMfgList()
+    {
+        ManufacturerBAL objMfg = new iAssetTrack.BAL.ManufacturerBAL();
+
+        ddlMfg.Items.Clear();
+        DataSet dsMfg = objMfg.retrieve();
+        DataTable dtMfg = dsMfg.Tables[0];
+
+        DataRow dr = dtMfg.NewRow();
+        dr[0] = 0;
+        dr[1] = "-- Select --";
+        dtMfg.Rows.InsertAt(dr, 0);
+
+        ddlMfg.DataSource = dtMfg;
+        ddlMfg.DataValueField = dtMfg.Columns[0].ToString();
+        ddlMfg.DataTextField = dtMfg.Columns[1].ToString();
+        ddlMfg.DataBind();
+    }
+
+    protected void ddlBusinessUnit_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        FillDropdownsByBU();
+        // mfg
+        ddlMfg.SelectedIndex = 0;
+    }
+    protected void ddlPrimarySite_SelectedIndexChanged(object sender, EventArgs e)
+    {
+       
+        //txtParentLocation.Text = "(All)";
+        //hdnParentLocationID.Value = "0";
+    }
+    //protected void ddlLocation_ValueChanged(object sender, Infragistics.Web.UI.ListControls.DropDownValueChangedEventArgs e)
+    //{
+    //    int locationID = 0;
+    //    LocationBAL objLoc = new LocationBAL();
+    //    if (ddlLocation.SelectedItemIndex > 0 || Utility.ISNumeric(ddlLocation.CurrentValue))
+    //        locationID = Convert.ToInt32(Utility.ISNumeric(ddlLocation.CurrentValue) ? ddlLocation.CurrentValue : ddlLocation.SelectedValue);
+    //    if (locationID != 0)
+    //    {
+    //        objLoc.LocationID = locationID;
+    //        DataSet ds = objLoc.retrieve();
+    //        if (ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0)
+    //        {
+    //            DataRow dr = ds.Tables[0].Rows[0];
+
+    //            Infragistics.Web.UI.ListControls.DropDownItem locationItem = new Infragistics.Web.UI.ListControls.DropDownItem();
+    //            locationItem.Text = dr[DBFields.DBFIELD_LOCATION].ToString();
+    //            locationItem.Value = dr[DBFields.DBFIELD_LOCATIONID].ToString();
+    //            ddlLocation.Items.Insert(1, locationItem);
+    //            ddlLocation.SelectedItemIndex = 1;
+
+    //        }
+    //    }
+    //    else
+    //    {
+    //        Infragistics.Web.UI.ListControls.DropDownItem locationItem = new Infragistics.Web.UI.ListControls.DropDownItem();
+    //        locationItem = ddlLocation.Items[0];
+    //        ddlLocation.SelectedItemIndex = 0;
+    //    }
+    //}
+    protected void btnShow_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+       // lblModels.Visible = true;
+
+        ReportParameter[] parameters = new ReportParameter[3];
+
+
+
+        //string strLocation= txtLocation.Text;
+        string strLocation = hdnLocName.Value;
+        string strManufacture = ddlMfg.SelectedItem.Text;
+        string strModelNames = hdnModelName.Value;
+
+        if (strModelNames.Split(',').Contains(strManufacture))
+        {
+            hdnModelName.Value = strModelNames.Substring(strModelNames.IndexOf(',') + 1);
+            txtModel.Text = hdnModelName.Value;
+        }
+        
+        # region Commented code
+        ////////
+        //string strExtractMfg = strModelNames.Substring(0, strModelNames.IndexOf(','));
+        //string strModel = strModelNames.Remove(0, strExtractMfg.Length + 1);
+        ///////
+
+
+        //myString = myString.Substring(0, myString.IndexOf(',')); 
+       //string test= strModel.Substring(0,strModel.IndexOf(','));
+        //string firstPart = theString.Substring(0, theString.IndexOf(' ', theString.IndexOf(' ')
+        //string test = strModel.Substring(0, strModel.IndexOf(',', strModel.IndexOf(',') + 1)); 
+     //  string tst=strModel.Remove(0,test.Length+1);
+        // if Location (All) selected than 0 will be passed to represent all locations
+        //if (string.IsNullOrEmpty(srcLoc))
+        //    srcLoc = "0";
+        //if (string.IsNullOrEmpty(dstLoc))
+        //    dstLoc = "0";
+
+        //for (int i = 0; i < ChkModels.CheckedItems.Count; i++)
+        //{
+        //    listBox1.Items.Add(ChkModels.CheckedItems[i]);
+        //}
+        //string strModels = "";
+        ////ArrayList values = new ArrayList();
+        //for (int counter = 0; counter < ChkModels.Items.Count; counter++)
+        //{
+        //    if (ChkModels.Items[counter].Selected)
+        //    {
+        //        ///values.Add(ChkModels.Items[counter].Value);
+        //        strModels = strModels + ChkModels.Items[counter].Value + ',';
+        //        // parameters[2] = new ReportParameter("Model", ChkModels.Items[counter].Value);
+        //    }
+        //}
+        # endregion
+        
+        parameters[0] = new ReportParameter("Location", strLocation);
+        parameters[1] = new ReportParameter("Manufacturer", strManufacture);
+        parameters[2] = new ReportParameter("sParameterString", hdnModelName.Value);
+       // parameters[2] = new ReportParameter("sParameterString", strModels.Trim(','));
+        // parameters[2] = new ReportParameter("Model", strModel);
+        
+        ReportViewer1.ShowParameterPrompts = false;
+        //ReportViewer1.ServerReport.ReportServerCredentials = new ReportCredentials("Reportfolder Name", "Password of the folder", "");
+
+        string user = ConfigurationManager.AppSettings["ReportServerUser"];
+
+        string pass = ConfigurationManager.AppSettings["ReportServerPass"];
+
+        string domain = ConfigurationManager.AppSettings["ReportServerDomain"];
+
+        ReportViewer1.ServerReport.ReportServerCredentials = new ReportCredentials(user, pass, domain);
+        
+        
+        ReportViewer1.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
+        ReportViewer1.ServerReport.ReportServerUrl = new System.Uri(ConfigurationManager.AppSettings["ReportServerUrl"]);
+        ReportViewer1.ServerReport.ReportPath = ConfigurationManager.AppSettings["ReportServerFolder"] + "Test";
+        ReportViewer1.ServerReport.SetParameters(parameters);
+
+       
+       /////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////
+        /////////export to .tif
+        Warning[] warnings;
+        string[] streamids;
+        string mimeType;
+        string encoding;
+        string extension;
+        string deviceInfo;
+
+        deviceInfo = "<DeviceInfo><SimplePageHeaders>True</SimplePageHeaders></DeviceInfo>";
+
+        byte[] bytes = ReportViewer1.ServerReport.Render(
+           "Image", null, out mimeType, out encoding, out extension,
+           out streamids, out warnings);
+        //FileStream fs =
+        //  new FileStream(Server.MapPath("~/images/Barcode1.tif"), FileMode.OpenOrCreate);
+        //fs.Write(bytes, 0, bytes.Length);
+        //fs.Close();
+
+        Response.ContentType = "image/jpeg"; Response.AppendHeader("Content-Disposition", "attachment; filename=BarcodeSheet.Tif");
+        //Response.TransmitFile(Server.MapPath("~/images/Barcode1.Tif"));
+        Response.OutputStream.Write(bytes, 0, bytes.Length);
+        Response.End();
+
+      /////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        ReportViewer1.ServerReport.Refresh();
+
+        //ReportViewer1.Visible = true;
+        //ReportViewer1.ShowReportBody = true;
+
+        //ReportViewer1.ShowPrintButton = true;
+        //ReportViewer1.ShowToolBar = true;
+        ReportViewer1.ExportContentDisposition = ContentDisposition.OnlyHtmlInline;
+        //wpSearchOptions.Expanded = false; //J00007 by kjb on 25 Sep 2012
+        wpSearchOptions.Groups[0].Expanded = false;
+        # region commented code
+        //ReportViewer1.ShowPromptAreaButton = false;
+        //ReportViewer1.ShowToolBar = true;
+        //ReportViewer1.ShowPrintButton = true;
+        //ReportViewer1.ShowZoomControl = false;
+        //ReportViewer1.ShowRefreshButton = false;
+        //ReportViewer1.ShowPageNavigationControls = false;
+        //ReportViewer1.ShowExportControls = true;
+        //ReportViewer1.ShowBackButton = false;
+        //ReportViewer1.ShowDocumentMapButton = false;
+        //ReportViewer1.ShowFindControls = false;
+        //ReportViewer1.Height = 0;
+
+        //string mimeType = null;
+        //string encoding=null;
+        //ReportViewer1.ServerReport.RenderStream("HTML4.0", "BarcodeReport", "<DeviceInfo><StreamRoot>/WebApplication1/</StreamRoot></DeviceInfo>",
+        //    out mimeType, out encoding);
+        //FileStream stream = File.OpenWrite(@"C:\Inetpub\wwwroot\WebApplication1\"+ );
+        // //ReportViewer1.ServerReport.RenderStream("HTML4.0","Barcodes","kjb",
+
+        // //byte[] result;
+        // //byte[] image;
+        // //string[] streamIDs;
+        // //string optionalString = null;
+        // ////ParameterValue[] optionalParams = null;
+        // //Microsoft.Reporting.WebForms.Warning[] optionalWarnings = null;
+
+        // //// Render the report to HTML4.0
+        // //result = ReportViewer1.ServerReport.RenderStream("HTML4.0", null,
+        // //       null, out optionalString, out optionalString);
+
+        // //// For each image stream returned by the call to render,
+        // //// render the stream and save it to the application root
+        // //foreach (string streamID in streamIDs)
+        // //{
+        // //    image = ReportViewer1.ServerReport.RenderStream("HTML4.0", streamID,
+        // //       null, out optionalString, out optionalString);
+
+        // //    FileStream stream = File.OpenWrite(@"C:\Inetpub\wwwroot\WebApplication1\" + streamID);
+        // //    stream.Write(image, 0, image.Length);
+        // //    stream.Close();
+        // //}
+
+        // // Write the rendered report to the Web form
+        // Response.BinaryWrite(result);
+
+        //hdnModelName.Value = "";
+        //txtModel.Text = "";
+        // txtModel.Text = strModel;
+        # endregion
+        
+        parameters = null;
+
+        # region commented code
+        //hdnLocName.Value = "";
+        //hdnModelName.Value = "";
+
+        ////param 1
+        //if (ddlTechCat.SelectedIndex > 0)
+        //    parm[0] = new ReportParameter("TechCat", ddlTechCat.SelectedItem.Text);
+        //else
+        //    parm[0] = new ReportParameter("TechCat", ddlTechCat.SelectedIndex.ToString());
+
+        ////param 2
+        //if (ddlRackOrStand.SelectedIndex > 0)
+        //    parm[1] = new ReportParameter("RackOrStand", ddlRackOrStand.SelectedItem.Text);
+        //else
+        //    parm[1] = new ReportParameter("RackOrStand", ddlRackOrStand.SelectedIndex.ToString());
+
+        ////param 3
+
+        //parm[2] = new ReportParameter("BU", ddlBusinessUnit.SelectedItem.Value.ToString());
+
+        ////param 4
+        //if (ddlPrimarySite.SelectedIndex > 0)
+        //    parm[3] = new ReportParameter("Site", ddlPrimarySite.SelectedItem.Value.ToString());
+        //else
+        //    parm[3] = new ReportParameter("Site", ddlPrimarySite.SelectedIndex.ToString());
+
+        ////param 5
+        //int intLocation = 0;
+        //if (!string.IsNullOrEmpty(txtParentLocation.Text.Trim()))
+        //{
+        //    if (!txtParentLocation.Text.Equals("(All)"))
+        //    {
+        //        if (!string.IsNullOrEmpty(hdnParentLocationID.Value))
+        //            intLocation = int.Parse(hdnParentLocationID.Value.ToString());
+        //    }
+        //    else
+        //    {
+        //        intLocation = 0;
+        //    }
+        //}
+        //parm[4] = new ReportParameter("Loc", intLocation.ToString());
+
+        //this.ReportViewer1.Reset();
+        //this.ReportViewer1.AsyncRendering = false;
+        //this.ReportViewer1.ShowCredentialPrompts = false;
+        //this.ReportViewer1.ShowParameterPrompts = false;
+        //this.ReportViewer1.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
+
+        //this.ReportViewer1.ServerReport.ReportServerCredentials = new ReportCredentials("Reportfolder Name", "Password of the folder", "");
+        //this.ReportViewer1.ServerReport.ReportServerUrl = new System.Uri(ConfigurationManager.AppSettings["ReportServerUrl"]);
+        //this.ReportViewer1.ServerReport.ReportPath = ConfigurationManager.AppSettings["ReportServerFolder"] + "SPCModelCount";
+        //this.ReportViewer1.ServerReport.SetParameters(parm);
+        //this.ReportViewer1.ServerReport.Refresh();
+        //this.ReportViewer1.Visible = true;
+        //parm = null;
+# endregion
+
+       
+        rfvModel.Visible = false;
+       
+        //txtModel.Text = hdnModelName.Value;
+    }
+}

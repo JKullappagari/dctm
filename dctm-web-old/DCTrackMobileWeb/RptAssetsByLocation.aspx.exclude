@@ -1,0 +1,65 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RptAssetsByLocation.aspx.cs"
+    Inherits="RptAssetsByLocation" MasterPageFile="~/iAssetTrackMasterPage.master"
+    Theme="SkinFile" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" Title="Asset's By Location Report"%>
+
+<%@ Register Assembly="Infragistics45.WebUI.WebDataInput.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+    Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+<asp:Content ID="RptAssetmvmt" ContentPlaceHolderID="Master_ContentPlaceHolder" runat="Server">
+   <%-- <center>
+        <asp:Label ID="Label10" runat="server" CssClass="Heading" Text="Asset Data Report"
+            meta:resourcekey="Label10Resource1"></asp:Label>
+    </center>
+    <br />
+    <br />
+    <br />--%>
+    <table cellpadding="0" cellspacing="0" style="vertical-align: top; width: 97%;">
+        <tr>
+            <td valign="top" style="width: 20%; vertical-align: top; text-align: left;">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <%--<asp:Button ID="btnShowReport" runat="server" Text="Show Report" OnClick="btnShowReport_Click" />--%>
+                            <igtxt:WebImageButton ID="btnShowReport" runat="server" ImageDirectory="" OnClick="btnShowReport_Click"
+                                SkinID="uwButton" TabIndex="13" UseBrowserDefaults="False" Width="118px" meta:resourcekey="btnShowReportResource1">
+                                <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                                    WidthOfRightEdge="13" />
+                                <Appearance>
+                                    <style cursor="Hand" font-names="Arial" font-size="8pt">
+                                        </style>
+                                    <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                                    </ButtonStyle>
+                                </Appearance>
+                            </igtxt:WebImageButton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%--<asp:Panel ID="Panel1" ScrollBars="Both" runat="server" Height="300px" Style="margin-left: 0px"
+                                Width="204px">--%>
+                            <ig:WebDataTree ID="TreeLocation" runat="server" Height="407px" Width="187px" Font-Bold="True"
+                                Font-Size="X-Small" CheckBoxMode="BiState" BorderStyle="Solid" BorderColor="#999999"
+                                meta:resourcekey="TreeLocationResource1">
+                            </ig:WebDataTree>
+                            <%--</asp:Panel>--%>
+                            
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td valign="top" style="width: 70%;">
+                <%-- <asp:Panel ID="pnlReports" runat="server" ScrollBars="Both">--%>
+                <%-- <asp:Panel runat="server" ID="pnlReport" ScrollBars="Vertical">--%>
+                <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="96%" Height="380px" ShowFindControls="false" ShowBackButton="false"
+                    ShowParameterPrompts="False" Font-Names="Verdana" Font-Size="8pt" meta:resourcekey="ReportViewer1Resource1">
+                </rsweb:ReportViewer>
+                <%--</asp:Panel>--%>
+                <%--                </asp:Panel>--%>
+                <asp:Label ID="lblMessage" runat="server" CssClass="ErrMsgSmall" Width="500px"></asp:Label>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" id="hdnMessage" runat="server" />
+</asp:Content>

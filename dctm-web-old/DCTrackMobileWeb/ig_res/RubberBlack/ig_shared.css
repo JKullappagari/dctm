@@ -1,0 +1,152 @@
+.ig_RubberBlackControl
+{
+	background-color:White;
+	font-size:xx-small;
+	font-family: verdana;
+	color:Black;
+}
+
+
+.ig_RubberBlackItem
+{
+	background-color:White;
+	font-size:10px;
+	font-family: verdana;
+	padding-left:1px;
+}
+
+
+.ig_RubberBlackButton
+{
+	cursor:hand;
+}
+
+
+.ig_RubberBlackButtonHover
+{
+}
+
+
+.ig_RubberBlackButtonPressed
+{
+}
+
+
+.ig_RubberBlackButtonDisabled
+{
+}
+
+
+.ig_RubberBlackHover
+{
+}
+
+
+.ig_RubberBlackSelected
+{
+}
+
+
+.ig_RubberBlackDisabled
+{
+}
+
+
+.ig_RubberBlackHeader
+{
+}
+
+
+.ig_RubberBlackFooter
+{
+}
+
+
+.ig_RubberBlackEditWithButtons
+{
+}
+
+
+.ig_RubberBlackEdit
+{
+}
+
+
+.ig_RubberBlackEditInContainer
+{
+}
+
+
+.ig_RubberBlackAlt
+{
+	border-top:solid 1px #A9A9A9;
+	border-right:solid 0px #FFFFFF;
+	border-bottom:solid 1px #A9A9A9;
+	border-left:solid 0px #FFFFFF;
+}
+
+
+.ig_RubberBlackDropDown
+{
+}
+
+
+.ig_RubberBlackEditSelected
+{
+}
+
+
+.ms-WPBody .ig_RubberBlackControl TD
+{
+	border-bottom:none;
+	background-color:transparent;
+	font-size:xx-small;
+}
+.ms-WPBody .ig_RubberBlackControl TD
+{
+	background-color:inherit;
+	font:inherit;
+}
+.ms-WPBody .ig_RubberBlackControl TABLE
+{
+	font-size:xx-small;
+	border-collapse:separate;
+}
+.ms-WPBody .ig_RubberBlackControl TABLE
+{
+	font:inherit;
+}
+.ms-WPBody .igdw_RubberBlackControl TD
+{
+	background-color:white;
+}
+.ms-WPBody .igmc_RubberBlackControl TD
+{
+	border:none;
+	background-color:transparent;
+	font-size:xx-small;
+}
+.ms-WPBody .igmc_RubberBlackControl TD
+{
+	border:inherit;
+	background-color:inherit;
+	font:inherit;
+}
+.ms-WPBody .igmc_RubberBlackControl TABLE
+{
+	font-size:xx-small;
+}
+.ms-WPBody .igmc_RubberBlackControl TABLE
+{
+	font:inherit;
+}
+.ms-WPBody .igte_RubberBlackEditWithButtons TD
+{
+	border-bottom:none;
+	background-color:transparent;
+	font-size:1px;
+}
+.ms-WPBody .igte_RubberBlackEditWithButtons TABLE
+{
+	font-size:1px;
+}

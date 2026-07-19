@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>iAssetTrackBAL</RootNamespace>
+    <AssemblyName>iAssetTrackBAL</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>idoctrackbll.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics45.WebUI.Documents.Core.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics45.WebUI.Documents.Excel.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics45.WebUI.Shared.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationBAL.cs" />
+    <Compile Include="ApplicationMapBAL.cs" />
+    <Compile Include="ApplicationTypeBAL.cs" />
+    <Compile Include="AssetDeWriteoffBAL.cs" />
+    <Compile Include="AssetHostAssignmentBAL.cs" />
+    <Compile Include="AssetWriteoffBAL.cs" />
+    <Compile Include="AssignAssetTypesBAL.cs" />
+    <Compile Include="AssignRightsBAL.cs" />
+    <Compile Include="AuditCycleBAL.cs" />
+    <Compile Include="AuditLoginLogoutBAL.cs" />
+    <Compile Include="BUDepartmentAssignmentBAL.cs" />
+    <Compile Include="BusinessUnitBAL.cs" />
+    <Compile Include="BUSiteAssignmentBAL.cs" />
+    <Compile Include="CommonBAL.cs" />
+    <Compile Include="ConfigBAL.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="AssetModelBAL.cs" />
+    <Compile Include="ApplicationcriticalityBAL.cs" />
+    <Compile Include="BUDivAssignmentBAL.cs" />
+    <Compile Include="AppDetailsBAL.cs" />
+    <Compile Include="AppStatusBAL.cs" />
+    <Compile Include="OutputConnectorTypeBAL.cs" />
+    <Compile Include="InputConnectortTypeBAL.cs" />
+    <Compile Include="OrientationBAL.cs" />
+    <Compile Include="MountTypeBAL.cs" />
+    <Compile Include="AirFlowDirectionBAL.cs" />
+    <Compile Include="ErrorHandlerBAL.cs" />
+    <Compile Include="TenantAssetBAL.cs" />
+    <Compile Include="TenantBAL.cs" />
+    <Compile Include="OwnerBAL.cs" />
+    <Compile Include="RackDetailsBAL.cs" />
+    <Compile Include="CountryBAL.cs" />
+    <Compile Include="CityBAL.cs" />
+    <Compile Include="SiteRestrictionsBAL.cs" />
+    <Compile Include="GlobalParametersBAL.cs" />
+    <Compile Include="CountryStateCityBAL.cs" />
+    <Compile Include="CustomerBAL.cs" />
+    <Compile Include="CustomGroupsDefaultBAL.cs" />
+    <Compile Include="InventoryUpdateBAL.cs" />
+    <Compile Include="DeviceBAL.cs" />
+    <Compile Include="HostBAL.cs" />
+    <Compile Include="DivisionBAL.cs" />
+    <Compile Include="ImportAssetBAL.cs" />
+    <Compile Include="ModelCountBAL.cs" />
+    <Compile Include="SearchParentAssetBAL.cs" />
+    <Compile Include="SearchProjectBAL.cs" />
+    <Compile Include="SPCMasterBAL.cs" />
+    <Compile Include="ManufacturerBAL.cs" />
+    <Compile Include="CryptographyUtil.cs" />
+    <Compile Include="DepartmentBAL.cs" />
+    <Compile Include="AssetBAL.cs" />
+    <Compile Include="AssetBarringBAL.cs" />
+    <Compile Include="AssetDeRestrictBAL.cs" />
+    <Compile Include="AssetTypeBAL.cs" />
+    <Compile Include="AssetMusterBAL.cs" />
+    <Compile Include="AssetRestrictBAL.cs" />
+    <Compile Include="AssetUnBarringBAL.cs" />
+    <Compile Include="ExternalSysIntegrationLogBAL.cs" />
+    <Compile Include="GroupBAL.cs" />
+    <Compile Include="GroupModuleRightBAL.cs" />
+    <Compile Include="LocationBAL.cs" />
+    <Compile Include="LocationTypeBAL.cs" />
+    <Compile Include="ManageUsersBAL.cs" />
+    <Compile Include="MessageBAL.cs" />
+    <Compile Include="MusterReasonBAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurposeBAL.cs" />
+    <Compile Include="MetaDataProvider.cs" />
+    <Compile Include="RFIDCardAssignmentBAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SessionManagerBAL.cs" />
+    <Compile Include="SiteLocationAssignmentBAL.cs" />
+    <Compile Include="SitesBAL.cs" />
+    <Compile Include="SPCModelMapBAL.cs" />
+    <Compile Include="TechCatBAL.cs" />
+    <Compile Include="TechnologyCategoryBAL.cs" />
+    <Compile Include="UOMBAL.cs" />
+    <Compile Include="UserBAL.cs" />
+    <Compile Include="AssetCreationBAL.cs" />
+    <Compile Include="UserChangePasswordBAL.cs" />
+    <Compile Include="UserLoginBAL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\iAssetTrackDALC\iAssetTrackDALC.csproj">
+      <Project>{F90D99A2-5492-4042-AA9E-2E017274AE24}</Project>
+      <Name>iAssetTrackDALC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\iAssetTrackSecurity\iAssetTrackSecurity.csproj">
+      <Project>{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}</Project>
+      <Name>iAssetTrackSecurity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="idoctrackbll.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

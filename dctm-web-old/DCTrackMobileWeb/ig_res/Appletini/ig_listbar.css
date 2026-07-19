@@ -1,0 +1,194 @@
+.iglb_AppletiniControl
+{
+	font-size:small;
+	border:solid 1px #4F7600;
+	margin-bottom:0px;
+	cursor:default;
+}
+
+
+.iglb_AppletiniControl_Exp
+{
+	font-size:small;
+	border:solid 1px #4F7600;
+	z-index: 1000;
+	cursor:default;
+}
+
+
+.iglb_AppletiniButton
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	font-weight:bold;
+	font-size:smaller;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:3px;
+	cursor:hand;
+}
+
+
+.iglb_AppletiniButtonHover
+{
+	background-position:center ;
+	background-image: url(images/header_hover.gif);
+	font-weight:bold;
+	font-size:smaller;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:3px;
+	cursor:hand;
+}
+
+
+.iglb_AppletiniButtonSelected
+{
+	background-position:center ;
+	background-image: url(images/header_hover.gif);
+	font-weight:bold;
+	font-size:smaller;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:3px;
+	cursor:hand;
+}
+
+
+.iglb_AppletiniHeaderCollapsed
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	font-weight:bold;
+	font-size:smaller;
+	padding-top:8px;
+	padding-bottom:8px;
+	padding-left:3px;
+	cursor:hand;
+}
+
+
+.iglb_AppletiniHeaderExpanded
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	font-weight:bold;
+	font-size:smaller;
+	padding-top:8px;
+	padding-bottom:8px;
+	padding-left:3px;
+	cursor:hand;
+}
+
+
+.iglb_AppletiniHeaderHover
+{
+	background-position:center ;
+	background-image: url(images/header_hover.gif);
+	font-weight:bold;
+	font-size:smaller;
+	padding-top:8px;
+	padding-bottom:8px;
+	padding-left:3px;
+	cursor:hand;
+}
+
+
+.iglb_AppletiniGroup
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+}
+
+
+.iglb_AppletiniGroup_Exp
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+	margin-bottom:0px;
+}
+
+
+.iglb_AppletiniItem
+{
+	background-color:Transparent;
+	font-size:smaller;
+	margin-top:8px;
+	margin-bottom:3px;
+	padding-left:4px;
+	text-align:left;
+}
+
+
+.iglb_AppletiniItem_Exp
+{
+	background-color:Transparent;
+	font-size:xx-small;
+	margin-top:4px;
+	margin-bottom:0px;
+	padding-bottom:3px;
+	padding-left:4px;
+	z-index: -200;
+	cursor:hand;
+	text-align:left;
+}
+
+
+.iglb_AppletiniItemHover
+{
+	font-size:smaller;
+	margin-top:8px;
+	margin-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:#5E8D00;
+	text-align:left;
+	text-decoration:underline;
+}
+
+
+.iglb_AppletiniItemHover_Exp
+{
+	font-size:xx-small;
+	margin-top:4px;
+	margin-bottom:0px;
+	padding-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:#5E8D00;
+	text-align:left;
+	text-decoration:underline;
+}
+
+
+.iglb_AppletiniItemSelected
+{
+	font-weight:bold;
+	font-size:xx-small;
+	margin-top:8px;
+	margin-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:#5E8D00;
+	text-align:left;
+}
+
+
+.iglb_AppletiniItemSelected_Exp
+{
+	font-weight:bold;
+	font-size:xx-small;
+	margin-top:4px;
+	margin-bottom:0px;
+	padding-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:#5E8D00;
+	text-align:left;
+}
+
+

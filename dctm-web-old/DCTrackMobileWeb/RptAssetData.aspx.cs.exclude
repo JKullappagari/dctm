@@ -1,0 +1,375 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using Infragistics.Web.UI.NavigationControls;
+using System.Configuration;
+using iAssetTrackBAL;
+using Microsoft.Reporting.WebForms;
+using iAssetTrackBAL;
+
+using iAssetTrack.BAL;
+
+public partial class RptAssetData : System.Web.UI.Page
+{
+    #region "Declarations"
+    private iAssetTrack.BAL.BusinessUnitBAL objBU;
+    private iAssetTrack.BAL.SitesBAL objSite;
+    private iAssetTrack.BAL.LocationBAL objLocation;
+    private iAssetTrack.BAL.CommonBAL objCommon;
+    private iAssetTrack.BAL.LocationTypeBAL objLocationType;
+    string strSNo;
+    DataTable _dtRights;
+    ReportParameter[] parm;
+    #endregion
+
+    //J00007 by kjb on 25 Sep 2012
+    # region new control declaration
+    protected Label lblMessage;
+    protected DropDownList ddlMFG,ddlTechCat, ddlBusinessUnit,ddlAssetType;
+    protected CheckBox chkHostNames,chkBarcode,chkTechCat;
+    protected TextBox txtModel;
+    protected WebDataTree TreeLocation;
+    # endregion
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // J00007 by kjb on 25 Sep 2012
+        # region New controls initialization
+        lblMessage = (Label)this.wpSearchOptions.Groups[0].Items[0].FindControl("lblMessage");
+        ddlBusinessUnit = (DropDownList)this.wpSearchOptions.Groups[0].Items[0].FindControl("ddlBusinessUnit");
+        ddlAssetType = (DropDownList)this.wpSearchOptions.Groups[0].Items[0].FindControl("ddlAssetType");
+        ddlMFG = (DropDownList)this.wpSearchOptions.Groups[0].Items[0].FindControl("ddlMFG");
+        ddlAssetType = (DropDownList)this.wpSearchOptions.Groups[0].Items[0].FindControl("ddlAssetType");
+        ddlTechCat = (DropDownList)this.wpSearchOptions.Groups[0].Items[0].FindControl("ddlTechCat");
+        TreeLocation = (WebDataTree)this.wpSearchOptions.Groups[0].Items[0].FindControl("TreeLocation");
+        txtModel = (TextBox)this.wpSearchOptions.Groups[0].Items[0].FindControl("txtModel");
+
+        chkBarcode = (CheckBox)this.wpSearchOptions.Groups[0].Items[0].FindControl("chkBarcode");
+        chkHostNames = (CheckBox)this.wpSearchOptions.Groups[0].Items[0].FindControl("chkHostNames");
+        chkTechCat = (CheckBox)this.wpSearchOptions.Groups[0].Items[0].FindControl("chkTechCat");
+
+        # endregion
+
+
+        Session["PageHeader"] = "Asset Data Report";
+        _dtRights = (DataTable)(Session["Rights"]);
+
+        if (_dtRights == null)
+        {
+            Session["RedirectUrl"] = "RptAssetData.aspx";
+            Response.Redirect("Login.aspx");
+        }
+
+        bool blfoundPage = false;
+
+        if (_dtRights.Select("Module = 'Asset Data Report' and Rights = '" + "View" + "'").Length != 0)
+        {
+            blfoundPage = true;
+        }
+
+        if (blfoundPage == false)
+        {
+            Response.Redirect("AccessDeniedPage.aspx");
+            return;
+        }
+
+        if (!string.IsNullOrEmpty(hdnModelName.Value))
+            txtModel.Text = hdnModelName.Value;
+
+        if (!IsPostBack)
+        {
+            //FillDropDownLists(StoredProcedures.SP_GETTRANSACTIONSTATUS, ddlTransStatus);
+            FillDropDownList(StoredProcedures.SP_ASSETGROUP_LIST, ref ddlAssetType);
+            PopulatetechList();
+            PopulateMfgList();
+            LoadLocations();
+            populateBusinessUnitList();
+        }
+        lblMessage.Enabled = false;
+        lblMessage.Text = string.Empty;
+       ddlBusinessUnit.SelectedIndex = 1;
+
+
+    }
+    private void PopulateMfgList()
+    {
+        ManufacturerBAL objMfg = new iAssetTrack.BAL.ManufacturerBAL();
+
+        ddlMFG.Items.Clear();
+        DataSet dsMfg = objMfg.retrieve();
+        DataTable dtMfg = dsMfg.Tables[0];
+
+        DataRow dr = dtMfg.NewRow();
+        dr[0] = 0;
+        dr[1] = "(All)";
+        dtMfg.Rows.InsertAt(dr, 0);
+
+        ddlMFG.DataSource = dtMfg;
+        ddlMFG.DataValueField = dtMfg.Columns[0].ToString();
+        ddlMFG.DataTextField = dtMfg.Columns[1].ToString();
+        ddlMFG.DataBind();
+    }
+    protected void PopulatetechList()
+    {
+        TechCatBAL objTechCal = new TechCatBAL();
+        DataSet dsTechCal = objTechCal.retrieve();
+        DataTable dtTechCal = dsTechCal.Tables[0];
+
+        DataRow dr = dtTechCal.NewRow();
+        dr[0] = 0;
+        dr[1] = "(All)";
+        dtTechCal.Rows.InsertAt(dr, 0);
+
+        ddlTechCat.DataSource = dtTechCal;
+        ddlTechCat.DataValueField = dtTechCal.Columns[0].ToString();
+        ddlTechCat.DataTextField = dtTechCal.Columns[1].ToString();
+        ddlTechCat.DataBind();
+        //ddlTechCat.SelectedValue = "Network";
+        //ddlTechCat.Items[0].Attributes.Add("style", "color:gray;"); 
+
+    }
+    private void FillDropDownList(string strStoredProc, ref DropDownList ddl)
+    {
+        //ICommon svc = (ICommon)RemotingHelper.CreateProxy(typeof(ICommon));
+        iAssetTrack.BAL.CommonBAL objCommon = new iAssetTrack.BAL.CommonBAL();
+        DataTable dt = objCommon.FillDropDownList(strStoredProc, "(All)");
+        ddl.DataSource = dt;
+        ddl.DataValueField = dt.Columns[0].ToString();
+        ddl.DataTextField = dt.Columns[1].ToString();
+        ddl.DataBind();
+    }
+    private void populateBusinessUnitList()
+    {
+        int intUserID = 0;
+        if (Session["UserID"] != null)
+            intUserID = Convert.ToInt32(Session["UserID"].ToString());
+
+        FillDropDownListBU(StoredProcedures.SP_BUSINESSUNIT_LISTBYUSERID, ref ddlBusinessUnit, intUserID);
+    }
+
+
+    private void FillDropDownListBU(string strStoredProc, ref DropDownList ddl, int id)
+    {
+
+        //CommonBAL objCommonBAL = new CommonBAL();
+        //ICommon svcBU = (ICommon)RemotingHelper.CreateProxy(typeof(ICommon));
+        iAssetTrack.BAL.CommonBAL objCommon = new iAssetTrack.BAL.CommonBAL();
+
+        DataTable dt = objCommon.FillDropDownListBU(strStoredProc, "- Select -", id);
+        ddl.DataSource = dt;
+        ddl.DataValueField = dt.Columns[0].ToString();
+        ddl.DataTextField = dt.Columns[1].ToString();
+        ddl.DataBind();
+
+    }
+    private void LoadLocations()
+    {
+
+        objBU = new iAssetTrack.BAL.BusinessUnitBAL();
+        DataSet dsBU = objBU.retrieve();
+        DataTable dtBU = dsBU.Tables[0];
+        objSite = new iAssetTrack.BAL.SitesBAL();
+        //DataSet dsSite = objSite.retrieve();
+        //DataTable dtSite = dsSite.Tables[0];
+        objLocation = new iAssetTrack.BAL.LocationBAL();
+        //DataSet dsLocation = objLocation.retrieve();
+        //DataTable dtLocation = dsLocation.Tables[0];
+
+        WebDataTree loctree = (WebDataTree)this.TreeLocation;
+        loctree.Nodes.Clear();
+        // add BUs
+        DataTreeNode clearNode = new DataTreeNode();
+        using (DataTableReader dtBURdr = dtBU.CreateDataReader())
+        {
+            while (dtBURdr.Read())
+            {
+
+                DataTreeNode buNode = new DataTreeNode();
+                buNode.Text = dtBURdr.GetValue(1).ToString();
+                buNode.Value = dtBURdr.GetValue(0).ToString();
+                //buNode.Enabled = false;
+                //buNode.CssClass = ".TreeNodeDisabled";
+                loctree.Nodes.Add(buNode);
+                DataSet dsSiteByLocation = objSite.retrieveByBusinessUnitId(Convert.ToInt32(dtBURdr.GetValue(0)));
+                DataTable dtSiteByLocation = dsSiteByLocation.Tables[0];
+                using (DataTableReader dtsitebyBURdr = dtSiteByLocation.CreateDataReader())
+                {
+                    while (dtsitebyBURdr.Read())
+                    {
+                        DataTreeNode siteNode = new DataTreeNode();
+                        siteNode.Text = dtsitebyBURdr.GetValue(1).ToString();
+                        siteNode.Value = dtsitebyBURdr.GetValue(0).ToString();
+                        //siteNode.Enabled = false;
+                        //siteNode.CssClass = ".TreeNodeDisabled";
+                        buNode.Nodes.Add(siteNode);
+
+                        objLocation.SiteID = Convert.ToInt32(dtsitebyBURdr.GetValue(0));
+                        DataSet dsLocationbySite = objLocation.GetLocationBYSite();
+                        DataTable dtLocationbySite = dsLocationbySite.Tables[0];
+
+                        using (DataTableReader dtLocationbySiteRdr = dtLocationbySite.CreateDataReader())
+                        {
+                            while (dtLocationbySiteRdr.Read())
+                            {
+                                DataTreeNode LocationNode = new DataTreeNode();
+                                LocationNode.Text = dtLocationbySiteRdr.GetValue(1).ToString();
+                                LocationNode.Value = dtLocationbySiteRdr.GetValue(0).ToString();
+                                siteNode.Nodes.Add(LocationNode);
+                                if (int.Parse(dtLocationbySiteRdr.GetValue(2).ToString()) > 0) //Child location count
+                                    getChildLocations(LocationNode, Convert.ToInt32(dtLocationbySiteRdr.GetValue(0).ToString()));
+
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+
+    }
+
+    private void getChildLocations(DataTreeNode node, int LocationID)
+    {
+        DataSet dsLocationbyLocation = objLocation.GetLocationBYLocation(LocationID);
+        DataTable dtLocationbyLocation = dsLocationbyLocation.Tables[0];
+
+        using (DataTableReader dtLocationbyLocationRdr = dtLocationbyLocation.CreateDataReader())
+        {
+            while (dtLocationbyLocationRdr.Read())
+            {
+                DataTreeNode subLocationNode = new DataTreeNode();
+                subLocationNode.Text = dtLocationbyLocationRdr.GetValue(1).ToString();
+                subLocationNode.Value = dtLocationbyLocationRdr.GetValue(0).ToString();
+                node.Nodes.Add(subLocationNode);
+                if (int.Parse(dtLocationbyLocationRdr.GetValue(5).ToString()) > 0) //Child location count
+                    getChildLocations(subLocationNode, Convert.ToInt32(dtLocationbyLocationRdr.GetValue(0).ToString()));
+            }
+        }
+    }
+    private void FillDropDownLists(string strStoredProc, DropDownList ddl)
+    {
+
+        iAssetTrack.BAL.CommonBAL objCommon = new iAssetTrack.BAL.CommonBAL();
+        DataTable dt = objCommon.FillDropDownLst(strStoredProc);
+
+        ddl.DataSource = dt;
+        ddl.DataTextField = dt.Columns[1].ToString();
+        ddl.DataValueField = dt.Columns[0].ToString();
+        ddl.DataBind();
+    }
+
+
+    protected void btnShowReport_Click(object sender, EventArgs e)
+    {
+        string locList = string.Empty;
+        // ReportViewer1.ServerReport.Refresh();
+
+        foreach (DataTreeNode node in TreeLocation.CheckedNodes)
+        {
+            // level = 0 indicates BU, level = 1 indicates Site and level 2,3,4.... indicates locations
+            // and sub locations
+            //if (node.Level == 1)
+            //{
+
+            //}
+            if (node.Level >= 2)
+            {
+                locList = locList + node.Value + ",";
+            }
+
+
+        }
+        if (string.IsNullOrEmpty(locList))
+        {
+            locList = "NULL";
+        }
+        //DateTime dtStartDate;
+        //DateTime dtEndDate;
+        //string strStartDate;
+        //string strEndDate;
+        //DateTime dtStartDate = Convert.ToDateTime(this.WebDatePickerStartDate.Text);
+        //string strStartDate = dtStartDate.ToString("yyyy") + "-" + dtStartDate.ToString("MM") + "-" + dtStartDate.ToString("dd");
+
+        //DateTime dtEndDate = Convert.ToDateTime(this.WebDatePickerEndDate.Text);
+        //string strEndDate = dtEndDate.ToString("yyyy") + "-" + dtEndDate.ToString("MM") + "-" + dtEndDate.ToString("dd");
+
+        //if (string.IsNullOrEmpty(txtSNo.Text))
+        //{
+        //    strSNo = "NULL";
+        //}
+        //else
+        //{
+        //    strSNo = txtSNo.Text;
+        //}
+
+        //if (!string.IsNullOrEmpty(locList))
+        //{
+        string strModelID;
+        if (txtModel.Text == "(All)")
+        {
+            strModelID = "0";
+        }
+        else
+        {
+            strModelID =hdnModelID.Value;
+
+        }
+        //bool bShowCol = chkHostNames.Checked;
+
+
+        ReportParameter[] param = new ReportParameter[8];
+        param[0] = new ReportParameter("AssetTypeID", ddlAssetType.SelectedItem.Value);
+        param[1] = new ReportParameter("TechID", ddlTechCat.SelectedItem.Value);
+        param[2] = new ReportParameter("MfgID", ddlMFG.SelectedItem.Value);
+        param[3] = new ReportParameter("LocIDs", locList.Trim(','));
+        param[4] = new ReportParameter("ModelID", strModelID);
+        param[5] = new ReportParameter("ShowColBarcode", chkBarcode.Checked.ToString());
+        param[6] = new ReportParameter("ShowColHostNames", chkHostNames.Checked.ToString());
+        param[7] = new ReportParameter("ShowColTechCat", chkTechCat.Checked.ToString());
+        //ReportViewer1.ServerReport.ReportServerCredentials = new ReportCredentials("Reportfolder Name", "Password of the folder", "");
+        string user = ConfigurationManager.AppSettings["ReportServerUser"];
+
+        string pass = ConfigurationManager.AppSettings["ReportServerPass"];
+
+        string domain = ConfigurationManager.AppSettings["ReportServerDomain"];
+
+        ReportViewer1.ServerReport.ReportServerCredentials = new ReportCredentials(user, pass, domain);
+
+
+        ReportViewer1.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
+        ReportViewer1.ServerReport.ReportServerUrl = new System.Uri(ConfigurationManager.AppSettings["ReportServerUrl"]);
+        ReportViewer1.ServerReport.ReportPath = ConfigurationManager.AppSettings["ReportServerFolder"] + "AssetData";
+        ReportViewer1.ServerReport.SetParameters(param);
+        ReportViewer1.ServerReport.Refresh();
+        ReportViewer1.Visible = true;
+        param = null;
+
+
+        //}
+        //else
+        //{
+        //    ReportViewer1.Visible = false;
+        //    lblMessage.Text = "Select atleast one location";
+        //    lblMessage.Enabled = true;
+        //}
+
+        //this.wpSearchOptions.Expanded = false;//J00007 by kjb on 25 Sep 2012
+        this.wpSearchOptions.Groups[0].Expanded = false;
+
+        // ReportViewer1.
+
+    }
+    protected void ddlMFG_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        txtModel.Text = "(All)";
+        hdnModelID.Value = "0";
+        hdnModelName.Value = "";
+    }
+}

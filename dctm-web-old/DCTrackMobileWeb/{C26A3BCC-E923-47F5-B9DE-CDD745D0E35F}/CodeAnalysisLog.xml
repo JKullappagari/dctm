@@ -1,0 +1,994 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 10.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="10.0">
+ <Targets>
+  <Target Name="C:\Users\babujag\AppData\Local\Temp\tmp2667.tmp.cadir\bin\App_Code.dll">
+   <Modules>
+    <Module Name="app_code.dll">
+     <Namespaces>
+      <Namespace Name="App_Code">
+       <Types>
+        <Type Name="CSqlSiteMapProvider" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="SecuredTypesShouldNotExposeFields" Category="Microsoft.Security" CheckId="CA2112" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="Breaking">
+           <Issue Certainty="75" Level="CriticalError">'CSqlSiteMapProvider' has a LinkDemand or Demand, and exposes the field 'CSqlSiteMapProvider.PasswordExpired'. Fields cannot be protected by LinkDemands or Demands. To remove this vulnerability, make the field private and expose a property that has security applied to it.</Issue>
+           <Issue Certainty="75" Level="CriticalError">'CSqlSiteMapProvider' has a LinkDemand or Demand, and exposes the field 'CSqlSiteMapProvider._cacheDependencyName'. Fields cannot be protected by LinkDemands or Demands. To remove this vulnerability, make the field private and expose a property that has security applied to it.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#BuildSiteMap()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\App_Code" File="CSqlSiteMapProvider.cs" Line="155">In method 'CSqlSiteMapProvider.BuildSiteMap()', call System.IDisposable.Dispose on object 'command' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#CheckSiteMapCache()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\App_Code" File="CSqlSiteMapProvider.cs" Line="236">In method 'CSqlSiteMapProvider.CheckSiteMapCache()', call System.IDisposable.Dispose on object 'cacheCheckCommand' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\App_Code" File="CSqlSiteMapProvider.cs" Line="230">In method 'CSqlSiteMapProvider.CheckSiteMapCache()', call System.IDisposable.Dispose on object 'connection' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\App_Code" File="CSqlSiteMapProvider.cs" Line="238">In method 'CSqlSiteMapProvider.CheckSiteMapCache()', call System.IDisposable.Dispose on object 'dependency' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\App_Code" File="CSqlSiteMapProvider.cs" Line="241">In method 'CSqlSiteMapProvider.CheckSiteMapCache()', call System.IDisposable.Dispose on object 'dependency' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\babujag\AppData\Local\Temp\tmp2667.tmp.cadir\bin\App_Web_5qmwd4rt.dll">
+   <Modules>
+    <Module Name="app_web_5qmwd4rt.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="ParentAssetSearchPage" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#populateGrid()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ParentAssetSearchPage.aspx.cs" Line="318">In method 'ParentAssetSearchPage.populateGrid()', call System.IDisposable.Dispose on object 'dt' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\babujag\AppData\Local\Temp\tmp2667.tmp.cadir\bin\App_Web_hgcvigyw.dll">
+   <Modules>
+    <Module Name="app_web_hgcvigyw.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="ASPX_AssignRights" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ibCreate_Click(System.Object,Infragistics.WebUI.WebDataInput.ButtonEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="AssignRights.aspx.cs" Line="210">'ASPX_AssignRights.ibCreate_Click(object, ButtonEventArgs)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ASPX_GrpModuleRights" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ddlGroup_SelectedIndexChanged(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="GroupModuleRightsAssignment.aspx.cs" Line="311">'ASPX_GrpModuleRights.ddlGroup_SelectedIndexChanged(object, EventArgs)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#doBuild()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="GroupModuleRightsAssignment.aspx.cs" Line="275">'ASPX_GrpModuleRights.doBuild()' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ibCreate_Click(System.Object,Infragistics.WebUI.WebDataInput.ButtonEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="GroupModuleRightsAssignment.aspx.cs" Line="196">'ASPX_GrpModuleRights.ibCreate_Click(object, ButtonEventArgs)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Page_Load(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="GroupModuleRightsAssignment.aspx.cs" Line="145">'ASPX_GrpModuleRights.Page_Load(object, EventArgs)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ASPX_SiteLocationAssignment" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ibCreate_Click(System.Object,Infragistics.WebUI.WebDataInput.ButtonEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="SiteLocationAssignment.aspx.cs" Line="431">'ASPX_SiteLocationAssignment.ibCreate_Click(object, ButtonEventArgs)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ImportAsset" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#BindDummyRow()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="220">In method 'ImportAsset.BindDummyRow()', object 'dummy' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dummy' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DeserializeDataSource()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="3754">In method 'ImportAsset.DeserializeDataSource()', object 'ds' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'ds' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="3767">In method 'ImportAsset.DeserializeDataSource()', object 'ds' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'ds' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="3753">In method 'ImportAsset.DeserializeDataSource()', call System.IDisposable.Dispose on object 'xtr' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="3766">In method 'ImportAsset.DeserializeDataSource()', call System.IDisposable.Dispose on object 'xtr' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ibCreate_Click(System.Object,Infragistics.WebUI.WebDataInput.ButtonEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="943">In method 'ImportAsset.ibCreate_Click(object, ButtonEventArgs)', call System.IDisposable.Dispose on object 'dsExcel' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ImportExcel(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="836">In method 'ImportAsset.ImportExcel(string)', object 'output' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'output' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="872">In method 'ImportAsset.ImportExcel(string)', call System.IDisposable.Dispose on object 'cmd' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="895">In method 'ImportAsset.ImportExcel(string)', call System.IDisposable.Dispose on object 'cmd' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="876">In method 'ImportAsset.ImportExcel(string)', call System.IDisposable.Dispose on object 'new OleDbDataAdapter(cmd)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="899">In method 'ImportAsset.ImportExcel(string)', call System.IDisposable.Dispose on object 'new OleDbDataAdapter(cmd)' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#importExcelData(System.String)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="334">In method 'ImportAsset.importExcelData(string)', object 'col1' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col1' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="335">In method 'ImportAsset.importExcelData(string)', object 'col2' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col2' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="336">In method 'ImportAsset.importExcelData(string)', object 'col3' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col3' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="343">In method 'ImportAsset.importExcelData(string)', object 'dcStatus' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dcStatus' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="344">In method 'ImportAsset.importExcelData(string)', object 'dcreason' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dcreason' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="333">In method 'ImportAsset.importExcelData(string)', object 'dtFileStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtFileStats' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="500">In method 'ImportAsset.importExcelData(string)', object 'rackID' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'rackID' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="499">In method 'ImportAsset.importExcelData(string)', object 'rackReason' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'rackReason' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="498">In method 'ImportAsset.importExcelData(string)', object 'rackStatus' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'rackStatus' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="494">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dcExternalID' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="496">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dcMfg' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="497">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dcModel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="493">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dcRackTag' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="495">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dcSerialNo' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="324">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dsExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="581">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dsPrevExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="330">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dtAssetType' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="325">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dtExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="331">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dtManufacturer' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="332">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dtModel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="329">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRack' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="327">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRoom' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="328">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRow' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="326">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'dtSite' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="685">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="702">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="722">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="741">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="763">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="781">In method 'ImportAsset.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="674">'ImportAsset.importExcelData(string)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#insertAssetType()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="2775">In method 'ImportAsset.insertAssetType()', call System.IDisposable.Dispose on object 'dsAllATs' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="2799">In method 'ImportAsset.insertAssetType()', call System.IDisposable.Dispose on object 'dsExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="2776">In method 'ImportAsset.insertAssetType()', call System.IDisposable.Dispose on object 'dtAllATNames' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#insertManufacturer(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="2680">In method 'ImportAsset.insertManufacturer(string)', call System.IDisposable.Dispose on object 'dsAllMfgs' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="2700">In method 'ImportAsset.insertManufacturer(string)', call System.IDisposable.Dispose on object 'dsExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="2681">In method 'ImportAsset.insertManufacturer(string)', call System.IDisposable.Dispose on object 'dtAllMfgNames' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#insertModel(System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="2725">In method 'ImportAsset.insertModel(string)', call System.IDisposable.Dispose on object 'dsAllModels' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="2753">In method 'ImportAsset.insertModel(string)', call System.IDisposable.Dispose on object 'dsExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="2726">In method 'ImportAsset.insertModel(string)', call System.IDisposable.Dispose on object 'dtAllModelNames' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#LINQToDataTable`1(System.Collections.Generic.IEnumerable`1&lt;!!0&gt;,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="3685">In method 'ImportAsset.LINQToDataTable&lt;T&gt;(IEnumerable&lt;T&gt;, string)', object 'dtReturn' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtReturn' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#populateAssetGrid()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="3648">In method 'ImportAsset.populateAssetGrid()', object 'dtUploadStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtUploadStats' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SerializeExcelDataSetToXml(System.Data.DataSet)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="3726">In method 'ImportAsset.SerializeExcelDataSetToXml(DataSet)', object 'xtw' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'xtw' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="3732">'ImportAsset.SerializeExcelDataSetToXml(DataSet)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ShowFileData()" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1154">In method 'ImportAsset.ShowFileData()', object 'dtFileStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtFileStats' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1142">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dsExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1145">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dtAsset' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1153">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dtAssetModel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1151">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dtAssetType' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1146">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dtBusinessUnit' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1143">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dtExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1147">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dtLocation' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1152">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dtMfg' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1150">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dtRack' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1148">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dtRoom' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1149">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dtRow' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1144">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'dtSite' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1165">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1177">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1190">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1202">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1216">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="1229">In method 'ImportAsset.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ShowFileStats(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="234">In method 'ImportAsset.ShowFileStats(string)', call System.IDisposable.Dispose on object 'dsData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAsset.aspx.cs" Line="233">In method 'ImportAsset.ShowFileStats(string)', call System.IDisposable.Dispose on object 'dtData' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\babujag\AppData\Local\Temp\tmp2667.tmp.cadir\bin\App_Web_l3krqiqt.dll">
+   <Modules>
+    <Module Name="app_web_l3krqiqt.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Mobile_Default" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ResponseFile(System.Web.HttpRequest,System.Web.HttpResponse,System.String,System.String,System.Int64)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\Mobile" File="ClientDownload.aspx.cs" Line="50">In method 'Mobile_Default.ResponseFile(HttpRequest, HttpResponse, string, string, long)', call System.IDisposable.Dispose on object 'myFile' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\Mobile" File="ClientDownload.aspx.cs" Line="99">Object 'myFile' can be disposed more than once in method 'Mobile_Default.ResponseFile(HttpRequest, HttpResponse, string, string, long)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 99</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Mobile_Downloads" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Page_Load(System.Object,System.EventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\Mobile" File="Downloads.aspx.cs" Line="43">In method 'Mobile_Downloads.Page_Load(object, EventArgs)', object 'lb' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'lb' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ResponseFile(System.Web.HttpRequest,System.Web.HttpResponse,System.String,System.String,System.Int64)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\Mobile" File="Downloads.aspx.cs" Line="68">In method 'Mobile_Downloads.ResponseFile(HttpRequest, HttpResponse, string, string, long)', call System.IDisposable.Dispose on object 'myFile' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb\Mobile" File="Downloads.aspx.cs" Line="117">Object 'myFile' can be disposed more than once in method 'Mobile_Downloads.ResponseFile(HttpRequest, HttpResponse, string, string, long)'. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 117</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\babujag\AppData\Local\Temp\tmp2667.tmp.cadir\bin\App_Web_pwda1wxp.dll">
+   <Modules>
+    <Module Name="app_web_pwda1wxp.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="ImportApplications" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#BindDummyRow()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="135">In method 'ImportApplications.BindDummyRow()', object 'dummy' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dummy' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DeserializeDataSource()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="1746">In method 'ImportApplications.DeserializeDataSource()', object 'ds' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'ds' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="1759">In method 'ImportApplications.DeserializeDataSource()', object 'ds' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'ds' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="1745">In method 'ImportApplications.DeserializeDataSource()', call System.IDisposable.Dispose on object 'xtr' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="1758">In method 'ImportApplications.DeserializeDataSource()', call System.IDisposable.Dispose on object 'xtr' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ImportExcel(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="547">In method 'ImportApplications.ImportExcel(string)', object 'output' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'output' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="574">In method 'ImportApplications.ImportExcel(string)', call System.IDisposable.Dispose on object 'cmd' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="578">In method 'ImportApplications.ImportExcel(string)', call System.IDisposable.Dispose on object 'new OleDbDataAdapter(cmd)' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#importExcelData(System.String)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="219">In method 'ImportApplications.importExcelData(string)', object 'col1' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col1' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="220">In method 'ImportApplications.importExcelData(string)', object 'col2' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col2' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="221">In method 'ImportApplications.importExcelData(string)', object 'col3' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col3' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="228">In method 'ImportApplications.importExcelData(string)', object 'dcStatus' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dcStatus' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="229">In method 'ImportApplications.importExcelData(string)', object 'dcreason' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dcreason' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="218">In method 'ImportApplications.importExcelData(string)', object 'dtFileStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtFileStats' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="302">In method 'ImportApplications.importExcelData(string)', object 'xtr' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'xtr' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="209">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'dsExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="303">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'dsPrevExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="215">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'dtAssetType' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="210">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'dtExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="216">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'dtManufacturer' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="217">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'dtModel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="214">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRack' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="212">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRoom' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="213">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRow' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="211">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'dtSite' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="353">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="371">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="389">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="407">In method 'ImportApplications.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="342">'ImportApplications.importExcelData(string)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#LINQToDataTable`1(System.Collections.Generic.IEnumerable`1&lt;!!0&gt;,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="1677">In method 'ImportApplications.LINQToDataTable&lt;T&gt;(IEnumerable&lt;T&gt;, string)', object 'dtReturn' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtReturn' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#populateGrid()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="1639">In method 'ImportApplications.populateGrid()', object 'dtUploadStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtUploadStats' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SerializeExcelDataSetToXml(System.Data.DataSet)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="1719">In method 'ImportApplications.SerializeExcelDataSetToXml(DataSet)', object 'xtw' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'xtw' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="1724">'ImportApplications.SerializeExcelDataSetToXml(DataSet)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ShowFileData()" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="462">In method 'ImportApplications.ShowFileData()', object 'dtFileStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtFileStats' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="448">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dsExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="456">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtAppCri' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="458">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtAppStatus' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="457">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtAppType' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="451">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtAsset' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="461">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtAssetModel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="452">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtBusinessUnit' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="449">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="453">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtLocation' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="460">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtMfg' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="459">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtOwner' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="454">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtRoom' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="455">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtRow' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="450">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'dtSite' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="472">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="485">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="498">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="511">In method 'ImportApplications.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ShowFileStats(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="149">In method 'ImportApplications.ShowFileStats(string)', call System.IDisposable.Dispose on object 'dsData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportApplications.aspx.cs" Line="148">In method 'ImportApplications.ShowFileStats(string)', call System.IDisposable.Dispose on object 'dtData' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ImportBlades" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#BindDummyRow()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="146">In method 'ImportBlades.BindDummyRow()', object 'dummy' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dummy' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DeserializeDataSource()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="1721">In method 'ImportBlades.DeserializeDataSource()', object 'ds' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'ds' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="1734">In method 'ImportBlades.DeserializeDataSource()', object 'ds' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'ds' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="1720">In method 'ImportBlades.DeserializeDataSource()', call System.IDisposable.Dispose on object 'xtr' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="1733">In method 'ImportBlades.DeserializeDataSource()', call System.IDisposable.Dispose on object 'xtr' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ImportExcel(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="558">In method 'ImportBlades.ImportExcel(string)', object 'output' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'output' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="585">In method 'ImportBlades.ImportExcel(string)', call System.IDisposable.Dispose on object 'cmd' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="589">In method 'ImportBlades.ImportExcel(string)', call System.IDisposable.Dispose on object 'new OleDbDataAdapter(cmd)' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#importExcelData(System.String)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="233">In method 'ImportBlades.importExcelData(string)', object 'col1' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col1' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="234">In method 'ImportBlades.importExcelData(string)', object 'col2' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col2' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="235">In method 'ImportBlades.importExcelData(string)', object 'col3' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col3' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="242">In method 'ImportBlades.importExcelData(string)', object 'dcStatus' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dcStatus' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="243">In method 'ImportBlades.importExcelData(string)', object 'dcreason' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dcreason' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="232">In method 'ImportBlades.importExcelData(string)', object 'dtFileStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtFileStats' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="342">In method 'ImportBlades.importExcelData(string)', object 'xtr' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'xtr' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="373">In method 'ImportBlades.importExcelData(string)', object 'xtw' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'xtw' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="382">In method 'ImportBlades.importExcelData(string)', object 'xtw' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'xtw' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="223">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'dsExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="343">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'dsPrevExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="229">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'dtAssetType' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="224">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'dtExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="230">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'dtManufacturer' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="231">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'dtModel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="228">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRack' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="226">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRoom' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="227">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRow' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="225">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'dtSite' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="400">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="418">In method 'ImportBlades.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="389">'ImportBlades.importExcelData(string)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#insertAssetType()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="976">In method 'ImportBlades.insertAssetType()', call System.IDisposable.Dispose on object 'dsAllATs' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="1001">In method 'ImportBlades.insertAssetType()', call System.IDisposable.Dispose on object 'dsExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="977">In method 'ImportBlades.insertAssetType()', call System.IDisposable.Dispose on object 'dtAllATNames' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#insertManufacturer()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="885">In method 'ImportBlades.insertManufacturer()', call System.IDisposable.Dispose on object 'dsAllMfgs' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="905">In method 'ImportBlades.insertManufacturer()', call System.IDisposable.Dispose on object 'dsExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="886">In method 'ImportBlades.insertManufacturer()', call System.IDisposable.Dispose on object 'dtAllMfgNames' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#insertModel()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="926">In method 'ImportBlades.insertModel()', call System.IDisposable.Dispose on object 'dsAllModels' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="955">In method 'ImportBlades.insertModel()', call System.IDisposable.Dispose on object 'dsExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="927">In method 'ImportBlades.insertModel()', call System.IDisposable.Dispose on object 'dtAllModelNames' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#LINQToDataTable`1(System.Collections.Generic.IEnumerable`1&lt;!!0&gt;,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="1652">In method 'ImportBlades.LINQToDataTable&lt;T&gt;(IEnumerable&lt;T&gt;, string)', object 'dtReturn' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtReturn' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#populateGrid()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="1614">In method 'ImportBlades.populateGrid()', object 'dtUploadStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtUploadStats' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SerializeExcelDataSetToXml(System.Data.DataSet)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="1694">In method 'ImportBlades.SerializeExcelDataSetToXml(DataSet)', object 'xtw' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'xtw' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="1699">'ImportBlades.SerializeExcelDataSetToXml(DataSet)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ShowFileData()" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="487">In method 'ImportBlades.ShowFileData()', object 'dtFileStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtFileStats' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="475">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dsExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="478">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dtAsset' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="486">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dtAssetModel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="484">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dtAssetType' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="479">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dtBusinessUnit' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="476">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dtExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="480">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dtLocation' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="485">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dtMfg' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="483">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dtRack' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="481">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dtRoom' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="482">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dtRow' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="477">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'dtSite' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="497">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="510">In method 'ImportBlades.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ShowFileStats(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="160">In method 'ImportBlades.ShowFileStats(string)', call System.IDisposable.Dispose on object 'dsData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportBlades.aspx.cs" Line="159">In method 'ImportBlades.ShowFileStats(string)', call System.IDisposable.Dispose on object 'dtData' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="UserChangePass" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ibConfirm_Click(System.Object,Infragistics.WebUI.WebDataInput.ButtonEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="UserChangePass.aspx.cs" Line="95">'UserChangePass.ibConfirm_Click(object, ButtonEventArgs)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\babujag\AppData\Local\Temp\tmp2667.tmp.cadir\bin\App_Web_pydunsgy.dll">
+   <Modules>
+    <Module Name="app_web_pydunsgy.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="ASPX_ManageUsers" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ibResetPass_Click(System.Object,Infragistics.WebUI.WebDataInput.ButtonEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ManageUsers.aspx.cs" Line="1028">'ASPX_ManageUsers.ibResetPass_Click(object, ButtonEventArgs)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SendMsgWithDefaultNetworkCredentials(System.Boolean)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ManageUsers.aspx.cs" Line="631">In method 'ASPX_ManageUsers.SendMsgWithDefaultNetworkCredentials(bool)', call System.IDisposable.Dispose on object 'client' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ManageUsers.aspx.cs" Line="608">In method 'ASPX_ManageUsers.SendMsgWithDefaultNetworkCredentials(bool)', call System.IDisposable.Dispose on object 'message' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SendMsgWithUserCredentials(System.Boolean)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ManageUsers.aspx.cs" Line="1080">In method 'ASPX_ManageUsers.SendMsgWithUserCredentials(bool)', call System.IDisposable.Dispose on object 'client' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ManageUsers.aspx.cs" Line="1044">In method 'ASPX_ManageUsers.SendMsgWithUserCredentials(bool)', call System.IDisposable.Dispose on object 'message' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CreateAsset" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Create()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="CreateAsset.aspx.cs" Line="691">'CreateAsset.Create()' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\babujag\AppData\Local\Temp\tmp2667.tmp.cadir\bin\App_Web_qgqc1cf2.dll">
+   <Modules>
+    <Module Name="app_web_qgqc1cf2.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="CustomItemTemplate" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#InstantiateIn(System.Web.UI.Control)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="InventoryUpdate.aspx.cs" Line="1719">In method 'CustomItemTemplate.InstantiateIn(Control)', object 'chkChild' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'chkChild' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CustomItemTemplateChecked" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#InstantiateIn(System.Web.UI.Control)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="InventoryUpdate.aspx.cs" Line="1737">In method 'CustomItemTemplateChecked.InstantiateIn(Control)', object 'chkChild' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'chkChild' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\babujag\AppData\Local\Temp\tmp2667.tmp.cadir\bin\App_Web_qgyc1je0.dll">
+   <Modules>
+    <Module Name="app_web_qgyc1je0.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="Owner" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ibCreate_Click(System.Object,Infragistics.WebUI.WebDataInput.ButtonEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="Owner.aspx.cs" Line="202">'Owner.ibCreate_Click(object, ButtonEventArgs)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\babujag\AppData\Local\Temp\tmp2667.tmp.cadir\bin\App_Web_xa21lx5n.dll">
+   <Modules>
+    <Module Name="app_web_xa21lx5n.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="CreateApplication" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ibCreate_Click(System.Object,Infragistics.WebUI.WebDataInput.ButtonEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="CreateApplication.aspx.cs" Line="234">'CreateApplication.ibCreate_Click(object, ButtonEventArgs)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ImportAppAssetMap" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#BindDummyRow()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="140">In method 'ImportAppAssetMap.BindDummyRow()', object 'dummy' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dummy' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#DeserializeDataSource()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="938">In method 'ImportAppAssetMap.DeserializeDataSource()', object 'ds' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'ds' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="951">In method 'ImportAppAssetMap.DeserializeDataSource()', object 'ds' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'ds' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="937">In method 'ImportAppAssetMap.DeserializeDataSource()', call System.IDisposable.Dispose on object 'xtr' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="950">In method 'ImportAppAssetMap.DeserializeDataSource()', call System.IDisposable.Dispose on object 'xtr' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ImportExcel(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="463">In method 'ImportAppAssetMap.ImportExcel(string)', object 'output' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'output' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="490">In method 'ImportAppAssetMap.ImportExcel(string)', call System.IDisposable.Dispose on object 'cmd' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="494">In method 'ImportAppAssetMap.ImportExcel(string)', call System.IDisposable.Dispose on object 'new OleDbDataAdapter(cmd)' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#importExcelData(System.String)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="221">In method 'ImportAppAssetMap.importExcelData(string)', object 'col1' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col1' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="222">In method 'ImportAppAssetMap.importExcelData(string)', object 'col2' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col2' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="223">In method 'ImportAppAssetMap.importExcelData(string)', object 'col3' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'col3' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="230">In method 'ImportAppAssetMap.importExcelData(string)', object 'dcStatus' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dcStatus' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="231">In method 'ImportAppAssetMap.importExcelData(string)', object 'dcreason' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dcreason' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="220">In method 'ImportAppAssetMap.importExcelData(string)', object 'dtFileStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtFileStats' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="288">In method 'ImportAppAssetMap.importExcelData(string)', object 'xtr' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'xtr' before all references to it are out of scope.</Issue>
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="310">In method 'ImportAppAssetMap.importExcelData(string)', object 'xtw' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'xtw' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="211">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'dsExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="289">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'dsPrevExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="217">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'dtAssetType' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="212">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'dtExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="218">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'dtManufacturer' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="219">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'dtModel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="216">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRack' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="214">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRoom' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="215">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'dtRow' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="213">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'dtSite' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="338">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="355">In method 'ImportAppAssetMap.importExcelData(string)', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="326">'ImportAppAssetMap.importExcelData(string)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#insertAssetAppMap()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="610">In method 'ImportAppAssetMap.insertAssetAppMap()', call System.IDisposable.Dispose on object 'dsExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="613">In method 'ImportAppAssetMap.insertAssetAppMap()', call System.IDisposable.Dispose on object 'dtAsset' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="612">In method 'ImportAppAssetMap.insertAssetAppMap()', call System.IDisposable.Dispose on object 'dtBusinessUnit' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#LINQToDataTable`1(System.Collections.Generic.IEnumerable`1&lt;!!0&gt;,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="869">In method 'ImportAppAssetMap.LINQToDataTable&lt;T&gt;(IEnumerable&lt;T&gt;, string)', object 'dtReturn' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtReturn' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#populateGrid()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="831">In method 'ImportAppAssetMap.populateGrid()', object 'dtUploadStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtUploadStats' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SerializeExcelDataSetToXml(System.Data.DataSet)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="911">In method 'ImportAppAssetMap.SerializeExcelDataSetToXml(DataSet)', object 'xtw' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'xtw' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="916">'ImportAppAssetMap.SerializeExcelDataSetToXml(DataSet)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ShowFileData()" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="406">In method 'ImportAppAssetMap.ShowFileData()', object 'dtFileStats' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'dtFileStats' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="394">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dsExcelData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="397">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dtAsset' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="405">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dtAssetModel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="403">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dtAssetType' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="398">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dtBusinessUnit' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="395">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dtExcel' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="399">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dtLocation' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="404">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dtMfg' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="402">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dtRack' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="400">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dtRoom' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="401">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dtRow' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="396">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'dtSite' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="415">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="428">In method 'ImportAppAssetMap.ShowFileData()', call System.IDisposable.Dispose on object 'new DataView(dtExcel)' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ShowFileStats(System.String)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="154">In method 'ImportAppAssetMap.ShowFileStats(string)', call System.IDisposable.Dispose on object 'dsData' before all references to it are out of scope.</Issue>
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="ImportAppAssetMap.aspx.cs" Line="153">In method 'ImportAppAssetMap.ShowFileStats(string)', call System.IDisposable.Dispose on object 'dtData' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\babujag\AppData\Local\Temp\tmp2667.tmp.cadir\bin\App_Web_xbek3usd.dll">
+   <Modules>
+    <Module Name="app_web_xbek3usd.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="AssetModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#ibCreate_Click(System.Object,Infragistics.WebUI.WebDataInput.ButtonEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="AssetModel.aspx.cs" Line="616">'AssetModel.ibCreate_Click(object, ButtonEventArgs)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ibMap_Click(System.Object,Infragistics.WebUI.WebDataInput.ButtonEventArgs)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="AssetModel.aspx.cs" Line="1195">'AssetModel.ibMap_Click(object, ButtonEventArgs)' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+  <Target Name="C:\Users\babujag\AppData\Local\Temp\tmp2667.tmp.cadir\bin\App_Web_zyltw5ll.dll">
+   <Modules>
+    <Module Name="app_web_zyltw5ll.dll">
+     <Namespaces>
+      <Namespace Name="">
+       <Types>
+        <Type Name="CreateAssetPopup" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Create()" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200" Status="Active" Created="2017-09-11 15:25:59Z" FixCategory="NonBreaking">
+             <Issue Certainty="95" Level="Error" Path="c:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\DCTrackMobileWeb" File="CreateAssetPopup.aspx.cs" Line="703">'CreateAssetPopup.Create()' rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000">
+   <Name>Dispose objects before losing scope</Name>
+   <Description>If a disposable object is not explicitly disposed before all references to it are out of scope, the object will be disposed at some indeterminate time when the garbage collector runs the finalizer of the object. Because an exceptional event might occur that will prevent the finalizer of the object from running, the object should be explicitly disposed instead.</Description>
+   <Resolution Name="ExceptionEdge">In method {0}, object {1} is not disposed along all exception paths. Call System.IDisposable.Dispose on object {1} before all references to it are out of scope.</Resolution>
+   <Resolution Name="NonExceptionEdge">In method {0}, call System.IDisposable.Dispose on object {1} before all references to it are out of scope.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182289(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="Do not dispose objects multiple times" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>Do not dispose objects multiple times</Name>
+   <Description>A correctly implemented Dispose method can be called multiple times without throwing an exception. However, this is not guaranteed and to avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.</Description>
+   <Resolution Name="Default">Object {0} can be disposed more than once in method {1}. To avoid generating a System.ObjectDisposedException you should not call Dispose more than one time on an object.: Lines: 117</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334(VS.100).aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="RethrowToPreserveStackDetails" Category="Microsoft.Usage" CheckId="CA2200">
+   <Name>Rethrow to preserve stack details</Name>
+   <Description>Use the IL rethrow instruction to preserve original stack details when re-raising a caught exception.</Description>
+   <Resolution Name="Default">{0} rethrows a caught exception and specifies it explicitly as an argument. Use 'throw' without an argument instead, in order to preserve the stack location where the exception was initially raised.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182363(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="usagerules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="SecuredTypesShouldNotExposeFields" Category="Microsoft.Security" CheckId="CA2112">
+   <Name>Secured types should not expose fields</Name>
+   <Description>Fields must be secured with a security check other than LinkDemand.</Description>
+   <Resolution Name="Default">{0} has a LinkDemand or Demand, and exposes the field {1}. Fields cannot be protected by LinkDemands or Demands. To remove this vulnerability, make the field private and expose a property that has security applied to it.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182318(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">CriticalError</MessageLevel>
+   <File Name="securityrules.dll" Version="10.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Category</String>
+  <String Key="Certainty">Certainty</String>
+  <String Key="CollapseAll">Collapse All</String>
+  <String Key="CheckId">Check Id</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">error(s)</String>
+  <String Key="ExpandAll">Expand All</String>
+  <String Key="Help">Help</String>
+  <String Key="Line">Line</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Location not stored in Pdb]</String>
+  <String Key="Project">Project</String>
+  <String Key="Resolution">Resolution</String>
+  <String Key="Rule">Rule</String>
+  <String Key="RuleFile">Rule File</String>
+  <String Key="RuleDescription">Rule Description</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Target</String>
+  <String Key="Warning">Warning</String>
+  <String Key="Warnings">warning(s)</String>
+  <String Key="ReportTitle">Code Analysis Report</String>
+ </Localized>
+</FxCopReport>

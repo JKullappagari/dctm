@@ -1,0 +1,261 @@
+.igeb_AppletiniControl
+{
+	background-color: transparent;
+	color: #000000;
+	font-size: xx-small;
+	font-family: Segoe UI, Verdana, Helvetica, sans-serif;
+	overflow-x: hidden;
+	border: 1px solid #507601;
+	border-top-width: 0px;
+	
+	/* IE6 fix to remove control's scroll bar */
+	_overflow:hidden!important;
+}
+
+.igeb_AppletiniGroupLink
+{
+	display: block;
+	text-decoration: none;
+	color: inherit;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	
+	/* Used to give padding to group icons */
+	padding-left:6px
+}
+
+.igeb_AppletiniHolder
+{
+    clear:left;
+}
+
+.igeb_AppletiniItemImage
+{
+	padding-top: 5px;
+	padding-left: 0px;
+	padding-right: 5px;
+}
+
+
+.igeb_AppletiniGroup
+{
+	display: block;
+	height: 30px;
+	vertical-align: middle;
+	overflow: hidden;
+	line-height: 30px;
+	background-repeat: repeat-x;
+	background-image: url(images/igeb_GroupBg.png);
+	color: #425001;
+    padding: 0px;
+    border-width:0px;
+}
+
+.igeb_AppletiniGroup a:visited
+{
+	color: #425001;
+}
+
+.igeb_AppletiniGroup a
+{
+	color: #425001;
+}
+
+
+.igeb_AppletiniGroupHover
+{
+	background-position: 0px -30px;
+	background-repeat: repeat-x;
+	/*background-image: url(images/igeb_GroupBg.png);*/
+	color: #FFFFFF;
+}
+
+.igeb_AppletiniGroupHover a:visited
+{
+	color: #FFFFFF;
+}
+
+.igeb_AppletiniGroupHover a
+{
+	color: #FFFFFF;
+}
+
+.igeb_AppletiniGroupLabel
+{
+	margin-left: 5px;
+	padding-left: 5px;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Segoe UI, Verdana, Sans-Serif;
+	text-decoration: none;
+}
+
+
+
+.igeb_AppletiniItemLink
+{
+	display: block;
+	text-decoration: none;
+	color: #507601;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.igeb_AppletiniGroupSelected
+{
+	background-position: 0px -30px;
+	background-repeat: repeat-x;
+	background-image: url(images/igeb_GroupBg.png);
+	color: #FFFFFF;
+}
+
+.igeb_AppletiniGroupSelected a:visited
+{
+	color: #FFFFFF;
+}
+
+.igeb_AppletiniGroupSelected a
+{
+	color: #FFFFFF;
+}
+
+.igeb_AppletiniGroupActive
+{
+	background-position: 0px -30px;
+	background-repeat: repeat-x;
+	background-image: url(images/igeb_GroupBg.png);
+	color: #FFFFFF;
+}
+
+.igeb_AppletiniGroupActive a:visited
+{
+	color: #FFFFFF;
+}
+
+.igeb_AppletiniGroupActive a
+{
+	color: #FFFFFF;
+}
+
+.igeb_AppletiniGroupDisabled
+{ 
+	background-position: 0px -60px;
+	background-repeat: repeat-x;
+	background-image: url(images/igeb_GroupBg.png);
+	
+}
+
+.igeb_AppletiniItem
+{
+	background-color: #FFFFFF;
+	line-height: 22px;
+    padding: 0px;
+    border-width:0px;
+}
+	/* IE 7 fix to icon bad alignment*/
+	.igeb_AppletiniItem  ,.igeb_AppletiniItemActive ,.igeb_AppletiniItemSelected 
+	{
+	   min-height:30px!important;
+	   
+			  
+	   /* IE6 specific fix */
+	   _height:30px;
+	}
+	
+.igeb_AppletiniItemLabel
+{
+	display: block;
+	font-size: 12px;
+	font-weight: normal;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+}
+
+.igeb_AppletiniGroupExpanderImage
+{
+	float: right;
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+.igeb_AppletiniItemImage
+{
+	vertical-align: middle;
+}
+
+
+.igeb_AppletiniItemActive
+{
+	background-position: bottom;
+	background-repeat: repeat-x;
+	background-color: #F2F8DE;
+	background-image: url(images/igeb_ItemsSlectedBg.png);
+}
+
+.igeb_AppletiniItemHover
+{
+	background-position: bottom;
+	background-repeat: repeat-x;
+	background-color: #F2F8DE;
+	background-image: url(images/igeb_ItemsSlectedBg.png);
+}
+
+.igeb_AppletiniItemParent
+{
+	
+}
+
+
+.igeb_AppletiniItemSelected
+{
+	background-position: bottom;
+	background-repeat: repeat-x;
+	background-color: #F2F8DE;
+	background-image: url(images/igeb_ItemsSlectedBg.png);
+}
+
+
+.igeb_AppletiniItemDisabled
+{
+	
+}
+	/* IE 7 Disabled item fix */
+
+	.igeb_AppletiniItemDisabled a:visited, .igeb_AppletiniItemDisabled a
+	{
+		color: Gray;
+	}
+
+.igeb_AppletiniGroupContents
+{
+	list-style: none;
+	margin-left: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	
+	/* added to hide scrollbars
+	overflow:hidden!important;*/
+}
+
+.igeb_AppletiniItemContents
+{
+	list-style: none;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+/*
+.igeb_AppletiniItemHolder {
+	white-space:nowrap;
+
+}
+
+
+
+.igeb_AppletiniItemHolder img {
+	vertical-align: middle;
+}
+*/
+

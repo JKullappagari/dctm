@@ -1,0 +1,23 @@
+# Secrets / local config
+.env
+*.user
+.vs/
+
+# .NET build output
+bin/
+obj/
+TestResults/
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+*.log
+npm-debug.log*
+
+# OS
+Thumbs.db
+.DS_Store
+
+# add a .gitignore for: 
+*.suo, bin/, obj/, Tools/, *.vsix, *.msi, *.cab, *.apk, PrecompiledWeb/

@@ -1,0 +1,471 @@
+﻿<HTML>
+  <TITLE>
+				Code Analysis Report
+			</TITLE>
+  <BODY>
+    <STYLE type="text/css">
+					table
+					{
+						background: #cccccc;
+						color: #444444;
+						border-spacing: 1px;
+						font: 10px 'Verdana', Arial, Helvetica, sans-serif;
+					}
+					td, th 
+					{
+						padding: 2px;
+					}
+					th
+					{
+						font-weight: bold;
+						text-align: left;
+						background: #F5F5F5;
+						color: #666666;
+						border: 1px;
+						font-size: 12px
+					}
+					tbody tr td
+					{
+						background: #c9e4e9;
+						text-align: left;
+					}
+
+					body
+					{
+						font-family: arial, helvetica, sans-serif;
+					}
+
+					.tdp
+					{
+						font-weight: bold;
+					}
+				</STYLE>
+    <table width="100%">
+      <th colspan="2" style="background: #59bba5; height: 30px">Analysis Information</th>
+      <tbody>
+        <tr>
+          <td class="tdp">
+            <nobr>Analysis Engine Version</nobr>
+          </td>
+          <td>1.0.3455.36250</td>
+        </tr>
+        <tr>
+          <td class="tdp">
+            <nobr>Created by</nobr>
+          </td>
+          <td>ASIAPACIFIC\babujag</td>
+        </tr>
+        <tr>
+          <td class="tdp">
+            <nobr>Start time</nobr>
+          </td>
+          <td>Thursday, March 23, 2017 11:31:56 AM</td>
+        </tr>
+        <tr>
+          <td class="tdp">
+            <nobr>Stop time</nobr>
+          </td>
+          <td>Thursday, March 23, 2017 11:34:30 AM</td>
+        </tr>
+        <tr>
+          <td class="tdp">
+            <nobr>Elapsed time</nobr>
+          </td>
+          <td>00:02:33.3062265</td>
+        </tr>
+        <tr>
+          <td class="tdp">
+            <nobr>Data flow graph</nobr>
+          </td>
+          <td>373738 nodes, 
+						540914 edges
+					</td>
+        </tr>
+        <tr>
+          <td class="tdp">Targets</td>
+          <td width="100%">C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_ksl50fyp.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_navytcyk.dll<br />C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\bin\Release\iAssetTrackSecurity.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_qww2gw5p.dll<br />C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackDALC\bin\Release\iAssetTrackDALC.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_expddpvp.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_iwj15riy.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_hmxkam5t.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Code.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_azv4wxwn.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_0edgzl4k.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_bkefkflo.dll<br />C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackBAL.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_xwr04hqe.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_53l1z2sq.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_ctdelcmo.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_phbbieoa.dll<br />C:\Users\babujag\AppData\Roaming\CATNet\PAC\405202FA\bin\App_Web_lo0wvdw1.dll<br /></td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <table>
+      <th style="background: #59bba5; height: 30px" colspan="2">Exception Information (ACESEC04)</th>
+      <tr>
+        <td>
+          <b>5 results</b>
+        </td>
+      </tr>
+      <tr>
+        <td style="background: #ffffff; padding: 4px">
+          <table width="100%">
+            <tr>
+              <th colspan="4" style="background: #fcd998; height: 30px; text-align: left">
+                <nobr>Result #1</nobr>
+              </th>
+            </tr>
+            <tr>
+              <th colspan="4">Summary</th>
+            </tr>
+            <tr>
+              <td>
+                <b>Problem</b>
+              </td>
+              <td colspan="3">An information disclosure vulnerability was found through
+		a exception information that enters the application at
+		GeneralErrorPopUp.aspx.cs:54 through the variable stack3 which
+		eventually leads to the disclosure of exception information at
+		GeneralErrorPopUp.aspx.cs:54.</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Resolution</b>
+              </td>
+              <td colspan="3">Do not provide the user with specific exception information</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Entry Variable</b>
+              </td>
+              <td colspan="3">stack3</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Confidence</b>
+              </td>
+              <td colspan="3">High</td>
+            </tr>
+            <tr>
+              <th>Source Context</th>
+              <th>Line</th>
+              <th>
+                <nobr>Input Variable</nobr>
+              </th>
+              <th>Statement</th>
+            </tr>
+            <tbody>
+              <tr>
+                <td style="background: #f8e6cb">GeneralErrorPopUp.aspx.cs</td>
+                <td style="background: #f8e6cb">54</td>
+                <td style="background: #f8e6cb">
+                  <nobr></nobr>
+                </td>
+                <td style="background: #f8e6cb">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+              <tr>
+                <td style="background: #cbe6f8 ">GeneralErrorPopUp.aspx.cs</td>
+                <td style="background: #cbe6f8 ">54</td>
+                <td style="background: #cbe6f8 ">
+                  <nobr>Return from Exception.get_Message</nobr>
+                </td>
+                <td style="background: #cbe6f8 ">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+              <tr>
+                <td style="background: #f8e6cb">GeneralErrorPopUp.aspx.cs</td>
+                <td style="background: #f8e6cb">54</td>
+                <td style="background: #f8e6cb">
+                  <nobr>Return from String.Concat</nobr>
+                </td>
+                <td style="background: #f8e6cb">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+            </tbody>
+            <tr>
+              <td colspan="4" style="background: #ffffff; height: 10px; border-width: 0 0 0 0" />
+            </tr>
+            <tr>
+              <th colspan="4" style="background: #fcd998; height: 30px; text-align: left">
+                <nobr>Result #2</nobr>
+              </th>
+            </tr>
+            <tr>
+              <th colspan="4">Summary</th>
+            </tr>
+            <tr>
+              <td>
+                <b>Problem</b>
+              </td>
+              <td colspan="3">An information disclosure vulnerability was found through
+		a exception information that enters the application at
+		GeneralErrorPopUp.aspx.cs:103 through the variable stack3 which
+		eventually leads to the disclosure of exception information at
+		GeneralErrorPopUp.aspx.cs:103.</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Resolution</b>
+              </td>
+              <td colspan="3">Do not provide the user with specific exception information</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Entry Variable</b>
+              </td>
+              <td colspan="3">stack3</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Confidence</b>
+              </td>
+              <td colspan="3">High</td>
+            </tr>
+            <tr>
+              <th>Source Context</th>
+              <th>Line</th>
+              <th>
+                <nobr>Input Variable</nobr>
+              </th>
+              <th>Statement</th>
+            </tr>
+            <tbody>
+              <tr>
+                <td style="background: #f8e6cb">GeneralErrorPopUp.aspx.cs</td>
+                <td style="background: #f8e6cb">103</td>
+                <td style="background: #f8e6cb">
+                  <nobr></nobr>
+                </td>
+                <td style="background: #f8e6cb">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+              <tr>
+                <td style="background: #cbe6f8 ">GeneralErrorPopUp.aspx.cs</td>
+                <td style="background: #cbe6f8 ">103</td>
+                <td style="background: #cbe6f8 ">
+                  <nobr>Return from Exception.get_Message</nobr>
+                </td>
+                <td style="background: #cbe6f8 ">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+              <tr>
+                <td style="background: #f8e6cb">GeneralErrorPopUp.aspx.cs</td>
+                <td style="background: #f8e6cb">103</td>
+                <td style="background: #f8e6cb">
+                  <nobr>Return from String.Concat</nobr>
+                </td>
+                <td style="background: #f8e6cb">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+            </tbody>
+            <tr>
+              <td colspan="4" style="background: #ffffff; height: 10px; border-width: 0 0 0 0" />
+            </tr>
+            <tr>
+              <th colspan="4" style="background: #fcd998; height: 30px; text-align: left">
+                <nobr>Result #3</nobr>
+              </th>
+            </tr>
+            <tr>
+              <th colspan="4">Summary</th>
+            </tr>
+            <tr>
+              <td>
+                <b>Problem</b>
+              </td>
+              <td colspan="3">An information disclosure vulnerability was found through
+		a exception information that enters the application at
+		GeneralError.aspx.cs:99 through the variable stack3 which
+		eventually leads to the disclosure of exception information at
+		GeneralError.aspx.cs:99.</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Resolution</b>
+              </td>
+              <td colspan="3">Do not provide the user with specific exception information</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Entry Variable</b>
+              </td>
+              <td colspan="3">stack3</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Confidence</b>
+              </td>
+              <td colspan="3">High</td>
+            </tr>
+            <tr>
+              <th>Source Context</th>
+              <th>Line</th>
+              <th>
+                <nobr>Input Variable</nobr>
+              </th>
+              <th>Statement</th>
+            </tr>
+            <tbody>
+              <tr>
+                <td style="background: #f8e6cb">GeneralError.aspx.cs</td>
+                <td style="background: #f8e6cb">99</td>
+                <td style="background: #f8e6cb">
+                  <nobr></nobr>
+                </td>
+                <td style="background: #f8e6cb">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+              <tr>
+                <td style="background: #cbe6f8 ">GeneralError.aspx.cs</td>
+                <td style="background: #cbe6f8 ">99</td>
+                <td style="background: #cbe6f8 ">
+                  <nobr>Return from Exception.get_Message</nobr>
+                </td>
+                <td style="background: #cbe6f8 ">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+              <tr>
+                <td style="background: #f8e6cb">GeneralError.aspx.cs</td>
+                <td style="background: #f8e6cb">99</td>
+                <td style="background: #f8e6cb">
+                  <nobr>Return from String.Concat</nobr>
+                </td>
+                <td style="background: #f8e6cb">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.InnerException.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+            </tbody>
+            <tr>
+              <td colspan="4" style="background: #ffffff; height: 10px; border-width: 0 0 0 0" />
+            </tr>
+            <tr>
+              <th colspan="4" style="background: #fcd998; height: 30px; text-align: left">
+                <nobr>Result #4</nobr>
+              </th>
+            </tr>
+            <tr>
+              <th colspan="4">Summary</th>
+            </tr>
+            <tr>
+              <td>
+                <b>Problem</b>
+              </td>
+              <td colspan="3">An information disclosure vulnerability was found through
+		a exception information that enters the application at
+		GeneralError.aspx.cs:106 through the variable stack3 which
+		eventually leads to the disclosure of exception information at
+		GeneralError.aspx.cs:106.</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Resolution</b>
+              </td>
+              <td colspan="3">Do not provide the user with specific exception information</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Entry Variable</b>
+              </td>
+              <td colspan="3">stack3</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Confidence</b>
+              </td>
+              <td colspan="3">High</td>
+            </tr>
+            <tr>
+              <th>Source Context</th>
+              <th>Line</th>
+              <th>
+                <nobr>Input Variable</nobr>
+              </th>
+              <th>Statement</th>
+            </tr>
+            <tbody>
+              <tr>
+                <td style="background: #f8e6cb">GeneralError.aspx.cs</td>
+                <td style="background: #f8e6cb">106</td>
+                <td style="background: #f8e6cb">
+                  <nobr></nobr>
+                </td>
+                <td style="background: #f8e6cb">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+              <tr>
+                <td style="background: #cbe6f8 ">GeneralError.aspx.cs</td>
+                <td style="background: #cbe6f8 ">106</td>
+                <td style="background: #cbe6f8 ">
+                  <nobr>Return from Exception.get_Message</nobr>
+                </td>
+                <td style="background: #cbe6f8 ">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+              <tr>
+                <td style="background: #f8e6cb">GeneralError.aspx.cs</td>
+                <td style="background: #f8e6cb">106</td>
+                <td style="background: #f8e6cb">
+                  <nobr>Return from String.Concat</nobr>
+                </td>
+                <td style="background: #f8e6cb">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + ex.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+            </tbody>
+            <tr>
+              <td colspan="4" style="background: #ffffff; height: 10px; border-width: 0 0 0 0" />
+            </tr>
+            <tr>
+              <th colspan="4" style="background: #fcd998; height: 30px; text-align: left">
+                <nobr>Result #5</nobr>
+              </th>
+            </tr>
+            <tr>
+              <th colspan="4">Summary</th>
+            </tr>
+            <tr>
+              <td>
+                <b>Problem</b>
+              </td>
+              <td colspan="3">An information disclosure vulnerability was found through
+		a exception information that enters the application at
+		GeneralError.aspx.cs:162 through the variable stack3 which
+		eventually leads to the disclosure of exception information at
+		GeneralError.aspx.cs:162.</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Resolution</b>
+              </td>
+              <td colspan="3">Do not provide the user with specific exception information</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Entry Variable</b>
+              </td>
+              <td colspan="3">stack3</td>
+            </tr>
+            <tr>
+              <td>
+                <b>Confidence</b>
+              </td>
+              <td colspan="3">High</td>
+            </tr>
+            <tr>
+              <th>Source Context</th>
+              <th>Line</th>
+              <th>
+                <nobr>Input Variable</nobr>
+              </th>
+              <th>Statement</th>
+            </tr>
+            <tbody>
+              <tr>
+                <td style="background: #f8e6cb">GeneralError.aspx.cs</td>
+                <td style="background: #f8e6cb">162</td>
+                <td style="background: #f8e6cb">
+                  <nobr></nobr>
+                </td>
+                <td style="background: #f8e6cb">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+              <tr>
+                <td style="background: #cbe6f8 ">GeneralError.aspx.cs</td>
+                <td style="background: #cbe6f8 ">162</td>
+                <td style="background: #cbe6f8 ">
+                  <nobr>Return from Exception.get_Message</nobr>
+                </td>
+                <td style="background: #cbe6f8 ">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+              <tr>
+                <td style="background: #f8e6cb">GeneralError.aspx.cs</td>
+                <td style="background: #f8e6cb">162</td>
+                <td style="background: #f8e6cb">
+                  <nobr>Return from String.Concat</nobr>
+                </td>
+                <td style="background: #f8e6cb">litErrorText.Text += "&lt;BR&gt;&lt;B&gt;Error Message : " + dex.Message + "&lt;/B&gt;&lt;BR&gt;";</td>
+              </tr>
+            </tbody>
+            <tr>
+              <td colspan="4" style="background: #ffffff; height: 10px; border-width: 0 0 0 0" />
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </BODY>
+</HTML>

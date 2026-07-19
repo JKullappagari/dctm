@@ -1,0 +1,96 @@
+.igmn_TrendyControl
+{
+	background-color:#F0F0F0;
+	background-repeat:repeat-x;
+	background-position:bottom ;
+	background-image: url(images/bg_diagonal.gif);
+	border-color:Transparent;
+}
+
+
+.igmn_TrendyIsland
+{
+	background-color:WhiteSmoke;
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+	border:solid 1px LightGrey;
+}
+
+
+.igmn_TrendyItem
+{
+	background-color:Transparent;
+	border:solid 1px Transparent;
+	height: 20px;
+	cursor:hand;
+}
+
+
+.igmn_TrendyLeaf
+{
+}
+
+
+.igmn_TrendyParent
+{
+}
+
+
+.igmn_TrendyTopLevelLeaf
+{
+}
+
+
+.igmn_TrendyTopLevelParent
+{
+}
+
+
+.igmn_TrendyHeader
+{
+}
+
+
+.igmn_TrendySeparator
+{
+	background-color:Yellow;
+	color:Black;
+}
+
+
+.igmn_TrendyHover
+{
+	background-color:Transparent;
+	background-image: url(images/header.gif);
+	border:solid 1px #F0F0F0;
+	padding:0px;
+	height: 20px;
+	color:White;
+}
+
+
+.igmn_TrendyTopLevelHover
+{
+	background-color:Transparent;
+	background-image: url(images/header.gif);
+	border:solid 1px #F0F0F0;
+	padding:0px;
+	height: 20px;
+	color:White;
+}
+
+
+.igmn_TrendyTopSelected
+{
+}
+
+
+.igmn_TrendyDisabled
+{
+	font-size:xx-small;
+	font-family: Verdana;
+	color: LightGrey;
+	text-decoration:line-through;
+}
+
+

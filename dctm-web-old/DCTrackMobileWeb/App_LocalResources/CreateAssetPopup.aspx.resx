@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnAssignRightIntResource1.Text" xml:space="preserve">
+    <value>Assign Rights</value>
+  </data>
+  <data name="btnAssignRightIntResource1.ToolTip" xml:space="preserve">
+    <value>Assign Rights</value>
+  </data>
+  <data name="cvAssetTypeResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Asset Type  </value>
+  </data>
+  <data name="cvAssetTypeResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvAssetTypeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvBusinessUnitResource1.ErrorMessage" xml:space="preserve">
+    <value>Project is Required</value>
+  </data>
+  <data name="cvBusinessUnitResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvBusinessUnitResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvSiteResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Site</value>
+  </data>
+  <data name="cvSiteResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvSiteResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvSPowerResource1.ErrorMessage" xml:space="preserve">
+    <value>Derated Power must be less than or equal to Max Power</value>
+  </data>
+  <data name="ddlAssetGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlBusinessUnitResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlMfgResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlMountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlSiteResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlTechCatResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="hlSearchResource1.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="hlSearchResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ibClose2Resource1.Text" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ibClose2Resource1.ToolTip" xml:space="preserve">
+    <value>Navigate Back</value>
+  </data>
+  <data name="ibCloseResource1.Text" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ibCloseResource1.ToolTip" xml:space="preserve">
+    <value>Navigate Back</value>
+  </data>
+  <data name="ibCreateAsset2Resource1.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ibCreateAsset2Resource1.ToolTip" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="ibCreateAssetResource1.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ibCreateAssetResource1.ToolTip" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="ibReset2Resource1.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ibReset2Resource1.ToolTip" xml:space="preserve">
+    <value>Cancel Unsaved Changes</value>
+  </data>
+  <data name="ibResetDocumentResource1.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ibResetDocumentResource1.ToolTip" xml:space="preserve">
+    <value>Cancel Unsaved Changes</value>
+  </data>
+  <data name="imgAssociationStatusResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgAssociationStatusResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblAssetGroup1Resource1.Text" xml:space="preserve">
+    <value>CPU</value>
+  </data>
+  <data name="lblAssetGroup1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblAssetGroupResource1.Text" xml:space="preserve">
+    <value>Asset Type*</value>
+  </data>
+  <data name="lblAssetGroupResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblAssetNameAResource1.Text" xml:space="preserve">
+    <value>Asset Name</value>
+  </data>
+  <data name="lblBarcodeResource1.Text" xml:space="preserve">
+    <value>Barcode/EPC</value>
+  </data>
+  <data name="lblBarcodeResource1.ToolTip" xml:space="preserve">
+    <value>Barcode/EPC</value>
+  </data>
+  <data name="lblBusinessUnitResource1.Text" xml:space="preserve">
+    <value>Company*</value>
+  </data>
+  <data name="lblBusinessUnitResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCPUCoreResource1.Text" xml:space="preserve">
+    <value>CPU Core</value>
+  </data>
+  <data name="lblCPUCoreResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCpuCountResource1.Text" xml:space="preserve">
+    <value>CPU Count</value>
+  </data>
+  <data name="lblCpuCountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCreateDateResource1.Text" xml:space="preserve">
+    <value>Created Date*</value>
+  </data>
+  <data name="lblCreateDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCustodianResource1.Text" xml:space="preserve">
+    <value>Custodian</value>
+  </data>
+  <data name="lblCustodianResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDeptResource1.Text" xml:space="preserve">
+    <value>Site*</value>
+  </data>
+  <data name="lblDeptResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDeratedPowerResource1.Text" xml:space="preserve">
+    <value>Power (Derated) Watts</value>
+  </data>
+  <data name="lblErrorMsgResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblErrorMsgResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblHostNameResource1.Text" xml:space="preserve">
+    <value>Host Name</value>
+  </data>
+  <data name="lblHostNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblLocationResource1.Text" xml:space="preserve">
+    <value>Location*</value>
+  </data>
+  <data name="lblLocationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMaxPowerResource1.Text" xml:space="preserve">
+    <value>Power (Max) Watts</value>
+  </data>
+  <data name="lblMessageResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMessageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMfgResource1.Text" xml:space="preserve">
+    <value>Manufacturer*</value>
+  </data>
+  <data name="lblMfgResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblModelResource1.Text" xml:space="preserve">
+    <value>Asset Model*</value>
+  </data>
+  <data name="lblModelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblOrientationResource.Text" xml:space="preserve">
+    <value>Orientation</value>
+  </data>
+  <data name="lblOSResource1.Text" xml:space="preserve">
+    <value>Operating System</value>
+  </data>
+  <data name="lblOSResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblParentAssetResource1.Text" xml:space="preserve">
+    <value>Parent Asset</value>
+  </data>
+  <data name="lblPositionResource.Text" xml:space="preserve">
+    <value>Start Position</value>
+  </data>
+  <data name="lblRefNoDisplayResource1.Text" xml:space="preserve">
+    <value>SerialNo #</value>
+  </data>
+  <data name="lblRefNoDisplayResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblSerialNoResource1.Text" xml:space="preserve">
+    <value>SerialNo #</value>
+  </data>
+  <data name="lblSerialNoResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblTechCatResource1.Text" xml:space="preserve">
+    <value>Tech. Category</value>
+  </data>
+  <data name="lblTechCatResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lstHostsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>Edit Asset</value>
+  </data>
+  <data name="regCpuCoreResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter numeric only</value>
+  </data>
+  <data name="regCpuCoreResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="regCpuCoreResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="regCpuCountResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter numeric only</value>
+  </data>
+  <data name="regCpuCountResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="regCpuCountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqBUVal1Resource1.ErrorMessage" xml:space="preserve">
+    <value>Select Model</value>
+  </data>
+  <data name="reqBUVal1Resource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqBUVal1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="revAssetNameResource1.ErrorMessage" xml:space="preserve">
+    <value>Alphanumeric, hyphen,underscore,dot and single space only allowed for Asset Name</value>
+  </data>
+  <data name="revDeratedrResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer or decimal number for Derated Power</value>
+  </data>
+  <data name="rfvAssetIDResource1.ErrorMessage" xml:space="preserve">
+    <value>Asset SerialNo is required</value>
+  </data>
+  <data name="rfvAssetIDResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvAssetIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvDocumentDateResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Commission Date</value>
+  </data>
+  <data name="rfvDocumentDateResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvDocumentDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvLocationResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Location</value>
+  </data>
+  <data name="rfvLocationResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvLocationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvMfgResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Manufacturer</value>
+  </data>
+  <data name="rfvMfgResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvMfgResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvMountResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Mount Type</value>
+  </data>
+  <data name="rfvMountResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvMountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvOwnerResource1.ErrorMessage" xml:space="preserve">
+    <value>Asset Custodian is required</value>
+  </data>
+  <data name="rfvOwnerResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvOwnerResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvTechCatResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Technology Category</value>
+  </data>
+  <data name="rfvTechCatResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvTechCatResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rvDeratedResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Derated Power is [0 - 10000]</value>
+  </data>
+  <data name="TabResource1.Text" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="TabResource1.Tooltip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCPUCoreResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCPUCoreResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCpuCountResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCpuCountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCPUResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCPUResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtHostNameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtHostNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtLocationResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtLocationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtModelResource1.Text" xml:space="preserve">
+    <value>No Model</value>
+  </data>
+  <data name="txtModelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtOSResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtOSResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtRefNoResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtRefNoResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtSerialNoResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtSerialNoResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtUserResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtUserResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="uwtCreateAssetResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="valDeratedResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer or decimal number for Power(Derated) Watts</value>
+  </data>
+  <data name="ValidationSummary1Resource1.HeaderText" xml:space="preserve">
+    <value>Validation Errors:</value>
+  </data>
+  <data name="ValidationSummary1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="wdcCreatedDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="revBarcodeResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter Alphanumeric only for Barcode/EPC</value>
+  </data>
+  <data name="revCPUResource1.ErrorMessage" xml:space="preserve">
+    <value>Alphanumeric, hyphen, underscore, dot and single space only allowed for CPU</value>
+  </data>
+  <data name="revHostNameResource1.ErrorMessage" xml:space="preserve">
+    <value>Alphanumeric, hyphen, underscore, dot and single space only allowed for Host Name</value>
+  </data>
+  <data name="revOSResource1.ErrorMessage" xml:space="preserve">
+    <value>Alphanumeric, hyphen, underscore, dot and single space only allowed for OS</value>
+  </data>
+  <data name="revSerialNoResource1.ErrorMessage" xml:space="preserve">
+    <value>Alphanumeric, hyphen, underscore, dot and single space only allowed for Serial No</value>
+  </data>
+</root>

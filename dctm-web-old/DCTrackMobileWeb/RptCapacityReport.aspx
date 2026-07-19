@@ -1,0 +1,229 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RptCapacityReport.aspx.cs"
+    Title="Capacity Report" Inherits="RptCapacityReport" MasterPageFile="~/iAssetTrackMasterPage.master"
+    Theme="SkinFile" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
+
+<%@ Register Assembly="Infragistics45.Web.jQuery.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91"
+    Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+<%@ Register Assembly="Infragistics45.WebUI.WebDataInput.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.Web.UI" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>
+<asp:Content ID="RptCapacityReport" ContentPlaceHolderID="Master_ContentPlaceHolder"
+    runat="Server">
+    <script type="text/javascript" src="Scripts/jquery-1.6.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="ig_ui/js/infragistics.js"></script>
+    <script id="Script1" type="text/javascript">
+        //<!--
+        function openLocationListSRC(url) {
+
+            var ctrlSite = document.getElementById('<%=ddlSite.ClientID%>');
+            if (ctrlSite.selectedIndex != -1) {
+                if (ctrlSite.options[ctrlSite.selectedIndex].value == "0") {
+                    alert('Select Site');
+                }
+                else {
+                    winSettings = "scroll:auto; width=400; height=500;top=50;left=50;status=1; resizable:no; scroll:no; help:no; toolbar:no; edge:raised; menubar:no; status:no; unadorned: yes";
+                    var hWnd = open_window(url, "LocationList", winSettings)
+
+                    if ((document.window != null) && (hWnd.opener))
+                        hWnd.opener = document.window;
+                }
+            }
+
+        }
+
+
+        function getValuesFromChild(txt, val, flag, header) {
+            var hdnParentLocID1 = document.getElementById('<%=hdnLocationID1.ClientID%>');
+            var txtParentLoc1 = document.getElementById('<%=txtLocation.ClientID%>');
+            var hdnLName1 = document.getElementById('<%=hdnLocName1.ClientID%>');
+
+            if (header == "Source Location") {
+                txtParentLoc1.value = txt;
+                hdnParentLocID1.value = val;
+                hdnLName1.value = txt;
+            }
+        }
+
+        function imgLocButton_onclick() {
+
+        }
+
+        function btnShowReport_JS_Click(oButton, oEvent) {
+            if (performCheck()) {
+                ShowProgress();
+            }
+            else {
+                oEvent.cancel = true;
+            }
+        }
+
+        function performCheck() {
+            if (Page_ClientValidate('PageValidationGroup')) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        function ShowProgress() {
+            setTimeout(function () {
+                var modal = $('<div />');
+                modal.addClass("modal");
+                $('body').append(modal);
+                var loading = $(".loading");
+                loading.show();
+                var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+                var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+                loading.css({ top: top, left: left });
+            }, 200);
+        }
+        //-->
+    </script>
+    <table style="height: 100%; width: 98%" cellspacing="0" cellpadding="0" border="0">
+        <tr style="width: auto;">
+            <td class="labelTD" align="left" width="100%" colspan="4">
+                <div style="width: 100%;">
+                    <ig:WebExplorerBar ID="wpSearchOptions" runat="server" GroupExpandAction="HeaderClick"
+                        meta:resourcekey="wpSearchOptionsResource1" Width="100%" BorderWidth="1px">
+                        <Groups>
+                            <ig:ExplorerBarGroup Text="Search Options" Expanded="true">
+                                <Items>
+                                    <ig:ExplorerBarItem TemplateId="tmpAssetSearch">
+                                    </ig:ExplorerBarItem>
+                                </Items>
+                            </ig:ExplorerBarGroup>
+                        </Groups>
+                        <Templates>
+                            <ig:ItemTemplate TemplateID="tmpAssetSearch">
+                                <Template>
+                                    <table id="Table1" align="center" border="0" cellpadding="0" cellspacing="2" style="border-right: gray 1px solid;
+                                        border-top: gray 1px solid; border-left: gray 1px solid; border-bottom: gray 1px solid;
+                                        height: 46px;" width="100%">
+                                        <tr>
+                                            <td style="width: 100px; text-align: justify; height: 25px;" align="right" valign="top">
+                                                <asp:Label ID="Label3" runat="server" CssClass="FieldName" meta:resourcekey="Label3Resource1"
+                                                    Width="100px"></asp:Label>
+                                            </td>
+                                            <td style="width: 320px; text-align: justify; height: 25px;" align="right" valign="top">
+                                                <asp:DropDownList ID="ddlRootEntity" runat="server" AutoPostBack="True" CssClass="dropdownText"
+                                                    meta:resourcekey="ddlRootEntityResource1" OnSelectedIndexChanged="ddlRootEntity_SelectedIndexChanged"
+                                                    TabIndex="3" Width="140px">
+                                                </asp:DropDownList>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlRootEntity" ValidationGroup="PageValidationGroup"
+                                                    CssClass="ErrValStyle" Display="Dynamic" Height="16px" InitialValue="0" meta:resourcekey="RequiredFieldValidator1Resource1"
+                                                    Width="88px"></asp:RequiredFieldValidator>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 100px; text-align: left; height: 26px;" valign="top">
+                                                <asp:Label ID="Label4" runat="server" CssClass="FieldName" meta:resourcekey="Label4Resource1"
+                                                    Width="100px"></asp:Label>
+                                            </td>
+                                            <td style="width: 320px; text-align: left; height: 26px;">
+                                                <asp:DropDownList ID="ddlSite" runat="server" AutoPostBack="True" CssClass="dropdownText"
+                                                    meta:resourcekey="ddlSiteResource1" OnSelectedIndexChanged="ddlSite_SelectedIndexChanged"
+                                                    TabIndex="4" Width="140px">
+                                                </asp:DropDownList>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ControlTD" style="height: 19px; width: 100px;" valign="top">
+                                                <asp:Label ID="Label5" runat="server" CssClass="FieldName" meta:resourcekey="Label5Resource1"
+                                                    Width="100px"></asp:Label>
+                                            </td>
+                                            <td valign="top">
+                                                <asp:TextBox ID="txtLocation" runat="server" CssClass="FieldValue" Enabled="False"
+                                                    MaxLength="150" meta:resourcekey="txtLocationResource1" Width="191px"></asp:TextBox>
+                                                <a href="javascript:openLocationListSRC('TreeList.aspx?Type=RptLocations&Site=<%=hdnSrcSite.Value %>&Header=Source Location');">
+                                                    <img id="imgLocButton" alt="Load List" onclick="return imgLocButton_onclick()" src="images/search.gif"
+                                                        style="border: 0;" /></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="style6" style="width: 100px">
+                                            </td>
+                                            <td style="width: 320px">
+                                            </td>
+                                            <td style="width: 17px">
+                                            </td>
+                                            <td style="width: 15px">
+                                            </td>
+                                            <td style="width: 144px">
+                                            </td>
+                                            <td align="left" style="text-align: left; width: 304px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 100px; text-align: justify;">
+                                                <igtxt:WebImageButton ID="btnShowReport" runat="server" ImageDirectory="" meta:resourcekey="btnShowReportResource1"
+                                                    OnClick="btnShowReport_Click" SkinID="uwButton" TabIndex="11" UseBrowserDefaults="False"
+                                                    Width="118px">
+                                                    <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                                                        WidthOfRightEdge="13" />
+                                                    <ClientSideEvents Click="btnShowReport_JS_Click" />
+                                                </igtxt:WebImageButton>
+                                            </td>
+                                            <td colspan="5" style="text-align: justify;">
+                                                <asp:Label ID="lblErrorMessage" runat="server" CssClass="ErrValStyle" Height="16px"
+                                                    meta:resourcekey="lblErrorMessageResource1" Visible="False" Width="682px"></asp:Label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </Template>
+                            </ig:ItemTemplate>
+                        </Templates>
+                    </ig:WebExplorerBar>
+                </div>
+                <br />
+                <br />
+                <br />
+            </td>
+            <td style="width: 58px;">
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 176px; text-align: left;">
+            </td>
+            <td style="width: 54px">
+            </td>
+            <td style="width: 239px">
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" width="100%" colspan="4">
+                <asp:Panel ID="Panel1" runat="server" Width="100%" meta:resourcekey="Panel1Resource1">
+                    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" Font-Names="Verdana"
+                        Height="380px" Font-Size="8pt"  ShowParameterPrompts="False" ShowFindControls="false" ShowBackButton="false"
+                         Style="text-align: center;overflow:auto;" meta:resourcekey="ReportViewer1Resource1">
+                    </rsweb:ReportViewer>
+                 </asp:Panel>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="loading" align="center">
+                    Loading Report...<br />
+                    <img src=".\images\loader.gif" alt="Loading..." />
+                </div>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" id="hdnMessage" runat="server" />
+    <input type="hidden" id="hdnLocationID1" runat="server" />
+    <input type="hidden" id="hdnLocName1" runat="server" />
+    <input type="hidden" id="hdnLocationID2" runat="server" />
+    <input type="hidden" id="hdnLocName2" runat="server" />
+    <input type="hidden" id="hdnSrcSite" runat="server" />
+    <input type="hidden" id="hdnDstSite" runat="server" />
+</asp:Content>

@@ -1,0 +1,474 @@
+.igsli_TrendyControl 
+{
+	overflow:hidden;
+	border: none;
+	background: transparent;
+}
+.igsli_TrendyTicksHolderT
+{
+	position:relative;
+	width:100%;
+	font-size:1px;
+	height:5px;
+	border-bottom:0px solid blue;
+	margin-bottom:2px;
+}
+.igsli_TrendyTicksHolderB
+{
+	position:relative;
+	width:100%;
+	font-size:1px;
+	height:5px;
+	border-top:0px solid blue;
+	margin-top:2px;
+}
+.igsli_TrendyTickMinorT
+{
+	position:absolute;
+	font-size:1px;
+	border-left:1px solid #0D9948;
+	margin-top:2px;
+	height:3px;
+}
+.igsli_TrendyTickMajorT
+{
+	position:absolute;
+	font-size:1px;
+	border-left:2px solid #03BBFF;
+	height:5px;
+}
+.igsli_TrendyTickLastT
+{
+	width:1px;
+	margin-left:-1px;
+}
+.igsli_TrendyTickMinorB
+{
+	position:absolute;
+	font-size:1px;
+	border-left:1px solid #0D9948;
+	height:3px;
+}
+.igsli_TrendyTickMajorB
+{
+	position:absolute;
+	font-size:1px;
+	border-left:2px solid #03BBFF;
+	height:5px;
+}
+.igsli_TrendyTickLastB
+{
+	width:1px;
+	margin-left:-1px;
+}
+.igsli_TrendyMarginH
+{
+	width:10px;
+	font-size:1px;
+	height:100%;
+}
+.igsli_TrendyLabelsHolderH
+{
+	position:relative;
+	width:100%;
+	font-family:verdana;
+	font-size:10px;
+}
+/* it should be after margin */
+/* if labels are on edges, then position and margin are disabled by inline style */
+.igsli_TrendyLabelEdgeH
+{
+	overflow:hidden;
+	text-align:center;
+	width:26px;
+	height:14px;
+	white-space:nowrap;
+	font-family:verdana;
+	font-size:10px;
+	color: #666666;
+}
+.igsli_TrendyLabelT
+{
+	position:absolute;
+	overflow:hidden;
+	text-align:center;
+	margin-left:-23px;
+	width:46px;
+	height:14px;
+	white-space:nowrap;
+	font-family:verdana;
+	font-size:10px;
+	color: #666666;
+}
+.igsli_TrendyLabelB
+{
+	position:absolute;
+	overflow:hidden;
+	text-align:center;
+	margin-left:-23px;
+	width:46px;
+	height:14px;
+	white-space:nowrap;
+	font-family:verdana;
+	font-size:10px;
+	color: #666666;
+}
+.igsli_TrendyTrackH
+{
+	position:relative;
+	text-align:left;
+	margin-left:-1px;
+	border:0px solid #1B94FF;
+	background:#CBCBCB;
+	width:100%;
+	font-size:1px;
+	height:5px;
+	filter:alpha(opacity:80);
+	opacity:0.8;
+}
+.igsli_TrendyTrackValueH
+{
+	position:absolute;
+	background:#07B5FF;
+	height:5px;
+}
+.igsli_TrendyTrackValue2H
+{
+	position:absolute;
+	background:#109948;
+	height:5px;
+}
+.igsli_TrendyButton
+{
+	margin:2px;
+	cursor:pointer;
+}
+.igsli_TrendyThumbsHolderH
+{
+	position:relative;
+	z-index:1;
+	font-size:1px;
+	width:100%;
+}
+.igsli_TrendyThumbH
+{
+	position:absolute;
+	margin-left:-3px;
+	margin-top:-14px;
+	cursor: hand;
+	z-index:2;
+}
+.igsli_TrendyValueLabel
+{
+	white-space:nowrap;
+	overflow:hidden;
+	font-family:verdana;
+	font-size:10px;
+	text-align:center;
+	width:46px;
+	color: #808080;
+}
+.igsli_TrendyValueLabelFloatT
+{
+	position:absolute;
+	background:white;
+	border:1px solid #A9A9A9;
+	filter:alpha(opacity:0);
+	opacity:0;
+	height:13px;
+	overflow:visible;
+	width: auto;
+	min-width: 28px;
+	margin-left:-23px;
+	margin-top:-31px;
+	color: #808080;
+	padding-left:1px;
+	padding-right: 1px;
+}
+.igsli_TrendyValueLabelFloatB
+{
+	position:absolute;
+	overflow:visible;
+	width: auto;
+	min-width: 28px;
+	background:white;
+	border:1px solid #A9A9A9;
+	filter:alpha(opacity:0);
+	opacity:0;
+	height:13px;
+	margin-left:-23px;
+	margin-top:10px;
+	color: #808080;
+	padding-left:1px;
+	padding-right: 1px;
+}
+
+.igsli_TrendyTicksHolderL
+{
+	position:relative;
+	height:100%;
+	font-size:1px;
+	width:5px;
+	border-right:0px solid blue;
+	text-align:left;
+	margin-right:2px;
+}
+.igsli_TrendyTicksHolderR
+{
+	position:relative;
+	height:100%;
+	font-size:1px;
+	width:5px;
+	border-left:0px solid blue;
+	text-align:left;
+	margin-left:2px;
+}
+.igsli_TrendyTickMinorL
+{
+	position:absolute;
+	font-size:1px;
+	border-top:1px solid #0D9948;
+	margin-left:2px;
+	width:3px;
+}
+.igsli_TrendyTickMajorL
+{
+	position:absolute;
+	font-size:1px;
+	border-top:1px solid #03BBFF;
+	width:5px;
+}
+.igsli_TrendyTickLastL
+{
+	height:1px;
+	margin-top:-1px;
+}
+.igsli_TrendyTickMinorR
+{
+	position:absolute;
+	font-size:1px;
+	border-top:1px solid #0D9948;
+	width:3px;
+}
+.igsli_TrendyTickMajorR
+{
+	position:absolute;
+	font-size:1px;
+	border-top:1px solid #03BBFF;
+	width:5px;
+}
+.igsli_TrendyTickLastR
+{
+	height:1px;
+	margin-top:-1px;
+}
+.igsli_TrendyMarginV
+{
+	height:10px;
+	font-size:1px;
+}
+/* it should be after margin */
+/* if labels are on edges, then position and margin are disabled by inline style */
+.igsli_TrendyLabelEdgeV
+{
+	overflow:hidden;
+	white-space:nowrap;
+	width:auto;
+	height:14px;
+	font-family:verdana;
+	font-size:10px;
+	text-align:center;
+	color: #666666;
+}
+.igsli_TrendyLabelL
+{
+	position:absolute;
+	overflow:hidden;
+	white-space:nowrap;
+	width:40px;
+	height:14px;
+	margin-top:-7px;
+	margin-left: -25px;
+	font-family:verdana;
+	font-size:10px;
+	text-align:right;
+	color: #666666;
+}
+.igsli_TrendyLabelR
+{
+	position:absolute;
+	overflow:visible;
+	white-space:nowrap;
+	width:40px;
+	height:14px;
+	margin-top:-7px;
+	margin-left: 5px;
+	font-family:verdana;
+	font-size:10px;
+	color: #666666;
+}
+.igsli_TrendyLabelsHolderV
+{
+	position:relative;
+	text-align:left;
+	height:100%;
+	font-family:verdana;
+	font-size:10px;
+	width:20px;
+}
+.igsli_TrendyTrackV
+{
+	position:relative;
+	text-align:left;
+	margin-top:-1px;
+	border:0px solid blue;
+	background:#CBCBCB;
+	height:100%;
+	font-size:1px;
+	width:5px;
+}
+.igsli_TrendyTrackValueV
+{
+	position:absolute;
+	background:#07B5FF;
+	width:100%;
+}
+.igsli_TrendyTrackValue2V
+{
+	position:absolute;
+	background:#109948;
+	width:100%;
+}
+.igsli_TrendyThumbsHolderV
+{
+	position:relative;
+	z-index:1;
+	font-size:1px;
+	height:100%;
+}
+.igsli_TrendyThumbV
+{
+	position:absolute;
+	margin-left:-15px;
+	margin-top:-6px;
+	z-index:2;
+}
+.igsli_TrendyValueLabelFloatL
+{
+	position:absolute;
+	overflow:visible;
+	background:white;
+	border:1px solid #A9A9A9;
+	filter:alpha(opacity:0);
+	opacity:0;
+	height:13px;
+	text-align:right;
+	margin-top:-7px;	
+	margin-left:-46px;
+	width:auto;
+	min-width: 28px;
+	color: #808080;
+	padding-left: 1px;
+	padding-right: 1px;
+}
+.igsli_TrendyValueLabelFloatR
+{
+	position:absolute;
+	overflow:visible;
+	background:white;
+	border:1px solid #A9A9A9;
+	filter:alpha(opacity:0);
+	opacity:0;
+	height:13px;
+	text-align:left;
+	margin-left:8px;
+	margin-top:-7px;
+	min-width: 28px;
+	width: auto;
+	color: #808080;
+	padding-left: 1px;
+	padding-right: 1px;
+	}
+.igsli_TrendyValueLabelFloatHover
+{
+	filter:alpha(opacity:100);
+	opacity:1;
+}
+/* applied to control when it has focus and when rounded corners are disabled */
+.igsli_TrendyFocus
+{
+}
+/* applied to control when mouse moved over it and when rounded corners are disabled */
+.igsli_TrendyHover
+{
+}
+/* applied to control when it is disabled and when rounded corners are disabled */
+.igsli_TrendyDisabled
+{
+	background:#C0C0C0;
+}
+/* applied to track bar when control focus and when rounded corners of track are disabled */
+.igsli_TrendyTrackFocus
+{
+	filter:alpha(opacity:50);
+	opacity:0.5;
+}
+/* applied to track bar when mouse is moved over control and when rounded corners of track are disabled */
+.igsli_TrendyTrackHover
+{
+	filter:alpha(opacity:100);
+	opacity:1;
+}
+/* applied to track bar when control is disabled and when rounded corners of track are disabled */
+.igsli_TrendyTrackDisabled
+{
+	background:#A0A0A0;
+}
+/* applied to left edge of horizontal track bar */
+.igsli_TrendyTrackEdgeL
+{
+	position:absolute;
+	width:6px;
+	height:100%;
+	top:0px;
+	left:-5px;
+}
+/* applied to right edge of horizontal track bar */
+.igsli_TrendyTrackEdgeR
+{
+	position:absolute;
+	width:7px;
+	height:100%;
+	top:0px;
+	left:100%; 
+}
+/* applied to top edge of vertical track bar */
+.igsli_TrendyTrackEdgeT
+{
+	position:absolute;
+	width:100%;
+	height:0px;
+	top:-0px;
+	left:0px;
+	background:url(none);
+}
+/* applied to left edge of vertical track bar */
+.igsli_TrendyTrackEdgeB
+{
+	position:absolute;
+	width:100%;
+	height:0px;
+	top:100%;
+	left:0px;
+	background:url(none) left bottom;
+}
+/* applied to left edge of horizontal track bar when TrackValue is enabled */
+.igsli_TrendyTrackValueEdgeL
+{
+	background:url(none);
+}
+/* applied to bottom edge of vertical track bar when TrackValue is enabled */
+.igsli_TrendyTrackValueEdgeB
+{
+	background:url(none);
+}

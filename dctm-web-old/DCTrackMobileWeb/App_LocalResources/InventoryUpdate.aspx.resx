@@ -1,0 +1,994 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChkAppResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ChkAppResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ChkChildResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ChkChildResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ChkSelectResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ChkSelectResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CurrentPageAppResource1.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CurrentPageAppResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CurrentPageResource1.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="CurrentPageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FirstPageAppResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FirstPageAppResource1.ToolTip" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="FirstPageResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FirstPageResource1.ToolTip" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="GoToPageImbResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GoToPageImbResource1.ToolTip" xml:space="preserve">
+    <value>Go to page number</value>
+  </data>
+  <data name="GoToPageTxtResource1.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="GoToPageTxtResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ibUpdateResource1.Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="ibUpdateResource1.ToolTip" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="ibExportResource1.AlternateText" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ibExportResource1.ToolTip" xml:space="preserve">
+    <value>Export to Excel</value>
+  </data>
+  <data name="ibExportToExcelResource1.Text" xml:space="preserve">
+    <value>Export To Excel</value>
+  </data>
+  <data name="ibExportToExcelResource1.ToolTip" xml:space="preserve">
+    <value>Export To Excel</value>
+  </data>
+  <data name="ibResetResource1.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ibResetResource1.ToolTip" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ImageButton6Resource1.AlternateText" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="ImageButton6Resource1.ToolTip" xml:space="preserve">
+    <value>Export to Excel</value>
+  </data>
+  <data name="Label4Resource1.Text" xml:space="preserve">
+    <value>Legends :</value>
+  </data>
+  <data name="Label4Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LastPageAppResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LastPageAppResource1.ToolTip" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="LastPageResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LastPageResource1.ToolTip" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="lblApplicationResource1.Text" xml:space="preserve">
+    <value>Application List</value>
+  </data>
+  <data name="lblApplicationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblAssetListResource1.Text" xml:space="preserve">
+    <value>Asset List</value>
+  </data>
+  <data name="lblAssetListResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblLegendResource1.Text" xml:space="preserve">
+    <value>Legends :</value>
+  </data>
+  <data name="lblLegendResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMsgResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMsgResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NextPageAppResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NextPageAppResource1.ToolTip" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="NextPageResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NextPageResource1.ToolTip" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="PageResource2.Title" xml:space="preserve">
+    <value>Inventory Update</value>
+  </data>
+  <data name="PreviousPageAppResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PreviousPageAppResource1.ToolTip" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="PreviousPageResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PreviousPageResource1.ToolTip" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="SepLbl1Resource1.Text" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="SepLbl1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SepLblResource1.Text" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="SepLblResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource1.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="TemplatedColumnResource1.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource1.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource1.Header.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource1.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource2.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource2.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource2.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource2.Header.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource2.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource2.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource3.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource3.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource3.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource3.Header.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource3.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="TemplatedColumnResource3.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TotalPagesAppResource1.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="TotalPagesAppResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TotalPagesResource1.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="TotalPagesResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TreeLocationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtHostResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtHostResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.AllString" xml:space="preserve">
+    <value>(All)</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.ContainsString" xml:space="preserve">
+    <value>Contains</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.DoesNotContainString" xml:space="preserve">
+    <value>Does Not Contain</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.DoesNotEndWithString" xml:space="preserve">
+    <value>Does Not End With</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.DoesNotStartWithString" xml:space="preserve">
+    <value>Does Not Start With</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.EmptyString" xml:space="preserve">
+    <value>(Empty)</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.EndsWithString" xml:space="preserve">
+    <value>Ends With</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.EqualsString" xml:space="preserve">
+    <value>Equals</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.GreaterThanOrEqualsString" xml:space="preserve">
+    <value>Greater Than Or Equals</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.GreaterThanString" xml:space="preserve">
+    <value>Greater Than</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.LessThanOrEqualsString" xml:space="preserve">
+    <value>Less Than Or Equals</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.LessThanString" xml:space="preserve">
+    <value>Less Than</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.LikeString" xml:space="preserve">
+    <value>Like</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.NonEmptyString" xml:space="preserve">
+    <value>(NonEmpty)</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.NotEqualsString" xml:space="preserve">
+    <value>Not Equals</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.NotLikeString" xml:space="preserve">
+    <value>Not Like</value>
+  </data>
+  <data name="UltraGridBandResource1.FilterOptions.StartsWithString" xml:space="preserve">
+    <value>Starts With</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.AllString" xml:space="preserve">
+    <value>(All)</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.ContainsString" xml:space="preserve">
+    <value>Contains</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.DoesNotContainString" xml:space="preserve">
+    <value>Does Not Contain</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.DoesNotEndWithString" xml:space="preserve">
+    <value>Does Not End With</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.DoesNotStartWithString" xml:space="preserve">
+    <value>Does Not Start With</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.EmptyString" xml:space="preserve">
+    <value>(Empty)</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.EndsWithString" xml:space="preserve">
+    <value>Ends With</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.EqualsString" xml:space="preserve">
+    <value>Equals</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.GreaterThanOrEqualsString" xml:space="preserve">
+    <value>Greater Than Or Equals</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.GreaterThanString" xml:space="preserve">
+    <value>Greater Than</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.LessThanOrEqualsString" xml:space="preserve">
+    <value>Less Than Or Equals</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.LessThanString" xml:space="preserve">
+    <value>Less Than</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.LikeString" xml:space="preserve">
+    <value>Like</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.NonEmptyString" xml:space="preserve">
+    <value>(NonEmpty)</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.NotEqualsString" xml:space="preserve">
+    <value>Not Equals</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.NotLikeString" xml:space="preserve">
+    <value>Not Like</value>
+  </data>
+  <data name="UltraGridBandResource2.FilterOptions.StartsWithString" xml:space="preserve">
+    <value>Starts With</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.AllString" xml:space="preserve">
+    <value>(All)</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.ContainsString" xml:space="preserve">
+    <value>Contains</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.DoesNotContainString" xml:space="preserve">
+    <value>Does Not Contain</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.DoesNotEndWithString" xml:space="preserve">
+    <value>Does Not End With</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.DoesNotStartWithString" xml:space="preserve">
+    <value>Does Not Start With</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.EmptyString" xml:space="preserve">
+    <value>(Empty)</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.EndsWithString" xml:space="preserve">
+    <value>Ends With</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.EqualsString" xml:space="preserve">
+    <value>Equals</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.GreaterThanOrEqualsString" xml:space="preserve">
+    <value>Greater Than Or Equals</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.GreaterThanString" xml:space="preserve">
+    <value>Greater Than</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.LessThanOrEqualsString" xml:space="preserve">
+    <value>Less Than Or Equals</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.LessThanString" xml:space="preserve">
+    <value>Less Than</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.LikeString" xml:space="preserve">
+    <value>Like</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.NonEmptyString" xml:space="preserve">
+    <value>(NonEmpty)</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.NotEqualsString" xml:space="preserve">
+    <value>Not Equals</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.NotLikeString" xml:space="preserve">
+    <value>Not Like</value>
+  </data>
+  <data name="UltraGridBandResource3.FilterOptions.StartsWithString" xml:space="preserve">
+    <value>Starts With</value>
+  </data>
+  <data name="UltraGridColumnResource1.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource1.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource1.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource1.Header.Caption" xml:space="preserve">
+    <value>AssetID</value>
+  </data>
+  <data name="UltraGridColumnResource1.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource1.HeaderText" xml:space="preserve">
+    <value>AssetID</value>
+  </data>
+  <data name="UltraGridColumnResource10.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource10.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource10.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource10.Header.Caption" xml:space="preserve">
+    <value>HostID</value>
+  </data>
+  <data name="UltraGridColumnResource10.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource10.HeaderText" xml:space="preserve">
+    <value>HostID</value>
+  </data>
+  <data name="UltraGridColumnResource11.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource11.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource11.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource11.Header.Caption" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="UltraGridColumnResource11.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource11.HeaderText" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="UltraGridColumnResource12.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource12.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource12.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource12.Header.Caption" xml:space="preserve">
+    <value>HostName</value>
+  </data>
+  <data name="UltraGridColumnResource12.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource12.HeaderText" xml:space="preserve">
+    <value>HostName</value>
+  </data>
+  <data name="UltraGridColumnResource13.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource13.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource13.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource13.Header.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource13.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource13.HeaderText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource14.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource14.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource14.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource14.Header.Caption" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="UltraGridColumnResource14.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource14.HeaderText" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="UltraGridColumnResource15.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource15.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource15.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource15.Header.Caption" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="UltraGridColumnResource15.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource15.HeaderText" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="UltraGridColumnResource16.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource16.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource16.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource16.Header.Caption" xml:space="preserve">
+    <value>Serial No</value>
+  </data>
+  <data name="UltraGridColumnResource16.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource16.HeaderText" xml:space="preserve">
+    <value>Serial No</value>
+  </data>
+  <data name="UltraGridColumnResource17.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource17.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource17.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource17.Header.Caption" xml:space="preserve">
+    <value>Asset Type</value>
+  </data>
+  <data name="UltraGridColumnResource17.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource17.HeaderText" xml:space="preserve">
+    <value>Asset Type</value>
+  </data>
+  <data name="UltraGridColumnResource18.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource18.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource18.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource18.Header.Caption" xml:space="preserve">
+    <value>Manufacture</value>
+  </data>
+  <data name="UltraGridColumnResource18.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource18.HeaderText" xml:space="preserve">
+    <value>Manufacture</value>
+  </data>
+  <data name="UltraGridColumnResource2.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource2.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource2.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource2.Header.Caption" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="UltraGridColumnResource2.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource2.HeaderText" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="UltraGridColumnResource3.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource3.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource3.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource3.Header.Caption" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="UltraGridColumnResource3.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource3.HeaderText" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="UltraGridColumnResource4.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource4.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource4.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource4.Header.Caption" xml:space="preserve">
+    <value>Asset Count</value>
+  </data>
+  <data name="UltraGridColumnResource4.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource4.HeaderText" xml:space="preserve">
+    <value>Asset Count</value>
+  </data>
+  <data name="UltraGridColumnResource5.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource5.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource5.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource5.Header.Caption" xml:space="preserve">
+    <value>Scanned Count</value>
+  </data>
+  <data name="UltraGridColumnResource5.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource5.HeaderText" xml:space="preserve">
+    <value>Scanned Count</value>
+  </data>
+  <data name="UltraGridColumnResource6.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource6.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource6.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource6.Header.Caption" xml:space="preserve">
+    <value>Missing Count</value>
+  </data>
+  <data name="UltraGridColumnResource6.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource6.HeaderText" xml:space="preserve">
+    <value>Missing Count</value>
+  </data>
+  <data name="UltraGridColumnResource7.Footer.Caption" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource7.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource7.FooterText" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource7.Header.Caption" xml:space="preserve">
+    <value>Misplaced Count</value>
+  </data>
+  <data name="UltraGridColumnResource7.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource7.HeaderText" xml:space="preserve">
+    <value>Misplaced Count</value>
+  </data>
+  <data name="UltraGridColumnResource8.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource8.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource8.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource8.Header.Caption" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="UltraGridColumnResource8.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource8.HeaderText" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="UltraGridColumnResource9.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource9.Footer.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource9.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource9.Header.Caption" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="UltraGridColumnResource9.Header.Title" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource9.HeaderText" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="uwgAssetResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.AddNewBox.Prompt" xml:space="preserve">
+    <value>Add...</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.AllString" xml:space="preserve">
+    <value>(All)</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.ContainsString" xml:space="preserve">
+    <value>Contains</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.DoesNotContainString" xml:space="preserve">
+    <value>Does Not Contain</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.DoesNotEndWithString" xml:space="preserve">
+    <value>Does Not End With</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.DoesNotStartWithString" xml:space="preserve">
+    <value>Does Not Start With</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.EmptyString" xml:space="preserve">
+    <value>(Empty)</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.EndsWithString" xml:space="preserve">
+    <value>Ends With</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.EqualsString" xml:space="preserve">
+    <value>Equals</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.GreaterThanOrEqualsString" xml:space="preserve">
+    <value>Greater Than Or Equals</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.GreaterThanString" xml:space="preserve">
+    <value>Greater Than</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.LessThanOrEqualsString" xml:space="preserve">
+    <value>Less Than Or Equals</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.LessThanString" xml:space="preserve">
+    <value>Less Than</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.LikeString" xml:space="preserve">
+    <value>Like</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.NonEmptyString" xml:space="preserve">
+    <value>(NonEmpty)</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.NotEqualsString" xml:space="preserve">
+    <value>Not Equals</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.NotLikeString" xml:space="preserve">
+    <value>Not Like</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.FilterOptionsDefault.StartsWithString" xml:space="preserve">
+    <value>Starts With</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.GroupByBox.Prompt" xml:space="preserve">
+    <value>Drag a column header here to group by that column</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.Pager.NextText" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="uwgAssetResource1.DisplayLayout.Pager.PrevText" xml:space="preserve">
+    <value>Prev</value>
+  </data>
+  <data name="uwgAssetResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WebImageButton1Resource1.Text" xml:space="preserve">
+    <value>Export To Excel</value>
+  </data>
+  <data name="WebImageButton1Resource1.ToolTip" xml:space="preserve">
+    <value>Export To Excel</value>
+  </data>
+  <data name="ibShowDataResource1.Text" xml:space="preserve">
+    <value>Show Data</value>
+  </data>
+  <data name="ibShowDataResource1.ToolTip" xml:space="preserve">
+    <value>Show Data</value>
+  </data>
+  <data name="UltraGridColumnResource19.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource19.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource19.Header.Caption" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="UltraGridColumnResource19.HeaderText" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="UltraGridColumnResource20.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource20.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource20.Header.Caption" xml:space="preserve">
+    <value>Custodian</value>
+  </data>
+  <data name="UltraGridColumnResource20.HeaderText" xml:space="preserve">
+    <value>Custodian</value>
+  </data>
+  <data name="UltraGridColumnResource21.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource21.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource21.Header.Caption" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="UltraGridColumnResource21.HeaderText" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="UltraGridColumnResource22.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource22.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource22.Header.Caption" xml:space="preserve">
+    <value>AssetID</value>
+  </data>
+  <data name="UltraGridColumnResource22.HeaderText" xml:space="preserve">
+    <value>AssetID</value>
+  </data>
+  <data name="UltraGridColumnResource25.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource25.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource25.Header.Caption" xml:space="preserve">
+    <value>UnTagged Count</value>
+  </data>
+  <data name="UltraGridColumnResource25.HeaderText" xml:space="preserve">
+    <value>UnTagged Count</value>
+  </data>
+  <data name="UltraGridColumnResource26.Footer.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource26.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UltraGridColumnResource26.Header.Caption" xml:space="preserve">
+    <value>Inv. Date</value>
+  </data>
+  <data name="UltraGridColumnResource26.HeaderText" xml:space="preserve">
+    <value>Inv. Date</value>
+  </data>
+  <data name="lblLocationResource1.Text" xml:space="preserve">
+    <value>Location</value>
+  </data>
+</root>

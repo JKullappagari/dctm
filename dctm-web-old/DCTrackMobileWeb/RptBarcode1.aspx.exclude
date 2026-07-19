@@ -1,0 +1,261 @@
+<%@ Page Language="C#" MasterPageFile="~/iAssetTrackMasterPage.master" AutoEventWireup="true"
+    Theme="SkinFile" CodeFile="RptBarcode1.aspx.cs" Inherits="RptSPCModelCount" Culture="auto"
+    meta:resourcekey="PageResource1" UICulture="auto" %>
+
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+    Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+<%@ Register Assembly="Infragistics45.WebUI.WebDataInput.v16.1, Version=16.1.20161.2044, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2044, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2044, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Master_ContentPlaceHolder" runat="Server">
+    <script language="javascript" type="text/javascript">
+<!--
+        function openLocationList(url) {
+            var ctrlSite = document.getElementById('<%=ddlPrimarySite.ClientID%>');
+            if (ctrlSite.selectedIndex != -1) {
+                if (ctrlSite.options[ctrlSite.selectedIndex].value == "0") {
+                    alert('Select Site');
+                }
+                else {
+                    winSettings = "scroll:auto; width=300; height=500;top=50;left=50;status=1; resizable:no; scroll:no; help:no; toolbar:no; edge:raised; menubar:no; status:no; unadorned: yes";
+                    var hWnd = open_window(url, "LocationList", winSettings)
+
+                    if ((document.window != null) && (hWnd.opener))
+                        hWnd.opener = document.window;
+                }
+            }
+
+        }
+
+        function openModelList(url) {
+            var ctrlMfg = document.getElementById('<%=ddlMfg.ClientID%>');
+            var ctrlBU = document.getElementById('<%=ddlBusinessUnit.ClientID%>');
+            if (ctrlBU.options[ctrlBU.selectedIndex].value == "0") {
+                alert('Select BusineesUnit');
+            }
+            else {
+                if (ctrlMfg.options[ctrlMfg.selectedIndex].value == "0") {
+                    alert('Select Manufacturer');
+                }
+                else {
+                    var winSettings = "scroll:auto; width=300; height=500;top=50;left=50;status=1; resizable:no; scroll:no; help:no; toolbar:no; edge:raised; menubar:no; status:no; unadorned: yes";
+                    var hWnd = open_window(url, "ModelList", winSettings)
+
+                    if ((document.window != null) && (hWnd.opener))
+                        hWnd.opener = document.window;
+                }
+            }
+        }
+
+        function getValuesFromChild(txt, val, header) {
+            var txtParentLoc = document.getElementById('<%=txtParentLocation.ClientID%>');
+            var hdnLName = document.getElementById('<%=hdnLocName.ClientID%>');
+
+            var txtAssetModel = document.getElementById('<%=txtModel.ClientID%>');
+            var hdnMName = document.getElementById('<%=hdnModelName.ClientID%>');
+
+            if (header == "Loc") {
+                txtParentLoc.value = txt;
+                hdnLName.value = txt;
+            }
+            else {
+                txtAssetModel.value = txt;
+                hdnMName.value = txt;
+            }
+        }
+
+-->
+    </script>
+    <table id="Table3" style="height: 100%; width: 98%;" cellspacing="0" cellpadding="0"
+        border="0">
+        <%--<tr style="height: 15px;">
+            <td class="labelTD" style="height: 34px;" colspan="9">
+                <center>
+                    <asp:Label ID="Label1" runat="server" CssClass="Heading" meta:resourcekey="Label1Resource1"></asp:Label>
+                </center>
+                <br />
+                <br />
+            </td>
+        </tr>--%>
+        <%--<tr style="width: auto;">
+            <td class="labelTD" style="width: 5px; padding-right: 5px; height: 37px;">
+                
+            </td>
+            <td class="ControlTD" style="width: 114px; height: 37px;">
+                
+            </td>
+            <td class="ControlTD" style="width: 97px; height: 37px;">
+                
+            </td>
+            <td class="ControlTD" style="width: 51px; height: 37px;">
+                
+            </td>
+            <td class="ControlTD" style="width: 124px; height: 37px;">
+                
+            </td>
+            <td class="labelTD" style="width: 67px; padding-right: 5px; height: 37px;">
+                
+            </td>
+            <td class="ControlTD" style="width: 53px; padding-right: 15px; height: 37px;">
+                
+            </td>
+            <td class="ControlTD" style="width: 28px; height: 37px;">
+                
+            </td>
+            <td style="width: 58px; height: 37px;">
+                
+            </td>
+        </tr>--%>
+        <tr>
+            <td class="labelTD" style="padding-right: 5px;">
+                <div style="width: 100%;">
+                    <ig:WebExplorerBar ID="wpSearchOptions" runat="server" GroupExpandAction="HeaderClick"
+                        meta:resourcekey="wpSearchOptionsResource1" Width="100%" BorderWidth="1px">
+                        <Groups>
+                            <ig:ExplorerBarGroup Text="Search Options" Expanded="true">
+                                <Items>
+                                    <ig:ExplorerBarItem TemplateId="tmpAssetSearch">
+                                    </ig:ExplorerBarItem>
+                                </Items>
+                            </ig:ExplorerBarGroup>
+                        </Groups>
+                        <Templates>
+                            <ig:ItemTemplate TemplateID="tmpAssetSearch">
+                                <Template>
+                                    <table id="Table1" align="center" border="0" cellpadding="0" cellspacing="2" style="border-right: gray 1px solid;
+                                        border-top: gray 1px solid; border-left: gray 1px solid; border-bottom: gray 1px solid;
+                                        height: 46px;" width="100%">
+                                        <tr>
+                                            <td class="labelTD" style="height: 17px" valign="top">
+                                                <asp:Label ID="lblBusinessUnit" runat="server" CssClass="FieldName" Width="88px"
+                                                    meta:resourcekey="lblBusinessUnitResource1"></asp:Label>
+                                            </td>
+                                            <td class="ControlTD" style="height: 17px;" valign="bottom">
+                                                <asp:DropDownList ID="ddlBusinessUnit" runat="server" AutoPostBack="True" CssClass="dropdownText"
+                                                    OnSelectedIndexChanged="ddlBusinessUnit_SelectedIndexChanged" TabIndex="1" Width="151px"
+                                                    meta:resourcekey="ddlBusinessUnitResource1">
+                                                </asp:DropDownList>
+                                            </td>
+                                            <td class="labelTD" style="height: 17px;" valign="top">
+                                                <asp:Label ID="lblPrimarySite" runat="server" CssClass="FieldName" Width="89px"
+                                                    meta:resourcekey="lblPrimarySiteResource1"></asp:Label>
+                                            </td>
+                                            <td class="ControlTD" style="height: 17px;" valign="bottom">
+                                                <asp:DropDownList ID="ddlPrimarySite" runat="server" AutoPostBack="True" CssClass="dropdownText"
+                                                    OnSelectedIndexChanged="ddlPrimarySite_SelectedIndexChanged" TabIndex="2" Width="163px"
+                                                    meta:resourcekey="ddlPrimarySiteResource1">
+                                                </asp:DropDownList>
+                                            </td>
+                                            <td class="labelTD" style="height: 17px;" valign="bottom">
+                                                <asp:Label ID="lblLocation" runat="server" CssClass="FieldName" Width="79px" meta:resourcekey="lblLocationResource1"></asp:Label>
+                                            </td>
+                                            <td class="ControlTD" style="height: 17px;" valign="bottom">
+                                                <asp:TextBox ID="txtParentLocation" runat="server" Width="175px" CssClass="FieldValue"
+                                                    ReadOnly="True" MaxLength="150" TabIndex="6" Height="16px" meta:resourcekey="txtParentLocationResource1"></asp:TextBox>
+                                                
+                                            </td>
+                                            <td class="ControlTD" style="height: 17px;" valign="bottom">
+                                                <a href="javascript:openLocationList('LocList.aspx?Type=RptLocations&Site=<%=ddlPrimarySite.SelectedValue %>&Header=Location');">
+                                                    <img id="imgLocButton" alt="Load List" src="images/search.gif" style="border: 0;" /></a>
+                                            </td>
+                                        </tr>
+                                        <tr style="height: 19px">
+                                            <td class="labelTD" style="height: 19px;">
+                                                
+                                            </td>
+                                            <td class="ControlTD" style="height: 15px;" valign="top">
+                                                <asp:RequiredFieldValidator ID="rfvBU" runat="server" ControlToValidate="ddlBusinessUnit"
+                                                    CssClass="ErrValStyle" InitialValue="0" meta:resourcekey="rfvBUResource1"></asp:RequiredFieldValidator>
+                                            </td>
+                                            <td class="labelTD" style="height: 19px;">
+                                                
+                                            </td>
+                                            <td class="ControlTD" style="height: 19px;">
+                                                <asp:RequiredFieldValidator ID="rfvSite" runat="server" ControlToValidate="ddlPrimarySite"
+                                                    CssClass="ErrValStyle" InitialValue="0" meta:resourcekey="rfvSite"></asp:RequiredFieldValidator>
+                                            </td>
+                                            <td class="labelTD" style="height: 19px;">
+                                                
+                                            </td>
+                                            <td class="ControlTD" style="height: 19px;">
+                                                <asp:RequiredFieldValidator ID="rfvLocation" runat="server" ControlToValidate="txtParentLocation"
+                                                    CssClass="ErrValStyle" meta:resourcekey="rfvLocationResource"></asp:RequiredFieldValidator>
+                                            </td>
+                                        </tr>
+                                        <tr style="height: 19px">
+                                            <td class="labelTD" style="height: 19px;">
+                                                <asp:Label ID="Label2" runat="server" CssClass="FieldName" meta:resourcekey="Label2Resource1"></asp:Label>
+                                            </td>
+                                            <td class="ControlTD" style="height: 19px;">
+                                                <asp:DropDownList ID="ddlMfg" runat="server" CssClass="dropdownText" meta:resourcekey="ddlMfgResource1"
+                                                    TabIndex="7" Width="156px" AutoPostBack="True" OnSelectedIndexChanged="ddlMfg_SelectedIndexChanged">
+                                                </asp:DropDownList>
+                                            </td>
+                                            <td class="labelTD" style="height: 19px;" valign="top">
+                                                <asp:Label ID="Label3" runat="server" CssClass="FieldName" meta:resourcekey="Label3Resource1"></asp:Label>
+                                            </td>
+                                            <td class="ControlTD" style="height: 19px;">
+                                                <asp:TextBox ID="txtModel" runat="server" CssClass="FieldValue" Enabled="False" Height="16px"
+                                                    MaxLength="150" meta:resourcekey="txtModelResource1" TabIndex="6" Width="200px"></asp:TextBox>
+                                            </td>
+                                            <td class="labelTD" style="height: 19px;" align="left">
+                                                <a href="javascript:openModelList('ModelList.aspx?Type=SearchModels&MfgName=<%=ddlMfg.SelectedItem.Text %>&MfgID=<%=ddlMfg.SelectedItem.Value %>&BU=<%=ddlBusinessUnit.SelectedItem.Value %>&Header=AssetModel');">
+                                                    <img id="img1" alt="Load List" src="images/search.gif" style="border: 0;" /></a>
+                                            </td>
+                                            <td>
+                                                <igtxt:WebImageButton ID="btnShow" runat="server" ImageDirectory="" OnClick="btnShow_Click"
+                                                    SkinID="uwButton" TabIndex="13" UseBrowserDefaults="False" Width="135px" meta:resourcekey="btnShowResource1">
+                                                    <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                                                        WidthOfRightEdge="13" />
+                                                    <Appearance>
+                                                        <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                                                        </ButtonStyle>
+                                                    </Appearance>
+                                                </igtxt:WebImageButton>
+                                            </td>
+                                            <%--<td class="ControlTD" style="height: 19px;">
+                                        
+                                    </td>--%>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            </td>
+                                            <td class="ControlTD" style="height: 19px;">
+                                                
+                                                <asp:RequiredFieldValidator ID="rfvManufacturer" runat="server" ControlToValidate="ddlMfg"
+                                                    CssClass="ErrValStyle" InitialValue="0" meta:resourcekey="rfvManufacturer"></asp:RequiredFieldValidator>
+                                            </td>
+                                            <td>
+                                            </td>
+                                            <td class="ControlTD" style="height: 19px;">
+                                                
+                                                <asp:RequiredFieldValidator ID="rfvModel" runat="server" ControlToValidate="txtModel"
+                                                    CssClass="ErrValStyle" Visible="true" meta:resourcekey="rfvModelResource"></asp:RequiredFieldValidator>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </Template>
+                            </ig:ItemTemplate>
+                        </Templates>
+                    </ig:WebExplorerBar>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <asp:Panel ID="Panel1" runat="server" Width="795px" meta:resourcekey="Panel1Resource1">
+                    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" Font-Names="Verdana"
+                        Font-Size="8pt" Height="328px" ShowParameterPrompts="False" meta:resourcekey="ReportViewer1Resource1">
+                    </rsweb:ReportViewer>
+                </asp:Panel>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <br />
+    <input type="hidden" id="hdnMessage" runat="server" />
+    <input type="hidden" id="hdnParentLocationID" runat="server" />
+    <input type="hidden" id="hdnModelName" runat="server" />
+    <input type="hidden" id="hdnLocName" runat="server" />
+</asp:Content>

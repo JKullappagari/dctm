@@ -1,0 +1,193 @@
+.igwv_RubberBlackControl
+{
+	border:solid 1px #4B4B4B;
+}
+
+
+.igwv_RubberBlackCaptionHeader
+{
+	background-color:#000000;
+	background-repeat:repeat-x;
+	background-image: url(images/monthview_header.jpg);
+	font-weight:bold;
+	font-size:8pt;
+	line-height: 16pt;
+	color:White;
+	text-align:center;
+}
+
+
+.igwv_RubberBlackDayHeader
+{
+	background-color:#F8F8F8;
+	background-position:bottom ;
+	background-repeat: repeat-x;
+	background-image: url(images/igmc_footerbghover.gif);
+	font-size:8pt;
+	border-width: 0;
+	border-bottom:solid 1px #999999;
+	border-top:solid 1px #999999;
+	white-space: nowrap;
+	color:Black;
+	text-align:center;
+	vertical-align:middle;
+}
+
+
+.igwv_RubberBlackDay
+{
+	background-color:#FFFFFF;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+
+.igwv_RubberBlackAppointment
+{
+	background-color:#FFFFFF;
+	font-size:8pt;
+	padding: 3px;
+	margin: 1px;
+	border:solid 1px #999999;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.igwv_RubberBlackFadedAppointment
+{
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+
+.igwv_RubberBlackAllDayEvent
+{
+	background-color: #F5F5F5;
+	font-size:8pt;
+	border: solid 1px #666666;
+	padding:3px;
+	margin: 1px;
+	text-align:center;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+
+.igwv_RubberBlackNavigationButton
+{
+	background-color:Transparent;
+	border-width:0px;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	vertical-align:middle;
+}
+
+
+.igwv_RubberBlackDayArea
+{
+	border-width: 0;
+	border-left:solid 1px #999999;
+	border-right:solid 1px #999999;
+}
+
+
+.igwv_RubberBlackTodayHeader
+{
+	background-color:#000000;
+	background-repeat:repeat-x;
+	background-position: top;
+	background-image: url(images/monthview_header.jpg);
+	font-weight:bold;
+	color:White;
+}
+
+
+.igwv_RubberBlackToday
+{
+}
+
+
+.igwv_RubberBlackSelectedAppointment
+{
+	background-color:#000000;
+	color: #FFFFFF;
+	font-size:8pt;
+	padding: 3px;
+	margin: 1px;
+	border:solid 1px #999999;
+	overflow: hidden;
+	cursor: pointer;
+	text-align: center;
+}
+
+
+.igwv_RubberBlackActiveDayHeader
+{
+	background-color:#4f4f4f;
+	background-repeat:repeat-x;
+	background-position: top;
+	background-image: url(images/igg_Selected.gif);
+	color:#FFFFFF;
+}
+
+
+.igwv_RubberBlackActiveDay
+{
+	background-color:#F6F6F6;
+	background-repeat:repeat-x;
+	background-position:bottom ;
+	background-image: url(images/bg.gif);
+}
+
+
+.igwv_RubberBlackResourceButton
+{
+	background-color:#A6A6A6;
+	background-repeat:repeat-x;
+	background-position: bottom;
+	background-image: url(images/igg_Selected.gif);
+	padding: 3px;
+	color: #FFFFFF;
+	border-width: 0;
+	border-right: solid 1px #999999;
+	border-bottom: solid 1px #999999;
+	font-size: 8pt;
+}
+
+.igwv_RubberBlackResourceButton:focus, .igwv_RubberBlackResourceButtonActive
+{
+	filter:alpha(opacity=100);
+	-moz-opacity:1.0;
+	-khtml-opacity: 1.0;
+	opacity: 1.0;
+}
+
+.igwv_RubberBlackResourceButton:hover
+{
+	filter:alpha(opacity=100);
+	-moz-opacity:1.0;
+	-khtml-opacity: 1.0;
+	opacity: 1.0;
+}
+
+.igwv_RubberBlackMultiDayEventArrowLeft
+{
+      background-image: url(images/igws_arrowLeft.gif);
+      background-repeat: no-repeat;
+      background-position: center center;
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+}
+
+.igwv_RubberBlackMultiDayEventArrowRight
+{
+      background-image: url(images/igws_arrowRight.gif);
+      background-repeat: no-repeat;
+      background-position: center center;
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+}

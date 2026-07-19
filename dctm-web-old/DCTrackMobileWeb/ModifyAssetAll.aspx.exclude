@@ -1,0 +1,861 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/iAssetTrackMasterPage.master" Theme="SkinFile"
+    AutoEventWireup="true" CodeFile="ModifyAssetAll.aspx.cs" Inherits="ModifyAssetAll"
+    Title="Modify All Assets" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
+
+<%@ OutputCache Location="None" VaryByParam="None" %>
+<%@ Register Assembly="Infragistics45.WebUI.WebDataInput.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.LayoutControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.WebUI.Misc.v16.1, Version=16.1.20161.2236, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
+<%--<%@ Register Src="AssetSearchControl.ascx" TagName="AssetSearchControl" TagPrefix="uc1" %>--%>
+<asp:Content ID="Content1" ContentPlaceHolderID="Master_ContentPlaceHolder" runat="Server">
+    <style type="text/css">
+        .disabled
+        {
+            display: none;
+        }
+        .enabled
+        {
+            display: inline;
+        }
+    </style>
+    <script id="Infragistics" type="text/javascript">
+        
+    </script>
+    <script id="popup" type="text/javascript">
+<!--
+        //Gets a lookup window for user search
+        function searchOriginatorPopup() {
+            var url = "UserSearchPopup.aspx?BusinessUnit=" + document.forms[0].elements['<%=ddlBusinessUnit.ClientID%>'].value;
+            url = url + "&DisplayNameField=" + document.getElementById("<%=txtOwner.ClientID %>").id;
+            url = url + "&IDField=" + document.getElementById("<%=hdnOwnerID.ClientID %>").id;
+            url = url + "&NameField=" + document.getElementById("<%=hdnOwnerName.ClientID %>").id;
+            winSettings = "scroll:auto; width=880; height=470;top=50;left=50;status=1; resizable:no; scroll:no; help:no; toolbar:no; edge:raised; menubar:no; status:no; unadorned: yes";
+            var hWnd = open_window(url, "searchsubcon", winSettings)
+            if ((document.window != null) && (hWnd.opener))
+                hWnd.opener = document.window;
+        }
+
+-->
+        
+    </script>
+    <script language="javascript" type="text/javascript">
+
+        function openCreateHost(url) {
+            winSettings = "scroll:auto; width=1024; height=768;top=50;left=50;status=1; resizable:no; scroll:no; help:no; toolbar:no; edge:raised; menubar:no; status:no; unadorned: yes";
+            var hWnd = open_window(url, "HostSub", winSettings)
+
+            if ((document.window != null) && (hWnd.opener))
+                hWnd.opener = document.window;
+
+        }
+
+        function AddHosts_Click() {
+
+            var lHost = document.getElementById('<%=lstHosts.ClientID%>');
+            var txtHost = document.getElementById('<%=txtAssetName.ClientID%>');
+            var hList = document.getElementById('<%=hdnHostNames.ClientID%>');
+
+            if (txtHost.value != '') {
+                //if text box contains text
+                if (hList.value.indexOf(txtHost.value) == -1) {
+                    var newOption = new Option(); // Create a new instance of ListItem
+                    newOption.text = txtHost.value;
+                    newOption.value = txtHost.value;
+                    lHost.options[lHost.length] = newOption;
+
+                    hList.value += txtHost.value + ',';
+                }
+            }
+        }
+        function DeleteHosts_Click() {
+
+            var lHost = document.getElementById('<%=lstHosts.ClientID%>');
+            var hList = document.getElementById('<%=hdnHostNames.ClientID%>');
+            //alert(lHost.options[lHost.options.selectedIndex].text);
+            if (lHost.options.selectedIndex > -1) {
+                var selectedValue = lHost.options[lHost.options.selectedIndex].text + ',';
+                //            alert(selectedValue);
+                if (hList.value.indexOf(selectedValue) == -1) {
+
+                }
+                else {
+                    hList.value = hList.value.replace(selectedValue, "");
+                }
+
+                lHost.remove(lHost.options.selectedIndex);  //Remove the item
+            }
+        }
+
+        function uwtDistributionList_ItemChecked(treeId, nodeId, bCheck) {
+            //var treeDistList = igtree_getTreeById(treeId);
+            var curNode = igtree_getNodeById(nodeId);
+            var childNodes = curNode.getChildNodes();
+
+            for (var i = 0; i < childNodes.length; i++) {
+                childNodes[i].setChecked(bCheck);
+            }
+
+        }
+
+
+        function openModelList(url) {
+            var ctrlMfg = document.getElementById('<%=ddlMfg.ClientID%>');
+            var ctrlBU = document.getElementById('<%=ddlBusinessUnit.ClientID%>');
+            if (ctrlBU.options[ctrlBU.selectedIndex].value == "0") {
+                alert('Select BusineesUnit');
+            }
+            else {
+                if (ctrlMfg.options[ctrlMfg.selectedIndex].value == "0") {
+                    alert('Select Manufacturer');
+                }
+                else {
+                    var winSettings = "scroll:auto; width=300; height=500;top=50;left=50;status=1; resizable:no; scroll:no; help:no; toolbar:no; edge:raised; menubar:no; status:no; unadorned: yes";
+                    var hWnd = open_window(url, "ModelList", winSettings)
+
+                    if ((document.window != null) && (hWnd.opener))
+                        hWnd.opener = document.window;
+                }
+            }
+        }
+
+        function openLocationList(url) {
+
+            winSettings = "scroll:auto; width=300; height=500;top=50;left=50;status=1; resizable:no; scroll:no; help:no; toolbar:no; edge:raised; menubar:no; status:no; unadorned: yes";
+            var hWnd = open_window(url, "LocationList", winSettings)
+
+            if ((document.window != null) && (hWnd.opener))
+                hWnd.opener = document.window;
+
+        }
+
+        function getValuesFromChild(txt, val,flag, header) {
+            var hdnParentLocID = document.getElementById('<%=hdnLocID.ClientID%>');
+            var txtParentLoc = document.getElementById('<%=txtLocation.ClientID%>');
+            var hdnLName = document.getElementById('<%=hdnLocName.ClientID%>');
+
+            var hdnMID = document.getElementById('<%=hdnModelID.ClientID%>');
+            var txtAssetModel = document.getElementById('<%=txtModel.ClientID%>');
+            var hdnMName = document.getElementById('<%=hdnModelName.ClientID%>');
+            var hdnIsBlade = document.getElementById('<%=hdnIsBlade.ClientID%>');
+            var parentSelect = document.getElementById('<%=HyperLink1.ClientID%>');
+
+
+            if (header == "Loc") {
+                txtParentLoc.value = txt;
+                hdnParentLocID.value = val;
+                hdnLName.value = txt;
+            }
+            else {
+                txtAssetModel.value = txt;
+                hdnMID.value = val;
+                hdnMName.value = txt;
+                hdnIsBlade.value = flag;
+                if (flag == "True") {
+                    document.getElementById('<%=HyperLink1.ClientID%>').disabled = false;
+                }
+                else {
+                    document.getElementById('<%=HyperLink1.ClientID%>').disabled = true;
+                }
+            }
+        }
+        //*Added on 07May2013
+        function searchParentAssetPopup() {
+
+            var ctrlMfg = document.getElementById('<%=ddlMfg.ClientID%>');
+            var ctrlBU = document.getElementById('<%=ddlBusinessUnit.ClientID%>');
+            var ctrlModelName = document.getElementById('<%=hdnModelName.ClientID%>');
+            var flagIsBlade = document.getElementById('<%=hdnIsBlade.ClientID%>');
+
+            if (ctrlBU.options[ctrlBU.selectedIndex].value == "0") {
+                alert('Select BusineesUnit');
+            }
+            else {
+                if (ctrlMfg.options[ctrlMfg.selectedIndex].value == "0") {
+                    alert('Select Manufacturer');
+                }
+                else {
+                    if (ctrlModelName.value == "" || ctrlModelName.value == "No Model") {
+                        alert('Select Asset Model');
+                    }
+                    else {
+                        if (flagIsBlade.value == "True") {
+                            var hAssetID = document.getElementById('<%=hdnAssetID.ClientID%>');
+                            var url = "ParentAssetSearchPage.aspx?BusinessUnit=" + document.forms[0].elements['<%=ddlBusinessUnit.ClientID%>'].value + "&AssetID=" + hAssetID.value + "&MFG=" + document.forms[0].elements['<%=ddlMfg.ClientID%>'].value;
+                            winSettings = "scroll:auto; width=990; height=570;top=50;left=50;status=1; resizable:no; scroll:no; help:no; toolbar:no; edge:raised; menubar:no; status:no; unadorned: yes";
+                            var hWnd = open_window(url, "searchsubcon", winSettings)
+                            if ((document.window != null) && (hWnd.opener))
+                                hWnd.opener = document.window;
+                        }
+                        else {
+                            alert('Asset is not a Blade/Module');
+                        }
+                    }
+                }
+            }
+        }
+
+        //*V3.8-Added on 24-Oct-2013- By Amar Vidya 
+        function PopUpWindowCallBack(id, name, Site, locId, locname, ParentAssetId) {
+
+            if (ParentAssetId > 0) {
+                alert("Cannot be assigned!.Selected asset has a Parent")
+                //                document.getElementById('<%=hdnLocID.ClientID%>').value = "";
+                //                document.getElementById('<%=txtLocation.ClientID%>').value = "";
+                //                document.getElementById('<%=txtParentAsset.ClientID%>').value = "";
+                //                document.getElementById('<%=hdnParentAssetID.ClientID%>').value = "";
+                document.getElementById('<%=ddlSite.ClientID%>').disabled = false;
+            }
+            else {//*
+
+                document.getElementById('<%=hdnParentAssetName.ClientID%>').value = name;
+                document.getElementById('<%=txtParentAsset.ClientID%>').value = name;
+                document.getElementById('<%=hdnParentAssetID.ClientID%>').value = id;
+
+                document.getElementById('<%=hdnSiteID.ClientID%>').value = Site;
+                document.getElementById('<%=ddlSite.ClientID%>').value = Site;
+                document.getElementById('<%=ddlSite.ClientID%>').disabled = true;
+
+                disableLocButton();
+
+                document.getElementById('<%=hdnLocID.ClientID%>').value = locId;
+                document.getElementById('<%=txtLocation.ClientID%>').value = locname;
+                //v3.8
+                document.getElementById('<%=imgRemoveParent.ClientID%>').disabled = false;
+
+            }
+        } //*
+        //*V3.8-Added on 25Oct2013-By Amar Vidya
+        function imgRemoveParent_Click() {
+            document.getElementById('<%=txtParentAsset.ClientID%>').value = "";
+            document.getElementById('<%=ddlSite.ClientID%>').disabled = false;
+            var myLoc = document.getElementById('imgLocButton');
+            myLoc.className = "enabled";
+            document.getElementById('<%=imgRemoveParent.ClientID%>').disabled = true;
+        } //*
+
+        //v3.8
+        function disableLocButton() {
+            var myLoc = document.getElementById('imgLocButton');
+            myLoc.className = "disabled";
+        }
+      
+    </script>
+    <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; height: 100%;">
+        <tr align="left">
+            <td colspan="9">
+                <table>
+                    <tr align="left">
+                        <td>
+                            <asp:Image ID="imgAssociationStatus" runat="server" Height="16px" Width="16px" Visible="False"
+                                meta:resourcekey="imgAssociationStatusResource1" />
+                        </td>
+                        <td style="width: 100px" align="left">
+                            <asp:Label ID="lblRefNoDisplay" runat="server" CssClass="FieldName" Width="98px"
+                                meta:resourcekey="lblRefNoDisplayResource1"></asp:Label>
+                        </td>
+                        <td style="text-align: left;" align="left" valign="top">
+                            <asp:TextBox ID="txtRefNo" runat="server" CssClass="viewtabfieldvalue" Width="600px"
+                                meta:resourcekey="txtRefNoResource1"></asp:TextBox>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+            </td>
+            <td>
+                <igtxt:WebImageButton ID="ibCreateAsset2" runat="server" ImageDirectory="" OnClick="ibCreateAsset_Click"
+                    SkinID="uwButton" TabIndex="26" UseBrowserDefaults="False" Width="118px" meta:resourcekey="ibCreateAsset2Resource1">
+                    <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                        WidthOfRightEdge="13" />
+                    <Appearance>
+                        <style cursor="Hand" font-names="Arial" font-size="8pt">
+                            
+                        </style>
+                        <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                        </ButtonStyle>
+                    </Appearance>
+                </igtxt:WebImageButton>
+            </td>
+            <td>
+                <igtxt:WebImageButton ID="ibReset2" runat="server" ImageDirectory="" OnClick="ibResetDocument_Click"
+                    Visible="false" SkinID="uwButton" TabIndex="27" UseBrowserDefaults="False" Width="118px"
+                    CausesValidation="False" meta:resourcekey="ibReset2Resource1">
+                    <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                        WidthOfRightEdge="13" />
+                    <Appearance>
+                        <style cursor="Hand" font-names="Arial" font-size="8pt">
+                            
+                        </style>
+                        <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                        </ButtonStyle>
+                    </Appearance>
+                    <Alignments HorizontalAll="Left" />
+                </igtxt:WebImageButton>
+            </td>
+            <td>
+                <igtxt:WebImageButton ID="ibClose2" runat="server" CausesValidation="False" ImageDirectory=""
+                    Visible="false" OnClick="ibClose_Click" SkinID="uwButton" TabIndex="28" UseBrowserDefaults="False"
+                    Width="118px" meta:resourcekey="ibClose2Resource1">
+                    <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                        WidthOfRightEdge="13" />
+                    <Appearance>
+                        <style cursor="Hand" font-names="Arial" font-size="8pt">
+                            
+                        </style>
+                        <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                        </ButtonStyle>
+                    </Appearance>
+                </igtxt:WebImageButton>
+            </td>
+            <td>
+                &nbsp;
+            </td>
+            <td>
+                <igtxt:WebImageButton ID="btnFirst" runat="server" CausesValidation="False" ImageDirectory=""
+                    Visible="true" OnClick="btnFirst_Click" SkinID="uwButton" TabIndex="28" UseBrowserDefaults="False"
+                    Width="118px" meta:resourcekey="ibFirstResource1">
+                    <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                        WidthOfRightEdge="13" />
+                    <Appearance>
+                        <style cursor="Hand" font-names="Arial" font-size="8pt">
+                            
+                        </style>
+                        <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                        </ButtonStyle>
+                    </Appearance>
+                </igtxt:WebImageButton>
+                <igtxt:WebImageButton ID="btnPrevious" runat="server" CausesValidation="False" ImageDirectory=""
+                    Visible="true" OnClick="btnPrevious_Click" SkinID="uwButton" TabIndex="28" UseBrowserDefaults="False"
+                    Width="118px" meta:resourcekey="ibPrevResource1">
+                    <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                        WidthOfRightEdge="13" />
+                    <Appearance>
+                        <style cursor="Hand" font-names="Arial" font-size="8pt">
+                            
+                        </style>
+                        <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                        </ButtonStyle>
+                    </Appearance>
+                </igtxt:WebImageButton>
+                <igtxt:WebImageButton ID="btnNext" runat="server" CausesValidation="False" ImageDirectory=""
+                    Visible="true" OnClick="btnNext_Click" SkinID="uwButton" TabIndex="28" UseBrowserDefaults="false"
+                    Width="118px" meta:resourcekey="ibNextResource1">
+                    <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                        WidthOfRightEdge="13" />
+                    <Appearance>
+                        <style cursor="Hand" font-names="Arial" font-size="8pt">
+                            
+                        </style>
+                        <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                        </ButtonStyle>
+                    </Appearance>
+                </igtxt:WebImageButton>
+                <igtxt:WebImageButton ID="btnLast" runat="server" CausesValidation="False" ImageDirectory=""
+                    Visible="true" OnClick="btnLast_Click" SkinID="uwButton" TabIndex="28" UseBrowserDefaults="False"
+                    Width="118px" meta:resourcekey="ibLastResource1">
+                    <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                        WidthOfRightEdge="13" />
+                    <Appearance>
+                        <style cursor="Hand" font-names="Arial" font-size="8pt">
+                            
+                        </style>
+                        <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                        </ButtonStyle>
+                    </Appearance>
+                </igtxt:WebImageButton>
+            </td>
+            <td>
+                &nbsp;
+            </td>
+            <br />
+            <td>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </td>
+            <%--  <td>
+            </td>--%>
+        </tr>
+        <tr>
+            <td colspan="9">
+                <igmisc:WebGroupBox ID="WebGroupBox1" runat="server" Width="98%" meta:resourcekey="uwtCreateAssetResource1">
+                    <Template>
+                        <table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+                            <tr>
+                                <td style="height: 20px;" colspan="7" align="left">
+                                    <asp:Label ID="lblErrorMsg" runat="server" Font-Bold="True" Font-Size="Small" ForeColor="Red"
+                                        Visible="False" Width="884px" Height="16px" meta:resourcekey="lblErrorMsgResource1"></asp:Label>
+                                </td>
+                                <td style="height: 20px;">
+                                </td>
+                                <td style="height: 20px;">
+                                </td>
+                                <td style="height: 20px;">
+                                </td>
+                                <td style="height: 20px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="height: 20px;" class="labelTD" align="left">
+                                    <asp:Label ID="lblBusinessUnit" runat="server" CssClass="FieldName" Width="99px"
+                                        meta:resourcekey="lblBusinessUnitResource1"></asp:Label>
+                                </td>
+                                <td style="height: 20px;" class="ControlTD">
+                                    <asp:DropDownList ID="ddlBusinessUnit" runat="server" CssClass="dropdownText" Width="196px"
+                                        OnSelectedIndexChanged="ddlBusinessUnit_SelectedIndexChanged" AutoPostBack="True"
+                                        TabIndex="1" meta:resourcekey="ddlBusinessUnitResource1">
+                                        <asp:ListItem Selected="True" Value="-1" meta:resourcekey="ListItemResource1"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <br />
+                                    <asp:CompareValidator ID="cvBusinessUnit" runat="server" ControlToValidate="ddlBusinessUnit"
+                                        CssClass="ErrValStyle" Operator="NotEqual" Type="Integer" ValueToCompare="-1"
+                                        meta:resourcekey="cvBusinessUnitResource1"></asp:CompareValidator>
+                                </td>
+                                <td style="height: 20px;" class="labelTD" align="right">
+                                    &nbsp;
+                                </td>
+                                <td align="left" class="labelTD" style="height: 20px;">
+                                    <asp:Label ID="lblDept" runat="server" CssClass="FieldName" meta:resourcekey="lblDeptResource1"
+                                        Width="94px"></asp:Label>
+                                </td>
+                                <td style="height: 20px;" class="ControlTD" colspan="2">
+                                    <asp:DropDownList ID="ddlSite" runat="server" CssClass="dropdownText" Width="196px"
+                                        TabIndex="2" OnSelectedIndexChanged="ddlSite_SelectedIndexChanged" AutoPostBack="True"
+                                        meta:resourcekey="ddlSiteResource1">
+                                        <asp:ListItem Value="-1" meta:resourcekey="ListItemResource2"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <br />
+                                    <asp:CompareValidator ID="cvSite" runat="server" ControlToValidate="ddlSite" CssClass="ErrValStyle"
+                                        Operator="NotEqual" Type="Integer" ValueToCompare="-1" meta:resourcekey="cvSiteResource1"></asp:CompareValidator>
+                                </td>
+                                <td style="height: 20px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="height: 8px;" class="labelTD" align="left">
+                                    <asp:Label ID="Label3" runat="server" CssClass="FieldName" Width="99px" Height="16px"
+                                        meta:resourcekey="Label3Resource1"></asp:Label>
+                                </td>
+                                <td class="ControlTD" valign="top">
+                                    <asp:TextBox ID="txtLocation" runat="server" Width="200px" CssClass="FieldValue"
+                                        Enabled="false" MaxLength="150" TabIndex="6" meta:resourcekey="txtLocationResource1"></asp:TextBox>
+                                    <br />
+                                    <asp:RequiredFieldValidator ID="rfvLocation" runat="server" ControlToValidate="txtLocation"
+                                        CssClass="ErrValStyle" meta:resourcekey="rfvLocationResource1"></asp:RequiredFieldValidator>
+                                </td>
+                                <td style="height: 8px;" class="ControlTD" align="left">
+                                    <a href="javascript:openLocationList('TreeList.aspx?Type=CA&Site=<%=ddlSiteVal %>&Header=Location');">
+                                        <img id="imgLocButton" alt="Load List" src="images/search.gif" style="border: 0;" /></a>
+                                </td>
+                                <td align="left" class="labelTD" align="left">
+                                    <asp:Label ID="lblAssetNameActual" runat="server" CssClass="FieldName" meta:resourcekey="lblAssetNameAResource1"
+                                        Width="108px"></asp:Label>
+                                </td>
+                                <td class="ControlTD">
+                                    <asp:TextBox ID="txtAssetNameA" runat="server" CssClass="FieldValue" Width="160px"
+                                        MaxLength="32" TabIndex="4" Style="vertical-align: top"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="labelTD" align="left">
+                                    <asp:Label ID="lblAssetGroup" runat="server" CssClass="FieldName" meta:resourcekey="lblAssetGroupResource1"
+                                        Width="121px"></asp:Label>
+                                </td>
+                                <td class="ControlTD">
+                                    <asp:DropDownList ID="ddlAssetGroup" runat="server" CssClass="dropdownText" meta:resourcekey="ddlAssetGroupResource1"
+                                        TabIndex="6" Width="218px">
+                                        <asp:ListItem meta:resourcekey="ListItemResource6" Value="-1"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <br />
+                                    <asp:CompareValidator ID="cvAssetType" runat="server" ControlToValidate="ddlAssetGroup"
+                                        CssClass="ErrValStyle" meta:resourcekey="cvAssetTypeResource1" Operator="NotEqual"
+                                        Type="Integer" ValueToCompare="-1"></asp:CompareValidator>
+                                </td>
+                                <td class="labelTD" align="right">
+                                    &nbsp;
+                                </td>
+                                <td align="left" class="labelTD" align="left">
+                                    <asp:Label ID="lblAssetName" runat="server" CssClass="FieldName" meta:resourcekey="lblAssetNameResource1"
+                                        Width="108px"></asp:Label>
+                                </td>
+                                <td class="ControlTD" valign="top" colspan="2">
+                                    <asp:TextBox ID="txtAssetName" runat="server" CssClass="FieldValue" MaxLength="150"
+                                        TabIndex="5" Width="143px" meta:resourcekey="txtAssetNameResource1"></asp:TextBox>
+                                    <input type="button" id="addHost" onclick="JAVASCRIPT:AddHosts_Click();" value="Add Host" />
+                                    <div>
+                                        <a class="lnk" href="javascript:openCreateHost('HostPopup.aspx');">Host not found?,Create
+                                            Host</a></div>
+                                </td>
+                                <td>
+                                    <ajaxToolkit:AutoCompleteExtender runat="server" ID="autoComplete1" TargetControlID="txtAssetName"
+                                        ServiceMethod="getHostNames" MinimumPrefixLength="1" DelimiterCharacters="" Enabled="True"
+                                        ServicePath="">
+                                    </ajaxToolkit:AutoCompleteExtender>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="labelTD" style="height: 66px;" align="left">
+                                    <asp:Label ID="lblAssetId" runat="server" CssClass="FieldName" Width="99px" Height="16px"
+                                        meta:resourcekey="lblAssetIdResource1"></asp:Label>
+                                </td>
+                                <td class="ControlTD" style="height: 66px" valign="top">
+                                    <asp:TextBox ID="txtAssetID" runat="server" CssClass="FieldValue" Width="200px" MaxLength="100"
+                                        TabIndex="4" OnTextChanged="txtAssetID_TextChanged" Style="vertical-align: top"
+                                        TextMode="MultiLine" Height="60px" meta:resourcekey="txtAssetIDResource1"></asp:TextBox>
+                                    <%--<asp:RequiredFieldValidator ID="rfvAssetID" runat="server" ControlToValidate="txtAssetID"
+                                                            CssClass="ErrValStyle" Width="122px" meta:resourcekey="rfvAssetIDResource1"></asp:RequiredFieldValidator>--%>
+                                </td>
+                                <td class="ControlTD" style="height: 66px" valign="top">
+                                    &nbsp;
+                                </td>
+                                <td align="left" class="ControlTD" style="height: 66px" valign="top">
+                                </td>
+                                <td class="ControlTD" style="height: 66px" valign="top">
+                                    <asp:ListBox ID="lstHosts" runat="server" CssClass="dropdownText" Height="60px" meta:resourcekey="lstHostsResource1"
+                                        SelectionMode="Multiple" Width="195px" TabIndex="7"></asp:ListBox>
+                                </td>
+                                <td class="ControlTD" style="height: 66px" valign="top">
+                                    <input id="deleteHost" onclick="JAVASCRIPT:DeleteHosts_Click();" type="button" value="Delete Host" />
+                                </td>
+                                <td class="ControlTD" style="height: 66px" valign="top">
+                                    &nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="labelTD" align="left">
+                                    <asp:Label ID="lblAssetId0" runat="server" CssClass="FieldName" meta:resourcekey="lblAssetId0Resource1"
+                                        Width="99px"></asp:Label>
+                                </td>
+                                <td class="ControlTD" align="left">
+                                    <asp:DropDownList ID="ddlMfg" runat="server" AutoPostBack="True" CssClass="dropdownText"
+                                        meta:resourcekey="ddlMfgResource1" OnSelectedIndexChanged="ddlMfg_SelectedIndexChanged"
+                                        TabIndex="8" Width="199px">
+                                    </asp:DropDownList>
+                                    <br />
+                                    <asp:RequiredFieldValidator ID="reqBUVal0" runat="server" ControlToValidate="ddlMfg"
+                                        CssClass="ErrValStyle" InitialValue="0" meta:resourcekey="reqBUVal0Resource1"
+                                        ValidationGroup="grpBU"></asp:RequiredFieldValidator>
+                                    <br />
+                                </td>
+                                <td class="labelTD" align="right">
+                                    &nbsp;
+                                </td>
+                                <td align="left" class="labelTD">
+                                    <asp:Label ID="lblAssetId1" runat="server" CssClass="FieldName" meta:resourcekey="lblAssetId1Resource1"
+                                        Width="99px"></asp:Label>
+                                </td>
+                                <td class="ControlTD" align="left" valign="top">
+                                    <asp:TextBox ID="txtModel" runat="server" CssClass="FieldValue" Enabled="false" MaxLength="150"
+                                        meta:resourcekey="txtModelResource1" TabIndex="9" Text="No Model" Width="180px"></asp:TextBox>
+                                    <br />
+                                    <asp:RequiredFieldValidator ID="reqBUVal1" runat="server" ControlToValidate="txtModel"
+                                        CssClass="ErrValStyle" ErrorMessage="Select Model" meta:resourcekey="reqBUVal1Resource1"></asp:RequiredFieldValidator>
+                                </td>
+                                <td class="ControlTD" align="left">
+                                    <a href="javascript:openModelList('TreeList.aspx?Type=Models&MfgName=<%=ddlMfgName %>&MfgID=<%=ddlMfgID %>&BU=<%=ddlBusinessUnitVal %>&Header=AssetModel');">
+                                        <img id="img1" alt="Load List" src="images/search.gif" style="border: 0;" /></a>
+                                </td>
+                                <td class="labelTD" style="height: 30px;">
+                                </td>
+                            </tr>
+                            <tr style="height: 15px" align="left">
+                                <td class="labelTD" style="height: 28px;">
+                                    <asp:Label ID="Label1" runat="server" CssClass="FieldName" Width="108px" meta:resourcekey="Label1Resource1"></asp:Label>
+                                </td>
+                                <td class="ControlTD" style="height: 29px;" valign="top">
+                                    <asp:DropDownList ID="ddlTechCat" runat="server" OnSelectedIndexChanged="ddlTechCat_SelectedIndexChanged"
+                                        Width="199px" TabIndex="10" CssClass="FieldValue" meta:resourcekey="ddlTechCatResource1">
+                                    </asp:DropDownList>
+                                    <%-- <asp:RequiredFieldValidator ID="rfvTechCat" runat="server" ControlToValidate="ddlTechCat"
+                                                            CssClass="ErrValStyle" InitialValue="0" ValidationGroup="grpBU" meta:resourcekey="rfvTechCatResource1"></asp:RequiredFieldValidator>--%>
+                                </td>
+                                <td class="labelTD" style="height: 29px; width: 635px;" valign="top" align="right">
+                                    &nbsp;
+                                </td>
+                                <td align="left" class="labelTD" style="height: 29px; width: 635px;" valign="top">
+                                    <asp:Label ID="Label2" runat="server" CssClass="FieldName" meta:resourcekey="Label2Resource1"
+                                        Width="108px"></asp:Label>
+                                </td>
+                                <td class="ControlTD" style="width: 188px; height: 28px;" colspan="2">
+                                    <asp:DropDownList ID="ddlMount" runat="server" OnSelectedIndexChanged="ddlMount_SelectedIndexChanged"
+                                        Width="199px" TabIndex="11" CssClass="dropdownText" meta:resourcekey="ddlMountResource1">
+                                        <asp:ListItem Value="0" meta:resourcekey="ListItemResource3"></asp:ListItem>
+                                        <asp:ListItem Value="1" meta:resourcekey="ListItemResource4"></asp:ListItem>
+                                        <asp:ListItem Value="2" meta:resourcekey="ListItemResource5"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:RequiredFieldValidator ID="rfvMount" runat="server" ControlToValidate="ddlMount"
+                                        CssClass="ErrValStyle" Width="186px" InitialValue="0" meta:resourcekey="rfvMountResource1"></asp:RequiredFieldValidator>
+                                </td>
+                                <td class="labelTD" style="height: 29px; width: 600px;" valign="top">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="labelTD" style="height: 28px;" align="left">
+                                    <asp:Label ID="lblOrientation" runat="server" CssClass="FieldName" Width="108px"
+                                        meta:resourcekey="lblOrientationResource"></asp:Label>
+                                </td>
+                                <td class="ControlTD" style="height: 29px;" valign="top">
+                                    <asp:DropDownList ID="ddlOrientation" runat="server" Width="160px" TabIndex="10"
+                                        CssClass="FieldValue" meta:resourcekey="ddlOrientationResource">
+                                        <asp:ListItem meta:resourcekey="ListItemOrientationResource0"></asp:ListItem>
+                                        <asp:ListItem meta:resourcekey="ListItemOrientationResource1"></asp:ListItem>
+                                        <asp:ListItem meta:resourcekey="ListItemOrientationResource2"></asp:ListItem>
+                                        <asp:ListItem meta:resourcekey="ListItemOrientationResource3"></asp:ListItem>
+                                        <asp:ListItem meta:resourcekey="ListItemOrientationResource4"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </td>
+                                <td class="labelTD" style="height: 29px; width: 635px;" valign="top" align="right">
+                                    &nbsp;
+                                </td>
+                                <td align="left" class="labelTD" style="height: 29px; width: 635px;" valign="top">
+                                    <asp:Label ID="lblPosition" runat="server" CssClass="FieldName" meta:resourcekey="lblPositionResource"
+                                        Width="108px"></asp:Label>
+                                </td>
+                                <td class="ControlTD" style="width: 188px; height: 28px;" colspan="2">
+                                    <asp:DropDownList ID="ddlPosition" runat="server" Width="160px" TabIndex="11" CssClass="dropdownText">
+                                    </asp:DropDownList>
+                                </td>
+                                <td class="labelTD" style="height: 29px; width: 600px;" valign="top">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="labelTD" style="height: 28px;" align="left">
+                                    <asp:Label ID="lblNoOfRU" runat="server" CssClass="FieldName" Width="108px" meta:resourcekey="lblNoOfRU"></asp:Label>
+                                </td>
+                                <td class="ControlTD" style="height: 29px;" valign="top">
+                                    <asp:DropDownList ID="ddlNoOfRU" runat="server" Width="160px" TabIndex="10" CssClass="FieldValue"
+                                        meta:resourcekey="ddlRUResource">
+                                    </asp:DropDownList>
+                                </td>
+                                <td class="labelTD" style="height: 29px; width: 635px;" valign="top" align="right">
+                                    &nbsp;
+                                </td>
+                                <td align="left" class="labelTD" style="height: 29px; width: 635px;" valign="top">
+                                    <asp:Label ID="lblCreateDate" runat="server" CssClass="FieldName" meta:resourcekey="lblCreateDateResource1"
+                                        Width="111px"></asp:Label>
+                                </td>
+                                <td class="ControlTD" style="width: 188px; height: 28px;" colspan="2">
+                                    <ig:WebDatePicker ID="wdcCreatedDate" runat="server" MinDate="1900-09-17" NullDateLabel="-- Select --"
+                                        NullValueRepresentation="Null" TabIndex="17" Width="140px">
+                                    </ig:WebDatePicker>
+                                    <asp:RequiredFieldValidator ID="rfvDocumentDate" runat="server" ControlToValidate="wdcCreatedDate"
+                                        CssClass="ErrValStyle" Width="239px" meta:resourcekey="rfvDocumentDateResource1"></asp:RequiredFieldValidator>
+                                    &nbsp;
+                                </td>
+                                <td class="labelTD" style="height: 29px; width: 600px;" valign="top">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="labelTD" style="height: 32px" align="left">
+                                    <asp:Label ID="lblOS" runat="server" CssClass="FieldName" Width="121px" meta:resourcekey="lblAssetGroup0Resource1"></asp:Label>
+                                </td>
+                                <td class="ControlTD" style="height: 32px">
+                                    <asp:TextBox ID="txtOS" runat="server" CssClass="FieldValue" Width="218px" TabIndex="12"
+                                        meta:resourcekey="txtOSResource1"></asp:TextBox>
+                                </td>
+                                <td class="labelTD" align="right" style="height: 32px">
+                                </td>
+                                <td align="left" class="labelTD" style="height: 32px" align="left">
+                                    <asp:Label ID="lblCPU" runat="server" CssClass="FieldName" meta:resourcekey="lblAssetGroup1Resource1"
+                                        Width="80px"></asp:Label>
+                                </td>
+                                <td class="ControlTD" colspan="2" style="height: 32px">
+                                    <asp:TextBox ID="txtCPU" runat="server" CssClass="FieldValue" Width="177px" TabIndex="13"
+                                        meta:resourcekey="txtCPUResource1"></asp:TextBox>
+                                </td>
+                                <td class="labelTD" style="width: 188px; height: 32px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="labelTD" style="height: 33px" align="left">
+                                    <asp:Label ID="lblCpuCount" runat="server" CssClass="FieldName" Height="16px" Width="93px"
+                                        meta:resourcekey="lblAssetGroup3Resource1"></asp:Label>
+                                </td>
+                                <td class="ControlTD" style="height: 33px">
+                                    <asp:TextBox ID="txtCpuCount" runat="server" Width="86px" CssClass="FieldValue" TabIndex="14"
+                                        meta:resourcekey="txtCpuCountResource1" MaxLength="2"></asp:TextBox>
+                                    <br />
+                                    <asp:RegularExpressionValidator ID="regCpuCount" runat="server" ControlToValidate="txtCpuCount"
+                                        CssClass="ErrValStyle" Display="Dynamic" ValidationExpression="^[0-9]+" Height="15px"
+                                        Width="166px" meta:resourcekey="regCpuCountResource1"></asp:RegularExpressionValidator>
+                                </td>
+                                <td class="labelTD" align="right" style="height: 33px">
+                                </td>
+                                <td align="left" class="labelTD" style="height: 33px" align="left">
+                                    <asp:Label ID="lblCPUCore" runat="server" CssClass="FieldName" Height="16px" meta:resourcekey="lblAssetGroup4Resource1"
+                                        Width="93px"></asp:Label>
+                                </td>
+                                <td class="ControlTD" colspan="2" style="height: 33px">
+                                    <asp:TextBox ID="txtCPUCore" runat="server" CssClass="FieldValue" meta:resourcekey="txtCPUCoreResource1"
+                                        TabIndex="15" Width="178px" MaxLength="2"></asp:TextBox>
+                                    <br />
+                                    <asp:RegularExpressionValidator ID="regCpuCore" runat="server" ControlToValidate="txtCPUCore"
+                                        CssClass="ErrValStyle" Display="Dynamic" ValidationExpression="^[0-9]+" Height="15px"
+                                        Width="166px" meta:resourcekey="regCpuCoreResource1"></asp:RegularExpressionValidator>
+                                </td>
+                                <td class="labelTD" style="width: 188px; height: 33px;">
+                                </td>
+                            </tr>
+                            <tr style="">
+                                <td class="labelTD" height="20" align="left">
+                                    <asp:Label ID="lblCreatedBy" runat="server" CssClass="FieldName" Text="Custodian"
+                                        Width="90px" meta:resourcekey="lblCreatedByResource1" Visible="true"></asp:Label>
+                                </td>
+                                <td class="ControlTD" height="20" valign="top">
+                                    <asp:TextBox ID="txtOwner" runat="server" CssClass="FieldValue" MaxLength="255" Enabled="false"
+                                        Width="217px" meta:resourcekey="txtOwnerResource1" TabIndex="16" Visible="true"></asp:TextBox>
+                                    <br />
+                                   <%-- <asp:RequiredFieldValidator ID="rfvOwner" runat="server" ControlToValidate="txtOwner"
+                                        CssClass="ErrValStyle" Display="Dynamic" Width="100px" meta:resourcekey="rfvOwnerResource1"
+                                        Visible="true"></asp:RequiredFieldValidator>--%>
+                                </td>
+                                <td class="labelTD" align="left">
+                                    <asp:HyperLink ID="hlSearch" runat="server" ImageUrl="images/search.gif" meta:resourcekey="hlSearchResource1"
+                                        NavigateUrl="javascript:searchOriginatorPopup();" TabIndex="15" Text="Search"
+                                        Visible="true"></asp:HyperLink>
+                                </td>
+                                <td align="left" class="labelTD" align="left">
+                                </td>
+                                <td class="ControlTD" style="height: 10px" colspan="2">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <asp:Label ID="lblParentAsset" runat="server" CssClass="FieldName" Text="Parent Asset"
+                                        Width="90px" meta:resourcekey="lblParentAssetResource1"></asp:Label>
+                                </td>
+                                <asp:Button ID="btnAssignRightInt" runat="server" CausesValidation="False" CssClass="displayText"
+                                    PostBackUrl="AssignRights.aspx" Style="cursor: hand" Visible="False" meta:resourcekey="btnAssignRightIntResource1" />
+                                </td>
+                                <td class="ControlTD" style="height: 33px">
+                                    <asp:TextBox ID="txtParentAsset" runat="server" Width="160px" CssClass="FieldValue"
+                                        Enabled="False" MaxLength="150" TabIndex="6"></asp:TextBox>
+                                </td>
+                                <td class="labelTD" align="left">
+                                    <%--<img id="img2" alt="Load List" src="images/search.gif" style="border: 0;" /></a>--%>
+                                    <asp:HyperLink ID="HyperLink1" runat="server" ImageUrl="images/search.gif" NavigateUrl="javascript:searchParentAssetPopup();"
+                                        TabIndex="15" Text="ParentAssetSearch" Style="border: 0;"></asp:HyperLink>
+                                    <asp:ImageButton ID="imgRemoveParent" ImageUrl="images/ed_delete.gif" runat="server"
+                                        ToolTip="Remove Parent Asset" OnClientClick="imgRemoveParent_Click();return false;" />
+                                </td>
+                                <td align="left" class="labelTD" align="left">
+                                    <asp:Label ID="lblBarcode" runat="server" CssClass="FieldName" meta:resourcekey="lblBarcodeResource1"
+                                        Width="111px"></asp:Label>
+                                </td>
+                                <td align="left" valign="top" style="height: 10px" colspan="2">
+                                    <asp:TextBox ID="txtBarcode" runat="server" CssClass="FieldValue" MaxLength="24"
+                                        Style="vertical-align: top" TabIndex="4" Width="160px"></asp:TextBox>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </Template>
+                </igmisc:WebGroupBox>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="9">
+                <table cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td>
+                        </td>
+                        <td colspan="4" style="width: 733px">
+                            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowSummary="False"
+                                ShowMessageBox="True" meta:resourcekey="ValidationSummary1Resource1" />
+                            <asp:Label ID="lblMessage" runat="server" CssClass="displayText" ForeColor="Red"
+                                meta:resourcekey="lblMessageResource1"></asp:Label>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                        </td>
+                        <td>
+                            <igtxt:WebImageButton ID="ibCreateAsset" runat="server" ImageDirectory="" OnClick="ibCreateAsset_Click"
+                                CausesValidation="false" SkinID="uwButton" TabIndex="17" UseBrowserDefaults="False"
+                                Visible="false" Width="118px" meta:resourcekey="ibCreateAssetResource1">
+                                <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                                    WidthOfRightEdge="13" />
+                                <Appearance>
+                                    <style cursor="Hand" font-names="Arial" font-size="8pt">
+                                        
+                                    </style>
+                                    <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                                    </ButtonStyle>
+                                </Appearance>
+                            </igtxt:WebImageButton>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;<igtxt:WebImageButton ID="ibResetDocument" runat="server" ImageDirectory=""
+                                Visible="false" OnClick="ibResetDocument_Click" SkinID="uwButton" TabIndex="18"
+                                ToolTip="Cancel Unsaved Changes" UseBrowserDefaults="False" Width="118px" CausesValidation="False"
+                                meta:resourcekey="ibResetDocumentResource1">
+                                <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                                    WidthOfRightEdge="13" />
+                                <Appearance>
+                                    <style cursor="Hand" font-names="Arial" font-size="8pt">
+                                        
+                                    </style>
+                                    <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                                    </ButtonStyle>
+                                </Appearance>
+                            </igtxt:WebImageButton>
+                        </td>
+                        <td>
+                            &nbsp;&nbsp;<igtxt:WebImageButton ID="ibClose" runat="server" CausesValidation="False"
+                                Visible="false" ImageDirectory="" OnClick="ibClose_Click" SkinID="uwButton" TabIndex="19"
+                                UseBrowserDefaults="False" Width="118px" meta:resourcekey="ibCloseResource1">
+                                <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                                    WidthOfRightEdge="13" />
+                                <Appearance>
+                                    <style cursor="Hand" font-names="Arial" font-size="8pt">
+                                        
+                                    </style>
+                                    <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                                    </ButtonStyle>
+                                </Appearance>
+                            </igtxt:WebImageButton>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <asp:HiddenField ID="uwlGroupUsers_hdnSelectedItemKey" runat="server" Value="Test" />
+    <asp:HiddenField ID="uwlSelectedUsers_hdnSelectedItemKey" runat="server" Value="Test" />
+    <input id="hdnOwnerID" runat="server" style="width: 18px" type="hidden" />
+    <input id="hdnOwnerName" runat="server" style="width: 25px" type="hidden" />
+    <input id="hdnLocationID" runat="server" style="width: 18px" type="hidden" />
+    <input id="hdnLocationName" runat="server" style="width: 25px" type="hidden" />
+    <input id="hdnHostNames" runat="server" style="width: 100px" type="hidden" />
+    <input type="hidden" id="hdnLocID" runat="server" />
+    <input type="hidden" id="hdnModelID" runat="server" />
+    <input type="hidden" id="hdnModelName" runat="server" />
+    <input type="hidden" id="hdnIsBlade" runat="server" />
+    <input type="hidden" id="hdnLocName" runat="server" />
+    <input type="hidden" id="hdnTechCat" runat="server" />
+    <input type="hidden" id="hdnAssetID" runat="server" />
+    <input type="hidden" id="Hidden1" runat="server" />
+    <input type="hidden" id="hdnParentAssetID" runat="server" />
+    <input type="hidden" id="hdnParentAssetName" runat="server" />
+    <input type="hidden" id="hdnSiteID" runat="server" />
+</asp:Content>

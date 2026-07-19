@@ -1,0 +1,402 @@
+/*
+
+Main control CSS class
+*/
+.igdd_RubberBlackControl
+{
+}
+
+
+/*
+ Main Control CSS class when it's disabled
+*/
+.igdd_RubberBlackControlDisabled
+{
+}
+
+
+/*
+ Main control css class on hover
+*/
+.igdd_RubberBlackControlHover
+{
+	border:solid 1px #000000;
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackControlFocus
+{
+	background-color:#F9F9F9;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdd_controlbackground.png);
+	border:solid 1px #000000;
+	table-layout: fixed;
+}
+
+
+.igdd_RubberBlackControlArea
+{
+	background-color:#F9F9F9;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdd_controlbackground.png);
+	border:solid 1px #4C4C4C;
+	table-layout: fixed;
+}
+
+
+/*
+CSS class for the actual input field (<input type="text" />)
+*/
+.igdd_RubberBlackValueDisplay
+{
+	background-color:Transparent;
+	font-weight:normal;
+	font-size:10pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-width:0px;
+	width: 100%;
+	z-index: 0;
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackValueDisplayHover
+{
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackValueDisplayFocus
+{
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackValueDisplayDisabled
+{
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackValueDisplayReadOnly
+{
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackDropDownList
+{
+	background-color:White;
+	font-size:10pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin:0px;
+	padding:1px;
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackDropDownListHover
+{
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackDropDownListReadOnly
+{
+}
+
+
+/*
+	
+*/
+.igdd_RubberBlackDropDownListContainer
+{
+	background-color:White;
+	border:solid 1px #4C4C4C;
+	float: left;
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackDropDownListContainerHover
+{
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackDropDownButton
+{
+	width: 17px;
+	z-index: 9999;
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackDropDownButtonHover
+{
+	background-image: url(images/igdd_dropdownbutton_hover.png);
+}
+
+
+/*
+CSS class that controls the style of the LI items in the list
+*/
+.igdd_RubberBlackListItem
+{
+	font-size:10pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border:solid 1px Transparent;
+	padding:3px 5px 3px 5px;
+	list-style-type: none;
+	width: auto;
+	min-height: 15px;
+	height: auto !important;
+	cursor:pointer;
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackListItemActive
+{
+	background-color: LightGrey;
+	border:solid 1px #AAAAAA;
+	list-style-type: none;
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackListItemHover
+{
+	background-color:Black;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdd_listitemhover.png);
+	border:solid 1px #4B4B4B;
+	list-style-type: none;
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackListItemSelected
+{
+	background-color:#F1F1F1;
+	list-style-type: none;
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackListItemDisabled
+{
+	list-style-type: none;
+	width: auto;
+	cursor:default;
+}
+
+
+/*
+Applied to the whole pager
+*/
+.igdd_RubberBlackPager
+{
+	background-color:Transparent;
+	border-top:solid 1px #CCCCCC;
+	vertical-align:middle;
+}
+
+
+/*
+Loading message container
+*/
+.igdd_RubberBlackLoadingItemsMessage
+{
+	background-color:#990000;
+	font-weight:bold;
+	font-size:10pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin:1px 0px 0px 1px;
+	padding:3px;
+	color:White;
+}
+
+
+/*
+Styles the current page link only
+*/
+.igdd_RubberBlackPageCurrent
+{
+	font-size:8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-top:5px;
+	margin-right:3px;
+	float: left;
+	cursor:pointer;
+	color:Black;
+	text-decoration:underline;
+	vertical-align:middle;
+}
+
+
+/*
+Styles all page links in general 
+*/
+.igdd_RubberBlackPageLink
+{
+	font-size:8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-top:5px;
+	margin-right:3px;
+	float: left;
+	cursor:pointer;
+	color:#666666;
+	vertical-align:middle;
+}
+
+
+.igdd_RubberBlackListItem a:hover
+{
+}
+
+
+/*
+Styling for anchor when hovered anywhere on ListItem
+*/
+.igdd_RubberBlackListItemHover a:link
+{
+	color:White;
+}
+
+
+/*
+	
+*/
+.igdd_RubberBlackDropDownButtonFocus
+{
+}
+
+
+.igdd_RubberBlackListItemActive a:link
+{
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackListItemFocus
+{
+	list-style-type: none;
+	width: auto;
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackDropDownListContainerFocus
+{
+}
+
+
+.igdd_RubberBlackListItem a:link
+{
+	color:#333333;
+	text-decoration:none;
+}
+
+
+/*
+ CSS class for the table that accomodates the value display and the drop down button, and which is a 
+ child of the main control (div)
+*/
+.igdd_RubberBlackValueDisplayTable
+{
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackDropDownButtonDisabled
+{
+}
+
+
+.igdd_RubberBlackListItem a:visited
+{
+	color:#333333;
+	text-decoration:none;
+}
+
+
+/*
+For Disabled=True of a DropDownItem
+*/
+.igdd_RubberBlackListItemDisabled a:link
+{
+	cursor:default;
+	color:#BBBBBB;
+}
+
+
+/*
+pseudo class used so Value Display input does not have focus
+glow in some browsers like GoogleChrome or AppleSafari
+*/
+input:focus
+{
+	outline: none;
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackDropDownListFocus
+{
+}
+
+
+.igdd_RubberBlackListItem a:active
+{
+}
+
+
+/*
+
+*/
+.igdd_RubberBlackDropDownListDisabled
+{
+}

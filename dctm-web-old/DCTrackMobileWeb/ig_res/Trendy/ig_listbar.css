@@ -1,0 +1,175 @@
+.iglb_TrendyControl
+{
+	background-color:Transparent;
+	background-image: url(images/bg_diagonal.gif);
+	font-size:medium;
+	border-color:#109A48;
+	margin-bottom:0px;
+}
+
+
+.iglb_TrendyControl_Exp
+{
+	background-image: url(images/bg_diagonal.gif);
+	font-size:medium;
+	border-color:#109A48;
+}
+
+
+.iglb_TrendyButton
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	font-size:smaller;
+	padding-top:2px;
+	padding-bottom:1px;
+	padding-left:3px;
+}
+
+
+.iglb_TrendyButtonHover
+{
+	background-position:center ;
+	background-image: url(images/header_hover.gif);
+	font-size:smaller;
+	padding-top:2px;
+	padding-bottom:1px;
+	padding-left:3px;
+}
+
+
+.iglb_TrendyButtonSelected
+{
+	background-position:center ;
+	background-image: url(images/header_hover.gif);
+	font-size:smaller;
+	padding-top:2px;
+	padding-bottom:1px;
+	padding-left:3px;
+	cursor:hand;
+}
+
+
+.iglb_TrendyHeaderCollapsed
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	font-size:smaller;
+	padding-top:0px;
+	padding-bottom:3px;
+	padding-left:3px;
+}
+
+
+.iglb_TrendyHeaderExpanded
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	font-size:smaller;
+	padding-top:0px;
+	padding-bottom:3px;
+	padding-left:3px;
+}
+
+
+.iglb_TrendyHeaderHover
+{
+	background-position:center ;
+	background-image: url(images/header_hover.gif);
+	font-size:smaller;
+	padding-top:0px;
+	padding-bottom:3px;
+	padding-left:3px;
+	cursor:hand;
+}
+
+
+.iglb_TrendyGroup
+{
+}
+
+
+.iglb_TrendyGroup_Exp
+{
+	margin-bottom:0px;
+}
+
+
+.iglb_TrendyItem
+{
+	background-color:Transparent;
+	font-size:xx-small;
+	margin-top:8px;
+	margin-bottom:3px;
+	padding-left:4px;
+	text-align:left;
+}
+
+
+.iglb_TrendyItem_Exp
+{
+	background-color:Transparent;
+	font-size:xx-small;
+	margin-top:4px;
+	margin-bottom:0px;
+	padding-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	text-align:left;
+}
+
+
+.iglb_TrendyItemHover
+{
+	font-size:xx-small;
+	margin-top:8px;
+	margin-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:#5E8D00;
+	text-align:left;
+	text-decoration:underline;
+}
+
+
+.iglb_TrendyItemHover_Exp
+{
+	font-size:xx-small;
+	margin-top:4px;
+	margin-bottom:0px;
+	padding-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:#5E8D00;
+	text-align:left;
+	text-decoration:underline;
+}
+
+
+.iglb_TrendyItemSelected
+{
+	font-weight:bold;
+	font-size:xx-small;
+	margin-top:8px;
+	margin-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:#135E04;
+	text-align:left;
+}
+
+
+.iglb_TrendyItemSelected_Exp
+{
+	font-weight:bold;
+	font-size:xx-small;
+	margin-top:4px;
+	margin-bottom:0px;
+	padding-bottom:3px;
+	padding-left:4px;
+	cursor:hand;
+	color:#135E04;
+	text-align:left;
+}
+
+

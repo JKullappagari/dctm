@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Untitled Page</title>
+</head>
+<body>
+    
+    <object id="LRX300Control1" name="LRX300Control1" classid="LRX300Dll/LRX300ControlLib.dll#LRX300ControlLib.LRX300Control" codebase="Bin/LRX300ControlLib.dll" height="100" width="200" >
+    </object>
+    <br />
+    <label>Reader Status :</label>
+    <input id="Text1" type="text" value="Disconnected" />
+    <br />
+    <label>Tag Id :</label>
+    <input id="Text2" type="text" value="-" />
+    <br />
+<!--    <label>Read Count :</label>
+    <input id="Text3" type="text" value="-" />
+    <br />-->
+    <input id="Button2" type="button" value="Start Reader" onclick="StartReader();" />
+    <input id="Button1" type="button" value="Stop Reader" onclick="StopReader();" />
+
+    <script type="text/javascript" language="javascript">
+        function StartReader()
+        {
+            //LRX300Control1.attachEvent("TagRead", OnTagReadEvent );
+            LRX300Control1.Start("COM1", 57600, 254);
+        }
+        
+        function StopReader()
+        {
+            LRX300Control1.Stop();
+        }
+        
+//        function OnTagReadEvent(e)
+//        {
+//            Text1.value = e.Message;
+//        }
+            
+        function LRX300Control1::TagRead(e)
+        {
+            Text2.value = e.TagId;
+            
+            if ( e.isTampered )
+            {
+                alert('Tag is Tampered');
+            }
+            
+            if (e.isMoved )
+            {
+                alert('Tag is Moved');
+            }
+            
+            //Text3.value = e.ReadCount;
+            
+        }        
+        
+        function LRX300Control1::TagRemoved(e)
+        {
+            Text2.value = "";
+            //alert("Tag Removed");
+        }
+        
+        function LRX300Control1::Error(e)
+        {
+            alert('Error Occured : ' + e.Message );
+        }
+        
+        function LRX300Control1::Connected()
+        {
+            Text1.value = 'Connected';
+        }
+        
+        function LRX300Control1::Disconnected()
+        {
+            Text1.value = 'Disconnected';
+        }        
+        
+    </script>
+    
+<!--    <script type="text/javascript" for="LRX300Control1" event="TagReadEvent(e)" language="javascript" >
+            alert('Tag Id 3: ' + e.TagId);
+    </script> -->   
+    
+    
+    
+<!--    <script type="text/javascript" for="LRX300Control1" event="ErrorEvent" language="javascript" >
+        function LRX300Control1::ErrorEvent(object e)
+        {
+            alert('LRX300 reports an error: ' + e.Message);
+        }
+    </script>-->
+    
+    
+</body>
+</html>

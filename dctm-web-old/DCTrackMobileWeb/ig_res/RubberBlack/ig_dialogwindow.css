@@ -1,0 +1,177 @@
+.igdw_RubberBlackControl
+{
+	background-color: none;
+	border-width:0px;
+}
+
+
+.igdw_RubberBlackHeaderArea
+{
+	font-weight:bold;
+	border-width:0px;
+	height: 23px;
+	cursor:default;
+	color:White;
+}
+
+
+.igdw_RubberBlackBodyContent
+{
+	border:solid 0px #999999;
+}
+
+
+.igdw_RubberBlackHeaderButton
+{
+	margin:3px;
+	cursor:pointer;
+}
+
+
+.igdw_RubberBlackHeaderCaption
+{
+	margin-top:16px;
+	margin-left:6px;
+	padding-top:8px;
+	color:White;
+}
+
+
+.igdw_RubberBlackHeaderButtonArea
+{
+	width: 120px;
+	vertical-align:middle;
+}
+
+
+.igdw_RubberBlackHeaderImage
+{
+	cursor:default;
+}
+
+
+.igdw_RubberBlackModalBackground
+{
+	background-color: #FFFFFF;
+	filter: alpha(opacity : 50);
+	opacity: 0.5;
+	z-index: 99999;
+}
+
+
+.igdw_RubberBlackResizingHandle
+{
+	cursor:se-resize;
+}
+
+
+/* used only when header visible */
+.igdw_RubberBlackHeaderCornerLeft
+{
+	background-position:top left ;
+	background-image: url(./images/igdw_TopLeft.gif);
+	font-size:1px;
+	width: 3px;
+}
+
+
+/* used only when header visible */
+.igdw_RubberBlackHeaderContent
+{
+	background-image: url(./images/igdw_top.gif);
+}
+
+
+/* used only when header visible */
+.igdw_RubberBlackHeaderCornerRight
+{
+	background-position:top right ;
+	background-image: url(./images/igdw_TopRight.gif);
+	font-size:1px;
+	width: 3px;
+}
+
+
+/* used only when header hidden */
+.igdw_RubberBlackBodyCornerTopLeft
+{
+	background-position:top left ;
+	background-image: url(./images/igdw_TopLeftHidden.gif);
+	font-size:1px;
+	height: 17px;
+	width: 5px;
+}
+
+
+/* used only when header hidden */
+.igdw_RubberBlackBodyEdgeTop
+{
+	background-image: url(./images/igdw_topHidden.gif);
+	font-size:1px;
+	height: 17px;
+}
+
+
+/* used only when header hidden */
+.igdw_RubberBlackBodyCornerTopRight
+{
+	background-position:top right ;
+	background-image: url(./images/igdw_TopRightHidden.gif);
+	font-size:1px;
+	height: 17px;
+	width: 5px;
+}
+
+
+.igdw_RubberBlackBodyEdgeLeft
+{
+	background-position:top left ;
+	background-image: url(./images/igdw_EdgeLeft.gif);
+	font-size:1px;
+	width: 6px;
+}
+
+
+.igdw_RubberBlackBodyEdgeRight
+{
+	background-position:top right ;
+	background-image: url(./images/igdw_EdgeRight.gif);
+	font-size:1px;
+	width: 6px;
+}
+
+
+.igdw_RubberBlackBodyCornerBottomLeft
+{
+	background-image: url(./images/igdw_BottomLeft.gif);
+	font-size:1px;
+	width: 9px;
+	height: 14px;
+}
+
+
+.igdw_RubberBlackBodyContentArea
+{
+	background-color:#EDEDED;
+	vertical-align:top;
+}
+
+
+.igdw_RubberBlackBodyCornerBottomRight
+{
+	background-image: url(./images/igdw_BottomRight.gif);
+	background-position:right top;	
+	font-size:1px;
+	width: 9px;
+	height: 14px;
+}
+
+
+.igdw_RubberBlackBodyEdgeBottom
+{
+	background-image: url(./images/igdw_Bottom.gif);
+	font-size:1px;
+	height: 14px;
+}
+
+

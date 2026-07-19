@@ -1,0 +1,11 @@
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackSecurity\bin\Debug\iAssetTrackSecurity.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackSecurity\bin\Debug\iAssetTrackSecurity.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackSecurity\obj\Debug\iAssetTrackSecurity.csprojResolveAssemblyReference.cache
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackSecurity\obj\Debug\iAssetTrackSecurity.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackSecurity\obj\Debug\iAssetTrackSecurity.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\bin\Debug\iAssetTrackSecurity.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\bin\Debug\iAssetTrackSecurity.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\obj\Debug\iAssetTrackSecurity.csprojAssemblyReference.cache
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\obj\Debug\iAssetTrackSecurity.csproj.CoreCompileInputs.cache
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\obj\Debug\iAssetTrackSecurity.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackSecurity\obj\Debug\iAssetTrackSecurity.pdb

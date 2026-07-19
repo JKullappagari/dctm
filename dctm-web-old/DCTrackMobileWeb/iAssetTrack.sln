@@ -1,0 +1,98 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "iDocTrack", "http://localhost/iDocTrack", "{D5E1F883-E329-4045-892E-1413D3EBF479}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = ""
+		SccAuxPath = ""
+		SccLocalPath = ""
+		SccProvider = ""
+		TargetFramework = "3.0"
+		ProjectReferences = "{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}|iDocTrackSecurity.dll;{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}|iDocTrackBAL.dll;{F90D99A2-5492-4042-AA9E-2E017274AE24}|iAssetTrackDALC.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/iDocTrack"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\iDocTrack\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\iDocTrack\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/iDocTrack"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\iDocTrack\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\iDocTrack\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\..\..\..\..\..\iDocTrack\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iAssetTrackDALC", "..\iAssetTrackDALC\iAssetTrackDALC\iAssetTrackDALC.csproj", "{F90D99A2-5492-4042-AA9E-2E017274AE24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDocTrackBAL", "..\iDocTrackBal\iDocTrackBAL\iDocTrackBAL.csproj", "{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iDocTrackSecurity", "..\iDocTrackSecurity\iDocTrackSecurity\iDocTrackSecurity.csproj", "{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 1
+		SccWebProject0 = true
+		SccProjectUniqueName0 = http://localhost/iDocTrack
+		SccProjectName0 = \u0022$/iDocTrackWeb\u0022,\u0020SHAAAAAA
+		SccLocalPath0 = C:\\iDocTrack\\iDocTrack
+		SccProvider0 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
+		SccProjectEnlistmentChoice0 = 2
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5E1F883-E329-4045-892E-1413D3EBF479}.Debug|.NET.ActiveCfg = Debug|.NET
+		{D5E1F883-E329-4045-892E-1413D3EBF479}.Debug|.NET.Build.0 = Debug|.NET
+		{D5E1F883-E329-4045-892E-1413D3EBF479}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{D5E1F883-E329-4045-892E-1413D3EBF479}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{D5E1F883-E329-4045-892E-1413D3EBF479}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{D5E1F883-E329-4045-892E-1413D3EBF479}.Release|.NET.ActiveCfg = Debug|.NET
+		{D5E1F883-E329-4045-892E-1413D3EBF479}.Release|.NET.Build.0 = Debug|.NET
+		{D5E1F883-E329-4045-892E-1413D3EBF479}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{D5E1F883-E329-4045-892E-1413D3EBF479}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{D5E1F883-E329-4045-892E-1413D3EBF479}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Release|.NET.ActiveCfg = Release|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F90D99A2-5492-4042-AA9E-2E017274AE24}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Release|.NET.ActiveCfg = Release|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2F2BD414-FECE-4059-9CA4-15CFF7AC03BB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Release|.NET.ActiveCfg = Release|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7E4DE982-FC49-4C6C-AF7C-2952E6779BA0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,215 @@
+.igtbl_AppletiniControl
+{
+	border:solid 1px #4F7600;
+	cursor:default;
+}
+
+
+.igtbl_AppletiniPagerArea
+{
+	background-color:#EFF6E5;
+	border-width:0px;
+	border-top:solid 3px #BABA00;
+	padding-top:10px;
+	padding-right:10px;
+	padding-bottom:10px;
+}
+
+
+.igtbl_AppletiniPageCurrent
+{
+	background-repeat:no-repeat;
+	background-image: url(images/submit_down.gif);
+	font-weight:bold;
+	margin-right:15px;
+	padding:2px 6px 5px 6px;
+	width: 20px;
+	color:#4B4B4B;
+}
+
+
+.igtbl_AppletiniPageLink
+{
+	font-weight:bold;
+	margin-right:15px;
+	color:DimGray;
+}
+
+
+.igtbl_AppletiniGroupByBox
+{
+	background-position:center ;
+	background-image: url(images/header_hover.gif);
+	border-bottom:solid 1px Silver;
+}
+
+
+.igtbl_AppletiniAddNewBox
+{
+	background-position:bottom ;
+	background-image: url(images/add_new.gif);
+	cursor:hand;
+}
+
+
+.igtbl_AppletiniItem
+{
+	background-position:top ;
+	background-image: url(images/item_bg.gif);
+	border-top:solid 1px Gainsboro;
+	border-bottom:solid 1px Transparent;
+	height: 30px;
+}
+
+
+.igtbl_AppletiniFilterOperandButton
+{
+	background-color:Transparent;
+	background-repeat:no-repeat;
+	background-position:center ;
+	background-image: url(images/submit_disabled.gif);
+	border-width:0px;
+	padding-top:2px;
+	width: 18px;
+	vertical-align:middle;
+}
+
+
+.igtbl_AppletiniAlt
+{
+	background-image: url(images/alt_item.gif);
+	border-bottom:solid 1px Transparent;
+}
+
+
+.igtbl_AppletiniEdit
+{
+	background-color:White;
+	font-size:x-small;
+	font-family: Verdana;
+	border:solid 1px Transparent;
+	padding-top:7px;
+	text-align:left;
+	vertical-align:middle;
+}
+
+
+.igtbl_AppletiniButton
+{
+}
+
+
+.igtbl_AppletiniFxdCell
+{
+}
+
+
+.igtbl_AppletiniHeader
+{
+	background-position:center ;
+	background-image: url(images/header_large.gif);
+	border-width:0px;
+	border-color:Transparent;
+	padding-top:3px;
+	padding-bottom:3px;
+	height: 30px;
+	text-align:left;
+}
+
+
+.igtbl_AppletiniFooter
+{
+	background-color:White;
+	background-image:none;
+	border-top-width:1px;
+	border-top-color:WhiteSmoke;
+}
+
+
+.igtbl_AppletiniLabel
+{
+	background-color:WhiteSmoke;
+	background-image:none;
+	border:solid 1px LightGrey;
+	border-bottom-width:0px;
+	border-left-width:0px;
+	height: 30px;
+}
+
+
+.igtbl_AppletiniExpArea
+{
+	background-color:White;
+	background-image:none;
+	border:solid 0px Transparent;
+	padding-top:2px;
+	width: 18px;
+	text-align:center;
+	vertical-align:middle;
+}
+
+
+.igtbl_AppletiniGrpItem
+{
+}
+
+
+.igtbl_AppletiniFxdHeader
+{
+}
+
+
+.igtbl_AppletiniGroupBandLabel
+{
+}
+
+
+.igtbl_AppletiniFxdFooter
+{
+}
+
+
+.igtbl_AppletiniDropDown
+{
+	background-color:WhiteSmoke;
+	font-size:xx-small;
+	font-family: Verdana;
+	border:solid 1px LightGrey;
+}
+
+
+.igtbl_AppletiniDropDownSel
+{
+}
+
+
+.igtbl_AppletiniSelected
+{
+	background-color:DimGray;
+	background-position:center ;
+	background-image: url(images/header_hover.gif);
+	font-weight:bold;
+	border-top:solid 1px #E1E1E1;
+	color:Black;
+}
+
+
+.igtbl_AppletiniActiveBorderTopBottom
+{
+	border-top:solid 1px Green;
+	border-bottom:solid 1px Green;
+}
+
+
+.igtbl_AppletiniActiveBorderLeft
+{
+	border-left:solid 1px Green;
+}
+
+
+.igtbl_AppletiniActiveBorderRight
+{
+	border-right:solid 1px Green;
+}
+
+

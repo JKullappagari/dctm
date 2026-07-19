@@ -1,0 +1,123 @@
+.igte_AppletiniEditWithButtons
+{
+	font-size: 10px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	background-color: #FCFDF7;
+	height:20px;
+	width: 130px;
+	border:solid 1px #BBBBBB;
+	outline: 0;
+}
+
+.igte_AppletiniEdit::-ms-clear, .igte_AppletiniEditInContainer::-ms-clear
+{
+	display: none;
+}
+
+.igte_AppletiniEdit
+{
+	font-size: 12px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	background-color: #FCFDF7;
+	border:solid 1px #BBBBBB;
+	outline:0;
+}
+
+.igte_AppletiniTextArea
+{
+	font-size: 12px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	background-color: #FCFDF7;
+	border:solid 1px #BBBBBB;
+	outline:0;
+	resize:none;
+}
+
+.igte_AppletiniEditInContainer
+{
+	font-size: 12px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	background-color: Transparent;
+	border-width:0px;
+	margin:0px;
+	outline:0;
+}
+
+.igte_AppletiniFocus
+{
+	background-color: #FFFFFF;
+	border-color:#999999;
+}
+
+.igte_AppletiniHover
+{
+	background-color: #FFFFFF;
+	border-color:#999999;
+}
+
+.igte_AppletiniInner
+{
+	border-width: 0;
+}
+
+.igte_AppletiniInnerFocus
+{
+	background-color: #FFFFFF;
+	border-color:#999999;
+}
+
+.igte_AppletiniInnerHover
+{
+	background-color: #FFFFFF;
+	border-color:#999999;
+}
+
+.igte_AppletiniButtonSize
+{
+	width:15px;
+	height:100%;
+}
+
+.igte_AppletiniButton
+{
+	background-color: #aed003;
+	background-image: url(images/igte_spinbuttonbg.gif);
+	background-repeat: repeat-x;
+	line-height:normal;
+	border:solid 1px #4F7600;
+	color: #000000;
+	cursor: pointer;
+}
+
+.igte_AppletiniButtonFocus
+{
+}
+
+.igte_AppletiniNullText
+{
+	color: #999999;
+}
+
+.igte_AppletiniButtonHover
+{
+	background-color: #e6fd77;
+	background-image: url(images/igte_spinbuttonbghover.gif);
+}
+
+
+.igte_AppletiniButtonPressed
+{
+	background-color: #eaf3ce;
+	background-image: url(images/igte_spinbuttonbgpressed.gif);
+}
+
+
+.igte_AppletiniButtonDisabled
+{
+	background-image: none;
+	background-color: #CCCCCC;
+}
+
+.igte_AppletiniButtonImg
+{
+}

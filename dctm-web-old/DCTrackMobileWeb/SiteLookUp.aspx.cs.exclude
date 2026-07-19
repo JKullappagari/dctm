@@ -1,0 +1,337 @@
+/*
+File Name   :	SiteLookup.aspx.cs
+
+Description :	Site Lookup Screen
+
+Date created:	29 Sep 2006
+
+Modification History:
+***********************
+CR		Name			Date			Description
+New		Venkatesan M	29/09/2006		File has been created.
+*/
+
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using iAssetTrack.BAL;
+using System.Text;
+using iAssetTrackBAL;
+
+public partial class ASPX_SubConLkUp : System.Web.UI.Page
+{
+    /// <summary>    
+    /// Used to call upon loading page.
+    /// </summary>
+    /// <author>Venkatesh</author>
+    /// <createdOn>29 September 2006</createdOn>
+    /// 
+
+    //string m_DisplayNameField = "";
+    string m_IDField = "ctl00$Master_ContentPlaceHolder$hdnLocationID";
+
+    public string IDField
+    {
+        get { return m_IDField; }
+        set { m_IDField = value; }
+    }
+    string m_NameField = "ctl00$Master_ContentPlaceHolder$hdnLocationName";
+
+    public string NameField
+    {
+        get { return m_NameField; }
+        set { m_NameField = value; }
+    }
+
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        //ddlBusinessUnit.SelectedIndexChanged += new EventHandler(ddlBusinessUnit_SelectedIndexChanged);
+    }
+
+    protected void ddlBusinessUnit_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        //throw new Exception("The method or operation is not implemented.");
+        // Call the BAL to get the list of sites
+
+        LoadSiteList();
+    }
+
+
+
+    private void LoadSiteList()
+    {
+        SitesBAL ObjSite = new iAssetTrack.BAL.SitesBAL();
+        DataSet ds = ObjSite.retrieveByBusinessUnitId(Convert.ToInt32(this.ddlBusinessUnit.SelectedValue));
+        DataTable dt = ds.Tables[0];
+        ddlSite.DataSource = dt;
+        ddlSite.DataValueField = dt.Columns[0].ToString();
+        ddlSite.DataTextField = dt.Columns[1].ToString();
+        ddlSite.DataBind();
+        UpdatePanelSite.Update();
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //Infragistics.WebUI.Shared.Util.ClientScript.ResolveAndRegisterClientScriptInclude("../Scripts/ig_webgrid_an.js","","../Scripts/ig_webgrid_an.js","ig_webgrid_an.js",this.WebCombo1,"ig_webgrid_an");
+
+        if (Request.QueryString["NameField"] != "")
+        {
+            this.NameField = Request.QueryString["NameField"].ToString();
+        }
+
+        if (Request.QueryString["IDField"] != "")
+        {
+            this.IDField = Request.QueryString["IDField"].ToString();
+        }
+
+
+
+        if (!Page.IsPostBack)
+        {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            //hide the grid
+            UWGSubCon.Visible = false;
+            //load search values
+            LoadBusinessUnits();
+            LoadSiteList();
+        }
+
+
+        if (Request.QueryString["BusinessUnit"] != "")
+        {
+            string BUInput = Request.QueryString["BusinessUnit"];
+            if(ddlBusinessUnit.Items.FindByValue(BUInput) != null)
+            {
+                ddlBusinessUnit.SelectedValue = BUInput;
+                ddlBusinessUnit.Enabled = false;
+               
+            }
+        }
+
+        //Check if we have a serch, or if this is a normal page_load
+        //string search="0";
+
+        //if (Request.QueryString.Count>0)
+        //{
+            
+        //    search = this.Request.QueryString["BusinessUnit"];
+        //    if (Convert.ToInt32(search) > 0)
+        //    {
+        //        ddlBusinessUnit.SelectedValue = search;
+        //        ddlBusinessUnit.Enabled = true;
+                
+        //    }
+        //    else
+        //    {
+        //        ddlBusinessUnit.Enabled = true;
+        //    }
+
+        //}
+        //else
+        //    search = null;
+
+        this.UWGSubCon.DisplayLayout.Pager.PageSize = Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["PageSize"].ToString());
+        this.UWGSubCon.DisplayLayout.Pager.AllowPaging = true;
+    }
+
+    /// <summary>
+    /// This method is used to populate the business unit drop down list 
+    /// to search subcontractors
+    /// </summary>
+    /// <author>Venkatesh</author>
+    /// <createdOn>29 September 2006</createdOn>
+    private void LoadBusinessUnits()
+    {
+       int intUserID = 0;
+        if (Session["UserID"] != null)
+            intUserID = Convert.ToInt32(Session["UserID"].ToString());
+
+        FillDropDownListBU(StoredProcedures.SP_BUSINESSUNIT_LISTBYUSERID, ref ddlBusinessUnit, intUserID);
+    }
+
+    /// <summary>    
+    /// Used to reset the selected value.
+    /// </summary>
+    /// <author>Venkatesh</author>
+    /// <createdOn>29 September 2006</createdOn>
+    /// 
+    
+
+    protected void wibReset_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        string strStartUpScript = "<script language='javascript' type='text/javascript'>userSelected('','');</script>";
+        Page.ClientScript.RegisterStartupScript(typeof(Page), "PopupScript", strStartUpScript);
+       
+    }
+
+    /// <summary>    
+    /// Used to fill BU dropdown list. 
+    /// </summary>
+    /// <author>Venkatesh</author>
+    /// <createdOn>29 September 2006</createdOn>
+    private void FillDropDownListBU(string strStoredProc, ref DropDownList ddl, int id)
+    {
+
+        CommonBAL svc = new CommonBAL();
+        //ICommon svc = (ICommon)RemotingHelper.CreateProxy(typeof(ICommon));
+
+        DataTable dt = svc.FillDropDownListBU(strStoredProc, "", id);
+        ddl.DataSource = dt;
+        ddl.DataValueField = dt.Columns[0].ToString();
+        ddl.DataTextField = dt.Columns[1].ToString();
+        ddl.DataBind();
+    }
+
+    /// <summary>    
+    /// Used to search with input. 
+    /// </summary>
+    /// <author>Venkatesh</author>
+    /// <createdOn>29 September 2006</createdOn>
+    protected void wibSearch_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        UWGSubCon.DisplayLayout.Pager.CurrentPageIndex = 1;
+        this.FillGrid(0);
+    }
+
+    /// <summary>    
+    /// Used to fill grid with result. 
+    /// </summary>
+    /// <author>Venkatesh</author>
+    /// <createdOn>29 September 2006</createdOn>
+    private void FillGrid(int iPageIndex)
+    {
+        if (ddlBusinessUnit.SelectedValue == "")
+            return;
+        if (ddlSite.SelectedValue == "")
+            return;
+
+        //Initialize the Subcontractor Class
+        //ISubConCreation svc = (ISubConCreation)RemotingHelper.CreateProxy(typeof(ISubConCreation));
+
+        // Fill the Location List
+        LocationBAL ObjLocation = new LocationBAL();
+        int intLocationID = 0;
+        string LocationName = "";
+
+        if (ddlSite.SelectedValue != "")
+            ObjLocation.SiteID = Convert.ToInt32(ddlSite.SelectedValue);
+
+        DataSet ds = ObjLocation.GetLocationBYSite();
+
+        if (ds.Tables[0].Rows.Count > 0)
+        {
+            if ((ds.Tables[0].Rows[0][0] != null) && (ds.Tables[0].Rows[0][0].ToString() != ""))
+            {
+                intLocationID = Convert.ToInt32(ds.Tables[0].Rows[0][0].ToString());
+                LocationName = ds.Tables[0].Rows[0][1].ToString();
+            }
+        }
+        
+        if (iPageIndex == 0)
+            iPageIndex = 1;
+
+        this.UWGSubCon.DisplayLayout.Pager.AllowPaging = true;
+
+
+        this.UWGSubCon.DataSource = ds.Tables[0].DefaultView;
+        this.UWGSubCon.DataBind();
+
+        if (UWGSubCon.Rows.Count <= 0 && UWGSubCon.DisplayLayout.Pager.PageCount > 0)
+            if (UWGSubCon.DisplayLayout.Pager.CurrentPageIndex > 1)
+            {
+                UWGSubCon.DisplayLayout.Pager.CurrentPageIndex = iPageIndex - 1;
+                UWGSubCon.DataBind();
+            
+            }
+
+
+        // Disable paging if there aren't enough rows for more than one page
+        if (ds.Tables[0].Rows.Count <= Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["PageSize"].ToString()))
+            this.UWGSubCon.DisplayLayout.Pager.AllowPaging = false;
+
+
+        //this.UWGSubCon.Columns[0].Hidden = true;
+        this.UWGSubCon.Columns[1].Width = Unit.Pixel(378);
+        UWGSubCon.Visible = true;
+    }
+
+    //protected void RefreshSubContractor(string search)
+    //{
+    //    //this.Response.ContentType="text/xml";
+        
+    //    //Initialize the Subcontractor Class
+    //    SubConCreationBAL ObjSubCon = new SubConCreationBAL();
+
+    //    //Pass Search values        
+    //    ObjSubCon.BusinessUnitID = Convert.ToInt16(this.ddlBusinessUnit.SelectedValue);
+    //    ObjSubCon.SubcontractorType = Convert.ToChar(this.ddlType.SelectedValue);
+    //    ObjSubCon.RCBCode  = this.txtRCBCode.Text.Trim();
+    //    ObjSubCon.Name = search; //this.txtName.Text.Trim();
+
+    //    DataSet dsSubCon = ObjSubCon.GetSubContractorBySearch();
+        
+    //    //System.Text.StringBuilder builder = new System.Text.StringBuilder();
+
+    //    //builder.Append("<data><rows>");
+    //    //for (int i=0; i<=dsSubCon.Tables[0].Rows.Count-1; i++)
+    //    //{
+    //    //    //Use a string builder for speed.  Create xml for response stream
+    //    //    builder.Append(String.Format("<row SubcontractorID=\"{0}\" Name=\"{1}\" Type=\"{2}\" RCBCode=\"{3}\" />",new object[]{dsSubCon.Tables[0].Rows[i][0].ToString(),HttpUtility.HtmlEncode(dsSubCon.Tables[0].Rows[i][1].ToString()),dsSubCon.Tables[0].Rows[i][2].ToString(),dsSubCon.Tables[0].Rows[i][3].ToString()}));
+    //    //}
+        
+    //    //this.Response.ContentType="text/xml";
+    //    //builder.Append("</rows></data>");
+    //    //this.Response.Write(builder);
+    //    //this.Response.Flush();	
+    //    //this.Response.Close();
+    //    //this.Response.End();
+
+    //    this.UWGSubCon.DataSource = dsSubCon.Tables[0].DefaultView;
+    //    this.UWGSubCon.DataBind();
+    //    this.UWGSubCon.Columns[0].Hidden = true;
+    //    this.UWGSubCon.Columns[1].Width = Unit.Pixel(378);
+    //    this.UWGSubCon.Columns[2].Width = Unit.Pixel(100);
+    //    this.UWGSubCon.Columns[3].Width = Unit.Pixel(100);
+    //    UWGSubCon.Visible = true;
+        
+    //    //this.Response.Write(dsSubCon.get);
+    //    //this.Response.Flush();	
+    //    //this.Response.Close();
+    //    //this.Response.End();
+    //}
+
+    protected void WebCombo1_SelectedRowChanged(object sender, Infragistics.WebUI.WebCombo.SelectedRowChangedEventArgs e)
+    {
+
+    }
+
+    /// <summary>    
+    /// Used to initialize grid row. 
+    /// </summary>
+    /// <author>Venkatesh</author>
+    /// <createdOn>29 September 2006</createdOn>
+    protected void UWGSubCon_InitializeRow(object sender, Infragistics.WebUI.UltraWebGrid.RowEventArgs e)
+    {
+        string strSubCon = e.Row.Cells[1].Text.Replace("'", "~~~");
+        e.Row.Cells[1].Text = "<div><a href=" + "javascript:userSelected('" + e.Row.Cells[0].Text + "','" + strSubCon.Replace(" ", "%20") + "');>" + e.Row.Cells[1].Text + "</a></div>";
+
+        //e.Row.Cells[1].Text = "<div><a href="+"javascript:selectSubcontractor('" + e.Row.Cells[0].Text + "','" + e.Row.Cells[1].Text.Replace(" ","%20")+"');>" + e.Row.Cells[1].Text + "</a></div>";
+    }
+
+    /// <summary>    
+    /// Used to call when grid page index changes. 
+    /// </summary>
+    /// <author>Venkatesh</author>
+    /// <createdOn>29 September 2006</createdOn>
+    protected void UWGSubCon_PageIndexChanged(object sender, Infragistics.WebUI.UltraWebGrid.PageEventArgs e)
+    {
+        this.FillGrid(e.NewPageIndex);
+    }
+}

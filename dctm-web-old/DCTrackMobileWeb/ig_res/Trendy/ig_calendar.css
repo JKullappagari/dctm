@@ -1,0 +1,93 @@
+.igcal_TrendyControl
+{
+	border-bottom-width:1px;
+	cursor:hand;
+}
+
+
+.igcal_TrendyCalendar
+{
+}
+
+
+.igcal_TrendyDOW
+{
+	font-weight:bold;
+	font-size:xx-small;
+	border-width:0px;
+	border-bottom:solid 1px #109A48;
+	padding:5px 0px 0px 0px;
+}
+
+
+.igcal_TrendyDay
+{
+	font-size:xx-small;
+	border-width:0px;
+}
+
+
+.igcal_TrendyNextPrev
+{
+	background-color:#0F9A48;
+	padding-right:5px;
+	padding-left:5px;
+}
+
+
+.igcal_TrendyFooter
+{
+	background-color:#F0F0F0;
+	background-position:bottom bottom ;
+	background-image: url(images/footer.gif);
+	padding-top:3px;
+	padding-bottom:3px;
+	text-align:center;
+}
+
+
+.igcal_TrendyHeader
+{
+	background-color:#0F9A48;
+	font-weight:bold;
+	font-size:10px;
+	height: 16px;
+	color:White;
+}
+
+
+.igcal_TrendyDropDown
+{
+}
+
+
+.igcal_TrendyWeekendDay
+{
+}
+
+
+.igcal_TrendyOtherMonthDay
+{
+	color:#B3B3B3;
+}
+
+
+.igcal_TrendyWeekendDayMajor
+{
+}
+
+
+.igcal_TrendyTodayDay
+{
+	font-weight:bold;
+	border:solid 1px #006F4A;
+}
+
+
+.igcal_TrendySelectedDay
+{
+	background-color:#109A48;
+	color:White;
+}
+
+

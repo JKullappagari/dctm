@@ -1,0 +1,54 @@
+.igpnl_RubberBlackControl
+{
+	border:solid 1px #4B4B4B;
+}
+
+
+.igpnl_RubberBlackPanel
+{
+	background-color:#FAFAFA;
+	background-position:bottom ;
+	background-image: url(images/bg.gif);
+}
+
+
+.igpnl_RubberBlackHeaderExpanded
+{
+	background-position:center ;
+	background-image: url(images/header.jpg);
+	font-size:small;
+	font-family: Verdana;
+	padding-top:8px;
+	padding-bottom:8px;
+	cursor:hand;
+	color:White;
+}
+
+
+.igpnl_RubberBlackHeaderCollapsed
+{
+}
+
+
+.igpnl_RubberBlackHeaderHover
+{
+	background-position:center ;
+	background-image: url(images/header_hover.jpg);
+	font-size:small;
+	font-family: Verdana;
+	padding-top:8px;
+	padding-bottom:8px;
+	cursor:hand;
+	color:White;
+}
+
+
+.igpnl_RubberBlackGroupBoxControl
+{
+	background-color:#FAFAFA;
+	background-position:bottom ;
+	
+	border:solid 1px #4B4B4B;
+}
+
+

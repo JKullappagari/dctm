@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="chkDeleteResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkDeleteResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlBusinessUnitResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlMfgResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlTechResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ibCreateResource1.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ibCreateResource1.ToolTip" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ibDeleteResource1.Text" xml:space="preserve">
+    <value>Delete Selected</value>
+  </data>
+  <data name="ibDeleteResource1.ToolTip" xml:space="preserve">
+    <value>Delete Selected</value>
+  </data>
+  <data name="ibEditResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ibEditResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ibExportToExcelResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ibExportToExcelResource1.ToolTip" xml:space="preserve">
+    <value>Export To Excel</value>
+  </data>
+  <data name="ibMapResource1.Text" xml:space="preserve">
+    <value>Map to Tech category</value>
+  </data>
+  <data name="ibMapResource1.ToolTip" xml:space="preserve">
+    <value>Map to Tech category</value>
+  </data>
+  <data name="ibResetResource1.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ibResetResource1.ToolTip" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="lblComment0Resource1.Text" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="lblComment0Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDeleteIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDescResource1.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="lblDescResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblloc0Resource1.Text" xml:space="preserve">
+    <value>Tech. Category</value>
+  </data>
+  <data name="lblloc0Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblModelResource1.Text" xml:space="preserve">
+    <value>Asset Model*</value>
+  </data>
+  <data name="lblModelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbllocResource1.Text" xml:space="preserve">
+    <value>Parent Model*</value>
+  </data>
+  <data name="lbllocResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblloctypeResource1.Text" xml:space="preserve">
+    <value>Manufacturer*</value>
+  </data>
+  <data name="lblloctypeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMessageResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMessageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>Asset Model</value>
+  </data>
+  <data name="reqBUVal0Resource1.ErrorMessage" xml:space="preserve">
+    <value>Select Manufacturer</value>
+  </data>
+  <data name="reqBUVal0Resource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqBUVal0Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqBUValResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Project</value>
+  </data>
+  <data name="reqBUValResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqBUValResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvModelResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter Model Name</value>
+  </data>
+  <data name="rfvModelResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvModelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDescResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDescResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtModelResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtModelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtParentModelResource1.Text" xml:space="preserve">
+    <value>No Model</value>
+  </data>
+  <data name="txtParentModelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="valBUSummaryResource1.HeaderText" xml:space="preserve">
+    <value>The following items(s) cannot be blank</value>
+  </data>
+  <data name="valBUSummaryResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label1Resource1.Text" xml:space="preserve">
+    <value>Total record count:</value>
+  </data>
+  <data name="Label2Resource1.Text" xml:space="preserve">
+    <value>Total filtered record count:</value>
+  </data>
+  <data name="chkIsBladeResource1.Text" xml:space="preserve">
+    <value>Is Blade?</value>
+  </data>
+  <data name="chkIsEnclosureResource1.Text" xml:space="preserve">
+    <value>Is Enclosure?</value>
+  </data>
+  <data name="lblConnDevSideResource1.Text" xml:space="preserve">
+    <value>Connector Type  (Device Side)*</value>
+  </data>
+  <data name="lblConnDevSideResource1.ToolTip" xml:space="preserve">
+    <value>Connector Type  (Device Side)*</value>
+  </data>
+  <data name="lblConnPDUSideResource1.Text" xml:space="preserve">
+    <value>Connector Type (PDU Side)*</value>
+  </data>
+  <data name="lblConnPDUSideResource1.ToolTip" xml:space="preserve">
+    <value>Connector Type (PDU Side)*</value>
+  </data>
+  <data name="lblDepthResource1.Text" xml:space="preserve">
+    <value>Depth (mm)*</value>
+  </data>
+  <data name="lblDepthResource1.ToolTip" xml:space="preserve">
+    <value>Depth (mm)</value>
+  </data>
+  <data name="lblHeightResource1.Text" xml:space="preserve">
+    <value>Height (mm)*</value>
+  </data>
+  <data name="lblHeightResource1.ToolTip" xml:space="preserve">
+    <value>Height (mm)</value>
+  </data>
+  <data name="lblMaxPowerResource1.Text" xml:space="preserve">
+    <value>Max Power (Watts)*</value>
+  </data>
+  <data name="lblMaxPowerResource1.ToolTip" xml:space="preserve">
+    <value>Max Power (Watts)*</value>
+  </data>
+  <data name="lblPhysicalResource1.text" xml:space="preserve">
+    <value>Physical Properties</value>
+  </data>
+  <data name="lblPhysicalResource1.ToolTip" xml:space="preserve">
+    <value>Physical Properties</value>
+  </data>
+  <data name="lblPowerResource1.Text" xml:space="preserve">
+    <value>Power Properties</value>
+  </data>
+  <data name="lblPowerResource1.ToolTip" xml:space="preserve">
+    <value>Power Properties</value>
+  </data>
+  <data name="lblTotalPSUCountResource1.Text" xml:space="preserve">
+    <value>Total PSU Count*</value>
+  </data>
+  <data name="lblTotalPSUCountResource1.ToolTip" xml:space="preserve">
+    <value>Total PSU Count*</value>
+  </data>
+  <data name="lblUHeightResource1.Text" xml:space="preserve">
+    <value>U-Height (RU)*</value>
+  </data>
+  <data name="lblUHeightResource1.ToolTip" xml:space="preserve">
+    <value>U-Height (RU)</value>
+  </data>
+  <data name="lblWeightResource1.Text" xml:space="preserve">
+    <value>Weight (kg)*</value>
+  </data>
+  <data name="lblWeightResource1.ToolTip" xml:space="preserve">
+    <value>Weight (kg)</value>
+  </data>
+  <data name="lblWidthResource1.Text" xml:space="preserve">
+    <value>Width (mm)*</value>
+  </data>
+  <data name="lblWidthResource1.ToolTip" xml:space="preserve">
+    <value>Width (mm)</value>
+  </data>
+  <data name="lblAFDirectionResource1.Text" xml:space="preserve">
+    <value>Air Flow Direction*</value>
+  </data>
+  <data name="lblAFDirectionResource1.ToolTip" xml:space="preserve">
+    <value>Air Flow Direction*</value>
+  </data>
+  <data name="lblEnclosureSpecificResource1.Text" xml:space="preserve">
+    <value>Enclosure Related Properties</value>
+  </data>
+  <data name="lblEnclosureSpecificResource1.ToolTip" xml:space="preserve">
+    <value>Enclosure Related Properties</value>
+  </data>
+  <data name="lblIdealPowerResource1.Text" xml:space="preserve">
+    <value>Steady State Power (Watts)</value>
+  </data>
+  <data name="lblIdealPowerResource1.ToolTip" xml:space="preserve">
+    <value>Steady State Power (Watts)</value>
+  </data>
+  <data name="lblInternalDepthResource1.Text" xml:space="preserve">
+    <value>Internal Depth*</value>
+  </data>
+  <data name="lblInternalDepthResource1.ToolTip" xml:space="preserve">
+    <value>Internal Depth*</value>
+  </data>
+  <data name="lblInternalHeightResource1.Text" xml:space="preserve">
+    <value>Internal Height*</value>
+  </data>
+  <data name="lblInternalHeightResource1.ToolTip" xml:space="preserve">
+    <value>Internal Height*</value>
+  </data>
+  <data name="lblMaxChildsResource1.Text" xml:space="preserve">
+    <value>Total Bay Positions*</value>
+  </data>
+  <data name="lblMaxChildsResource1.ToolTip" xml:space="preserve">
+    <value>Total Bay Positions*</value>
+  </data>
+  <data name="lblMountingResource1.Text" xml:space="preserve">
+    <value>Mounting Properties</value>
+  </data>
+  <data name="lblMountingResource1.ToolTip" xml:space="preserve">
+    <value>Mounting Properties</value>
+  </data>
+  <data name="lblMountTypeResource1.Text" xml:space="preserve">
+    <value>Mount Type*</value>
+  </data>
+  <data name="lblMountTypeResource1.ToolTip" xml:space="preserve">
+    <value>Mount Type*</value>
+  </data>
+  <data name="lblRackSpecificResource1.Text" xml:space="preserve">
+    <value>Rack Specific Properties</value>
+  </data>
+  <data name="lblRackSpecificResource1.ToolTip" xml:space="preserve">
+    <value>Rack Specific Properties</value>
+  </data>
+  <data name="lblReqPSUCountResource1.Text" xml:space="preserve">
+    <value>Required PSU Count*</value>
+  </data>
+  <data name="lblReqPSUCountResource1.ToolTip" xml:space="preserve">
+    <value>Required PSU Count*</value>
+  </data>
+  <data name="lblModelTypeResource1.Text" xml:space="preserve">
+    <value>Model Type*</value>
+  </data>
+  <data name="lblModelTypeResource1.ToolTip" xml:space="preserve">
+    <value>Model Type*</value>
+  </data>
+  <data name="rfvModelTypeResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Model Type</value>
+  </data>
+  <data name="lblBladeColCountResource1.Text" xml:space="preserve">
+    <value>Blade No of Colunms*</value>
+  </data>
+  <data name="lblBladeColCountResource1.ToolTip" xml:space="preserve">
+    <value>Blade No of Colunms*</value>
+  </data>
+  <data name="lblBladeDetailsResource1.Text" xml:space="preserve">
+    <value>Blade Details</value>
+  </data>
+  <data name="lblBladeDetailsResource1.ToolTip" xml:space="preserve">
+    <value>Blade Details</value>
+  </data>
+  <data name="lblBladeRowCountResource1.Text" xml:space="preserve">
+    <value>Blade No of Rows*</value>
+  </data>
+  <data name="lblBladeRowCountResource1.ToolTip" xml:space="preserve">
+    <value>Blade No of Rows*</value>
+  </data>
+  <data name="lblEnclDetailsResource1.Text" xml:space="preserve">
+    <value>Enclosure Details</value>
+  </data>
+  <data name="lblEnclDetailsResource1.ToolTip" xml:space="preserve">
+    <value>Enclosure Details</value>
+  </data>
+  <data name="lblEnclFrontColCountResource1.Text" xml:space="preserve">
+    <value>Enclosure-Front No of Columns*</value>
+  </data>
+  <data name="lblEnclFrontColCountResource1.ToolTip" xml:space="preserve">
+    <value>Enclosure-Front No of Columns*</value>
+  </data>
+  <data name="lblEnclFrontRowCountResource1.Text" xml:space="preserve">
+    <value>Enclosure-Front No of Rows*</value>
+  </data>
+  <data name="lblEnclFrontRowCountResource1.ToolTip" xml:space="preserve">
+    <value>Enclosure-Front No of Rows*</value>
+  </data>
+  <data name="lblEnclRearColCountResource1.Text" xml:space="preserve">
+    <value>Enclosure-Rear No of Columns*</value>
+  </data>
+  <data name="lblEnclRearColCountResource1.ToolTip" xml:space="preserve">
+    <value>Enclosure-Rear No of Columns*</value>
+  </data>
+  <data name="lblEnclRearRowCountResource1.Text" xml:space="preserve">
+    <value>Enclosure-Rear No of Rows*</value>
+  </data>
+  <data name="lblEnclRearRowCountResource1.ToolTip" xml:space="preserve">
+    <value>Enclosure-Rear No of Rows*</value>
+  </data>
+  <data name="txtBladeColCountResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtBladeColCountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtBladeRowCountResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtBladeRowCountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnclFrontColCountResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnclFrontColCountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnclFrontRowCountResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnclFrontRowCountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnclRearColCountResource1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnclRearColCountResource11" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnclRearRowCountResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnclRearRowCountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="revModelResource1.ErrorMessage" xml:space="preserve">
+    <value>Alphanumeric, hyphen, underscore, dot, colon and single space only allowed for Model Name</value>
+  </data>
+  <data name="revDesc1Resource1.ErrorMessage" xml:space="preserve">
+    <value>Maximum of {MAXLENGTH} chars with alphanumeric, hyphen, underscore, dot and space only allowed for Description</value>
+  </data>
+  <data name="revConnDevResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid alphanumeric data for Connector - Dev side</value>
+  </data>
+  <data name="revConnPDUResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid alphanumeric data for Connector - PDU side</value>
+  </data>
+  <data name="revDepthResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer or decimal number for Depth</value>
+  </data>
+  <data name="revHeightResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer or decimal number for Height</value>
+  </data>
+  <data name="revIDResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer or decimal number for Rack Internal Depth</value>
+  </data>
+  <data name="revIHResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer or decimal number for Rack Internal Height</value>
+  </data>
+  <data name="revIntBladeCResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer number for Blade Column Count</value>
+  </data>
+  <data name="revIntBladeRResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer number for Blade Row Count</value>
+  </data>
+  <data name="revIntEnclFCResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer number for Encl-Front Column Count</value>
+  </data>
+  <data name="revIntEnclFRResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer number for Encl-Front Row Count</value>
+  </data>
+  <data name="revIntEnclRCResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer number for Encl-Rear Column Count</value>
+  </data>
+  <data name="revIntEnclRRResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer number for Encl-Rear Row Count</value>
+  </data>
+  <data name="revMaxPowerResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer or decimal number for Max Power</value>
+  </data>
+  <data name="revRPSUResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer number for Required PSUCount</value>
+  </data>
+  <data name="revSPowerResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer or decimal number for Steady State Power</value>
+  </data>
+  <data name="revTPSUResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer number for Total PSUCount</value>
+  </data>
+  <data name="revUHeightResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer number for UHeight</value>
+  </data>
+  <data name="revWeightResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer or decimal number for Weight</value>
+  </data>
+  <data name="revWidthResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer or decimal number for Width</value>
+  </data>
+  <data name="rfvAFResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Air Flow Direction</value>
+  </data>
+  <data name="rfvIMountResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Mount Type</value>
+  </data>
+  <data name="rv1500DResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Depth is [1 - 1500]</value>
+  </data>
+  <data name="rv1500IDResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Rack Internal Depth is [1 - 1500]</value>
+  </data>
+  <data name="rv1500WResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Width is [1 - 1500]</value>
+  </data>
+  <data name="rv3000HResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Height is [1 - 3000]</value>
+  </data>
+  <data name="rv3000IHResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Rack Internal Height is [1 - 3000]</value>
+  </data>
+  <data name="rvBladeCResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Blade Column Count is [1 - 10]</value>
+  </data>
+  <data name="rvBladeRResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Blade Row Count is [1 - 10]</value>
+  </data>
+  <data name="rvEnclFCResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Enclosure Front- Column Count is [1 - 15]</value>
+  </data>
+  <data name="rvEnclFRResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Enclosure Front- Row Count is [1 - 15]</value>
+  </data>
+  <data name="rvEnclRCResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Enclosure Rear- Column Count is [1 - 15]</value>
+  </data>
+  <data name="rvEnclRRResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Enclosure Rear- Row Count is [1 - 15]</value>
+  </data>
+  <data name="rvMPowerResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Max Power is [0 - 10000]</value>
+  </data>
+  <data name="rvRPSUResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Required PSU Count is [0 - 10]</value>
+  </data>
+  <data name="rvSPowerResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Steady State Power is [0 - 10000]</value>
+  </data>
+  <data name="rvTPSUResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Total PSU Count is [0 - 10]</value>
+  </data>
+  <data name="rvUHeightResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for UHeight is [1- 68]</value>
+  </data>
+  <data name="rvWeightResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Weight is [0 - 2000]</value>
+  </data>
+  <data name="ValidationSummary1Resource1.HeaderText" xml:space="preserve">
+    <value>Validation Errors:</value>
+  </data>
+  <data name="cvRPSUResource1.ErrorMessage" xml:space="preserve">
+    <value>Required PSU Count must be less than or equal to Total PSU Count</value>
+  </data>
+  <data name="cvSPowerResource1.ErrorMessage" xml:space="preserve">
+    <value>Steady State Power must be less than or equal to Max Power</value>
+  </data>
+  <data name="cvIDResource1.ErrorMessage" xml:space="preserve">
+    <value>Rack Internal Depth must be less than or equal to Depth</value>
+  </data>
+  <data name="cvIHResource1.ErrorMessage1" xml:space="preserve">
+    <value>Rack Internal Height must be less than or equal to Height</value>
+  </data>
+  <data name="cvIWResource1.ErrorMessage" xml:space="preserve">
+    <value>Rack Internal Width must be less than or equal to Width</value>
+  </data>
+  <data name="lblInternalWidthResource1.Text" xml:space="preserve">
+    <value>Internal Width*</value>
+  </data>
+  <data name="revIWResource1.ErrorMessage" xml:space="preserve">
+    <value>Enter valid integer or decimal number for Rack Internal Width</value>
+  </data>
+  <data name="rv1500IWResource1.ErrorMessage" xml:space="preserve">
+    <value>Allowed range for Rack Internal Width is [1 - 1500]</value>
+  </data>
+</root>

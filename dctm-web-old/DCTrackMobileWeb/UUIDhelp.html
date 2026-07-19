@@ -1,0 +1,53 @@
+<head>
+    <style type="text/css">
+        .style1
+        {
+            font-size: large;
+        }
+        .style2
+        {
+            text-decoration: underline;
+        }
+        </style>
+</head>
+<script type="text/javascript">
+    window.setInterval(function () {
+        if (window.dialogArguments !== null) {
+            if (window.opener === null || window.opener.closed === true || window.opener.isClosed == true) {
+                window.close();
+            }
+        }
+        else {
+
+            if (window.opener === null || window.opener.closed === true || window.opener.isClosed == true) {
+                window.close();
+            }
+        }
+    }, 3000); 
+    </script>
+<u><strong><span class="style1">Windows Mobile devices</span><br />
+<br />
+</strong></u>Only Zebra/Motorola devices running Windows Mobile/Windows CE are 
+supported.<u><strong><br />
+<br />
+</strong>Steps to get UUID:</u><br />
+<br />
+1. Click <img alt="" src="./images/winicon.jpg" /><br />
+2. Click &quot;Settings&quot;.<br />
+3. Click &quot;System&quot; (In case Win Mobile 5: Page tab / In case of Win Mobile 6.0 or later: Icon).<br />
+4. Click &quot;System Info&quot;.<br />
+5. Combine UUID part 1 and Part 2 to get UUID (Ex: UUID part 1 + UUID part 2).<br />
+6. Combined ID will be of 32 characters in length.<br />
+<p>
+    <u><strong><span class="style1">Android devices</span></strong></u></p>
+<p>
+    Zebra devices are primary target devices, but application will work 
+    with standard 
+    Android based phones also with barcode reading via image scanner.</p>
+<p class="style2">
+    Steps to get DeviceId:</p>
+ 1. Install DCTrackMobile application on the device.<br />
+ 2. Go to Login screen of DCTrackMobile.<br />
+ 3. Make note of DeviceId shown in Login screen 
+and use it as device id to register android device. Generally DeviceId will be 
+8-24 characters in length.<br />

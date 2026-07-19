@@ -1,0 +1,221 @@
+﻿.ighg_AppletiniExpandButton
+{
+	cursor: pointer;
+	cursor: hand;
+	padding-left: 5px;
+}
+
+TBODY>TR>TD.ighg_AppletiniExpandableArea
+{
+	padding: 0px 0px 0px 25px;
+	background-image: none;
+	background-color: #EFF6E5;
+}
+
+.ighg_AppletiniExpansionColumn
+{
+	width: 25px;
+	padding: 0 !important;
+}
+
+.ighg_AppletiniExpansionColumnHeader
+{
+	width: 25px;	
+	border-color: #EEFF74 #A2B800 #849600 #E2FF0E;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.ighg_AppletiniExpansionColumnFooter
+{
+	width: 25px;
+}
+
+/* START -- GroupBy CSS Classes */
+.ighg_AppletiniGroupIndentHeaderCell
+{
+    border-color: #EEFF74 #A2B800 #849600 #E2FF0E;
+    border-style: solid;
+    border-width: 1px;
+}
+
+TBODY>TR.ighg_AppletiniGroupedRow>TD
+{
+	background: #eaf3ce url(images/ighg_GroupedRowBg.png) repeat-x;
+}
+
+
+TBODY>TR>TD.ighg_AppletiniGroupIndentCell
+{
+	border-right: 1px solid #DCDCDC;
+}
+
+.ighg_AppletiniGroupArea
+{
+	background-color: #F3F4F3;
+	border-bottom: 1px solid #4F7600;
+	padding: 10px;
+}
+
+.ighg_AppletiniGroupedColumn
+{
+	display: inline-block;
+	background: url(images/ighg_GroupedColumnBg.png) repeat-x;
+	height: 16px;
+	padding: 3px 5px 0px 10px;
+}
+.ighg_AppletiniGroupedColumnRightEdgeEnd
+{
+	display: inline-block;
+	background: url(images/ighg_GroupedColumnRightEdgeEndBg.gif) no-repeat;		
+	width: 10px;
+	height: 16px;
+	padding-top: 3px;
+}
+.ighg_AppletiniGroupedColumnRightEdge
+{
+	display: inline-block;
+	background: url(images/ighg_GroupedColumnRightEdgeBg.png) no-repeat;
+	width: 10px;
+	height: 16px;
+	padding-top: 3px;
+}
+
+.ighg_AppletiniGroupedColumnLeftEdge
+{
+	display: inline-block;
+	background: url(images/ighg_GroupedColumnLeftEdgeBg.gif) no-repeat;
+	width: 9px;
+	height: 16px;
+	padding-top: 3px;
+}
+
+.ighg_AppletiniGroupedBand
+{
+	display: inline-block;
+	background: url(images/ighg_GroupedBandBg.png) repeat-x;
+	border-left: 1px solid #507601;
+	height: 16px;
+	padding: 3px 0px 0px 10px;
+}
+.ighg_AppletiniGroupedBandRightEdge
+{		
+	display: inline-block;
+	background: url(images/ighg_GroupedBandBg.png) repeat-x;
+	border-right: 1px solid #507601;
+	width: 10px;
+	height: 16px;
+	padding: 3px 0px 0px 0px;
+}
+
+.ighg_AppletiniColumnGroupingTopDragIndicator
+{
+	background-image:url(images/ighg_TopDragIndicator.gif);
+	background-repeat: no-repeat;
+	width:5px; 
+	height:3px;
+	z-index: 100;
+}
+
+.ighg_AppletiniColumnGroupingMiddleDragIndicator
+{
+      background-image:url(images/ighg_MiddleDragIndicator.gif);
+      background-repeat: repeat-y;
+      background-position: center;
+      width:3px; 
+}
+
+.ighg_AppletiniColumnGroupingBottomDragIndicator
+{
+      background-image:url(images/ighg_BottomDragIndicator.gif);
+      background-repeat: no-repeat;
+      width:5px; 
+      height:3px;
+      position: absolute;
+      z-index: 100;   
+}
+/* END -- GroupBy CSS Classes */
+
+/********************/
+/**  Cell Merging  **/
+/********************/
+ /*Any future change please port it to WDG*/
+
+tbody>tr>td.igg_AppletiniMergedCellVisible
+{
+    color: Black;
+}
+
+tbody>tr>td.ighg_AppletiniMergedCell /*tbody>tr>td.ighg_AppletiniMergedCellAlt*/
+{
+    color: #FFF;
+    background-color: #FFF;
+    background-image: none;
+    
+    border-top-width : 0;
+    border-left: 1px dotted #e1e1e1;
+    border-right: 1px dotted #e1e1e1;
+}
+
+tbody>tr>td.ighg_AppletiniMergedCellTop /*tbody>tr>td.ighg_AppletiniMergedCellAltTop*/
+{
+    color: Black;
+    border-top: 1px solid #DCDCDC;
+}
+
+tbody>tr>td.ighg_AppletiniMergedCell.igg_AppletiniSelectedCell /*tbody>tr>td.ighg_AppletiniMergedCellAlt.igg_AppletiniSelectedCell*/
+{
+    color: Black;
+    background-color: #d9e779;
+    
+    border-top: 1px solid #bebebe;
+    border-left: 1px dotted #bebebe;
+    border-right: 1px dotted #bebebe;
+}
+
+tbody>tr>td.ighg_AppletiniMergedCellTop.igg_AppletiniSelectedCell /*tbody>tr>td.ighg_AppletiniMergedCellAltTop.igg_AppletiniSelectedCell*/
+{
+    color: Black;
+    border-top: none;    
+}
+
+tbody>tr>td.ighg_AppletiniMergedCellExpanded
+{
+    color: Black;    
+}
+
+tbody > tr.igg_AppletiniUpdatedRow td.ighg_AppletiniMergedCell
+{
+    color: #666666;
+    font-style: italic;
+}
+
+tbody > tr.igg_AppletiniUpdatedRow td.ighg_AppletiniMergedCellTop.igg_AppletiniSelectedCell
+{
+    color: black;
+    font-style: italic;
+}
+
+tbody > tr.igg_AppletiniUpdatedRow td.ighg_AppletiniMergedCellTop
+{
+    color: #666666;
+    font-style: italic;
+}
+
+tbody > tr.igg_AppletiniUpdatedRow td.ighg_AppletiniMergedCellTop.igg_AppletiniSelectedCell
+{
+    color: black;
+    font-style: italic;
+}
+
+tbody>tr>td.ighg_AppletiniMergedCellVisible
+{
+    color: black;
+}
+
+tbody>tr>td.igg_AppletiniActiveCell
+{
+    color: #000;
+}
+
+@media print{.ighg_AppletiniControl, .ighg_AppletiniControl div{width:auto !important; height:auto !important; overflow: visible !important;}}

@@ -1,0 +1,98 @@
+.igcv_RubberBlackControl
+{
+	border:solid 1px #4B4B4B;
+}
+
+
+.igcv_RubberBlackCaptionHeader
+{
+	background-color:#F0F0F0;
+	font-size:8pt;
+	padding:3px;
+	width: 100%;
+	white-space: nowrap;
+	color:Black;
+	text-align:center;
+}
+
+
+.igcv_RubberBlackDayHeader
+{
+	background-color:Black;
+	background-repeat:repeat-x;
+	background-image: url('./images/webschedule/dayview_day_header.jpg');
+	font-size:10px;
+	height: 16px;
+	color:White;
+}
+
+
+.igcv_RubberBlackDay
+{
+	font-size:11px;
+	border-width:0px;
+	cursor:hand;
+}
+
+
+.igcv_RubberBlackFooter
+{
+	background-color:#EEEEEE;
+	background-image: url(images/bg_lines.png);
+	font-size:8pt;
+	padding:3px;
+	white-space: nowrap;
+	cursor:pointer;
+	text-align:left;
+}
+
+
+.igcv_RubberBlackDropDown
+{
+	font-size:8pt;
+}
+
+
+.igcv_RubberBlackOtherMonthDay
+{
+	background-color:White;
+	color:#B3B3B3;
+}
+
+
+.igcv_RubberBlackWeekendDay
+{
+	background-color:#FAFAFA;
+}
+
+
+.igcv_RubberBlackNavigationButton
+{
+	background-color:#F0F0F0;
+	background-image: url(images/bg_lines.png);
+	padding-right:3px;
+	padding-left:3px;
+	cursor:pointer;
+}
+
+
+.igcv_RubberBlackTodayDay
+{
+	border:solid 1px #000000;
+}
+
+
+.igcv_RubberBlackActivityDay
+{
+	font-weight:bold;
+}
+
+
+.igcv_RubberBlackActiveDay
+{
+	background-color:Black;
+	background-image:none;
+	color:White;
+}
+
+

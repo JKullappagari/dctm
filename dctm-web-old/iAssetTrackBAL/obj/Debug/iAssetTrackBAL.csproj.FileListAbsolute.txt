@@ -1,0 +1,61 @@
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackBAL.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackBAL.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackDALC.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackSecurity.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.Unity.Interception.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackDALC.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackSecurity.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.xml
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.Unity.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.Unity.Interception.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\obj\Debug\iAssetTrackBAL.csprojResolveAssemblyReference.cache
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\obj\Debug\iAssetTrackBAL.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\obj\Debug\iAssetTrackBAL.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackBAL.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackBAL.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackDALC.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackSecurity.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.Web.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Documents.Core.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Documents.Excel.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Shared.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Documents.Reports.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Documents.Word.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Documents.IO.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.Unity.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.Unity.Interception.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackDALC.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\iAssetTrackSecurity.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.Web.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Documents.Core.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Documents.Excel.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Shared.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Documents.Reports.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Documents.Word.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Infragistics45.WebUI.Documents.IO.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.Unity.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Debug\Microsoft.Practices.Unity.Interception.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\obj\Debug\iAssetTrackBAL.csprojAssemblyReference.cache
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\obj\Debug\iAssetTrackBAL.csproj.CoreCompileInputs.cache
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\obj\Debug\iAssetTrackBAL.csproj.CopyComplete
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\obj\Debug\iAssetTrackBAL.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\obj\Debug\iAssetTrackBAL.pdb

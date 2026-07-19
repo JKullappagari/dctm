@@ -1,0 +1,189 @@
+.igtbl_TrendyControl
+{
+}
+
+
+.igtbl_TrendyPagerArea
+{
+	background-position:bottom ;
+	background-image: url(images/alt_item.gif);
+	border-width:0px;
+	padding:10px;
+}
+
+
+.igtbl_TrendyPageCurrent
+{
+	margin-right:10px;
+}
+
+
+.igtbl_TrendyPageLink
+{
+	margin-right:10px;
+	color:DimGray;
+}
+
+
+.igtbl_TrendyGroupByBox
+{
+	background-position:bottom ;
+	background-image: url(images/alt_item.gif);
+}
+
+
+.igtbl_TrendyAddNewBox
+{
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+}
+
+
+.igtbl_TrendyItem
+{
+	background-image: url(images/bg_diagonal.gif);
+	border-top:solid 1px #FFFFFF;
+}
+
+
+.igtbl_TrendyFilterOperandButton
+{
+	background-color:Transparent;
+	background-repeat:no-repeat;
+	background-image: url(images/blank.gif);
+	border-width:0px;
+	width: 18px;
+}
+
+
+.igtbl_TrendyAlt
+{
+	border-width:0px;
+	border-top-width:1px;
+	border-top-color:White;
+}
+
+
+.igtbl_TrendyEdit
+{
+	background-color:White;
+	font-size:x-small;
+	font-family: Verdana;
+	border:solid 1px Transparent;
+	padding-top:9px;
+	text-align:left;
+	vertical-align:middle;
+}
+
+
+.igtbl_TrendyButton
+{
+}
+
+
+.igtbl_TrendyFxdCell
+{
+}
+
+
+.igtbl_TrendyHeader
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	border-width:0px;
+	border-right-width:1px;
+	border-right-color:Gainsboro;
+	padding-top:3px;
+	padding-bottom:3px;
+	height: 30px;
+	color:White;
+}
+
+
+.igtbl_TrendyFooter
+{
+	background-color:#969696;
+	background-image:none;
+	border-width:0px;
+}
+
+
+.igtbl_TrendyLabel
+{
+	background-color:WhiteSmoke;
+	background-image:none;
+	border-top-width:1px;
+	border-top-color:#E1E1E1;
+	border-right-width:1px;
+	border-right-color:#F0F0F0;
+	height: 25px;
+}
+
+
+.igtbl_TrendyExpArea
+{
+	background-color:#969696;
+	background-image:none;
+	border-top-width:1px;
+	border-top-style:solid;
+}
+
+
+.igtbl_TrendyGrpItem
+{
+}
+
+
+.igtbl_TrendyFxdHeader
+{
+}
+
+
+.igtbl_TrendyGroupBandLabel
+{
+}
+
+
+.igtbl_TrendyFxdFooter
+{
+}
+
+
+.igtbl_TrendyDropDown
+{
+	background-color:WhiteSmoke;
+	font-size:xx-small;
+	font-family: Verdana;
+	border:solid 1px LightGrey;
+}
+
+
+.igtbl_TrendyDropDownSel
+{
+}
+
+
+.igtbl_TrendySelected
+{
+	background-color:#41AFE2;
+	background-image: url(images/header.gif);
+	border-color:Transparent;
+	color:White;
+}
+
+
+.igtbl_TrendyActiveBorderTopBottom
+{
+}
+
+
+.igtbl_TrendyActiveBorderLeft
+{
+}
+
+
+.igtbl_TrendyActiveBorderRight
+{
+}
+
+

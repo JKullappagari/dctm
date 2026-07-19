@@ -1,0 +1,400 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RptBarCode.aspx.cs"
+    Inherits="RptBarCode" MasterPageFile="~/iAssetTrackMasterPage.master" Theme="SkinFile" culture="auto" uiculture="auto" %>
+
+<%--<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2044, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.EditorControls" TagPrefix="ig" %>--%>
+
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+    Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+
+<%--<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2044, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.ListControls" TagPrefix="ig" %>--%>
+
+<%--<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2044, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>--%>
+
+<%--<%@ Register Assembly="Infragistics45.Web.v16.1, Version=16.1.20161.2044, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>--%>
+
+<%@ Register Assembly="Infragistics45.WebUI.WebDataInput.v16.1, Version=16.1.20161.2044, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+
+<asp:Content ID="RptBarCode" ContentPlaceHolderID="Master_ContentPlaceHolder" runat="Server">
+
+    <script language="javascript" type="text/javascript">
+
+     
+
+      
+      function openLocationList(url) {
+
+            winSettings = "scroll:auto; width=300; height=500;top=50;left=50;status=1; resizable:no; scroll:no; help:no; toolbar:no; edge:raised; menubar:no; status:no; unadorned: yes";
+            var hWnd = open_window(url, "LocationList", winSettings)
+
+            if ((document.window != null) && (hWnd.opener))
+                hWnd.opener = document.window;
+
+        }
+
+        function getValuesFromChild(txt, val, header) {
+            var hdnParentLocID = document.getElementById('<%=hdnLocID.ClientID%>');
+            var txtParentLoc = document.getElementById('<%=txtLocation.ClientID%>');
+            var hdnLName = document.getElementById('<%=hdnLocName.ClientID%>');
+
+            var hdnMID = document.getElementById('<%=hdnModelID.ClientID%>');
+            var txtAssetModel = document.getElementById('<%=txtModel.ClientID%>');
+            var hdnMName = document.getElementById('<%=hdnModelName.ClientID%>');
+           
+
+            if (header == "Loc") {
+                txtParentLoc.value = txt;
+                hdnParentLocID.value = val;
+                hdnLName.value = txt;
+            }
+            else {
+                txtAssetModel.value = txt;
+                hdnMID.value = val;
+                hdnMName.value = txt;
+            }
+        }
+
+
+      
+    </script>
+
+    <table style="height: 100%; width: 979px;" cellspacing="0" cellpadding="0" border="0">
+        <tr style="height: 15px;">
+            <td class="labelTD" style="height: 34px;" colspan="7">
+            <center>
+                <asp:Label ID="Label1" runat="server" CssClass="Heading" Text="BARCODE SHEET"></asp:Label>
+                <center>
+                <br />
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 64px; height: 27px;">
+                
+            </td>
+            <td style="width: 96px; height: 27px;">
+                
+            </td>
+            <td style="width: 90px; height: 27px; text-align: justify;" valign="top" align="left">
+                </td>
+            <td style="width: 183px; height: 27px; text-align: left;">
+                </td>
+            <td style="width: 54px; height: 27px;" valign="top">
+                </td>
+            <td style="height: 27px; width: 239px; text-align: left;">
+                </td>
+            <td style="height: 27px">
+                
+            </td>
+        </tr>
+        <%--<tr>
+            <td style="width: 64px; height: 23px;">
+            </td>
+            <td style="width: 96px; height: 23px;">
+                
+            </td>
+            <td style="width: 90px; text-align: justify; height: 23px;" bgcolor="#CCCCCC" align="Right">
+                </td>
+            <td style="width: 183px; height: 23px; text-align: left;" bgcolor="#CCCCCC">
+                </td>
+            <td style="width: 54px; height: 23px;" bgcolor="#CCCCCC">
+                </td>
+            <td bgcolor="#CCCCCC" style="height: 23px; width: 239px;">
+            </td>
+            <td style="height: 23px">
+            </td>
+        </tr>--%>
+        <tr>
+            <td style="width: 64px">
+                
+            </td>
+            <td style="width: 96px">
+                
+            </td>
+            <td style="width: 90px; text-align: justify;" align="Right" valign="top">
+                
+            </td>
+            <td style="width: 183px; text-align: left;">
+                
+            </td>
+            <td style="width: 54px" valign="top">
+                
+            </td>
+            <td style="width: 239px; text-align: left;" valign="top">
+                
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 64px">
+                
+            </td>
+            <td style="width: 96px">
+                
+            </td>
+            <td style="width: 90px; text-align: justify;" align="Right" valign="top">
+                <asp:Label ID="Label3" runat="server" CssClass="FieldName" Text="Root Entity*" 
+                    ></asp:Label>
+            </td>
+            <td style="width: 183px; text-align: left;">
+                <asp:DropDownList ID="ddlBusinessUnit" runat="server" AutoPostBack="True" CssClass="dropdownText"
+                    OnSelectedIndexChanged="ddlBusinessUnit_SelectedIndexChanged" 
+                    Width="140px" TabIndex="3" >
+                </asp:DropDownList>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="ddlBusinessUnit"
+                    CssClass="ErrValStyle" Display="Dynamic" InitialValue="0"
+                    Height="16px" Width="88px" 
+                   ErrorMessage="Select value"></asp:RequiredFieldValidator>
+            </td>
+            <td style="width: 54px" valign="top">
+                </td>
+            <td style="width: 239px; text-align: left;" valign="top">
+                <br />
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 64px">
+                
+            </td>
+            <td style="width: 96px">
+                
+            </td>
+            <td style="width: 90px; text-align: justify;" align="Right">
+                
+            </td>
+            <td style="width: 183px; text-align: left;">
+                
+            </td>
+            <td style="width: 54px">
+                
+            </td>
+            <td style="width: 239px; text-align: left;">
+                
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 64px">
+                
+            </td>
+            <td style="width: 96px">
+                
+            </td>
+            <td style="width: 90px; text-align: justify;" align="Right">
+                <asp:Label ID="lblSite" runat="server" CssClass="FieldName" Text="Site" 
+                    ></asp:Label>
+            </td>
+            <td style="width: 183px; text-align: left;">
+                <asp:DropDownList ID="ddlSite" runat="server" AutoPostBack="True" CssClass="dropdownText"
+                    OnSelectedIndexChanged="ddlSite_SelectedIndexChanged" Width="140px" 
+                    TabIndex="4" >
+                </asp:DropDownList>
+            </td>
+            <td style="width: 54px">
+                </td>
+            <td style="width: 239px; text-align: left;">
+                <asp:TextBox ID="txtModel" Visible="false"  runat="server"></asp:TextBox>
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 64px">
+                
+            </td>
+            <td style="width: 96px">
+                
+            </td>
+            <td style="width: 90px; text-align: justify;" align="Right">
+                
+            </td>
+            <td style="width: 183px; text-align: left;">
+                
+            </td>
+            <td style="width: 54px">
+                
+            </td>
+            <td style="width: 239px; text-align: left;">
+                
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 64px">
+                
+            </td>
+            <td style="width: 96px">
+                
+            </td>
+            <td style="width: 90px; text-align: justify;" align="Right">
+                <asp:Label ID="lblLocation" runat="server" CssClass="FieldName" Text="Location" 
+                    ></asp:Label>
+            </td>
+             <td class="ControlTD" style="height: 19px; width: 183px;" valign="top">
+                                         <asp:TextBox ID="txtLocation" runat="server" Width="200px" CssClass="FieldValue"
+                                        MaxLength="150" enabled="False" 
+                                       text="Location"></asp:TextBox>
+                                      
+                                    <td class="ControlTD" style="height: 19px;" valign="top">
+                                        <a href="javascript:openLocationList('TreeList.aspx?Type=RptLocations&Site=&Header=Location');" 
+                                        >
+                                            <img id="imgLocButton" alt="Load List" src="images/search.gif" style="border:0;" /></a><td class="ControlTD"
+                                                style="height: 19px;" valign="top">
+                                    <td class="ControlTD" style="height: 19px;" valign="top">
+                                                    
+                                                </td>
+                                            </td>
+                                    </td>
+                                </td>
+            <td style="width: 54px">
+                </td>
+            <td style="width: 239px; text-align: left;">
+                </td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 64px; height: 21px;">
+                
+            </td>
+            <td style="width: 96px; height: 21px;">
+                
+            </td>
+            <td style="width: 90px; text-align: justify; height: 21px;" align="Right">
+                
+            </td>
+            <td style="width: 183px; text-align: left; height: 21px;">
+                
+            </td>
+            <td style="width: 54px; height: 21px;">
+                
+            </td>
+            <td style="width: 239px; text-align: left; height: 21px;">
+                
+                </td>
+            <td style="height: 21px">
+                
+            </td>
+        </tr>
+      <%--  <tr>
+            <td style="width: 64px">
+                
+            </td>
+            <td style="width: 96px">
+                
+            </td>
+            <td style="text-align: left;" bgcolor="#CCCCCC" colspan="2" align="Right">
+                
+            </td>
+            <td style="width: 54px" bgcolor="#CCCCCC">
+                
+            </td>
+            <td style="width: 239px" bgcolor="#CCCCCC">
+                
+            </td>
+            <td>
+                
+            </td>
+        </tr>--%>
+        <tr>
+            <td style="width: 64px">
+                
+            </td>
+            <td style="width: 96px">
+                
+            </td>
+             <td style="width: 90px; text-align: justify;" align="Right">
+               <asp:Label ID="lblManufacturer" runat="server" CssClass="FieldName" 
+                                        Width="78px"> Manufacturer</asp:Label>
+            </td>
+           <td class="ControlTD" style="height: 19px; width: 183px;">
+                                    <%--<asp:ListBox ID="lstManufacturer" runat="server" SelectionMode="Multiple" 
+                                        Width="202px" AutoPostBack="True" 
+                                        onselectedindexchanged="lstManufacturer_SelectedIndexChanged"></asp:ListBox>--%>
+                                        <asp:DropDownList ID="ddlMfg" runat="server" CssClass="dropdownText" OnSelectedIndexChanged="ddlMfg_SelectedIndexChanged"
+                                                            Width="199px" AutoPostBack="True" TabIndex="6" >
+                                                        </asp:DropDownList>
+                                </td>
+            <td style="width: 54px">
+                </td>
+            <td style="width: 239px; text-align: left;">
+                <asp:Label ID="lblModels" runat="server" Text="AssetModel" Font-Bold="True"></asp:Label>
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 64px">
+            </td>
+            <td style="width: 96px">
+                
+            </td>
+            <td style="width: 90px; text-align: justify;">
+                <%--    </asp:Panel>--%>
+                <igtxt:WebImageButton ID="btnShowReport" runat="server" ImageDirectory="" OnClick="btnShowReport_Click"
+                    SkinID="uwButton" TabIndex="11"  UseBrowserDefaults="False"
+                    Width="118px" Text ="Generate BarCode">
+                    <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                        WidthOfRightEdge="13" />
+                    <Appearance>
+                        <style cursor="Hand" font-names="Arial" font-size="8pt">
+                            </style>
+<ButtonStyle Cursor="Hand" Font-Size="8pt" Font-Names="Arial"></ButtonStyle>
+                    </Appearance>
+                </igtxt:WebImageButton>
+            </td>
+            <td style="width: 183px; text-align: left;">
+            </td>
+            <td style="width: 54px">
+            </td>
+            <%--<td style="width: 239px">--%>
+            <td style="width: 90px; text-align: justify;">
+          
+<asp:Panel ID="checkBoxPanel" runat="server" Visible="false"
+                CssClass="scrollingControlContainer scrollingCheckBoxList" Height="75px"> 
+               <asp:CheckBoxList ID="ChkModels" runat="server" >
+                </asp:CheckBoxList>
+               
+            </asp:Panel>
+             <%--   <asp:CheckBoxList ID="ChkModels" runat="server">
+                </asp:CheckBoxList>--%>
+
+ 
+            </td>
+            <td>
+            </td>
+        </tr>
+        </table>
+    <%-- <asp:Panel ID="Panel1" runat="server" Width="100%">--%>
+    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" Font-Names="Verdana" 
+        Font-Size="8pt"  Height="100%" ShowParameterPrompts="False"
+        Style="text-align: center" meta:resourcekey="ReportViewer1Resource1" >
+    </rsweb:ReportViewer>
+    
+    <br />
+    <br />
+     <br />
+    <br />
+    <input type="hidden" id="hdnMessage" runat="server" />
+     <input id="hdnUserID" runat="server" style="width: 18px" type="hidden" />
+    <input id="hdnUserName" runat="server" style="width: 25px" type="hidden" />
+    <input id="hdnLocationID" runat="server" style="width: 18px" type="hidden" />
+    <input id="hdnLocationName" runat="server" style="width: 25px" type="hidden" />
+    <input id="hdnHostNames" runat="server" style="width: 100px" type="hidden" />
+    <input type="hidden" id="hdnLocID" runat="server" />
+    <input type="hidden" id="hdnModelID" runat="server" />
+    <input type="hidden" id="hdnModelName" runat="server" />
+    <input type="hidden" id="hdnLocName" runat="server" />
+   
+</asp:Content>

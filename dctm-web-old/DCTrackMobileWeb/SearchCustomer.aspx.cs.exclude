@@ -1,0 +1,400 @@
+﻿using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using iAssetTrack.BAL;
+using iAssetTrack.DALC;
+using System.Data.SqlClient;
+using iAssetTrackBAL;
+using Infragistics.Web.UI.GridControls;
+using System;
+using System.Data;
+using System.Configuration;
+using Infragistics.WebUI.WebDataInput;
+
+public partial class SearchCustomer : System.Web.UI.Page
+{
+    private iAssetTrack.BAL.CustomerBAL objCustomer;
+    private iAssetTrack.BAL.CountryStateCityBAL objCountryStateCity;
+    private iAssetTrack.BAL.CommonBAL objCommon;
+    DataTable _dtRights;
+    protected int totalRecordCount = 0;
+    private iAssetTrack_WebDataGrid_Paging_CustomerPagerControl pagerControl;
+
+    // J00007 by kjb on 26 Sep 2012
+    # region new control declaration
+    protected Label lblMessage;
+    protected WebImageButton ibSearch;
+    protected DropDownList ddlIndustryType, ddlAddressType, ddlCity, ddlCountry,ddlState;
+    protected TextBox txtName,txtShortName;
+    # endregion
+
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+        wdgCustomer.ItemCommand += new Infragistics.Web.UI.GridControls.ItemCommandEventHandler(wdgCustomer_ItemCommand);
+        pagerControl = wdgCustomer.Behaviors.Paging.PagerTemplateContainerTop.FindControl("CustomerPager") as iAssetTrack_WebDataGrid_Paging_CustomerPagerControl;
+        pagerControl.PageChanged += new EventHandler<PageChangedEventArgs>(currentPageControl_PageChanged);
+    }
+    void currentPageControl_PageChanged(object sender, PageChangedEventArgs e)
+    {
+        this.wdgCustomer.Behaviors.Paging.PageIndex = e.PageNumber;
+        populateGrid();
+    }
+
+    protected void wdgCustomer_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        //wdgCustomer.PageIndex = e.NewPageIndex;
+        populateGrid();
+    }
+
+    protected void wdgCustomer_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+       
+    }
+
+    protected void wdgCustomer_ItemCommand(object sender, Infragistics.Web.UI.GridControls.HandleCommandEventArgs e)
+    {
+        if (e.CommandName == "Page")
+        {
+            populateGrid();
+        }
+           
+    }
+
+    protected void wdgCustomer_InitializeRow(object sender, Infragistics.Web.UI.GridControls.RowEventArgs e)
+    {
+
+    }
+
+
+
+    protected void wdgCustomer_DataBound(object sender, EventArgs e)
+    {
+        if (!this.IsPostBack)
+        {
+            pagerControl.SetupPageList(this.wdgCustomer.Behaviors.Paging.PageCount);
+            pagerControl.SetCurrentPageNumber(wdgCustomer.Behaviors.Paging.PageIndex);
+        }
+        Control postbackControlInstance = null;
+        string postbackControlName = this.Request.Params.Get("__EVENTTARGET");
+        if (postbackControlName != null && postbackControlName != string.Empty)
+            postbackControlInstance = this.FindControl(postbackControlName);
+        if (postbackControlInstance != null && postbackControlInstance.ID == "PagerPageList")
+        {
+            //do nothing
+        }
+        else
+        {
+            pagerControl.SetupPageList(this.wdgCustomer.Behaviors.Paging.PageCount);
+            pagerControl.SetCurrentPageNumber(wdgCustomer.Behaviors.Paging.PageIndex);
+        }
+
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // J00007 by kjb on 26 Sep 2012
+        # region New controls initialization
+        lblMessage = (Label)this.wpCustomer.Groups[0].Items[0].FindControl("lblMessage");
+
+        ibSearch = (WebImageButton)this.wpCustomer.Groups[0].Items[0].FindControl("ibSearch");
+
+        ddlIndustryType = (DropDownList)this.wpCustomer.Groups[0].Items[0].FindControl("ddlIndustryType");
+        ddlAddressType = (DropDownList)this.wpCustomer.Groups[0].Items[0].FindControl("ddlAddressType");
+        ddlCity = (DropDownList)this.wpCustomer.Groups[0].Items[0].FindControl("ddlCity");
+        ddlCountry = (DropDownList)this.wpCustomer.Groups[0].Items[0].FindControl("ddlCountry");
+        ddlState = (DropDownList)this.wpCustomer.Groups[0].Items[0].FindControl("ddlState");
+
+        txtName = (TextBox)this.wpCustomer.Groups[0].Items[0].FindControl("txtName");
+        txtShortName = (TextBox)this.wpCustomer.Groups[0].Items[0].FindControl("txtShortName");
+
+        # endregion
+
+        Session["PageHeader"] = "Search Address";
+        Session["PageUser"] = System.Configuration.ConfigurationManager.AppSettings["LoginUser"];
+        Session["PageTime"] = System.Configuration.ConfigurationManager.AppSettings["LoginTime"];
+
+        lblMessage.Visible = false;
+
+
+        _dtRights = (DataTable)(Session["Rights"]);
+
+        if (_dtRights == null)
+        {
+            Session["RedirectUrl"] = "CreateCustomer.aspx";
+            Response.Redirect("Login.aspx");
+        }
+
+        bool blfoundPage = false;
+
+        //if (_dtRights.Select("Module = 'Purpose'").Length != 0)
+        //{
+        //    blfoundPage = true;
+        //}
+        if (_dtRights.Select("Module = 'Search Address' and Rights = '" + "View" + "'").Length != 0)
+        {
+            blfoundPage = true;
+        }
+
+
+        if (blfoundPage == false)
+        {
+            Response.Redirect("AccessDeniedPage.aspx");
+            return;
+        }
+        if (_dtRights.Select("Module = 'Search Address' and Rights = '" + "Modify" + "'").Length != 0)
+        {
+            ibSearch.Enabled = true;
+        }
+        else
+        {
+            ibSearch.Enabled = false;
+        }
+
+        //if (_dtRights.Select("Module = 'Customer' and Rights = '" + "Delete" + "'").Length != 0)
+        //{
+        //    ibDelete.Visible = true;
+        //}
+        //else
+        //{
+        //    ibDelete.Visible = false;
+        //}
+
+
+
+        if (!IsPostBack)
+        {
+            ///BusinessUnit
+            //objBU = new iAssetTrack.BAL.BusinessUnitBAL();
+            //DataSet dsBU = objBU.retrieve();
+            //DataTable dtBU = dsBU.Tables[0];
+
+            //objCommon = new CommonBAL();
+            //objCommon.setDataSource(ddlBusinessUnit, dtBU, "-Select-");
+
+            ///Industry Type
+            objCustomer = new iAssetTrack.BAL.CustomerBAL();
+            DataSet dsIndustryType = objCustomer.retrieveIndustryType();
+            DataTable dtIndustryType = dsIndustryType.Tables[0];
+
+            objCommon = new CommonBAL();
+            objCommon.setDataSource(ddlIndustryType, dtIndustryType, "(All)");
+
+            ///Address Type
+            objCustomer = new iAssetTrack.BAL.CustomerBAL();
+            DataSet dsAddressType = objCustomer.retrieveAddressType();
+            DataTable dtAddressType = dsAddressType.Tables[0];
+
+            objCommon = new CommonBAL();
+            objCommon.setDataSource(ddlAddressType, dtAddressType, "(All)");
+
+            //Country
+            objCountryStateCity = new iAssetTrack.BAL.CountryStateCityBAL();
+            DataSet dsCountry = objCountryStateCity.retrieveCountry();
+            DataTable dtCountry = dsCountry.Tables[0];
+
+            objCommon = new CommonBAL();
+            objCommon.setDataSource(ddlCountry, dtCountry, "(All)");
+
+            //Grid Binding
+            DataSet dsSearchCustomer = null;
+            dsSearchCustomer = objCustomer.CustomerDetailsSearch();
+            if (dsSearchCustomer.Tables[0].Rows.Count > 0)
+            {
+                this.wdgCustomer.DataSource = dsSearchCustomer.Tables[0].DefaultView;
+                this.wdgCustomer.DataBind();
+            }
+
+            Session["CustomerID"] = null;
+
+        }
+
+        //if (!IsPostBack)
+        //{
+        //    Session["CustomerID"] = null;
+
+        //}
+    }
+    protected void ibSearch_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        populateGrid();
+    }
+
+    
+    private void clearFields()
+    {
+        //ddlBusinessUnit.SelectedIndex = -1;
+        ddlAddressType.SelectedIndex = -1;
+        ddlCity.SelectedIndex = -1;
+        ddlCountry.SelectedIndex = -1;
+        ddlIndustryType.SelectedIndex = -1;
+        ddlState.SelectedIndex = -1;
+
+        txtName.Text = "";
+        txtShortName.Text = "";
+        
+    }
+    protected void ibReset_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        clearFields();
+        Session["CustomerID"] = null;
+        populateGrid();///V000010 Added on 10-Oct-2012
+
+    }
+    //protected void grdCustomer_DataBound(object sender, EventArgs e)
+    //{
+    //    if (!this.IsPostBack)
+    //    {
+    //        pagerControl.SetupPageList(this.grdCustomer.Behaviors.Paging.PageCount);
+    //        pagerControl.SetCurrentPageNumber(grdCustomer.Behaviors.Paging.PageIndex);
+    //    }
+    //    Control postbackControlInstance = null;
+    //    string postbackControlName = this.Request.Params.Get("__EVENTTARGET");
+    //    if (postbackControlName != null && postbackControlName != string.Empty)
+    //        postbackControlInstance = this.FindControl(postbackControlName);
+    //    if (postbackControlInstance != null && postbackControlInstance.ID == "PagerPageList")
+    //    {
+    //        //do nothing
+    //    }
+    //    else
+    //    {
+    //        pagerControl.SetupPageList(this.grdCustomer.Behaviors.Paging.PageCount);
+    //        pagerControl.SetCurrentPageNumber(grdCustomer.Behaviors.Paging.PageIndex);
+    //    }
+
+    //}
+    ///Added on 29-Oct-2012
+    protected void Page_PreRender(object sender, EventArgs e)
+    {
+        populateGrid();
+    }
+    protected void wdgCustomer_DataFiltered(object sender, Infragistics.Web.UI.GridControls.FilteredEventArgs e)
+    {
+        // Cast the WebDataGrid DataSource to a DataTable  
+        DataTable dt = this.wdgCustomer.DataSource as DataTable;
+
+        // Disable WebDataGrid Paging
+        wdgCustomer.Behaviors.Paging.Enabled = false;
+
+        hdnFilterCount.Value = wdgCustomer.Rows.Count.ToString();
+
+
+        // Enable WebDataGrid Paging
+       wdgCustomer.Behaviors.Paging.Enabled = true;
+    }
+    private void populateGrid()
+    {
+        objCustomer = new iAssetTrack.BAL.CustomerBAL();
+        //objCustomer.BusinessUnitID = Convert.ToInt16(ddlBusinessUnit.SelectedValue);
+        //objCustomer.CityID = Convert.ToInt16(ddlCity.SelectedValue);
+        //objCustomer.IndustryID = Convert.ToInt16(ddlIndustryType.SelectedValue);
+
+        if (ddlCity.SelectedIndex != -1)
+        {
+            objCustomer.CityID = Convert.ToInt16(ddlCity.SelectedValue);
+        }
+        else
+        {
+            objCustomer.CityID = 0;
+        }
+        if (ddlIndustryType.SelectedIndex != -1)
+        {
+            objCustomer.IndustryID = Convert.ToInt16(ddlIndustryType.SelectedValue);
+        }
+        else
+        {
+            objCustomer.IndustryID = 0;
+        }
+
+        objCustomer.Name = txtName.Text;
+        objCustomer.ShortName = txtShortName.Text;
+        objCustomer.AddressID = Convert.ToInt16(ddlAddressType.SelectedValue);
+
+        DataSet dsSearchCustomer = null;
+
+        dsSearchCustomer = objCustomer.CustomerDetailsSearch();
+
+        DataTable dtGrid = objCustomer.CustomerDetailsSearch().Tables[0];
+        totalRecordCount = dtGrid.Rows.Count;
+
+        if (dsSearchCustomer.Tables[0].Rows.Count > 0)
+        {
+            
+            this.wdgCustomer.DataSource = dsSearchCustomer.Tables[0].DefaultView;
+
+            this.wdgCustomer.DataBind();
+            
+        }
+        //objCustomer.Status = 1;
+        //objCustomer.CreatedBy = Convert.ToInt32(Session["UserID"]);
+
+        //int intCustomer = 0;
+        //objCustomer.CustomerID = Session["CustomerID"] == null ? intCustomer : (int)Session["CustomerID"];
+        //intCustomer = objCustomer.exists();
+
+        //if (intCustomer != -1 && intCustomer != 0)
+        //    objCustomer.CustomerID = intCustomer;
+
+        //if (intCustomer != -1)
+        //{
+        //    objCustomer.Persist(DALCOperation.Insert);
+        //    clearFields();
+        //    if (Session["CustomerID"] == null)
+        //    {
+        //        objCommon = new CommonBAL();
+        //        lblMessage.Text = objCommon.displayMessage(MessageCodes.GEN_S_INSERTED);
+        //    }
+        //    else
+        //    {
+        //        objCommon = new CommonBAL();
+        //        lblMessage.Text = objCommon.displayMessage(MessageCodes.GEN_S_UPDATED);
+        //    }
+
+        //    Session["CustomerID"] = null;
+        //    lblMessage.Visible = true;
+        //    //grdPurpose.ClearDataSource();
+        //    //populateGrid();
+        //}
+        //else
+        //{
+        //    objCommon = new CommonBAL();
+        //    lblMessage.Text = objCommon.displayMessage(MessageCodes.GEN_I_EXISTS);
+        //    lblMessage.Visible = true;
+        //    ///populateGrid();
+        //}
+    }
+
+    protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        PopulateStateByCountryID(Convert.ToInt16(ddlCountry.SelectedValue));
+        PopulateCityByCountryID(Convert.ToInt16(ddlCountry.SelectedValue));
+        ///string tt=   ddlCountry.SelectedValue.ToString();
+
+    }
+    private void PopulateStateByCountryID(int CountryID)
+    {
+        objCountryStateCity = new iAssetTrack.BAL.CountryStateCityBAL();
+
+        objCountryStateCity.CountryID = CountryID;
+        DataSet dsState = objCountryStateCity.retrieveStateByCountyID();
+        DataTable dtState = dsState.Tables[0];
+
+        objCommon = new CommonBAL();
+        objCommon.setDataSource(ddlState, dtState, "(All)");
+    }
+    private void PopulateCityByCountryID(int CountryID)
+    {
+        
+        objCountryStateCity = new iAssetTrack.BAL.CountryStateCityBAL();
+        objCountryStateCity.CountryID = CountryID;
+        DataSet dsCity = objCountryStateCity.retrieveCityByCountyID();
+        DataTable dtCity = dsCity.Tables[0];
+
+        objCommon = new CommonBAL();
+        objCommon.setDataSource(ddlCity, dtCity, "(All)");
+    }
+}

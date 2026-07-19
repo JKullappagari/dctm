@@ -1,0 +1,656 @@
+/**************************** VERTICAL (Default / No suffixes) *************************************************/
+.igdm_RubberBlackControlVertical
+{
+	background-color:#F9F9F9;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_controlbackground.png);
+	font-family: Verdana,Arial,Lucida Grande,Lucida Sans Unicode,Lucida,Helvetica,Sans-serif;
+	border-style:none;
+	border-width:0px;
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor:default;
+}
+
+
+/*
+ Main Control CSS class when it's active 
+*/
+.igdm_RubberBlackControlVerticalActive
+{
+}
+
+
+/*
+ Main Control CSS class when it's disabled
+*/
+.igdm_RubberBlackControlVerticalDisabled
+{
+}
+
+
+/******************************** ROOT ELEMENTS ***************************************************/
+.igdm_RubberBlackMenuGroupVerticalRoot
+{
+	background-color:Transparent;
+	margin:0px;
+	padding-top:0px;
+	padding-left:0px;
+	list-style-type: none;
+	cursor:default;
+	color:Black;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalRoot
+{
+	font-size:10px;
+	border:solid 1px Transparent;
+	padding:6px 30px 6px 12px;
+	color:#333333;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalIcon
+{
+	border-style:none;
+	border-width:0px;
+	padding-right:6px;
+	clear: none;
+	text-align:left;
+	vertical-align:middle;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalRootLink
+{
+	font-size:12px;
+	font-family: Verdana,Arial,Lucida Grande,Lucida Sans Unicode,Lucida,Helvetica,Sans-serif;
+	display: block;
+	cursor:default;
+	color:#333333;
+	text-decoration:none;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalRootSelected
+{
+	background-color:Black;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_roothover.png);
+	border:solid 1px #000000;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalRootActive
+{
+	background-color:Black;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_roothover.png);
+	border:solid 1px #000000;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalRootHover
+{
+	background-color:Black;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_roothover.png);
+	border:solid 1px Tranparent;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalRootDisabled
+{
+}
+
+
+/********************************** END ROOT ELEMENTS *********************************************/
+/****************************** MenuGroup (UL) ELEMENTS (SubMenu) *********************************/
+/* UL (List) */
+.igdm_RubberBlackMenuGroupVertical
+{
+	background-color:#000000;
+	border:none;
+	border-bottom : solid 2px #306EFF;
+	margin:0px;
+	padding-top:0px;
+	padding-left:0px;
+	list-style-type: none;
+	cursor:default;
+	color:Black;
+	text-align : left;
+}
+
+
+/**************************** END Menu Group Elemnts ********************************************/
+/************ MenuItem elements (single menu item - LI (base element) has > a > span) ***********/
+/* List Item (Li) */
+.igdm_RubberBlackMenuItemVertical
+{
+	background-attachment:scroll;
+	background-color: Transparent none repeat scroll 0 0;
+	background-repeat:repeat;
+	background-position:notset notset ;
+	border:solid 1px Transparent;
+	margin:0px;
+	padding:5px 30px 5px 5px;
+	color:#FFFFFF;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalLink
+{
+	font-size:12px;
+	font-family: Verdana,Arial,Lucida Grande,Lucida Sans Unicode,Lucida,Helvetica,Sans-serif;
+	display: block;
+	cursor:default;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+
+/* List Item (Li) that is a parent of a menu which will appear on the bottom */
+.igdm_RubberBlackMenuItemVerticalParent
+{
+}
+
+
+.igdm_RubberBlackMenuItemVerticalParentLink
+{
+	font-size:12px;
+	font-family: Verdana,Arial,Lucida Grande,Lucida Sans Unicode,Lucida,Helvetica,Sans-serif;
+	display: block;
+	cursor:default;
+	color:#000333;
+	text-decoration:none;
+}
+
+
+/* List Item (Li) */
+.igdm_RubberBlackMenuItemVerticalSelected
+{
+	background-color:#F9F9F9;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_itemhover.png);
+	font-weight:normal;
+	border:solid 1px #666666;
+	margin:0px;
+	color:White;
+}
+
+
+/* List Item (Li) */
+.igdm_RubberBlackMenuItemVerticalActive
+{
+	background-color:#F9F9F9;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_itemhover.png);
+	font-weight:normal;
+	border:solid 1px #666666;
+	margin:0px;
+	color:White;
+}
+
+
+/* List Item (Li) */
+.igdm_RubberBlackMenuItemVerticalHover
+{
+	background-color:Transparent;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: none;
+	font-weight:normal;
+	border:solid 1px Transparent;
+	margin:0px;
+	color:White;
+}
+.igdm_RubberBlackMenuItemVerticalHover > a
+{
+	color:#52D017;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalDisabled
+{
+}
+
+
+/* List Item (LI) no inner content */
+.igdm_RubberBlackMenuItemVerticalSeparator
+{
+	background-color:#BBBBBB;
+	border-style:none;
+	border-width:0px;
+	margin-top:0px;
+	padding:0px;
+	display: block;
+	height: 1px !important;
+	height: 1px;
+	width: 100%;
+	margin: 0px auto;
+	position: absolute;
+	clear: both;
+}
+
+
+.igdm_RubberBlackMenuScrollContainerVertical
+{
+}
+
+
+.igdm_RubberBlackMenuScrollerRootTop
+{
+}
+
+
+.igdm_RubberBlackMenuScrollerRootBottom
+{
+}
+
+
+.igdm_RubberBlackMenuScrollerTop
+{
+}
+
+
+.igdm_RubberBlackMenuScrollerBottom
+{
+}
+
+
+/************************************************************************************************\
+
+********************** Horizontal / Suffixed with "Horizontal" *********************************
+
+\************************************************************************************************/
+.igdm_RubberBlackControlHorizontal
+{
+   /* background-color:#F9F9F9;
+background-image: url(images/igdm_controlbackground.png);
+ */
+	background-color: Black;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_roothover.png);
+	font-family: Verdana,Arial,Lucida Grande,Lucida Sans Unicode,Lucida,Helvetica,Sans-serif;
+	border-style:none;
+	border-width:0px;
+	float: left;
+	white-space: nowrap;
+	overflow: hidden;
+	cursor:default;
+}
+
+
+.igdm_RubberBlackControlHorizontalActive
+{
+}
+
+
+/*
+ Main Control CSS class when it's disabled
+*/
+.igdm_RubberBlackControlHorizontalDisabled
+{
+}
+
+
+/************** End Main Control Definitions ********************/
+/******************************** ROOT ELEMENTS - Group and Item ***************************************/
+/** Definitions for Root elements should be always before definitions of subElements **/
+.igdm_RubberBlackMenuGroupHorizontalRoot
+{
+	background-color:#0008AA;
+	margin:0px;
+	padding-top:0px;
+	padding-left:0px;
+	list-style-type: none;
+	cursor:default;
+	color:Black;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalRoot
+{
+    /*  color:#000FFF; */
+	font-size:10px;
+	border:solid 1px Transparent;
+	padding:6px 6px 6px 12px;
+	float: left;
+	color:#ffffff;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalIcon
+{
+	border-style:none;
+	border-width:0px;
+	padding-right:6px;
+	clear: none;
+	text-align:left;
+	vertical-align:middle;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalRootLink
+{
+    /* color:#333333; */
+	font-size:12px;
+	font-family: Verdana,Arial,Lucida Grande,Lucida Sans Unicode,Lucida,Helvetica,Sans-serif;
+	display: block;
+	cursor:default;
+	color:#ffffff;
+	text-decoration:none;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalRootSelected
+{
+	background-color:Black;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_roothover.png);
+	border:solid 1px #000000;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalRootActive
+{
+	background-color:Black;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_roothover.png);
+	border:solid 1px #000000;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalRootHover
+{
+	background-color:Black;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_roothover.png);
+	border:solid 1px Transparent;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalRootDisabled
+{
+	float: left;
+}
+
+
+/********************************** END ROOT ELEMENTS *********************************************/
+/****************************** MenuGroup (UL) ELEMENTS (SubMenu) *********************************/
+/* UL (List) */
+.igdm_RubberBlackMenuGroupHorizontal
+{
+	background-color:#FEFEFE;
+	border:solid 1px #4D4D4D;
+	margin:0px;
+	padding-top:0px;
+	padding-left:0px;
+	list-style-type: none;
+	cursor:default;
+	color:Black;
+}
+
+
+/**************************** END Menu Group Elemnts ********************************************/
+/************ MenuItem elements (single menu item - LI (base element) has > a > span) ***********/
+/* List Item (Li) */
+.igdm_RubberBlackMenuItemHorizontal
+{
+	background-attachment:scroll;
+	background-color: Transparent none repeat scroll 0 0;
+	background-repeat:repeat;
+	background-position:notset notset ;
+	font-weight:normal;
+	border:solid 1px Transparent;
+	margin:0px;
+	padding:5px 30px 5px 5px;
+	color:#000333;
+}
+
+
+/* SPAN inside anchor */
+.igdm_RubberBlackMenuItemHorizontalLink
+{
+	font-size:12px;
+	font-family: Verdana,Arial,Lucida Grande,Lucida Sans Unicode,Lucida,Helvetica,Sans-serif;
+	display: block;
+	cursor:default;
+	color:Black;
+	text-decoration:none;
+}
+
+
+/* List Item (Li) that is a parent of a menu which will appear on the bottom */
+.igdm_RubberBlackMenuItemHorizontalParent
+{
+	font-weight:normal;
+	margin:0px;
+}
+
+
+/* SPAN inside anchor */
+.igdm_RubberBlackMenuItemHorizontalParentLink
+{
+	font-size:12px;
+	font-family: Verdana,Arial,Lucida Grande,Lucida Sans Unicode,Lucida,Helvetica,Sans-serif;
+	display: block;
+	cursor:default;
+	color:#000FFF;
+	text-decoration:none;
+}
+
+
+/* List Item (Li) */
+.igdm_RubberBlackMenuItemHorizontalSelected
+{
+	background-color:#F9F9F9;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_itemhover.png);
+	font-weight:normal;
+	border:solid 1px #666666;
+	margin:0px;
+	color:White;
+}
+
+
+/* List Item (Li) */
+.igdm_RubberBlackMenuItemHorizontalActive
+{
+	background-color:#F9F9F9;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_itemhover.png);
+	font-weight:normal;
+	border:solid 1px #666666;
+	margin:0px;
+	color:White;
+}
+
+
+/* List Item (Li) */
+.igdm_RubberBlackMenuItemHorizontalHover
+{
+	background-color:#F9F9F9;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdm_itemhover.png);
+	font-weight:normal;
+	border:solid 1px Transparent;
+	margin:0px;
+	color:White;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalDisabled
+{
+}
+
+
+/* List Item (LI) no inner content */
+.igdm_RubberBlackMenuItemHorizontalSeparator
+{
+	background-color:#BBBBBB;
+	border-style:none;
+	border-width:0px;
+	margin-top:0px;
+	padding:0px;
+	display: block;
+	width: 1px !important;
+	width: 1px;
+	height: 100%;
+	margin: 0px auto;
+}
+
+
+/* Scrolling container - DIV */
+.igdm_RubberBlackMenuScrollContainerHorizontal
+{
+}
+
+
+/* Left scrolling element for root level items Horizontal orientation - DIV */
+.igdm_RubberBlackMenuScrollerRootLeft
+{
+}
+
+
+/* Right scrolling element for root level items Horizontal orientation - DIV */
+.igdm_RubberBlackMenuScrollerRootRight
+{
+}
+
+
+/* Left scrolling element for non-root level items Horizontal orientation - DIV */
+.igdm_RubberBlackMenuScrollerLeft
+{
+}
+
+
+/* Right scrolling element for non-root level items Horizontal orientation - DIV */
+.igdm_RubberBlackMenuScrollerRight
+{
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalSelected.igdm_RubberBlackMenuItemHorizontalParent
+{
+	background-color:#F9F9F9;
+	background-repeat:repeat-x;
+	background-position:center right center right ;
+	background-image: url(images/igdm_itemhoverparent.png);
+	border:solid 1px #666666;
+}
+
+
+/* List Item (Li) */
+.igdm_RubberBlackMenuItemHorizontalDisabled > a
+{
+	color:#DDDDDD;
+}
+
+
+/* List Item (Li) */
+.igdm_RubberBlackMenuItemVerticalDisabled > a
+{
+	color:#DDDDDD;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalRootActive > a
+{
+	color:White;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalHover.igdm_RubberBlackMenuItemHorizontalParent
+{
+	background-color:#F9F9F9;
+	background-repeat:repeat-x;
+	background-position:center right center top ;
+	background-image: url(images/igdm_itemhoverparent.png);
+	border:solid 1px Transparent;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalRootHover > a
+{
+	color:White;
+}
+
+
+.igdm_RubberBlackMenuItemVertical.igdm_RubberBlackMenuItemVerticalParent
+{
+	background-repeat:no-repeat;
+	background-position:center right ;
+	background-image: url(images/igwdm_submenuindicator.gif);
+}
+
+
+.igdm_RubberBlackMenuItemVerticalRootDisabled > a
+{
+	color:#BBBBBB;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontal.igdm_RubberBlackMenuItemHorizontalParent
+{
+	background-repeat:no-repeat;
+	background-position:center right ;
+	border:solid 1px Transparent;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalRootActive > a
+{
+	color:White;
+}
+
+
+.igdm_RubberBlackMenuItemVerticalRootSelected > a
+{
+	color:White;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalActive.igdm_RubberBlackMenuItemHorizontalParent
+{
+	background-color:#F9F9F9;
+	background-repeat:repeat-x;
+	background-position:center right center right ;
+	background-image: url(images/igdm_itemhoverparent.png);
+	border:solid 1px #666666;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalRootSelected > a
+{
+	color:White;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalRootHover > a
+{
+	color:#52D017;
+}
+
+
+.igdm_RubberBlackMenuItemHorizontalRootDisabled > a
+{
+	color:#BBBBBB;
+}
+
+

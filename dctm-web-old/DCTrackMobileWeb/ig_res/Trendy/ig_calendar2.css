@@ -1,0 +1,191 @@
+.igmc_TrendyControl
+{
+	background-color: #eee;
+	border:1px solid #CCCCCC;
+	height: 20px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.igmc_TrendyDOW
+{
+	background-color: #f1f1f1;
+	background-repeat:repeat-x;
+	background-position:top;
+	background-image: url(images/igmc_dowbg.gif);
+	font-size:xx-small;
+	border-width:0px;
+	border-bottom:solid 1px #CCCCCC;
+	padding: 3px 5px;
+	text-align:center;
+	font-weight: bold;
+}
+
+.igmc_TrendyNextPrev
+{
+	margin: 0px;
+	padding: 0px;
+	font-size:xx-small;
+	color: #FFFFFF;
+	padding: 0px 5px;
+}
+
+.igmc_TrendyHoverNextPrev
+{
+	cursor: pointer;
+	color: #0099ff;
+}
+
+.igmc_TrendyPressedNextPrev
+{
+}
+
+.igmc_TrendyFooter
+{
+	background-color: #F1F1F1;
+	background-image: url(images/igmc_footerbg.gif);
+	background-repeat:repeat-x;
+	border-top: 1px solid #CCCCCC;
+	padding:2px;
+	font-size:xx-small;
+	text-align:center;
+	height:20px;
+}
+
+.igmc_TrendyHoverFooter
+{
+	background-color: #FFFFFF;
+	background-image: url(images/igmc_footerbghover.gif);
+	background-repeat:repeat-x;
+	cursor: pointer;
+	color: #0099FF;
+}
+
+.igmc_TrendyPressedFooter
+{
+	background-color: #FFFFFF;
+	background-image: url(images/igmc_footerbgpressed.gif);
+	background-repeat:repeat-x;
+}
+
+.igmc_TrendyHeader
+{
+	background-color: #24a244;
+	background-repeat:repeat-x;
+	background-position:top;
+	background-image: url(images/igmc_headerbg.png);
+	font-size:10px;
+	height: 20px;
+	border-bottom: 1px solid #6691B8;
+}
+
+.igmc_TrendyMonthYear
+{
+	font-size:10px;
+	font-weight:bold;
+	padding:2px;
+	color: #FFFFFF;
+}
+
+.igmc_TrendyPressedMonthYear
+{
+	color: #0099FF;
+}
+
+.igmc_TrendyHoverMonthYear
+{
+	cursor: pointer;
+	color: #0099FF;
+	
+}
+
+.igmc_TrendyDay
+{
+	background-color:#FFFFFF;
+	font-size:xx-small;
+	text-align:center;
+	padding: 5px;
+}
+
+.igmc_TrendyWeekNumber
+{
+	border-right: 1px solid #DDDDDD;
+	background-color: #F5F5F5;
+	font-weight: bold;
+}
+
+.igmc_TrendyWeekendDay
+{
+	background-color:#FAFAFA;
+}
+
+.igmc_TrendyOtherMonthDay
+{
+	color:#AAAAAA;
+	background-image: none;
+}
+
+.igmc_TrendyTodayDay
+{
+	background-color: #33CCFF;
+	color: #FFFFFF;
+}
+
+.igmc_TrendySelectedDay
+{
+	background-color: #24a244;
+	font-weight:bold;
+	color: #FFFFFF;
+}
+
+.igmc_TrendyFocusDay
+{
+	background-color: #91ca34;
+	color:#FFFFFF;
+}
+
+.igmc_TrendyHoverDay
+{
+	background-color: #0099FF;
+	background-image: url(images/igmc_dayselected.gif);
+	background-repeat: repeat-x;
+	color:#FFFFFF;
+	font-weight: bold;
+}
+
+
+
+.igmc_TrendyDisabledDay
+{
+	color:#FFFFFF;
+}
+
+/* CSS classes for Month and Year selection Popup in header */
+.igmc_TrendyList
+{
+	background:#FFFFFF;
+	border:1px solid #666666;
+}
+
+.igmc_TrendyItem
+{
+	font-size:8pt;
+	background:#F7F7F7;
+	padding: 2px;
+	text-align: center;
+}
+
+.igmc_TrendySelectedItem
+{
+	background-color: #91ca34;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.igmc_TrendyHoverItem
+{
+	background-color: #0099FF;
+	background-image: url(images/igmc_dayselected.gif);
+	background-repeat: repeat-x;
+	COLOR: #FFFFFF;
+}

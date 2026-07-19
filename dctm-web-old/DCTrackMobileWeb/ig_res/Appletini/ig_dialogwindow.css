@@ -1,0 +1,185 @@
+.igdw_AppletiniControl
+{
+	background-color:Transparent;
+	min-height: 70px;
+}
+
+
+.igdw_AppletiniHeaderArea
+{
+	font-weight:bold;
+	border-width:0px;
+	height: 41px;
+	cursor:default;
+	color:White;
+}
+
+
+.igdw_AppletiniBodyContent
+{
+	background-color:White;
+	border:solid 0px #999999;
+}
+
+
+.igdw_AppletiniHeaderButton
+{
+	margin:4px 3px 3px 3px;
+	cursor:pointer;
+}
+
+
+.igdw_AppletiniHeaderCaption
+{
+	font-size:12px;
+	font-family: arial;
+	/* position: relative; */
+	bottom: 3px;
+	color:#0F0F0F;
+}
+
+
+.igdw_AppletiniHeaderButtonArea
+{
+	padding-top:10px;
+	vertical-align:top;
+}
+
+
+.igdw_AppletiniHeaderImage
+{
+	background-image: url(images/igdw_top.gif);
+	cursor:default;
+}
+
+
+.igdw_AppletiniModalBackground
+{
+	background-color:White;
+	filter: alpha(opacity : 50);
+	opacity: 0.5;
+	z-index: 99999;
+}
+
+
+.igdw_AppletiniResizingHandle
+{
+	margin-top:1px;
+	padding-top:1px;
+	width: 13px;
+	height: 13px;
+	cursor:se-resize;
+}
+
+
+/* used only when header visible */
+.igdw_AppletiniHeaderCornerLeft
+{
+	background-repeat:no-repeat;
+	background-position:top left ;
+	background-image: url(images/igdw_TopLeft.gif);
+	width: 6px;
+	height: 37px;
+}
+
+
+/* used only when header visible */
+.igdw_AppletiniHeaderContent
+{
+	background-image: url(images/igdw_top.gif);
+}
+
+
+/* used only when header visible */
+.igdw_AppletiniHeaderCornerRight
+{
+	background-repeat:no-repeat;
+	background-position:top left ;
+	background-image: url(images/igdw_TopRight.gif);
+	width: 6px;
+	height: 37px;
+}
+
+
+/* used only when header hidden */
+.igdw_AppletiniBodyCornerTopLeft
+{
+	background-repeat:no-repeat;
+	background-position:top left ;
+	background-image: url(images/igdw_TopLeftHidden.gif);
+	width: 6px;
+	height: 16px;
+}
+
+
+/* used only when header hidden */
+.igdw_AppletiniBodyEdgeTop
+{
+	background-image: url(images/igdw_topHidden.gif);
+}
+
+
+/* used only when header hidden */
+.igdw_AppletiniBodyCornerTopRight
+{
+	background-repeat:no-repeat;
+	background-position:top left ;
+	background-image: url(images/igdw_TopRightHidden.gif);
+	width: 6px;
+	height: 16px;
+}
+
+
+.igdw_AppletiniBodyEdgeLeft
+{
+	background-color:#CEDBBC;
+	background-image: url(images/igdw_EdgeLeft.gif);
+	width: 6px;
+}
+
+
+.igdw_AppletiniBodyEdgeRight
+{
+	background-color:#CEDBBC;
+	background-image: url(images/igdw_EdgeRight.gif);
+	width: 6px;
+}
+
+
+.igdw_AppletiniBodyCornerBottomLeft
+{
+	background-color:Transparent;
+	background-repeat:no-repeat;
+	background-image: url(images/igdw_BottomLeft.gif);
+	font-size:1px;
+	height: 11px;
+	width: 6px;
+}
+
+
+.igdw_AppletiniBodyContentArea
+{
+	vertical-align:top;
+}
+
+
+.igdw_AppletiniBodyCornerBottomRight
+{
+	background-color:Transparent;
+	background-repeat:no-repeat;
+	background-image: url(images/igdw_BottomRight.gif);
+	background-position:right top;
+	font-size:1px;
+	height: 11px;
+	width: 6px;
+}
+
+
+.igdw_AppletiniBodyEdgeBottom
+{
+	background-repeat:repeat-x;
+	background-image: url(images/igdw_Bottom.gif);
+	height: 11px;
+}
+
+

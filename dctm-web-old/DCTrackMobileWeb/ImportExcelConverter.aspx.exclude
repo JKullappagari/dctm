@@ -1,0 +1,406 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ImportExcelConverter.aspx.cs"
+    Inherits="ImportExcelConverter" MasterPageFile="~/iAssetTrackMasterPage.master"
+    Theme="SkinFile" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register Assembly="Infragistics45.WebUI.WebDataInput.v16.1, Version=16.1.20161.2044, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="Master_ContentPlaceHolder" runat="Server">
+    <%--<head id="Head1" runat="server">
+    <title></title>--%>
+    <script type="text/javascript">
+        function StartUpload(sender, args) {
+            var lStatus = document.getElementById('<%=lblStatus.ClientID %>');
+            lStatus.innerHTML = '';
+
+            // removes the message from lblFileUploadStatus
+            var lFileStatus = document.getElementById('<%=lblFileUploadStatus.ClientID %>');
+
+            var filename = args.get_fileName();
+            if (filename != "") {
+                // code to get File Extension..
+                var arr1 = new Array;
+                arr1 = filename.split("\\");
+                var len = arr1.length;
+                var img1 = arr1[len - 1];
+                var filext = img1.substring(img1.lastIndexOf(".") + 1);
+                // alert(filext);
+                // Checking Extension
+
+                if (filext.toLowerCase() == "xls" || filext.toLowerCase() == "xlsx") {
+                    //enable upload button
+                    var btnUpdate = ig_getWebControlById('<%=ibUpload.ClientID %>');
+                    btnUpdate.setEnabled(true);
+                    return true;
+                }
+                else {
+
+                    //upload cancel
+                    err = new Error();
+                    err.name = 'Input Error';
+                    err.message = 'Only .xls, .xlsx files';
+                    throw err;
+                    return false;
+
+                }
+            }
+        }
+
+        function UploadError(sender, args) {
+            try {
+                var lStatus = document.getElementById('<%=lblStatus.ClientID %>');
+                lStatus.innerHTML = 'Invalid File Format Selected. Please upload an excel file(*.xls/*.xlsx)';
+                var btnUpload = ig_getWebControlById('<%=ibUpload.ClientID %>');
+                btnUpload.setEnabled(false);
+
+            }
+            catch (err) {
+
+            }
+
+        }
+        
+    </script>
+    <table align="left">
+        <tr>
+            <td class="labelTD" style="width: 177px; height: 30px; text-align: left;">
+                <asp:Label ID="lblUpload" runat="server" Text="File Selection" CssClass="FieldName"></asp:Label>
+            </td>
+            &nbsp;
+            <td class="ControlTD" valign="top" style="width: 350px;">
+                <ajaxToolkit:AsyncFileUpload ID="ajaxFUExcel" Width="400px" runat="server" CompleteBackColor="Lime"
+                    UploaderStyle="Modern" OnClientUploadError="UploadError" ErrorBackColor="Red"
+                    UploadingBackColor="#66CCFF" OnClientUploadStarted="StartUpload" ThrobberID="Throbber" />
+            </td>
+            <td>
+                <asp:Label ID="Throbber" runat="server" Style="display: none">
+                                                    <img src="Images/ajax-loader.gif" align="absmiddle" alt="loading" />
+                </asp:Label>
+            </td>
+            <td>
+                <igtxt:WebImageButton ID="ibUpload" runat="server" Text="Upload" UseBrowserDefaults="False"
+                    OnClick="ibUpload_Click" SkinID="uwButton" ImageDirectory="">
+                </igtxt:WebImageButton>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <%--<igtxt:WebImageButton ID="ibUpload" runat="server" Text="Upload" UseBrowserDefaults="False" OnClick="ibUpload_Click"
+                                            
+                                            SkinID="uwButton" ImageDirectory="">
+                                        </igtxt:WebImageButton>--%>
+    <%--<asp:Button ID="ibUpload1" runat="server" Text="upload Excel" onclick="Button1_Click" CausesValidation="false" Visible="false"/>--%>
+    <%-- <br />--%>
+    <asp:Label ID="lblStatus" runat="server" CssClass="FieldName" Width="600px" Height="16px"
+        ForeColor="Red" Font-Size="X-Small" Font-Bold="true"></asp:Label>
+    <asp:Label ID="lblFileUploadStatus" runat="server" CssClass="FieldName" Width="257px"></asp:Label>
+    <br />
+    <table align="left">
+        <tr>
+            <td class="labelTD" style="width: 43px; height: 22px; text-align: left;">
+                <asp:Label ID="lblSheetName" runat="server" CssClass="FieldName" Width="118px" Text="Select SheetName"
+                    Height="16px"></asp:Label>
+            </td>
+            <td class="labelTD" style="width: 142px; height: 22px; text-align: left;">
+                <asp:DropDownList ID="ddlSheetName" runat="server" Height="19px" Width="142px" AutoPostBack="true"
+                    CssClass="dropdownText" OnSelectedIndexChanged="ddlSheetName_SelectedIndexChanged">
+                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                </asp:DropDownList>
+            </td>
+            <td class="ControlTD" style="height: 22px" valign="top">
+            </td>
+            <td class="ControlTD" style="height: 22px; width: 505px;" valign="top">
+                <asp:Label ID="lblMandatory" runat="server" ForeColor="Red" Font-Bold="true"></asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="height: 21px">
+            </td>
+            <td style="height: 21px">
+            </td>
+            <%--<td class="ControlTD" style="height: 30px; width: 150px;" valign="top">
+            <asp:Label ID="lblMessage" runat="server" ForeColor="Red" Font-Bold="true" Text="test"></asp:Label>
+            </td>--%>
+            <td class="ControlTD" style="height: 21px; width: 505px;" valign="top">
+                <asp:Label ID="lblMessage" runat="server" ForeColor="Red" Font-Bold="true"></asp:Label>
+            </td>
+        </tr>
+        <%--    </table>--%>
+        <%--    <br />
+                                                 <br />
+                                                  <br />--%>
+        <tr>
+            <td colspan="2">
+                <%--<table style="height: 100%; width: 98%;" cellspacing="0" cellpadding="0" border="0" align="left">--%>
+                <asp:Panel ID="Panel1" runat="server" GroupingText="Excel Converter" Font-Bold="True"
+                    Width="370px" Enabled="false" HorizontalAlign="Left" Font-Size="9" ForeColor="Black">
+                    <table id="Table1" border="0" cellpadding="1" cellspacing="1" width="30% " align="left">
+                        <tr>
+                            <td class="labelTD" style="width: 142px; height: 30px; text-align: left;">
+                                <asp:Label ID="lblSourceColumns" runat="server" CssClass="FieldName" Width="142px"
+                                    Text="Source Columns"></asp:Label>
+                            </td>
+                            <td class="labelTD" style="width: 142px; height: 30px; text-align: left;">
+                                <asp:Label ID="lblTemplateColumns" runat="server" CssClass="FieldName" Width="142px"
+                                    Text="Template Columns"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol1" runat="server" Height="19px" Width="142px" AutoPostBack="true"
+                                    CausesValidation="false" CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol1_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">--Select--</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol1" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol1_SelectedIndexChanged"
+                                    CssClass="dropdownText" CausesValidation="false">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol2" runat="server" Height="19px" Width="142px" AutoPostBack="True"
+                                    CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol2_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol2" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol2_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                    <%--   <asp:ListItem Value="0" >-Select-</asp:ListItem>--%>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol3" runat="server" Height="19px" Width="142px" AutoPostBack="True"
+                                    CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol3_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol3" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol3_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol4" runat="server" Height="19px" Width="142px" AutoPostBack="True"
+                                    CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol4_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol4" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol4_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol5" runat="server" Height="19px" Width="142px" AutoPostBack="True"
+                                    CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol5_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol5" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol5_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol6" runat="server" Height="19px" Width="142px" AutoPostBack="True"
+                                    CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol6_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol6" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol6_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol7" runat="server" Height="19px" Width="142px" AutoPostBack="True"
+                                    CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol7_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol7" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol7_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol8" runat="server" Height="19px" Width="142px" AutoPostBack="True"
+                                    CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol8_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol8" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol8_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol9" runat="server" Height="19px" Width="142px" AutoPostBack="True"
+                                    CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol9_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol9" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol9_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol10" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="True" CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol10_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol10" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol10_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                    <%--  <asp:ListItem Value="0" >-Select-</asp:ListItem>--%>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol11" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="True" CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol11_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol11" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol11_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                    <%--  <asp:ListItem Value="0" >-Select-</asp:ListItem>--%>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol12" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="True" CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol12_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol12" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol12_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                    <%--   <asp:ListItem Value="0" >-Select-</asp:ListItem>--%>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol13" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="True" CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol13_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol13" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol13_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                    <%--   <asp:ListItem Value="0" >-Select-</asp:ListItem>--%>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol14" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="True" CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol14_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol14" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol14_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                    <%--   <asp:ListItem Value="0" >-Select-</asp:ListItem>--%>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+
+                         <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol15" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="True" CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol15_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol15" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol15_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                    <%--   <asp:ListItem Value="0" >-Select-</asp:ListItem>--%>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol16" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="True" CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol16_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol16" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol16_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                    <%--   <asp:ListItem Value="0" >-Select-</asp:ListItem>--%>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                         <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlSourceCol17" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="True" CssClass="dropdownText" OnSelectedIndexChanged="ddlSourceCol17_SelectedIndexChanged">
+                                    <asp:ListItem Value="0">-Select-</asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:DropDownList ID="ddlTemplateCol17" runat="server" Height="19px" Width="142px"
+                                    AutoPostBack="true" OnSelectedIndexChanged="ddlTemplateCol17_SelectedIndexChanged"
+                                    CssClass="dropdownText">
+                                    <%--   <asp:ListItem Value="0" >-Select-</asp:ListItem>--%>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ControlTD" style="height: 30px" valign="top">
+                                <asp:Button ID="btnImportAssetSheet" runat="server" Text="Convert Excel Sheet" OnClick="btnImportAssetSheet_Click" />
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+            </td>
+        </tr>
+    </table>
+</asp:Content>

@@ -1,0 +1,1143 @@
+﻿/*
+File Name   :	ImportAppAssetMap.aspx
+
+Description :	Used to Import the asset-application mappings
+
+Date created:	03 Nov 2014
+
+Modification History:
+***********************
+
+*/
+
+using System;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.IO;
+using System.Data.OleDb;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Linq;
+using System.Xml;
+using System.Reflection;
+using iAssetTrack.BAL;
+using iAssetTrack.DALC;
+using System.Data.SqlClient;
+using iAssetTrackBAL;
+using System.Drawing;
+using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
+using Infragistics.Web.UI.EditorControls;
+using System.Web.Services;
+using System.Web.Hosting;
+using System.Text.RegularExpressions;
+
+public partial class ImportAppAssetMap : System.Web.UI.Page
+{
+    #region "Declarations"
+    private iAssetTrack.BAL.BusinessUnitBAL objBU;
+    private iAssetTrack.BAL.AssetBAL objAsset;
+    DataTable _dtRights;
+    private iAssetTrack_WebDataGrid_Paging_CustomerPagerControl pagerControl;
+
+    #endregion
+
+    #region " Page Event Methods "
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+        grdAsset.ItemCommand += new Infragistics.Web.UI.GridControls.ItemCommandEventHandler(grdAsset_ItemCommand);
+        pagerControl = grdAsset.Behaviors.Paging.PagerTemplateContainerTop.FindControl("CustomerPager") as iAssetTrack_WebDataGrid_Paging_CustomerPagerControl;
+        pagerControl.PageChanged += new EventHandler<PageChangedEventArgs>(currentPageControl_PageChanged);
+    }
+    void currentPageControl_PageChanged(object sender, PageChangedEventArgs e)
+    {
+        this.grdAsset.Behaviors.Paging.PageIndex = e.PageNumber;
+        populateGrid();
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        Session["PageHeader"] = "Import Asset-Application Map";
+        Session["PageUser"] = System.Configuration.ConfigurationManager.AppSettings["LoginUser"];
+        Session["PageTime"] = System.Configuration.ConfigurationManager.AppSettings["LoginTime"];
+
+        lblMessage.Visible = false;
+
+        _dtRights = (DataTable)(Session["Rights"]);
+
+        if (_dtRights == null)
+        {
+            Session["RedirectUrl"] = "ImportAppAssetMap.aspx";
+            Response.Redirect("Login.aspx");
+        }
+
+        bool blfoundPage = false;
+
+        if (_dtRights.Select("Module = 'Import Asset-App Map' and Rights = '" + "View" + "'").Length != 0)
+        {
+            blfoundPage = true;
+        }
+
+        if (blfoundPage == false)
+        {
+            Response.Redirect("AccessDeniedPage.aspx");
+            return;
+        }
+
+        if (_dtRights.Select("Module = 'Import Asset-App Map' and Rights = '" + "Create" + "'").Length != 0)
+        {
+            ibCreate.Enabled = true;
+        }
+        else
+        {
+            ibCreate.Enabled = false;
+        }
+
+        if (_dtRights.Select("Module = 'Import Asset-App Map' and Rights = '" + "Delete" + "'").Length != 0)
+        {
+            //ibDelete.Visible = true;
+        }
+        else
+        {
+            //ibDelete.Visible = false;
+        }
+
+        this.grdAsset.Behaviors.Paging.PageSize = Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["PageSize"].ToString());
+
+
+
+        if (!IsPostBack)
+        {
+            Session["WebUploadFilePathAssetApp"] = null;
+            populateBU();
+            BindDummyRow();
+            ibExportToExcel.Visible = false;
+            Session["FileIDAssetApp"] = null;
+            Session["tempFileIDAssetApp"] = null;
+        }
+        else
+        {
+            populateGrid();
+        }
+    }
+
+    protected void Page_LoadComplete(object sender, EventArgs e)
+    {
+
+    }
+
+    #endregion
+
+    # region for WebMethod to show file stats using Ajax
+
+    private void BindDummyRow()
+    {
+        DataTable dummy = new DataTable();
+        dummy.Columns.Add("ID");
+        dummy.Columns.Add("Name");
+        dummy.Columns.Add("Value");
+        dummy.Rows.Add();
+        grdFileStats.DataSource = dummy;
+        grdFileStats.DataBind();
+    }
+
+
+    [WebMethod(EnableSession = true)]
+    public static string ShowFileStats(string FileName)
+    {
+        DataTable dtData = new DataTable();
+        DataSet dsData = new DataSet();
+
+        string savePath = HostingEnvironment.MapPath(ConfigurationManager.AppSettings["fileUploadPath"].ToString() + "/");
+        if (!Directory.Exists(savePath))
+            Directory.CreateDirectory(savePath);
+        string fileID = Guid.NewGuid().ToString();
+        if (HttpContext.Current.Session["FileIDAssetApp"] == null)
+            HttpContext.Current.Session["FileIDAssetApp"] = fileID;
+        String timeStamp = (DateTime.Now).ToString("yyyyMMddHHmmssfff");
+        string name = FileName.Substring(0, FileName.LastIndexOf("."));
+        string extn = FileName.Substring(FileName.LastIndexOf(".") + 1);
+        string assetFileName = name + "_" + timeStamp + "." + extn;
+
+        string pathToCheck = savePath + assetFileName;
+        // Create a temporary file name to use for checking duplicates.
+        if (File.Exists(HttpContext.Current.Session["WebUploadFilePathAssetApp"].ToString() + FileName))
+        {
+            File.Copy(HttpContext.Current.Session["WebUploadFilePathAssetApp"].ToString() + FileName, savePath + assetFileName, true);
+            File.Delete(HttpContext.Current.Session["WebUploadFilePathAssetApp"].ToString() + FileName);
+        }
+
+        try
+        {
+            dtData = importExcelData(savePath + assetFileName);
+            if (dtData != null && dtData.Rows.Count > 0)
+            {
+                dsData.Tables.Add(dtData);
+                if (HttpContext.Current.Session["ImportFilePathAssetApp"] == null)
+                    HttpContext.Current.Session["ImportFilePathAssetApp"] = savePath + assetFileName;
+                else
+                {
+                    HttpContext.Current.Session["ImportFilePathAssetApp"] = HttpContext.Current.Session["ImportFilePathAssetApp"].ToString() + "," + savePath + assetFileName;
+                }
+                return dsData.GetXml();
+            }
+            else
+            {
+                string msg = "AssetAppDetails sheet not exists in " + FileName + " file.";
+                HttpContext.Current.Response.StatusCode = 501;
+                HttpContext.Current.Response.StatusDescription = msg;
+                return msg;
+            }
+        }
+        catch (Exception ex)
+        {
+            string msg = ex.Message + " error in " + FileName + " file.";
+            HttpContext.Current.Response.StatusCode = 501;
+            HttpContext.Current.Response.StatusDescription = msg;
+            return msg;
+        }
+    }
+
+    private static DataTable importExcelData(string filePath)
+    {
+        int assetCount;
+        int manufacturerCount;
+        int modelCount;
+        DataSet dsExcel = new DataSet();
+        DataTable dtExcel = new DataTable();
+        DataTable dtSite = new DataTable();
+        DataTable dtRoom = new DataTable();
+        DataTable dtRow = new DataTable();
+        DataTable dtRack = new DataTable();
+        DataTable dtAssetType = new DataTable();
+        DataTable dtManufacturer = new DataTable();
+        DataTable dtModel = new DataTable();
+        DataTable dtFileStats = new DataTable();
+        DataColumn col1 = new DataColumn("ID");
+        DataColumn col2 = new DataColumn("Name");
+        DataColumn col3 = new DataColumn("Value");
+        dtFileStats.Columns.AddRange(new DataColumn[] { col1, col2, col3 });
+        iAssetTrack.BAL.CommonBAL objCommon = new iAssetTrack.BAL.CommonBAL();
+        dsExcel = ImportExcel(filePath);
+        if (dsExcel.Tables.Count > 0)
+        {
+            // add two extra columns to this table to specify Status, reason
+            DataColumn dcStatus = new DataColumn("Status", typeof(string));
+            DataColumn dcreason = new DataColumn("Reason", typeof(string));
+            DataColumn dcID = new DataColumn("ID", typeof(int));
+            dsExcel.Tables[0].Columns.Add(dcID);
+            dsExcel.Tables[0].Columns.Add(dcStatus);
+            dsExcel.Tables[0].Columns.Add(dcreason);
+            // put empty spaces or 0 for null data, in order to make them serailze
+            int id = 0;
+            id = 1;
+            foreach (DataRow dr in dsExcel.Tables[0].Rows)
+            {
+
+                for (int colIdx = 0; colIdx < dsExcel.Tables[0].Columns.Count; colIdx++)
+                {
+                    //Application
+                    if (dsExcel.Tables[0].Columns[colIdx].ColumnName.ToLower() == "application")
+                    {
+                        if (!string.IsNullOrEmpty(dr[colIdx].ToString().Trim()))
+                        {
+                            dr[colIdx] = dr[colIdx].ToString().Trim();
+                        }
+                    }
+                    //Serial number
+                    if (dsExcel.Tables[0].Columns[colIdx].ColumnName.ToLower() == "serialnumber")
+                    {
+                        if (!string.IsNullOrEmpty(dr[colIdx].ToString().Trim()))
+                        {
+                            dr[colIdx] = dr[colIdx].ToString().Trim().ToUpper();
+                        }
+                    }
+                    //host name
+                    if (dsExcel.Tables[0].Columns[colIdx].ColumnName.ToLower() == "hostname")
+                    {
+                        if (!string.IsNullOrEmpty(dr[colIdx].ToString().Trim()))
+                        {
+                            dr[colIdx] = dr[colIdx].ToString().Trim();
+                        }
+                    }
+                    if (dsExcel.Tables[0].Columns[colIdx].ColumnName != "ID" &&
+                         string.IsNullOrEmpty(dr[colIdx].ToString()))
+                    {
+                        dr[colIdx] = " ";
+                    }
+                }
+                dr["ID"] = id++;
+            }
+            dsExcel.AcceptChanges();
+            //Serialize Asset Excel dataset to xml
+            String strFile;
+            try
+            {
+                if (HttpContext.Current.Session["FileIDAssetApp"] != null)
+                {
+                    strFile = HostingEnvironment.MapPath(ConfigurationManager.AppSettings["fileUploadPath"].ToString() + "/") + HttpContext.Current.Session["FileIDAssetApp"].ToString() + ".xml";
+                    if (File.Exists(strFile) && new FileInfo(strFile).Length > 0)
+                    {
+                        //already file exists with data
+                        // Read the content of the file into a DataSet
+                        XmlTextReader xtr = new XmlTextReader(strFile);
+                        DataSet dsPrevExcelData = new DataSet();
+                        dsPrevExcelData.ReadXml(xtr);
+                        xtr.Close();
+                        if (dsPrevExcelData.Tables.Count > 0 && dsPrevExcelData.Tables[0].Rows.Count > 0)
+                        {
+                            // now merge Data
+                            //Merge Base table
+                            int curRowsCount = dsExcel.Tables[0].Rows.Count + 1;
+                            foreach (DataRow dr in dsPrevExcelData.Tables[0].Rows)
+                            {
+                                DataRow newRow = dsExcel.Tables[0].NewRow();
+                                newRow["SerialNumber"] = dr["SerialNumber"].ToString();
+                                newRow["HostName"] = dr["HostName"].ToString();
+                                newRow["Application"] = dr["Application"].ToString();
+                                newRow["ID"] = curRowsCount++;
+                                newRow["Status"] = "";
+                                newRow["Reason"] = "";
+
+                                dsExcel.Tables[0].Rows.Add(newRow);
+                            }
+                            dsExcel.AcceptChanges();
+                            XmlTextWriter xtw = new XmlTextWriter(strFile, null);
+                            dsExcel.WriteXml(xtw);
+                            xtw.Close();
+                        }
+                    }
+                    else
+                    {
+                        // first time 
+                        XmlTextWriter xtw = new XmlTextWriter(strFile, null);
+                        dsExcel.WriteXml(xtw);
+                        xtw.Close();
+                    }
+                }
+                dsExcel.AcceptChanges();
+                SerializeExcelDataSetToXml(dsExcel);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                //lblFileUploadStatus.Text = ex.Message;
+                //lblFileUploadStatus.Visible = true;
+            }
+
+
+            dtExcel = dsExcel.Tables[0];
+            var recCount = 0;
+
+            //Physical Asset Count
+            dtManufacturer = new DataView(dtExcel).ToTable(true, new string[] { "SerialNumber" });
+            recCount = (from cr in dtManufacturer.AsEnumerable()
+                        group cr by new
+                        {
+                            SerialNumber = cr.Field<String>("SerialNumber").ToLower()
+                        }
+                            into grp
+                        select grp.First()).Count();
+            manufacturerCount = (int)recCount;
+
+            DataRow drFS5 = dtFileStats.NewRow();
+            drFS5["ID"] = "5";
+            drFS5["Name"] = "No of Physical Assets found";
+            drFS5["Value"] = manufacturerCount.ToString();
+            dtFileStats.Rows.Add(drFS5);
+
+            //Host Name Count
+            dtModel = new DataView(dtExcel).ToTable(true, new string[] { "HostName" });
+            recCount = (from cr in dtModel.AsEnumerable()
+                        where cr.Field<string>("HostName").Trim() != ""
+                        group cr by new
+                        {
+                            HostName = cr.Field<String>("HostName").ToLower()
+                        }
+                            into grp
+                        select grp.First()).Count();
+            modelCount = (int)recCount;
+
+            DataRow drFS6 = dtFileStats.NewRow();
+            drFS6["ID"] = "6";
+            drFS6["Name"] = "No of Host Names found";
+            drFS6["Value"] = modelCount.ToString();
+            dtFileStats.Rows.Add(drFS6);
+
+            //Total Mappings Count
+            assetCount = dtExcel.Rows.Count;
+
+            DataRow drFS8 = dtFileStats.NewRow();
+            drFS8["ID"] = "8";
+            drFS8["Name"] = "Total No of Asset-Application Mappings";
+            drFS8["Value"] = assetCount.ToString();
+            dtFileStats.Rows.Add(drFS8);
+            dtFileStats.AcceptChanges();
+
+            //ibCreate.Visible = true;
+            //ibCreate.Enabled = true;
+        }
+        return dtFileStats;
+    }
+
+    protected void ShowFileData()
+    {
+
+        int assetCount;
+        int manufacturerCount;
+        int modelCount;
+        DataSet dsExcelData = new DataSet();
+        DataTable dtExcel = new DataTable();
+        DataTable dtSite = new DataTable();
+        DataTable dtAsset = new DataTable();
+        DataTable dtBusinessUnit = new DataTable();
+        DataTable dtLocation = new DataTable();
+        DataTable dtRoom = new DataTable();
+        DataTable dtRow = new DataTable();
+        DataTable dtRack = new DataTable();
+        DataTable dtAssetType = new DataTable();
+        DataTable dtMfg = new DataTable();
+        DataTable dtAssetModel = new DataTable();
+        DataTable dtFileStats = new DataTable();
+        dtFileStats.Columns.Add("ID");
+        dtFileStats.Columns.Add("Name");
+        dtFileStats.Columns.Add("Value");
+        dtFileStats.AcceptChanges();
+        var recCount = 0;
+        dsExcelData = DeserializeDataSource();
+        dtExcel = dsExcelData.Tables[0];
+        //Physical Asset Count
+        dtMfg = new DataView(dtExcel).ToTable(true, new string[] { "SerialNumber" });
+        recCount = (from cr in dtMfg.AsEnumerable()
+                    where cr.Field<string>("SerialNumber").Trim() != ""
+                    select cr).Count();
+        manufacturerCount = (int)recCount;
+
+        DataRow drFS5 = dtFileStats.NewRow();
+        drFS5["ID"] = "5";
+        drFS5["Name"] = "No of Physical Assets found";
+        drFS5["Value"] = manufacturerCount.ToString();
+        dtFileStats.Rows.Add(drFS5);
+
+        //Host Name Count
+        dtAssetModel = new DataView(dtExcel).ToTable(true, new string[] { "HostName" });
+        recCount = (from cr in dtAssetModel.AsEnumerable()
+                    where cr.Field<string>("HostName").Trim() != ""
+                    select cr).Count();
+        modelCount = (int)recCount;
+
+        DataRow drFS6 = dtFileStats.NewRow();
+        drFS6["ID"] = "6";
+        drFS6["Name"] = "No of Host Names found";
+        drFS6["Value"] = modelCount.ToString();
+        dtFileStats.Rows.Add(drFS6);
+
+        //Total Mappings Count
+        assetCount = dtExcel.Rows.Count;
+
+        DataRow drFS8 = dtFileStats.NewRow();
+        drFS8["ID"] = "8";
+        drFS8["Name"] = "Total No of Asset-Application Mappings";
+        drFS8["Value"] = assetCount.ToString();
+        dtFileStats.Rows.Add(drFS8);
+        dtFileStats.AcceptChanges();
+
+        grdFileStats.DataSource = dtFileStats;
+        grdFileStats.DataBind();
+
+        FileStats.Visible = true;
+
+    }
+
+    public static DataSet ImportExcel(string FileName)
+    {
+        //string HDR = hasHeaders ? "Yes" : "No";
+        //string strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + FileName + ";Extended Properties=\"Excel 8.0;HDR=" + HDR + ";IMEX=1\"";
+        //string strConn = "Provider =Microsoft.ACE.OLEDB.12.0; Data Source =" + FileName + "; Extended Properties =\"Excel 12.0 Xml;HDR=YES;IMEX=1";
+        string strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + FileName + ";Extended Properties=\"Excel 12.0 Xml;IMEX=1;HDR=YES;\" ";
+        DataSet output = new DataSet();
+
+        using (OleDbConnection conn = new OleDbConnection(strConn))
+        {
+            conn.Open();
+
+            DataTable dt = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "TABLE" });
+
+            string sheet = string.Empty;
+            OleDbCommand cmd = null; ;
+            DataTable outputTable;
+
+            foreach (DataRow row in dt.Rows)
+            {
+                switch (row["TABLE_NAME"].ToString())
+                {
+                    case "AssetAppDetails$":
+                        sheet = "AssetAppDetails$";
+                        //if (sheet.Equals("AssetAppDetails$", StringComparison.InvariantCultureIgnoreCase))
+                        //{
+                        //OleDbCommand cmdDel = new OleDbCommand(" Delete from [" + sheet + "] " + 
+                        //    " where HostName IS  NULL AND SerialNumber IS  NULL AND Site IS  NULL AND Manufacturer IS  NULL " +
+                        //    " AND Model IS  NULL AND Equipmenttype IS  NULL AND Room IS  NULL AND Row IS  NULL " +
+                        //    " AND Rack IS  NULL AND StartPosition IS  NULL AND NoofRus IS  NULL AND [Rack/Stand] IS  NULL ",conn);
+                        //cmdDel.CommandType = CommandType.Text;
+                        //int count = cmdDel.ExecuteNonQuery();
+
+                        cmd = new OleDbCommand("SELECT * FROM [" + sheet + "] ", conn);
+                        cmd.CommandType = CommandType.Text;
+                        outputTable = new DataTable(sheet);
+                        output.Tables.Add(outputTable);
+                        new OleDbDataAdapter(cmd).Fill(outputTable);
+                        //delete blank rows
+                        output.Tables[0].BeginLoadData();
+                        (from cr in output.Tables[0].AsEnumerable()
+                         where cr.Field<string>("HostName") == null && cr.Field<string>("Application") == null &&
+                         cr.Field<string>("SerialNumber") == null
+                         select cr).ToList().ForEach(cr => cr.Delete());
+                        output.Tables[0].EndLoadData();
+                        output.Tables[0].AcceptChanges();
+                        break;
+
+                }
+            }
+        }
+        return output;
+    }
+
+    # endregion
+
+    # region Event-Handlers
+
+    protected void wuImportAsset_OnUploadFinished(object sender, UploadFinishedEventArgs e)
+    {
+        Session["WebUploadFilePathAssetApp"] = e.FolderPath;
+    }
+
+    protected void ibCreate_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        populateBU();
+        if (!string.IsNullOrEmpty(txtBU.Text.Trim()))
+        {
+            // Assets
+            insertAssetAppMap();
+            if (Session["FileIDAssetApp"] != null)
+                Session["tempFileIDAssetApp"] = Session["FileIDAssetApp"].ToString();
+            //populate grid
+            populateGrid();
+            ibCreate.Enabled = false;
+            FileStats.Visible = true;
+            FileStats.Style.Add("display", "block");
+            UploadStats.Style.Add("display", "block");
+            ShowFileData();
+            ResetAll();
+        }
+    }
+
+    private void ResetAll()
+    {
+        Session["WebUploadFilePathAssetApp"] = null;
+        ibExportToExcel.Visible = true;
+        Session["FileIDAssetApp"] = null;
+        uploadButton.Style.Add("display", "none");
+    }
+
+    protected void grdAsset_InitializeRow(object sender, Infragistics.Web.UI.GridControls.RowEventArgs e)
+    {
+
+    }
+
+    protected void grdAsset_DataBound(object sender, EventArgs e)
+    {
+        if (!this.IsPostBack)
+        {
+            pagerControl.SetupPageList(this.grdAsset.Behaviors.Paging.PageCount);
+            pagerControl.SetCurrentPageNumber(grdAsset.Behaviors.Paging.PageIndex);
+        }
+
+        Control postbackControlInstance = null;
+        string postbackControlName = this.Request.Params.Get("__EVENTTARGET");
+        if (postbackControlName != null && postbackControlName != string.Empty)
+            postbackControlInstance = this.FindControl(postbackControlName);
+        if (postbackControlInstance != null && postbackControlInstance.ID == "PagerPageList")
+        {
+            //do nothing
+        }
+        else
+        {
+            pagerControl.SetupPageList(this.grdAsset.Behaviors.Paging.PageCount);
+            pagerControl.SetCurrentPageNumber(grdAsset.Behaviors.Paging.PageIndex);
+        }
+
+    }
+
+    protected void grdAsset_ItemCommand(object sender, Infragistics.Web.UI.GridControls.HandleCommandEventArgs e)
+    {
+
+    }
+
+    protected void ibExportToExcel_Click(object sender, EventArgs e)
+    {
+        //Infragistics.Documents.Excel.WorkbookFormat excelFormat = Infragistics.Documents.Excel.WorkbookFormat.Excel2007;
+        //this.eExporter.DataExportMode = Infragistics.Web.UI.GridControls.DataExportMode.AllDataInDataSource;
+        //Infragistics.Documents.Excel.Workbook wBook = new Infragistics.Documents.Excel.Workbook(excelFormat);
+        //this.eExporter.Export(this.grdAsset, wBook);
+
+        WebControl[] array = new WebControl[1];
+        array[0] = grdAsset;
+
+        //define the workbook and some worksheets. 
+        Infragistics.Documents.Excel.WorkbookFormat excelFormat = Infragistics.Documents.Excel.WorkbookFormat.Excel2007;
+        Infragistics.Documents.Excel.Workbook book = new Infragistics.Documents.Excel.Workbook(excelFormat);
+        book.Worksheets.Add("AssetAppDetails");
+
+        //first export the grids to each worksheet. Custom export mode is required for that.
+        this.eExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Custom;
+
+        this.eExporter.Export(grdAsset, book.Worksheets[0]);
+
+        //change the export mode back to Download
+        this.eExporter.ExportMode = Infragistics.Web.UI.GridControls.ExportMode.Download;
+
+        //export the workbook and pass it an empty array (as the grids are already in the worksheets).
+        this.eExporter.Export(book, 0, 0, new WebControl[0]);
+
+    }
+    protected void eExporter_CellExported(object sender, Infragistics.Web.UI.GridControls.ExcelCellExportedEventArgs e)
+    {
+
+    }
+
+    #endregion
+
+
+    #region "User Defined Methods"
+
+    public void insertAssetAppMap()
+    {
+
+        #region Retreive All Asset
+        objAsset = new iAssetTrack.BAL.AssetBAL();
+        #endregion
+
+        #region Get all tables from dataset
+
+        string buName = txtBU.Text;
+        //Get all tables from the Import Asset Excel
+        DataSet dsExcelData = new DataSet();
+        dsExcelData = DeserializeDataSource();
+        DataTable dtBusinessUnit = new DataTable();
+        DataTable dtAsset = new DataTable();
+        dtAsset = dsExcelData.Tables[0];
+        dtBusinessUnit = dsExcelData.Tables["dtBusinessUnit"];
+
+        #endregion
+
+        # region -- Creating new assets or updating exsiting ones is not alloweed in Asset-App map -- whole section is commented.
+        /*
+        //Create new table with SerialNumber,comma separated host list and ## separated host and application details
+        // by grouping SerialNumber field
+        DataTable dtNewAsset = dtAsset.Clone();
+        dtNewAsset.TableName = "NewAsset";
+
+        ArrayList hosts = new ArrayList();
+        ArrayList hostapps = new ArrayList();
+        var AssetListGroup = from cr in dtAsset.AsEnumerable()
+                             group cr by cr.Field<string>("SerialNumber") into newList
+                             orderby newList.Key
+                             select newList;
+        foreach (var AssetList in AssetListGroup)
+        {
+            foreach (var asset in AssetList)
+            {
+                if (!hosts.Contains(asset.Field<string>("HostName")))
+                    hosts.Add(asset.Field<string>("HostName"));
+
+                if (!hostapps.Contains(asset.Field<string>("HostName") + "##" + asset.Field<string>("Application")))
+                    hostapps.Add(asset.Field<string>("HostName") + "##" + asset.Field<string>("Application"));
+            }
+            DataRow newRow = dtNewAsset.NewRow();
+            newRow["SerialNumber"] = AssetList.Key;
+            newRow["HostName"] = string.Join(",", hosts.ToArray());
+            newRow["Application"] = string.Join("|", hostapps.ToArray());
+            dtNewAsset.Rows.Add(newRow);
+            hosts.Clear();
+            hostapps.Clear();
+        }
+        dsExcelData.Tables.Add(dtNewAsset);
+        dsExcelData.AcceptChanges();
+
+        foreach (DataRow dr in dtNewAsset.Rows)
+        {
+            if (!string.IsNullOrEmpty(dr["SerialNumber"].ToString().Trim()) && !string.IsNullOrEmpty(dr["HostName"].ToString().Trim()))
+            {
+                try
+                {
+
+                    //1. Get Asset details
+                    AssetBAL objCurretAsset = new AssetBAL();
+
+                    DataRow drAsset = objCurretAsset.GetParentAssetDetails(dr["SerialNumber"].ToString(), string.Empty);
+
+                    if (drAsset != null && drAsset.ItemArray.Length > 0)
+                    {
+                        objAsset = new iAssetTrack.BAL.AssetBAL();
+                        objAsset.AssetID = int.Parse(drAsset["AssetID"].ToString());
+                        objAsset.RefNumber = drAsset["RefNumber"].ToString();
+                        objAsset.HostName = dr["HostName"].ToString(); ;
+                        objAsset.AssetName = drAsset["AssetName"].ToString();
+                        objAsset.StartPos = int.Parse(drAsset["StartPos"].ToString());
+                        objAsset.NoOfRUs = int.Parse(drAsset["NoOfRUs"].ToString());
+                        objAsset.AssetTypeId = int.Parse(drAsset["AssetGroupID"].ToString());
+                        objAsset.ModelID = int.Parse(drAsset["ModelID"].ToString());
+                        objAsset.LastSeenLocationID = int.Parse(drAsset["LastSeenLocationID"].ToString());
+                        objAsset.DefaultLocationID = int.Parse(drAsset["LastSeenLocationID"].ToString());
+                        objAsset.TechID = int.Parse(drAsset["TechID"].ToString());
+                        objAsset.RackOrStand = drAsset["RackOrStand"].ToString();
+                        objAsset.BusinessUnitID = int.Parse(drAsset["BusinessUnitID"].ToString());
+                        objAsset.PrimarySiteID = int.Parse(drAsset["PrimarySiteID"].ToString());
+                        objAsset.AssetCreatedDate = DateTime.Now;
+                        objAsset.AssetCreatedBy = Convert.ToInt32(Session["UserID"]);
+                        objAsset.CurrentOwnerID = int.Parse(drAsset["CurrentOwnerID"].ToString());
+                        objAsset.UpdatedBy = Convert.ToInt32(Session["UserID"]);
+                        objAsset.OS = drAsset["OS"].ToString();
+                        objAsset.CPU = drAsset["CPU"].ToString();
+                        objAsset.CPUCount = int.Parse(drAsset["CPUCount"].ToString());
+                        objAsset.CPUCore = drAsset["CPUCore"].ToString();
+                        objAsset.IsImport = true; // insert from import
+                        objAsset.SerialNoModelCheck = (Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["ImportAssetUniqueFilter"].ToString()) == 1 ? true : false);
+                        objAsset.AssetTAG = drAsset["CurrentRFIDCardNumber"].ToString();
+                        objAsset.Orientation = drAsset["Orientation"].ToString();
+                        objAsset.ApplicationsList = dr["Application"].ToString();
+                        objAsset.Persist(DALCOperation.Update);
+                        if (objAsset.Result == -1)
+                        {
+                            dr["Status"] = "Failed";
+                            dr["Reason"] = objAsset.MessageCode;
+                        }
+                        else
+                        {
+                            dr["Status"] = "Success";
+                            dr["Reason"] = "Success";
+                        }
+                    }
+                    else
+                    {
+                        dr["Status"] = "Failed";
+                        dr["Reason"] = "Asset not found.";
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    dr["Status"] = "Failed";
+                    dr["Reason"] = ex.Message;
+                }
+
+            }
+            else
+            {
+                dr["Status"] = "Failed";
+                dr["Reason"] = "Asset ID and/or Host Name are missing.";
+            }
+
+        }
+
+        */
+        #endregion
+
+
+        //Serialize the dataset dsExcel data - with 8 tables
+        //(Excel data, BudsinessUnit table, Site table, Location table, Manufacturer table, Model table, 
+        //AssetType table and Asset Table)
+
+        //check each record in the original table/list and update status and reason columns.
+        foreach (DataRow dr in dtAsset.Rows)
+        {
+            if (!string.IsNullOrEmpty(dr["SerialNumber"].ToString().Trim()))
+            {
+                if (!string.IsNullOrEmpty(dr["HostName"].ToString().Trim()))
+                {
+                    if (!string.IsNullOrEmpty(dr["Application"].ToString().Trim()))
+                    {
+
+                        Regex regx = new Regex(@"^[\w0-9\-\.]+(\s?[\w0-9\-\.]+)*$");
+
+                        string serialNo = dr["SerialNumber"].ToString().Trim();
+                        string hostName = dr["HostName"].ToString().Trim();
+                        string appName = dr["Application"].ToString();
+
+                        if (regx.IsMatch(serialNo.Trim()) && serialNo.Trim().Length <= 100)
+                        {
+                            if (regx.IsMatch(hostName.Trim()) && hostName.Trim().Length <= 100)
+                            {
+                                regx = new Regex(@"^[\w\-\.&,:]+(\s{1}[\w\-\.&,\:]+)*\s{0,1}$");
+                                if (regx.IsMatch(appName.Trim()) && appName.Trim().Length <= 250)
+                                {
+
+                                    try
+                                    {
+                                        AssetBAL objCurretAsset = new AssetBAL();
+                                        DataRow drAsset = objCurretAsset.GetParentAssetDetails(dr["SerialNumber"].ToString(), string.Empty);
+                                        
+                                        //get host id and assetid and check tblAssetHostAssignemnt GetDataItem host IDataAdapter 
+                                        if (drAsset != null && drAsset.ItemArray.Length > 0)
+                                        {
+                                            bool isATenantAsset = true;
+                                            //for tenant - check if asset belongs to this tenant
+                                            if (bool.Parse(Session["TenantUser"].ToString()))
+                                            {
+                                                ArrayList tenantAssignedAssets = new ArrayList();
+                                                UserBAL objUser = new UserBAL();
+                                                objUser.UserID = Convert.ToInt32(Session["UserID"]);
+                                                DataSet dsTenant = objUser.retrieveTenantDetails();
+                                                if (dsTenant.Tables.Count > 0 && dsTenant.Tables[0].Rows.Count > 0)
+                                                {
+                                                    TenantBAL objTenant = new TenantBAL();
+                                                    objTenant.TenantId = Convert.ToInt32(dsTenant.Tables[0].Rows[0][DBFields.DBFIELD_TENANT_ID].ToString());
+                                                    DataSet dsTD = objTenant.retrieveAssetAssignmentList();
+                                                    if (dsTD.Tables.Count > 0 && dsTD.Tables[0].Rows.Count > 0)
+                                                    {
+                                                        foreach (DataRow drA in dsTD.Tables[0].Rows)
+                                                        {
+                                                            if (!tenantAssignedAssets.Contains(drA[DBFields.DBFIELD_ASSETID].ToString()))
+                                                                tenantAssignedAssets.Add(drA[DBFields.DBFIELD_ASSETID].ToString());
+                                                        }
+                                                    }
+                                                    if (tenantAssignedAssets.Count > 0)
+                                                    {
+                                                       if(!tenantAssignedAssets.Contains(drAsset["AssetID"].ToString()))
+                                                        {
+                                                            isATenantAsset = false;
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        isATenantAsset = false;
+                                                    }
+                                                }
+
+                                            }
+
+                                            if (isATenantAsset)
+                                            {
+
+                                                //CHeck if Asset - host relationship exists, if not create asset - host releation.
+                                                objAsset = AssetUpdate(drAsset, hostName, appName);
+
+                                                if (objAsset.Result == -1)
+                                                {
+                                                    dr["Status"] = "Failed";
+                                                    dr["Reason"] = objAsset.MessageCode;
+                                                }
+                                                else
+                                                {
+
+                                                    //check if SerialNumber-HostName-Application combination added to database successfully or not. If not put status as Failed and reason blank.
+                                                    AssetBAL objAssetBAL = new AssetBAL();
+                                                    bool status = objAssetBAL.AssetAppMapExists(dr["HostName"].ToString(), dr["Application"].ToString(), int.Parse(drAsset["AssetID"].ToString()));
+                                                    if (status)
+                                                    {
+                                                        dr["Status"] = "Success";
+                                                        dr["Reason"] = "Success";
+                                                    }
+                                                    else
+                                                    {
+                                                        dr["Status"] = "Failed";
+                                                        dr["Reason"] = "Asset - Application map creation failed";
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                dr["Status"] = "Failed";
+                                                dr["Reason"] = "Asset not belongs to this tenant";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            dr["Status"] = "Failed";
+                                            dr["Reason"] = "Asset not found.";
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        dr["Status"] = "Failed";
+                                        dr["Reason"] = ex.Message;
+                                    }
+                                }
+                                else
+                                {
+                                    dr["Status"] = "Failed";
+                                    dr["Reason"] = "Application name is not in correct format";
+                                }
+
+                            }
+                            else
+                            {
+                                dr["Status"] = "Failed";
+                                dr["Reason"] = "Host name is not in correct format";
+                            }
+
+                        }
+                        else
+                        {
+                            dr["Status"] = "Failed";
+                            dr["Reason"] = "Serial number is not is correct format";
+                        }
+                    }
+                    else
+                    {
+                        dr["Status"] = "Failed";
+                        dr["Reason"] = "Application name is missing.";
+                    }
+                }
+                else
+                {
+                    dr["Status"] = "Failed";
+                    dr["Reason"] = "Host name is missing.";
+                }
+            }
+            else
+            {
+                dr["Status"] = "Failed";
+                dr["Reason"] = "Serial Number is missing.";
+            }
+
+        }
+
+        dsExcelData.AcceptChanges();
+        ImportAppAssetMap.SerializeExcelDataSetToXml(dsExcelData);
+    }
+
+    private AssetBAL AssetUpdate(DataRow drAsset, string HostName, string ApplicationName)
+    {
+        objAsset = new iAssetTrack.BAL.AssetBAL();
+        objAsset.AssetID = int.Parse(drAsset["AssetID"].ToString());
+        objAsset.RefNumber = drAsset["RefNumber"].ToString();
+        objAsset.HostName = HostName;
+        objAsset.AssetName = drAsset["AssetName"].ToString();
+        objAsset.StartPos = int.Parse(drAsset["StartPos"].ToString());
+        objAsset.NoOfRUs = int.Parse(drAsset["NoOfRUs"].ToString());
+        objAsset.AssetTypeId = int.Parse(drAsset["AssetGroupID"].ToString());
+        objAsset.ModelID = int.Parse(drAsset["ModelID"].ToString());
+        objAsset.LastSeenLocationID = int.Parse(drAsset["LastSeenLocationID"].ToString());
+        objAsset.DefaultLocationID = int.Parse(drAsset["LastSeenLocationID"].ToString());
+        objAsset.TechID = int.Parse(drAsset["TechID"].ToString());
+        objAsset.RackOrStand = drAsset["RackOrStand"].ToString();
+        objAsset.BusinessUnitID = int.Parse(drAsset["BusinessUnitID"].ToString());
+        objAsset.PrimarySiteID = int.Parse(drAsset["PrimarySiteID"].ToString());
+        objAsset.AssetCreatedDate = DateTime.Now;
+        objAsset.AssetCreatedBy = Convert.ToInt32(Session["UserID"]);
+        objAsset.CurrentOwnerID = int.Parse(drAsset["CurrentOwnerID"].ToString());
+        objAsset.UpdatedBy = Convert.ToInt32(Session["UserID"]);
+        objAsset.OS = drAsset["OS"].ToString();
+        objAsset.CPU = drAsset["CPU"].ToString();
+        objAsset.CPUCount = int.Parse(drAsset["CPUCount"].ToString());
+        objAsset.CPUCore = drAsset["CPUCore"].ToString();
+        objAsset.IsImport = true; // insert from import
+        objAsset.SerialNoModelCheck = (Int32.Parse(System.Configuration.ConfigurationManager.AppSettings["ImportAssetUniqueFilter"].ToString()) == 1 ? true : false);
+        objAsset.AssetTAG = drAsset["CurrentRFIDCardNumber"].ToString();
+        objAsset.Orientation = drAsset["Orientation"].ToString();
+        objAsset.ApplicationsList = HostName + "##" + ApplicationName;
+        objAsset.DeratedPower = float.Parse(drAsset["DeratedPower"].ToString());
+        objAsset.IsParent = bool.Parse(drAsset["IsParent"].ToString());
+        objAsset.AssetParentID = int.Parse(drAsset["ParentAssetID"].ToString());
+        objAsset.Persist(DALCOperation.Update);
+
+        return objAsset;
+    }
+
+    private void populateBU()
+    {
+        objBU = new iAssetTrack.BAL.BusinessUnitBAL();
+        DataSet dsBU = objBU.retrieve();
+        if (dsBU.Tables[0].Rows.Count == 1)
+        {
+            DataRow dr = dsBU.Tables[0].Rows[0];
+            txtBU.Text = dr[DBFields.DBFIELD_BUSINESSUNIT].ToString();
+            txtBU.Enabled = false;
+
+        }
+        else if (dsBU.Tables[0].Rows.Count > 1)
+        {
+            lblMessage.Text = "Multiple records returned.Only one Company should exist.";
+            lblMessage.Visible = true;
+            txtBU.Enabled = false;
+        }
+        else
+        {
+            lblMessage.Text = "Company is undefined.";
+            lblMessage.Visible = true;
+            txtBU.Enabled = true;
+        }
+
+
+    }
+
+    private void populateGrid()
+    {
+        DataSet ds = DeserializeDataSource();
+        if (ds != null)
+        {
+            //grdAsset.ClearDataSource();
+            grdAsset.DataSource = ds.Tables[0];
+            grdAsset.DataBind();
+
+            // upload summary
+            //total models
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                DataTable _assets = ds.Tables[0];
+                int totalAssets = _assets.Rows.Count;
+                int successAssets = (from cr in _assets.AsEnumerable()
+                                     where cr.Field<string>("Status") == "Success"
+                                     select cr).Count();
+                int failedAssets = (totalAssets - successAssets);
+
+                //grdUploadStatus -- show upload stats
+                DataTable dtUploadStats = new DataTable();
+                dtUploadStats.Columns.Add("ID");
+                dtUploadStats.Columns.Add("Name");
+                dtUploadStats.Columns.Add("Value");
+
+                //Total Count
+                DataRow drFS1 = dtUploadStats.NewRow();
+                drFS1["ID"] = "1";
+                drFS1["Name"] = "Total Asset-Application mappings found";
+                drFS1["Value"] = totalAssets.ToString();
+                dtUploadStats.Rows.Add(drFS1);
+                //Success Count
+                DataRow drFS2 = dtUploadStats.NewRow();
+                drFS2["ID"] = "2";
+                drFS2["Name"] = "No of Asset-Application map imported successfully";
+                drFS2["Value"] = successAssets.ToString();
+                dtUploadStats.Rows.Add(drFS2);
+
+                //Failure Count
+                DataRow drFS3 = dtUploadStats.NewRow();
+                drFS3["ID"] = "3";
+                drFS3["Name"] = "No of Asset-Application map failed to import";
+                drFS3["Value"] = failedAssets.ToString();
+                dtUploadStats.Rows.Add(drFS3);
+
+                grdUploadStatus.DataSource = dtUploadStats;
+                grdUploadStatus.DataBind();
+                //Excel icon
+                ibExportToExcel.Visible = true;
+
+
+            }
+        }
+    }
+
+    //Generic Function to convert the LINQ query result to the DataTable
+    public DataTable LINQToDataTable<T>(IEnumerable<T> varlist, string tblName)
+    {
+        DataTable dtReturn = new DataTable(tblName);
+        // column names 
+        PropertyInfo[] oProps = null;
+        if (varlist == null) return dtReturn;
+        foreach (T rec in varlist)
+        {
+            // Use reflection to get property names, to create table, Only first time, others 
+            //will follow 
+            if (oProps == null)
+            {
+                oProps = ((Type)rec.GetType()).GetProperties();
+                foreach (PropertyInfo pi in oProps)
+                {
+                    Type colType = pi.PropertyType;
+                    if ((colType.IsGenericType) && (colType.GetGenericTypeDefinition() == typeof(Nullable<>)))
+                    {
+                        colType = colType.GetGenericArguments()[0];
+                    }
+                    dtReturn.Columns.Add(new DataColumn(pi.Name, colType));
+                }
+            }
+            DataRow dr = dtReturn.NewRow();
+            foreach (PropertyInfo pi in oProps)
+            {
+                dr[pi.Name] = pi.GetValue(rec, null) == null ? DBNull.Value : pi.GetValue
+                (rec, null);
+            }
+            dtReturn.Rows.Add(dr);
+        }
+        return dtReturn;
+    }
+
+    public static void SerializeExcelDataSetToXml(DataSet ds)
+    {
+        String strFile;
+        try
+        {
+            if (HttpContext.Current.Session["FileIDAssetApp"] != null)
+            {
+                //strFile = Server.MapPath("~/AssetData/" + Session.SessionID + ".xml");
+                strFile = HostingEnvironment.MapPath(ConfigurationManager.AppSettings["fileUploadPath"].ToString() + "/") + HttpContext.Current.Session["FileIDAssetApp"].ToString() + ".xml";
+
+                XmlTextWriter xtw = new XmlTextWriter(strFile, null);
+                ds.WriteXml(xtw);
+                xtw.Close();
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+            //lblFileUploadStatus.Text = ex.Message;
+            //lblFileUploadStatus.Visible = true;
+        }
+    }
+
+    DataSet DeserializeDataSource()
+    {
+        String strFile;
+        DataSet ds = null;
+        try
+        {
+            if (Session["FileIDAssetApp"] != null)
+            {
+                //strFile = Server.MapPath("~/AssetData/" + Session.SessionID + ".xml");
+                strFile = Server.MapPath("~/AssetData/" + Session["FileIDAssetApp"].ToString() + ".xml");
+                if (File.Exists(strFile))
+                {
+                    // Read the content of the file into a DataSet
+                    XmlTextReader xtr = new XmlTextReader(strFile);
+                    ds = new DataSet();
+                    ds.ReadXml(xtr);
+                    xtr.Close();
+                }
+            }
+            else if (Session["tempFileIDAssetApp"] != null)
+            {
+                //strFile = Server.MapPath("~/AssetData/" + Session.SessionID + ".xml");
+                strFile = Server.MapPath("~/AssetData/" + Session["tempFileIDAssetApp"].ToString() + ".xml");
+                if (File.Exists(strFile))
+                {
+                    // Read the content of the file into a DataSet
+                    XmlTextReader xtr = new XmlTextReader(strFile);
+                    ds = new DataSet();
+                    ds.ReadXml(xtr);
+                    xtr.Close();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            ExceptionPolicy.HandleException(ex, "errDCTrack");
+            lblFileUploadStatus.Text = "Import file is corrupted, check error log for more information";
+            lblFileUploadStatus.Visible = true;
+        }
+        return ds;
+    }
+
+    # endregion
+
+}
+
+
+

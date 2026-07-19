@@ -1,0 +1,73 @@
+.igtr_AppletiniControl
+{
+	background-color:Transparent;
+	border-width:0px;
+	color:Black;
+}
+
+
+.igtr_AppletiniIsland
+{
+}
+
+
+.igtr_AppletiniNode
+{
+	background-color:Transparent;
+	color:#2D2D2D;
+	text-align:left;
+}
+
+
+.igtr_AppletiniParent
+{
+}
+
+
+.igtr_AppletiniLeaf
+{
+	margin-top:0px;
+	margin-bottom:0px;
+	color:Black;
+	text-align:left;
+}
+
+
+.igtr_AppletiniEdit
+{
+}
+
+
+.igtr_AppletiniRoot
+{
+	font-weight:bold;
+	color:#5E8D00;
+}
+
+
+.igtr_AppletiniHover
+{
+	cursor:hand;
+	color:#4F7600;
+	text-decoration:underline;
+}
+
+
+.igtr_AppletiniSelected
+{
+	font-weight:bold;
+	margin-right:10px;
+	margin-left:7px;
+	padding-right:5px;
+	padding-left:7px;
+	color:Black;
+	text-align:left;
+}
+
+
+.igtr_AppletiniDisabled
+{
+	color:#E1E1E1;
+}
+
+

@@ -1,0 +1,253 @@
+.igeb_RubberBlackControl
+{
+    background-color: transparent;
+    color: #FFFFFF;
+    font-size: xx-small;
+    font-family: Segoe UI, Verdana, Helvetica, sans-serif;
+    overflow-x: hidden;
+    border: solid 1px #4D4D4D;
+    border-top-width: 0px;
+	/* IE6 fix to remove control's scroll bar */
+	_overflow:hidden!important;
+}
+
+.igeb_RubberBlackGroupLink
+{
+    display: block;
+    /*text-decoration: none;*/
+    color: inherit;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    
+    /* Used to give padding to group icons */
+    padding-left:6px
+}
+
+.igeb_RubberBlackHolder
+{
+}
+
+.igeb_RubberBlackItemImage
+{
+    padding-top: 5px;
+    padding-left: 0px;
+    padding-right: 5px;
+}
+
+.igeb_RubberBlackGroup
+{
+    display: block;
+    height: 30px;
+    vertical-align: middle;
+    overflow: hidden;
+    line-height: 30px;
+    background-repeat: repeat-x;
+    background-image: url(images/igeb_GroupBg.png);
+    color: #CCCCCC;
+    
+}
+
+.igeb_RubberBlackGroup a:visited
+{
+    color: #CCCCCC;
+}
+
+.igeb_RubberBlackGroup a
+{
+    color: #CCCCCC;
+   
+}
+
+.igeb_RubberBlackGroupHover
+{
+    background-position: 0px -30px;
+    background-repeat: repeat-x;
+    background-image: url(images/igeb_GroupBg.png);
+    text-decoration:none;
+    /*color: #FFFFFF;*/
+}
+
+.igeb_RubberBlackGroupHover a:visited
+{
+    color: #FFFFFF;
+}
+
+.igeb_RubberBlackGroupHover a
+{
+    color: #FFFFFF;
+}
+
+.igeb_RubberBlackGroupLabel
+{
+    margin-left: 5px;
+    padding-left: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Segoe UI, Verdana, Sans-Serif;
+    text-decoration:None;
+   
+}
+
+.igeb_RubberBlackItemLink
+{
+    display: block;
+    /*text-decoration: none;*/
+    color: #333333;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.igeb_RubberBlackGroupSelected
+{
+    background-position: 0px -30px;
+    background-repeat: repeat-x;
+    background-image: url(images/igeb_GroupBg.png);
+    color: #FFFFFF;
+    
+}
+
+.igeb_RubberBlackGroupSelected a:visited
+{
+    color: #FFFFFF;
+}
+
+.igeb_RubberBlackGroupSelected a
+{
+    color: #FFFFFF;
+}
+
+.igeb_RubberBlackGroupActive
+{
+    background-position: 0px -30px;
+    background-repeat: repeat-x;
+    background-image: url(images/igeb_GroupBg.png);
+    color: #FFFFFF;
+}
+
+.igeb_RubberBlackGroupActive a:visited
+{
+    color: #FFFFFF;
+}
+
+.igeb_RubberBlackGroupActive a
+{
+    color: #FFFFFF;
+}
+
+.igeb_RubberBlackGroupDisabled
+{   
+    background-position: 0px -60px;
+    background-repeat: repeat-x;
+    background-image: url(images/igeb_GroupBg.png);
+    color: #FFFFFF;
+    color: Gray;
+}
+
+
+.igeb_RubberBlackItem
+{
+    background-color: #FFFFFF;
+    line-height: 22px;
+}
+    /* IE 7 fix to icon bad alignment*/
+    .igeb_RubberBlackItem  ,.igeb_RubberBlackItemActive ,.igeb_RubberBlackItemSelected 
+    {
+       min-height:30px!important;
+       
+       /* IE6 specific fix */
+       _height:30px;
+    }
+
+.igeb_RubberBlackItemLabel
+{
+    display: block;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+    
+}
+
+.igeb_RubberBlackGroupExpanderImage
+{
+    float: right;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.igeb_RubberBlackItemImage
+{
+    vertical-align: middle;
+}
+
+.igeb_RubberBlackItemSelected
+{
+    background-position: top;
+    background-repeat: repeat-x;
+    background-image: url(images/igeb_ItemSelectedBg.png);
+    background-color: #F7F7F7;
+    color: #FFFFFF;
+}
+
+.igeb_RubberBlackItemActive
+{
+    background-position: top;
+    background-repeat: repeat-x;
+    background-image: url(images/igeb_ItemSelectedBg.png);
+    background-color: #F7F7F7;
+    color: #FFFFFF;
+}
+
+.igeb_RubberBlackItemHover
+{
+    background-position: top;
+    background-repeat: repeat-x;
+    background-image: url(images/igeb_ItemSelectedBg.png);
+    background-color: #F7F7F7;
+    text-decoration:none;
+    /*color: #000000;*/
+}
+.igeb_RubberBlackItemParent
+{
+   
+}
+.igeb_RubberBlackItemDisabled
+{
+    
+}
+    /* IE 7 Disabled item fix */
+
+    .igeb_RubberBlackItemDisabled a:visited, .igeb_RubberBlackItemDisabled a
+    {
+        color: Gray;
+    }
+    
+.igeb_RubberBlackGroupContents
+{
+    list-style: none;
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.igeb_RubberBlackItemContents
+{
+    list-style: none;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+
+.igeb_RubberBlackItemHolder
+{
+}
+
+
+
+.igeb_RubberBlackItemHolder img
+{
+    vertical-align: middle;
+}
+

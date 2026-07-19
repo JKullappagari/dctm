@@ -1,0 +1,219 @@
+.igmc_AppletiniControl
+{
+	background-color: #FFFFFF;
+	border:1px solid #DCDCDC;
+	width: 225px;
+	height: 200px;
+	padding: 0px;
+	margin: 0px;
+	font-family: Segoe UI, Verdana, Arial, Georgia, Sans-Serif;
+}
+
+.igmc_AppletiniDOW
+{
+	background-color: #f6fdf5;
+	background-repeat:repeat-x;
+	background-position:top;
+	background-image: url(images/igmc_dowbg.gif);
+	font-size: 0.8em;
+	border-width:0px;
+	border-bottom:solid 1px #DCDCDC;
+	text-align:center;
+	font-weight: bold;
+    height: 35px;
+}
+
+.igmc_AppletiniNextPrev
+{
+	margin: 0px;
+	font-size: 0.8em;
+	color: #FFFFFF;
+	padding: 0px 8px;
+}
+
+.igmc_AppletiniHoverNextPrev
+{
+	cursor: pointer;
+	color: #4F7600;
+}
+
+.igmc_AppletiniPressedNextPrev
+{
+}
+
+.igmc_AppletiniFooter
+{
+	background-color: #FFFFFF;
+	background-image: url(images/igmc_footerbg.gif);
+	background-repeat:repeat-x;
+	border-top: 1px solid #dddddd;
+	font-size: 0.8em;
+	text-align:center;
+	height: 35px;
+}
+
+.igmc_AppletiniHoverFooter
+{
+	background-color: #f8fbea;
+	background-image: url(images/igmc_footerbghover.gif);
+	background-repeat:repeat-x;
+	cursor: pointer;
+}
+
+.igmc_AppletiniPressedFooter
+{
+	background-color: #f2f8de;
+	background-image: url(images/igmc_footerbgpressed.gif);
+	background-repeat:repeat-x;
+}
+
+.igmc_AppletiniHeader
+{
+	background-color: #aed003;
+	background-repeat:repeat-x;
+	background-position:top;
+	background-image: url(images/igmc_headerbg.png);
+	border-bottom: 1px solid #DCDCDC;
+	height: 50px;
+}
+
+.igmc_AppletiniMonthYear
+{
+	font-size: 1em;
+	font-weight:bold;
+	padding:0px 2px;
+	color: #FFF;
+}
+
+.igmc_AppletiniPressedMonthYear
+{
+	color: #4F7600;
+}
+
+.igmc_AppletiniHoverMonthYear
+{
+	cursor: pointer;
+	color: #4F7600;
+}
+
+.igmc_AppletiniDay
+{
+	background-color:#FFFFFF;
+	font-size: 0.9em;
+	text-align:center;
+	border: 1px solid #FFFFFF;
+	font-weight: bold;
+}
+
+.igmc_AppletiniOtherMonthDay
+{
+	color:#AAAAAA;
+	background-image: none;
+}
+
+.igmc_AppletiniDay.igmc_AppletiniOtherMonthDay
+{
+	background-image:none;
+	color: #a4a4a4;
+	font-size:0.9em;
+	font-weight:normal;
+}
+
+.igmc_AppletiniOtherMonthDay.igmc_AppletiniHoverDay
+{
+	background-color: #D7E78B;
+	background-image: url(images/igmc_dayselected.gif);
+	background-repeat: repeat-x;
+	border:1px solid #c8de61;
+	color: #696969;
+	font-weight: bold;
+}
+		
+
+.igmc_AppletiniWeekNumber
+{
+	border: 1px solid #F2FBF1;
+	background-color: #F2FBF1;
+	background-repeat:repeat-x;
+	background-position:top;
+	background-image: url(images/igmc_weekbg.gif);
+	font-weight: bold;
+}
+
+.igmc_AppletiniWeekendDay
+{
+	background-color:#f9f9f9;
+	border: 1px solid #f9f9f9;
+}
+
+
+.igmc_AppletiniSelectedDay
+{
+	background-color: #ecf4cc;
+	font-weight:bold;
+	color: #696969;
+}
+
+.igmc_AppletiniFocusDay, .igmc_AppletiniOtherMonthDay.igmc_AppletiniFocusDay
+{
+	background-color: #D5E78B;
+	color: #696969;
+	border-color: #c8de61;
+	font-weight:bold;
+}
+
+.igmc_AppletiniTodayDay, igmc_AppletiniTodayDay.igmc_AppletiniSelectedDay
+{
+	background-color: #4F7600;
+	color: #FFFFFF;
+	border:1px solid #385400;
+}
+
+.igmc_AppletiniHoverDay, igmc_AppletiniTodayDay.igmc_AppletiniHoverDay
+{
+	background-color: #D7E78B;
+	background-image: url(images/igmc_dayselected.gif);
+	background-repeat: repeat-x;
+	border:1px solid #c8de61;
+	color: #696969;
+	font-weight: bold;
+}
+
+.igmc_AppletiniDisabledDay
+{
+	background-color: #FAFAFA;
+	color: #EEEEEE;
+}
+
+/* CSS classes for Month and Year selection Popup in header */
+.igmc_AppletiniList
+{
+	background-color: #fff;
+	border:1px solid #bbb;
+}
+
+.igmc_AppletiniItem
+{
+	background-color:#fff;
+	border:1px solid #fff;
+	font-size:1em;
+	text-align: center;
+}
+
+.igmc_AppletiniHoverItem
+{
+	background-color: #d6e788;
+	background-image: url(images/igmc_dayselected.gif);
+	background-repeat: repeat-x;
+	border:1px solid #c8de61;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.igmc_AppletiniSelectedItem
+{
+	background-color: #d5e78b;
+	border:1px solid #c8de61;
+	font-weight: bold;
+	cursor: pointer;
+}

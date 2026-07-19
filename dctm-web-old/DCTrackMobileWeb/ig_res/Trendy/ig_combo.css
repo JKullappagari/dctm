@@ -1,0 +1,107 @@
+.igcmb_TrendyControl
+{
+}
+
+
+.igcmb_TrendyEditWithButtons
+{
+	border:solid 1px #109A48;
+}
+
+
+.igcmb_TrendyPagerArea
+{
+}
+
+
+.igcmb_TrendyPageCurrent
+{
+}
+
+
+.igcmb_TrendyPageLink
+{
+}
+
+
+.igcmb_TrendyItem
+{
+	background-image: url(images/bg_diagonal.gif);
+	border-top:solid 1px #FFFFFF;
+}
+
+
+.igcmb_TrendyAlt
+{
+	border-width:0px;
+	border-top-width:1px;
+	border-top-color:White;
+}
+
+
+.igcmb_TrendyHeader
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	border-width:0px;
+	border-right-width:1px;
+	border-right-color:Gainsboro;
+	padding-top:3px;
+	padding-bottom:3px;
+	color:White;
+}
+
+
+.igcmb_TrendyFooter
+{
+}
+
+
+.igcmb_TrendyLabel
+{
+	background-color:#969696;
+	background-image:none;
+	border-top-width:1px;
+	border-top-color:#E1E1E1;
+	border-right-width:1px;
+	border-right-color:#F0F0F0;
+}
+
+
+.igcmb_TrendySelected
+{
+	background-color:#41AFE2;
+	background-image: url(images/header.gif);
+	border-right-color:#41AFE2;
+	border-left-color:#41AFE2;
+	color:White;
+}
+
+
+.igcmb_TrendyEditSelected
+{
+	background-color:White;
+	font-size:x-small;
+	font-family: Verdana;
+	border:solid 1px Transparent;
+	padding-top:9px;
+	text-align:left;
+	vertical-align:middle;
+}
+
+
+.igcmb_TrendyActiveBorderTopBottom
+{
+}
+
+
+.igcmb_TrendyActiveBorderLeft
+{
+}
+
+
+.igcmb_TrendyActiveBorderRight
+{
+}
+
+

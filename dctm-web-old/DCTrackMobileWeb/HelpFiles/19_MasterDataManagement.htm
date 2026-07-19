@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="generator" content=
+"HTML Tidy for Windows (vers 25 March 2009), see www.w3.org">
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+<meta name="Generator" content="Microsoft Word 15 (filtered)">
+<title>Master Data Management</title>
+<link rel="stylesheet" type="text/css" href="embeddedstyles.css">
+<meta name="generator" content="chmProcessor">
+</head>
+<body lang="EN-US" link="blue" vlink="purple">
+<div class="WordSection3">
+<h1><a name="_Toc495745685"></a><a name="_Toc152759954">Master Data
+Management</a></h1>
+<p class="MsoBodyText"><span style="font-family:">&nbsp;</span></p>
+<p class="MsoBodyText"><span style="font-family:">This chapter
+describes the entire functions specific to the administration of
+Master Data maintenance-related screens.&nbsp;</span></p>
+<p class="MsoBodyText"><span style="font-family:">The table briefly
+describes the purpose of the Master Data and their usage of the
+system.</span></p>
+<table class="MsoNormalTable" border="1" cellspacing="0"
+cellpadding="0" width="0" style=
+"border-collapse:collapse;border:none">
+<thead>
+<tr style="height:17.5pt">
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; background:#E0E0E0;padding:0in 5.4pt 0in 5.4pt;height:17.5pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<b><span style=
+"font-size:10.0pt;font-family:">Function</span></b></p>
+</td>
+<td width="308" valign="top" style=
+"width:230.65pt;border:solid windowtext 1.0pt; border-left:none;background:#E0E0E0;padding:0in 5.4pt 0in 5.4pt;height:17.5pt">
+<p class="MsoBodyText" align="center" style=
+"margin-bottom:0in;margin-bottom: .0001pt;text-align:center">
+<b><span style=
+"font-size:10.0pt;font-family:">Description</span></b></p>
+</td>
+</tr>
+</thead>
+<tr>
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Maintain
+Site</span></p>
+</td>
+<td width="308" style=
+"width:230.65pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Site represents a
+physical location, most typically where the data center is
+located.</span></p>
+</td>
+</tr>
+<tr>
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Maintain
+Location</span></p>
+</td>
+<td width="308" style=
+"width:230.65pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Locations can represent
+room, row or a rack of a data center. A location has to be
+associated with a Site.</span></p>
+</td>
+</tr>
+<tr>
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Maintain Asset
+Type</span></p>
+</td>
+<td width="308" style=
+"width:230.65pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Represents various
+types of assets that are used in a data center such as ‘Server’,
+‘Storage’ or ‘Network’. User can create any asset type of their
+choice. Asset Type is associated with an asset.</span></p>
+</td>
+</tr>
+<tr>
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Maintain
+Purpose</span></p>
+</td>
+<td width="308" style=
+"width:230.65pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Purpose is used as an
+information that gets associated with asset movement and is
+typically used to report all the movements that has happened for a
+particular purpose. Typically, ‘purpose’ is used to group different
+types of moves such – Relocation, General, Return to Vendor,
+Replacement etc.&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Maintain
+Manufacturer</span></p>
+</td>
+<td width="308" style=
+"width:230.65pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Manufacturer of the
+asset. Every asset must have a manufacturer associated with
+it.</span></p>
+</td>
+</tr>
+<tr>
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Maintain Asset
+Model</span></p>
+</td>
+<td width="308" style=
+"width:230.65pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Asset model for a
+specific manufacturer. Every asset must be associated with a
+model.</span></p>
+</td>
+</tr>
+<tr>
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Maintain Technology
+Category</span></p>
+</td>
+<td width="308" style=
+"width:230.65pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">This is a user-defined
+category to further group the assets.</span></p>
+</td>
+</tr>
+<tr>
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Maintain Register
+Device</span></p>
+</td>
+<td width="308" style=
+"width:230.65pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Each mobile device has
+to be registered in the system before the handheld application
+program can be installed and the device used. This function allows
+to register each device.</span></p>
+</td>
+</tr>
+<tr>
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Maintain
+Reason</span></p>
+</td>
+<td width="308" style=
+"width:230.65pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Different reasons that
+are maintained and used while decommissioning an asset or writing
+off an asset.</span></p>
+</td>
+</tr>
+<tr>
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Maintain
+Host</span></p>
+</td>
+<td width="308" style=
+"width:230.65pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Create a host record.
+Host record can also be created while creating or editing an asset
+record.</span></p>
+</td>
+</tr>
+<tr>
+<td width="216" valign="top" style=
+"width:161.75pt;border:solid windowtext 1.0pt; border-top:none;padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">Maintain Audit
+Cycle</span></p>
+</td>
+<td width="308" style=
+"width:230.65pt;border-top:none;border-left:none; border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt; padding:0in 5.4pt 0in 5.4pt">
+<p class="MsoBodyText" align="left" style=
+"margin-bottom:0in;margin-bottom:.0001pt; text-align:left">
+<span style="font-size:10.0pt;font-family:">This is related to
+periodical physical audit that is carried out by the Inventory
+function using the handheld application. During an Audit Cycle, one
+cannot move any asset in or out, or in other words, the inventory
+is frozen.</span></p>
+</td>
+</tr>
+</table>
+<p class="MsoCaption"><a name="_Toc495744592"></a><a name=
+"_Toc152760534"><span style="font-family:">Table</span></a>
+<span style="font-family:">1</span><span style="font-family:">:
+Master Data Management Roles &amp; Privileges</span></p>
+<p class="MsoBodyText"><span style="font-family:">The Masters menu
+provides the following submenu and options</span></p>
+<ul style="margin-top:0in" type="disc">
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Masters</span></li>
+<li style="list-style: none; display: inline">
+<ul style="margin-top:0in" type="circle">
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Site</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Location</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Asset Type</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Location Type</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Purpose</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Manufacturer</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Asset Model</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Technology Category</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Register Device</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Reason</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Host</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Audit Cycle</span></li>
+<li class="MsoNormal"><span style=
+"font-size:12.0pt;font-family:">Owner</span></li>
+</ul>
+</li>
+</ul>
+<p class="MsoNormal" style="margin-left:.75in"><span style=
+"font-size:12.0pt; font-family:">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left:.75in"><span style=
+"font-size:12.0pt; font-family:">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left:.75in"><span style=
+"font-size:12.0pt; font-family:">&nbsp;</span></p>
+<p class="MsoNormal" style="margin-left:.75in"><span style=
+"font-size:12.0pt; font-family:">&nbsp;</span></p>
+<div style=
+"border:solid white 1.0pt;border-bottom:none;padding:6.0pt 6.0pt 0in 6.0pt; background:#E5E5E5;margin-left:24.0pt;margin-right:24.0pt">
+<p class="BlockQuotationFirst" style=
+"margin:0in;margin-bottom:.0001pt; text-indent:0in;background:#E5E5E5">
+<span style="font-family:">Can Master data be exported to
+Excel?</span></p>
+</div>
+<div style=
+"border:solid white 1.0pt;padding:12.0pt 12.0pt 12.0pt 12.0pt; background:#F9F9F9;margin-left:30.0pt;margin-right:30.0pt">
+<p class="BlockQuotation" style=
+"margin-top:0in;margin-right:0in;margin-bottom: 12.0pt;margin-left:0in;background:#F9F9F9">
+<span style="font-family:">Yes.&nbsp; All the Master data items can
+be exported to excel. Use the excel icon <img border="0" width="19"
+height="17" id="Picture 216" src=
+"DCTrackMobileWeb_files/image043.png" alt="image" name=
+"Picture 216">&nbsp;&nbsp;available in each Master data page on the
+top of the list.</span></p>
+</div>
+<p class="MsoNormal" style="margin-left:.75in"><span style=
+"font-size:12.0pt; font-family:">&nbsp;</span></p>
+<p class="MsoBodyText"><span style="font-family:">You can click on
+each sub menu to see the available options that you can click to
+see the corresponding screen where you can perform the desired
+action.</span></p>
+<p class="MsoNormal"><span style="font-family:"><img border="0"
+width="511" height="191" id="Picture 445" src=
+"DCTrackMobileWeb_files/image044.jpg" alt="image" name=
+"Picture 445"></span></p>
+<p class="MsoCaption"><a name="_Toc495746277"><span style=
+"font-family:">Figure</span></a> <span style=
+"font-family:">16</span><span style="font-family:">: Masters Menu
+with Submenu and Options</span></p>
+<p class="MsoBodyText"><span style="font-family:">&nbsp;</span></p>
+<p class="MsoBodyText"><span style="font-family:">&nbsp;</span></p>
+<p class="MsoBodyText"><span style="font-family:">&nbsp;</span></p>
+<span style="font-size:8.0pt;font-family:" arial=""><br clear="all"
+style="page-break-before:always"></span></div>
+<div>
+<table>
+<tr>
+<td height="33" colspan="2" valign="top" align="center">
+<div style="color: Gray">&nbsp; Copyright © 2019 Hewlett
+Packard Enterprise,v5.2.</div>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

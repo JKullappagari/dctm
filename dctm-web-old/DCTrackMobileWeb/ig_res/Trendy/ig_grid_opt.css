@@ -1,0 +1,189 @@
+.igtbl_TrendyControl
+{
+}
+
+
+.igtbl_TrendyPagerArea
+{
+	background-position:bottom ;
+	background-image: url(images/alt_item.gif);
+	border-width:0px;
+	padding:10px;
+}
+
+
+.igtbl_TrendyPageCurrent
+{
+	margin-right:10px;
+}
+
+
+.igtbl_TrendyPageLink
+{
+	margin-right:10px;
+	color:DimGray;
+}
+
+
+.igtbl_TrendyGroupByBox
+{
+	background-position:bottom ;
+	background-image: url(images/alt_item.gif);
+}
+
+
+.igtbl_TrendyAddNewBox
+{
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+}
+
+
+TBODY.igtbl_TrendyItem TR TD, THEAD.igtbl_TrendyItem TR TH, TFOOT.igtbl_TrendyItem TR TH, TBODY.igtbl_TrendyItem TR TH
+{
+	background-image: url(images/bg_diagonal.gif);
+	border-top:solid 1px #FFFFFF;
+}
+
+
+TBODY.igtbl_TrendyItem TR TD.igtbl_TrendyFxdCell
+{
+}
+
+
+.igtbl_TrendyFilterOperandButton
+{
+	background-color:Transparent;
+	background-repeat:no-repeat;
+	background-image: url(images/blank.gif);
+	border-width:0px;
+	width: 18px;
+}
+
+
+TBODY.igtbl_TrendyItem TR.igtbl_TrendyAlt TD
+{
+	border-width:0px;
+	border-top-width:1px;
+	border-top-color:White;
+}
+
+
+.igtbl_TrendyEdit
+{
+	background-color:White;
+	font-size:x-small;
+	font-family: Verdana;
+	border:solid 1px Transparent;
+	padding-top:9px;
+	text-align:left;
+	vertical-align:middle;
+}
+
+
+.igtbl_TrendyButton
+{
+}
+
+
+THEAD.igtbl_TrendyHeader TR TH, TFOOT.igtbl_TrendyHeader TR TH, TBODY.igtbl_TrendyHeader TR TH
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	border-width:0px;
+	border-right-width:1px;
+	border-right-color:Gainsboro;
+	padding-top:3px;
+	padding-bottom:3px;
+	height: 30px;
+	color:White;
+}
+
+
+TFOOT.igtbl_TrendyFooter TR TH
+{
+	background-color:#969696;
+	background-image:none;
+	border-width:0px;
+}
+
+
+TBODY.igtbl_TrendyHeader TR TH.igtbl_TrendyLabel
+{
+	background-color:WhiteSmoke;
+	background-image:none;
+	border-top-width:1px;
+	border-top-color:#E1E1E1;
+	border-right-width:1px;
+	border-right-color:#F0F0F0;
+	height: 25px;
+}
+
+
+TBODY.igtbl_TrendyHeader TR TH.igtbl_TrendyExpArea, TFOOT.igtbl_TrendyHeader TR TH.igtbl_TrendyExpArea
+{
+	background-color:#969696;
+	background-image:none;
+	border-top-width:1px;
+	border-top-style:solid;
+}
+
+
+TBODY.igtbl_TrendyHeader TR TH.igtbl_TrendyGrpItem
+{
+}
+
+
+THEAD.igtbl_TrendyHeader TR TH.igtbl_TrendyFxdHeader
+{
+}
+
+
+.igtbl_TrendyGroupBandLabel
+{
+}
+
+
+TFOOT.igtbl_TrendyHeader TR TH.igtbl_TrendyFxdFooter
+{
+}
+
+
+.igtbl_TrendyDropDown
+{
+	background-color:WhiteSmoke;
+	font-size:xx-small;
+	font-family: Verdana;
+	border:solid 1px LightGrey;
+}
+
+
+.igtbl_TrendyDropDownSel
+{
+}
+
+
+TBODY.igtbl_TrendyItem TR.igtbl_TrendySelected TD, TBODY.igtbl_TrendyItem TR TD.igtbl_TrendySelected, .igtbl_TrendySelected
+{
+	background-color:#41AFE2;
+	background-image: url(images/header.gif);
+	border-color:Transparent;
+	color:White;
+}
+
+
+TBODY.igtbl_TrendyItem TR TD.igtbl_TrendyActiveBorder_TopBottom, .igtbl_TrendyActiveBorder_TopBottom
+{
+}
+
+
+TBODY.igtbl_TrendyItem TR TD.igtbl_TrendyActiveBorder_Left, .igtbl_TrendyActiveBorder_Left
+{
+}
+
+
+TBODY.igtbl_TrendyItem TR TD.igtbl_TrendyActiveBorder_Right, .igtbl_TrendyActiveBorder_Right
+{
+}
+
+

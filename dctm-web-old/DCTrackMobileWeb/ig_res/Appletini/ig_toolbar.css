@@ -1,0 +1,51 @@
+.igtb_AppletiniControl
+{
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+	border:solid 1px #C3C3C3;
+}
+
+
+.igtb_AppletiniItem
+{
+	background-color:White;
+}
+
+
+.igtb_AppletiniButton
+{
+	background-color:Transparent;
+	border:solid 1px Transparent;
+}
+
+
+.igtb_AppletiniButtonHover
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	border:solid 1px #7CBA00;
+}
+
+
+.igtb_AppletiniButtonPressed
+{
+}
+
+
+.igtb_AppletiniLabel
+{
+	background-color:Transparent;
+}
+
+
+.igtb_AppletiniTextBox
+{
+}
+
+
+.igtb_AppletiniSeparator
+{
+	background-color:Transparent;
+}
+
+

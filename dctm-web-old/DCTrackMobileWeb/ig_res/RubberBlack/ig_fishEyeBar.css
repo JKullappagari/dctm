@@ -1,0 +1,41 @@
+﻿.igfeb_RubberBlackControl
+{
+	background-color: Transparent;
+}
+
+.igfeb_RubberBlackControlHover
+{
+				
+				
+}
+
+.igfeb_RubberBlackFishEyeItemLabel
+{
+}
+
+.igfeb_RubberBlackFishEyeItem
+{
+}
+
+.igfeb_RubberBlackFishEyeItemHover
+{			
+}
+
+.igfeb_RubberBlackFishEyeItemDisabled
+{
+				
+				
+}
+
+.igfeb_RubberBlackControlFocus
+{
+				
+				
+}
+
+.igfeb_RubberBlackFishEyeItemSelected
+{
+	background-position: bottom;
+	background-image: url(images/igfeb_itemselected.png);	
+	background-repeat:  no-repeat;
+}

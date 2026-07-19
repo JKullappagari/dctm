@@ -1,0 +1,91 @@
+.igmn_RubberBlackControl
+{
+	background-color:#B4B4B4;
+	background-position:top ;
+	background-image: url(images/menu_bg.gif);
+	border-color:Transparent;
+}
+
+
+.igmn_RubberBlackIsland
+{
+	background-color:#B4B4B4;
+	background-position:top ;
+	background-image: url(images/menu_bg.gif);
+	border:solid 1px #B4B4B4;
+}
+
+
+.igmn_RubberBlackItem
+{
+	background-color:Transparent;
+	border:solid 1px Transparent;
+	padding-top:10px;
+	padding-bottom:10px;
+	height: 25px;
+	cursor:hand;
+	color:Black;
+}
+
+
+.igmn_RubberBlackLeaf
+{
+}
+
+
+.igmn_RubberBlackParent
+{
+}
+
+
+.igmn_RubberBlackTopLevelLeaf
+{
+}
+
+
+.igmn_RubberBlackTopLevelParent
+{
+}
+
+
+.igmn_RubberBlackHeader
+{
+}
+
+
+.igmn_RubberBlackSeparator
+{
+}
+
+
+.igmn_RubberBlackHover
+{
+	background-position:center ;
+	background-image: url(images/monthview_header.jpg);
+	border:solid 1px #5A5A5A;
+	color:White;
+}
+
+
+.igmn_RubberBlackTopLevelHover
+{
+	background-position:center ;
+	background-image: url(images/monthview_header.jpg);
+	border:solid 1px #5A5A5A;
+	color:White;
+}
+
+
+.igmn_RubberBlackTopSelected
+{
+}
+
+
+.igmn_RubberBlackDisabled
+{
+	font-size:x-small;
+	font-family: Verdana;
+	color:#A5A5A5;
+}
+
+

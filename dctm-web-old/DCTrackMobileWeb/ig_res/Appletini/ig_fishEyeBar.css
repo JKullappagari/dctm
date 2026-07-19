@@ -1,0 +1,41 @@
+﻿.igfeb_AppletiniControl
+{
+	background-color: Transparent;
+}
+
+.igfeb_AppletiniControlHover
+{
+				
+				
+}
+
+.igfeb_AppletiniFishEyeItemLabel
+{
+}
+
+.igfeb_AppletiniFishEyeItem
+{
+}
+
+.igfeb_AppletiniFishEyeItemHover
+{			
+}
+
+.igfeb_AppletiniFishEyeItemDisabled
+{
+				
+				
+}
+
+.igfeb_AppletiniControlFocus
+{
+				
+				
+}
+
+.igfeb_AppletiniFishEyeItemSelected
+{
+	background-position: bottom;
+	background-image: url(images/igfeb_itemselected.png);	
+	background-repeat:  no-repeat;
+}

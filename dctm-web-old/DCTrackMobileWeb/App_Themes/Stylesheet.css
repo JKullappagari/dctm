@@ -1,0 +1,210 @@
+﻿body
+{
+	font-family: Tahoma;
+	font-size : 8pt;
+}
+
+.fieldLabel 
+{
+	font-family: Tahoma;
+	font-size : 8pt;
+}
+
+.fieldInput
+{
+	border-style: solid;
+	border-width: 1px;
+	font-family: Tahoma;
+	font-size : 8pt;	
+}
+.FieldName {
+	  font-family: Verdana, Helvetica, sans-serif;
+	  font-size: 11px;
+	  color: #000000;      
+      font-weight: bold;
+      color: Black;
+	  text-align:left;	
+	  padding-left:8px;
+}
+/*Reorder List*/
+.dragHandle {
+	width:10px;
+	height:15px;
+	background-color:Blue;
+	background-image:url(../images/bg-menu-main.png);
+	cursor:move;
+	border:outset thin white;
+}
+
+.callbackStyle {
+	border:thin blue inset;		
+}
+
+.callbackStyle table {
+	background-color:#5377A9;	
+	color:Black;
+}
+
+
+.reorderListDemo li {
+	list-style:none;
+	margin:2px;
+	background-image:url(../images/bg_nav.gif);
+	background-repeat:repeat-x;
+	color:#FFF;
+}
+
+.dragVisualContainer li  {
+    list-style:none;
+	background-image:url(../images/bg_nav.gif);
+	background-repeat:repeat-x;
+	color:#FFF;
+}
+
+.reorderListDemo li a {color:#FFF !important; font-family:Tahoma; font-size:8pt; font-weight:bold;}
+
+.reorderCue {
+	border:dashed thin black;
+	width:100%;
+	height:25px;
+}
+
+.itemArea {
+	margin-left:15px;
+	font-family:Tahoma, Verdana, sans-serif;
+	font-size:8pt;
+	text-align:left;
+}
+
+
+/*Modal Popup*/
+
+.modalPopupHeader 
+{
+	background-image:url(../images/bg_nav.gif);
+	background-repeat:repeat-x;
+	height:20px;
+	width: 100%;
+	cursor: move;
+	font-family:Tahoma, Verdana, sans-serif;
+	font-size:8pt;
+	text-align:left;
+}
+
+.modalBackground
+{
+	background-color: Gray;
+	filter: alpha(opacity=70);
+	opacity: 0.7;
+}
+
+.modalPopup {
+	background-color: White;
+	border-width:2px;
+	border-style: groove;
+	border-color:Gray;
+	padding:3px;
+	width:250px;
+}
+
+.modalPopupCloseButton
+{
+	height: 16px;
+	width: 16px;
+	cursor: pointer;
+}
+
+
+/************ MaskedEdit Related Styles ***********************/
+.MaskedEditFocus
+{
+    background-color: #ffffcc;
+    color: #000000;
+}
+.MaskedEditMessage
+{
+	color: #ff0000;
+	font-weight: bold;
+}
+.MaskedEditError
+{
+    background-color: #ffcccc;
+}
+.MaskedEditFocusNegative
+{
+    background-color: #ffffcc;
+    color: #ff0000;
+}
+.MaskedEditBlurNegative
+{
+    color: #ff0000;
+}
+
+.MyCalendar .ajax__calendar_container {
+    border:1px solid #646464;
+    background-color: Lime;
+    color: red;
+}
+.MyCalendar .ajax__calendar_other .ajax__calendar_day,
+.MyCalendar .ajax__calendar_other .ajax__calendar_year {
+    color: black;
+}
+.MyCalendar .ajax__calendar_hover .ajax__calendar_day,
+.MyCalendar .ajax__calendar_hover .ajax__calendar_month,
+.MyCalendar .ajax__calendar_hover .ajax__calendar_year {
+    color: black;
+}
+.MyCalendar .ajax__calendar_active .ajax__calendar_day,
+.MyCalendar .ajax__calendar_active .ajax__calendar_month,
+.MyCalendar .ajax__calendar_active .ajax__calendar_year {
+    color: black;
+    font-weight:bold;
+}
+
+
+
+/* Context Menu */
+
+.ContextMenuPanel 
+{
+	border: 1px solid #868686;
+	z-index: 1000;
+	background: url(../images/menu-bg.gif) repeat-y 0 0 #FAFAFA;
+	cursor: default;
+	padding: 1px 1px 0px 1px;
+	font-size: 11px;
+}
+
+.ContextMenuBreak
+{
+	margin:1px 1px 1px 32px;
+	padding:0;
+	height:1px;
+	overflow:hidden;
+	display:block;
+	border-top: 1px solid #C5C5C5;	
+}
+
+a.ContextMenuItem
+{
+	margin: 1px 0 1px 0;
+	display: block;
+	color: #003399;
+	text-decoration: none;
+	cursor: pointer;	
+	padding: 4px 19px 4px 33px;
+	white-space: nowrap;
+}
+
+a.ContextMenuItem-Selected
+{
+	font-weight: bold;
+}
+
+a.ContextMenuItem:hover
+{
+	background-color: #FFE6A0;
+	color: #003399;
+	border: 1px solid #D2B47A;
+	padding: 3px 18px 3px 32px;
+}

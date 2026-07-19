@@ -1,0 +1,426 @@
+/*
+
+Main control CSS class
+*/
+.igdd_TrendyControl
+{
+}
+
+
+/*
+ Main Control CSS class when it's disabled
+*/
+.igdd_TrendyControlDisabled
+{
+}
+
+
+/*
+ Main control css class on hover
+*/
+.igdd_TrendyControlHover
+{
+	background-color:#DDF7FF;
+}
+
+
+/*
+
+*/
+.igdd_TrendyControlFocus
+{
+	background-color:#DDF7FF;
+	border:solid 1px #119A49;
+	table-layout: fixed;
+}
+
+
+.igdd_TrendyControlArea
+{
+	border:solid 1px #119A49;
+	table-layout: fixed;
+}
+
+
+/*
+CSS class for the actual input field (<input type="text" />)
+*/
+.igdd_TrendyValueDisplay
+{
+	background-color:Transparent;
+	font-weight:normal;
+	font-size:10pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-width:0px;
+	width: 100%;
+	z-index: 0;
+}
+.igdd_TrendyValueDisplay::-ms-clear
+{
+	display: none;
+}
+
+/*
+
+*/
+.igdd_TrendyValueDisplayHover
+{
+}
+
+
+/*
+
+*/
+.igdd_TrendyValueDisplayFocus
+{
+}
+
+
+/*
+
+*/
+.igdd_TrendyValueDisplayDisabled
+{
+    background-color:Transparent;
+    border:0px;
+    font-family:Verdana,Arial,Helvetica,sans-serif;
+    font-size:10pt;
+    font-weight:normal;
+    width:100%;
+    z-index:0
+}
+
+
+/*
+
+*/
+.igdd_TrendyValueDisplayReadOnly
+{
+}
+
+
+/*
+
+*/
+.igdd_TrendyDropDownList
+{
+	background-color:White;
+	font-size:10pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin:0px;
+	padding:1px;
+}
+
+
+/*
+
+*/
+.igdd_TrendyDropDownListHover
+{
+}
+
+
+/*
+
+*/
+.igdd_TrendyDropDownListReadOnly
+{
+}
+
+
+/*
+	
+*/
+.igdd_TrendyDropDownListContainer
+{
+	background-color:White;
+	border:solid 1px #119A49;
+	float: left;
+}
+
+
+/*
+
+*/
+.igdd_TrendyDropDownListContainerHover
+{
+}
+
+
+/*
+
+*/
+.igdd_TrendyDropDownButton
+{
+	width: 17px;
+	z-index: 9999;
+}
+
+.igdd_TrendyDropDownButton img 
+{
+    display:block;
+}
+
+
+/*
+
+*/
+.igdd_TrendyDropDownButtonHover
+{
+	background-image: url(images/igdd_dropdownbuttonhover.png);
+}
+
+
+/*
+CSS class that controls the style of the LI items in the list
+*/
+.igdd_TrendyListItem
+{
+	font-size:10pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border:solid 1px Transparent;
+	padding:3px 5px 3px 5px;
+	list-style-type: none;
+	width: auto;
+	min-height: 15px;
+	height: auto !important;
+	cursor:pointer;
+}
+	/* IE 6 fix */
+	.ie6 .igdd_TrendyListItem {
+		border:solid 1px white;
+	}
+
+/*
+
+*/
+.igdd_TrendyListItemActive
+{
+	background-color:#BFE08D;
+	border:solid 1px #8CC835;
+	list-style-type: none;
+}
+
+
+/*
+
+*/
+.igdd_TrendyListItemHover
+{
+	background-color:#0099FF;
+	background-repeat:repeat-x;
+	background-position:top ;
+	background-image: url(images/igdd_listitemhover.png);
+	border:solid 1px Transparent;
+	list-style-type: none;
+}
+	/* IE 6 fix */
+	.ie6 .igdd_TrendyListItemHover {
+		border:solid 1px white;
+	}
+
+/*
+
+*/
+.igdd_TrendyListItemSelected
+{
+	background-color:#EEEEEE;
+	border:solid 1px #EEEEEE;
+	list-style-type: none;
+}
+
+
+/*
+
+*/
+.igdd_TrendyListItemDisabled
+{
+	list-style-type: none;
+	width: auto;
+	cursor:default;
+}
+
+
+/*
+Applied to the whole pager
+*/
+.igdd_TrendyPager
+{
+	background-color:Transparent;
+	border-top:solid 1px #119A49;
+	vertical-align:middle;
+}
+
+
+/*
+Loading message container
+*/
+.igdd_TrendyLoadingItemsMessage
+{
+	background-color:#33CCFF;
+	font-weight:bold;
+	font-size:10pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin:1px 0px 0px 1px;
+	padding:3px;
+	color:White;
+}
+
+
+/*
+Styles the current page link only
+*/
+.igdd_TrendyPageCurrent
+{
+	font-size:8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-top:5px;
+	margin-right:3px;
+	float: left;
+	cursor:pointer;
+	color:#069FFF;
+	text-decoration:underline;
+	vertical-align:middle;
+}
+
+
+/*
+Styles all page links in general 
+*/
+.igdd_TrendyPageLink
+{
+	font-size:8pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin-top:5px;
+	margin-right:3px;
+	float: left;
+	cursor:pointer;
+	color:#8CC835;
+	vertical-align:middle;
+}
+
+
+.igdd_TrendyListItemActive a:link
+{
+	color:White;
+	text-decoration:none;
+}
+
+
+/*
+
+*/
+.igdd_TrendyListItemFocus
+{
+	list-style-type: none;
+	width: auto;
+}
+
+
+.igdd_ListItem a:hover
+{
+}
+
+
+/*
+
+*/
+.igdd_TrendyDropDownButtonDisabled
+{
+}
+
+
+/*
+Styling for anchor when hovered anywhere on ListItem
+*/
+.igdd_TrendyListItemHover a:link
+{
+	color:White;
+	text-decoration:none;
+}
+
+
+/*
+	
+*/
+.igdd_TrendyDropDownButtonFocus
+{
+}
+
+
+/*
+
+*/
+.igdd_TrendyDropDownListFocus
+{
+}
+
+
+.igdd_TrendyListItem a:link
+{
+	color:#333333;
+	text-decoration:none;
+}
+
+
+/*
+
+*/
+.igdd_TrendyDropDownListDisabled
+{
+}
+
+
+/*
+For Disabled=True of a DropDownItem
+*/
+.igdd_TrendyListItemDisabled a:link
+{
+	cursor:default;
+	color:#BBBBBB;
+}
+
+
+.igdd_TrendyListItem a:visited
+{
+	color:#333333;
+	text-decoration:none;
+}
+
+
+/*
+pseudo class used so Value Display input does not have focus
+glow in some browsers like GoogleChrome or AppleSafari
+*/
+input:focus
+{
+	outline: none;
+}
+
+
+/*
+
+*/
+.igdd_TrendyDropDownListContainerFocus
+{
+}
+
+
+.igdd_TrendyListItem a:active
+{
+}
+
+
+/*
+ CSS class for the table that accomodates the value display and the drop down button, and which is a 
+ child of the main control (div)
+*/
+.igdd_TrendyValueDisplayTable
+{
+}
+
+/* hide IE 10 clear button */
+.igdd_TrendyValueDisplay::-ms-clear
+{
+    display : none;
+}

@@ -1,0 +1,133 @@
+﻿.ighg_RubberBlackExpandButton
+{
+	cursor: pointer;
+	cursor: hand;
+	padding-left: 5px;
+}
+
+TBODY>TR>TD.ighg_RubberBlackExpandableArea
+{
+	padding: 0px 0px 0px 25px;
+}
+
+.ighg_RubberBlackExpansionColumn
+{
+	width: 25px;
+	padding: 0 !important;
+}
+
+.ighg_RubberBlackExpansionColumnHeader
+{
+	width: 25px;
+}
+
+.ighg_RubberBlackExpansionColumnFooter
+{
+	width: 25px;
+}
+
+
+/* START -- GroupBy CSS Classes */
+.ighg_RubberBlackGroupIndentHeaderCell
+{
+}
+
+TBODY>TR.ighg_RubberBlackGroupedRow>TD
+{
+	background:#BBBBBB url(images/ighg_GroupedRowBg.png) repeat-x;
+}
+
+
+TBODY>TR>TD.ighg_RubberBlackGroupIndentCell
+{
+	border-right: 1px solid #D8D8D8;
+}
+
+.ighg_RubberBlackGroupArea
+{
+	background-color: #F3F4F3;
+	border-bottom: 1px solid #4B4B4B;
+	padding: 10px;
+}
+
+.ighg_RubberBlackGroupedColumn
+{
+	display: inline-block;
+	background: url(images/ighg_GroupedColumnBg.png) repeat-x;
+	height: 16px;
+	padding: 3px 5px 0px 10px;
+	color: #FFFFFF;
+}
+.ighg_RubberBlackGroupedColumnRightEdgeEnd
+{
+	display: inline-block;
+	background: url(images/ighg_GroupedColumnRightEdgeEndBg.gif) no-repeat;		
+	width: 10px;
+	height: 16px;
+	padding-top: 3px;
+}
+.ighg_RubberBlackGroupedColumnRightEdge
+{
+	display: inline-block;
+	background: url(images/ighg_GroupedColumnRightEdgeBg.png) no-repeat;
+	width: 10px;
+	height: 16px;
+	padding-top: 3px;
+}
+
+.ighg_RubberBlackGroupedColumnLeftEdge
+{
+	display: inline-block;
+	background: url(images/ighg_GroupedColumnLeftEdgeBg.gif) no-repeat;
+	width: 9px;
+	height: 16px;
+	padding-top: 3px;
+}
+
+.ighg_RubberBlackGroupedBand
+{
+	display: inline-block;
+	background: url(images/ighg_GroupedBandBg.png) repeat-x;
+	border-left: 1px solid #4B4B4B;
+	height: 16px;
+	padding: 3px 0px 0px 10px;
+	color: #FFFFFF;
+}
+.ighg_RubberBlackGroupedBandRightEdge
+{		
+	display: inline-block;
+	background: url(images/ighg_GroupedBandBg.png) repeat-x;
+	border-right: 1px solid #4B4B4B;
+	width: 10px;
+	height: 16px;
+	padding: 3px 0px 0px 0px;
+}
+
+.ighg_RubberBlackColumnGroupingTopDragIndicator
+{
+	background-image:url(images/ighg_TopDragIndicator.gif);
+	background-repeat: no-repeat;
+	width:5px; 
+	height:3px;
+	z-index: 100;
+}
+
+.ighg_RubberBlackColumnGroupingMiddleDragIndicator
+{
+      background-image:url(images/ighg_MiddleDragIndicator.gif);
+      background-repeat: repeat-y;
+      background-position: center;
+      width:3px; 
+}
+
+.ighg_RubberBlackColumnGroupingBottomDragIndicator
+{
+      background-image:url(images/ighg_BottomDragIndicator.gif);
+      background-repeat: no-repeat;
+      width:5px; 
+      height:3px;
+      position: absolute;
+      z-index: 100;   
+}
+/* END -- GroupBy CSS Classes */
+@media print{.ighg_RubberBlackControl, .ighg_RubberBlackControl div{width:auto !important; height:auto !important; overflow: visible !important;}}

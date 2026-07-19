@@ -1,0 +1,554 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ajaxFUAssetResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ibCreateResource1.Text" xml:space="preserve">
+    <value>Import to DB</value>
+  </data>
+  <data name="ibCreateResource1.ToolTip" xml:space="preserve">
+    <value>This will import the excel records to the DB</value>
+  </data>
+  <data name="ibExportToExcelResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ibExportToExcelResource1.ToolTip" xml:space="preserve">
+    <value>Export To Excel</value>
+  </data>
+  <data name="ibUploadResource1.Text" xml:space="preserve">
+    <value>Parse File</value>
+  </data>
+  <data name="ibUploadResource1.ToolTip" xml:space="preserve">
+    <value>This will validate the records</value>
+  </data>
+  <data name="lblAssetTypesResource1.Text" xml:space="preserve">
+    <value>No of Asset Types found: </value>
+  </data>
+  <data name="lblAssetTypesResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblAsstesValueResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblAsstesValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblAssteTypesValueResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblAssteTypesValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblBUResource1.Text" xml:space="preserve">
+    <value>Company*</value>
+  </data>
+  <data name="lblBUResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDuplicateFileResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDuplicateFileResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblFailResource1.Text" xml:space="preserve">
+    <value>No of Asset Models failed to import: </value>
+  </data>
+  <data name="lblFailResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblFAssetsResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblFAssetsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblFileUploadStatusResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblFileUploadStatusResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblImportAssetResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblImportAssetResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblManufacturersResource1.Text" xml:space="preserve">
+    <value>No of Manufacturers found: </value>
+  </data>
+  <data name="lblManufacturersResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblManufacturerValueResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblManufacturerValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMessageResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMessageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblModelsResource1.Text" xml:space="preserve">
+    <value>No of Asset Models found: </value>
+  </data>
+  <data name="lblModelsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblModelsValueResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblModelsValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblStatusResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblStatusResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblSuccessResource1.Text" xml:space="preserve">
+    <value>No of Asset Models imported successfully: </value>
+  </data>
+  <data name="lblSuccessResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblTotalAssetsResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblTotalAssetsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblTotalResource1.Text" xml:space="preserve">
+    <value>Total Asset Models found: </value>
+  </data>
+  <data name="lblTotalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblUploadAssetFileResource1.Text" xml:space="preserve">
+    <value>Upload Asset Model File*</value>
+  </data>
+  <data name="lblUploadAssetFileResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>Import Asset Models</value>
+  </data>
+  <data name="regRootEntityValResource1.ErrorMessage" xml:space="preserve">
+    <value>Invalid Company Name - use alphabets/digits and no spaces allowed</value>
+  </data>
+  <data name="regRootEntityValResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="regRootEntityValResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqBUValResource1.ErrorMessage" xml:space="preserve">
+    <value>Select Project Code</value>
+  </data>
+  <data name="reqBUValResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqBUValResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mapSummaryTableResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mapSummaryTableResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource10.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource10.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource11.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource11.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource12.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource12.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource13.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource13.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource14.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource14.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource15.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource15.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource16.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource16.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource17.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource17.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource18.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource18.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource19.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource19.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource2.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource20.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource20.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource21.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource21.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource22.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource22.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource3.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource4.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource5.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource6.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource7.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource8.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource9.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource9.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableHeaderCellResource1.Text" xml:space="preserve">
+    <value>
+                                            Excel File Statistics: 
+                                                </value>
+  </data>
+  <data name="TableHeaderCellResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableHeaderCellResource2.Text" xml:space="preserve">
+    <value>
+                                            Upload statistics: 
+                                                </value>
+  </data>
+  <data name="TableHeaderCellResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableHeaderRowResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableHeaderRowResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource10.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource11.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource3.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource4.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource5.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource6.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource7.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource8.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource9.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ThrobberResource1.Text" xml:space="preserve">
+    <value>
+                                                    &lt;img src="Images/ajax-loader.gif" align="absmiddle" alt="loading" /&gt;
+                                        </value>
+  </data>
+  <data name="ThrobberResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtBUResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtBUResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="updateSummaryResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="updateSummaryResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMappedModelsResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMappedModelsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMappedResource1.Text" xml:space="preserve">
+    <value>No of Models mapped using Auto process: </value>
+  </data>
+  <data name="lblMappedResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblTotalModelsResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblTotalModelsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mapSummaryTableResource1.Caption1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mapSummaryTableResource1.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource1.Text1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource1.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource2.Text1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource2.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource3.Text1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource3.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource4.Text1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableCellResource4.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableHeaderCellResource1.Text1" xml:space="preserve">
+    <value>
+                                            Asset Model statistics: 
+                                                </value>
+  </data>
+  <data name="TableHeaderCellResource1.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableHeaderRowResource1.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource1.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TableRowResource2.ToolTip1" xml:space="preserve">
+    <value />
+  </data>
+</root>

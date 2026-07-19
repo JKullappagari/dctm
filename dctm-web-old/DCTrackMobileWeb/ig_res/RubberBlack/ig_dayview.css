@@ -1,0 +1,248 @@
+.igdv_RubberBlackControl
+{
+	border:solid 1px #4B4B4B;
+}
+
+
+.igdv_RubberBlackCaptionHeader
+{
+	background-color:#000000;
+	background-repeat:repeat-x;
+	background-image: url(images/monthview_header.jpg);
+	font-weight:bold;
+	font-size:8pt;
+	line-height: 16pt;
+	color:White;
+	text-align:center;
+}
+
+
+.igdv_RubberBlackDayHeader
+{
+	background-color:#E1E1E1;
+	background-position:bottom ;
+	background-image: url(images/gradient.png);
+	font-size:8pt;
+	border-bottom:solid 1px #999999;
+	padding:5px;
+	height: 20px;
+	color:Black;
+	text-align:center;
+	vertical-align:middle;
+	overflow: hidden;
+}
+
+
+.igdv_RubberBlackNonWorkingTimeSlot
+{
+	background-color: #eeeeee;
+	border-bottom:solid 1px #C0C0C0;
+	height: 20px;
+}
+
+
+.igdv_RubberBlackWorkingTimeSlot
+{
+	background-color:#FFFFFF;
+	border-bottom:solid 1px #C0C0C0;
+	height: 20px;
+}
+
+
+.igdv_RubberBlackAllDayEventArea
+{
+	background-color:#FAFAFA;
+	border-bottom: 1px solid #999999;
+}
+
+
+.igdv_RubberBlackAllDayEvent
+{
+	background-color: #F5F5F5;
+	font-size:8pt;
+	border: solid 1px #C0C0C0;
+	padding-left:3px;
+	height: 25px;
+	white-space: nowrap;
+	text-align:center;
+	overflow: hidden;
+}
+
+
+.igdv_RubberBlackAppointment
+{
+	background-color:White;
+	font-size:8pt;
+	border:solid 1px #999999;
+	overflow: hidden;
+}
+
+.igdv_RubberBlackFadedAppointment
+{
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+
+.igdv_RubberBlackActivityEdge
+{
+	font-size:1px;
+	height: 4px;
+	cursor:n-resize;
+}
+
+
+.igdv_RubberBlackActivityEdgeLeft
+{
+	font-size:2px;
+	width: 6px;
+	cursor:move;
+}
+
+
+.igdv_RubberBlackTodayHeader
+{
+	background-color:#E1E1E1;
+	background-position:bottom ;
+	background-image: url(images/gradient.png);
+	font-size:8pt;
+	font-weight: bold;
+	border-bottom:solid 1px #999999;
+	padding:5px;
+	height: 20px;
+	color:Black;
+	text-align:center;
+	vertical-align:middle;
+}
+
+
+.igdv_RubberBlackTimeSlotLabel
+{
+	background-color:#CCCCCC;
+	background-position:top ;
+	background-repeat: repeat-x;
+	background-image: url(images/menu_bg.gif);
+	font-size:16pt;
+	border-right:solid 1px #999999;
+	border-bottom:solid 1px #999999;
+	width: 60px;
+	text-align:center;
+	vertical-align:middle;
+}
+
+
+.igdv_RubberBlackTimeSlotLabelMinutes
+{
+	font-size:8pt;
+}
+
+
+.igdv_RubberBlackAllDayEventSelected
+{
+	background-color:#000000;
+	color: #FFFFFF;
+}
+
+
+.igdv_RubberBlackAllDayEventAreaSelected
+{
+	background-color:White;
+}
+
+
+.igdv_RubberBlackActivityHover
+{
+	z-index: 10000;
+}
+
+
+.igdv_RubberBlackActivityEdgeBusy
+{
+	background-color:#000000;
+}
+
+
+.igdv_RubberBlackActivityEdgeTentative
+{
+	background-color:#000000;
+}
+
+
+.igdv_RubberBlackActivityEdgeOutofOffice
+{
+	background-color:#000000;
+}
+
+
+.igdv_RubberBlackActivityEdgeFree
+{
+	background-color:#000000;
+}
+
+
+.igdv_RubberBlackNavigationButton
+{
+	background-color:Transparent;
+	border-width:0px;
+	width: 20px;
+	vertical-align:middle;
+	cursor: hand;
+	cursor: pointer;
+}
+
+
+.igdv_RubberBlackSelectedAppointment
+{
+	z-index: 9999;
+}
+
+.igdv_RubberBlackResourceButton
+{
+	background-color:#A6A6A6;
+	background-repeat:repeat-x;
+	background-position: bottom;
+	background-image: url(images/igg_Selected.gif);
+	padding: 3px;
+	color: #FFFFFF;
+	border-width: 0;
+	border-right: solid 1px #999999;
+	border-bottom: solid 1px #999999;
+	font-size: 8pt;
+}
+
+.igdv_RubberBlackResourceButton:focus, .igdv_RubberBlackResourceButtonActive
+{
+	filter:alpha(opacity=100);
+	-moz-opacity:1.0;
+	-khtml-opacity: 1.0;
+	opacity: 1.0;
+}
+
+.igdv_RubberBlackResourceButton:hover
+{
+	filter:alpha(opacity=100);
+	-moz-opacity:1.0;
+	-khtml-opacity: 1.0;
+	opacity: 1.0;
+}
+
+.igdv_RubberBlackMultiDayEventArrowLeft
+{
+      background-image: url(images/igws_arrowLeft.gif);
+      background-repeat: no-repeat;
+      background-position: center center;
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+}
+
+.igdv_RubberBlackMultiDayEventArrowRight
+{
+      background-image: url(images/igws_arrowRight.gif);
+      background-repeat: no-repeat;
+      background-position: center center;
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+}

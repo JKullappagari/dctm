@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AutoCompleteClientSideLabel" xml:space="preserve">
+    <value>Client-side filtering</value>
+  </data>
+  <data name="AutoCompleteDescription" xml:space="preserve">
+    <value>This sample shows the Filtering and Autocomplete functionality that comes built-in to the WebDropDown.  Filtering is possible on both the Client-side and Server-side.  You can also do Server-side filtering and cache items on the client-side.</value>
+  </data>
+  <data name="AutoCompleteServerSide" xml:space="preserve">
+    <value>Server-side filtering</value>
+  </data>
+  <data name="AutoCompleteServerSideClientCacheLabel" xml:space="preserve">
+    <value>Server filtering with Client caching</value>
+  </data>
+  <data name="AutoCompleteTitle" xml:space="preserve">
+    <value>Built-in Filtering and Autocomplete</value>
+  </data>
+  <data name="AutoSelectOnMatch" xml:space="preserve">
+    <value>Auto Select on Match</value>
+  </data>
+  <data name="CascadeCityLabel" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="CascadeCountryLabel" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="CascadeDescription" xml:space="preserve">
+    <value>This example shows how easy it is to create a series of cascading WebDropDown controls.  Changing the country value will change the value of state and so on.</value>
+  </data>
+  <data name="CascadeDescriptionAlternative" xml:space="preserve">
+    <value>This example shows how easy it is to create a series of cascading WebDropDown controls.  Changing the country value will change the value of state and so on.</value>
+  </data>
+  <data name="CascadeImgAlt" xml:space="preserve">
+    <value>Cascade</value>
+  </data>
+  <data name="CascadeStateLabel" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="CascadeTitle" xml:space="preserve">
+    <value>Cascading a WebDropDown</value>
+  </data>
+  <data name="ClientEventAddItemLabel" xml:space="preserve">
+    <value>Add Item</value>
+  </data>
+  <data name="ClientEventLabel" xml:space="preserve">
+    <value>Client Events</value>
+  </data>
+  <data name="ClientEventsAddItem" xml:space="preserve">
+    <value>Add Item</value>
+  </data>
+  <data name="ClientEventsDescription" xml:space="preserve">
+    <value>This sample shows how to subscribe to the client (JavaScript) events of the WebDropDown. When an event fires, a message is displayed for the menu item that triggered the event.</value>
+  </data>
+  <data name="ClientEventsTitle" xml:space="preserve">
+    <value>Client Side Events for the WebDropDown</value>
+  </data>
+  <data name="ControlName" xml:space="preserve">
+    <value>WebDropDown</value>
+  </data>
+  <data name="CustomPersistDescription" xml:space="preserve">
+    <value>This sample demonstrates how to extend the WebDropDown to persist values across multiple sessions and users. Enter a custom value in the WebDropDown then click off of the control. As soon as the control loses focus, the custom value is added to the list. This can be useful in community-based sites where you want users to grow the number of realistic values for a particular input field.</value>
+  </data>
+  <data name="CustomPersistImgAlt" xml:space="preserve">
+    <value>CUSTOM PERSISTENCE</value>
+  </data>
+  <data name="CustomPersistLabel" xml:space="preserve">
+    <value>Type in your own value</value>
+  </data>
+  <data name="CustomPersistTitle" xml:space="preserve">
+    <value>Custom Values &amp; Persistence in the WebDropDown</value>
+  </data>
+  <data name="DataBindingDescription" xml:space="preserve">
+    <value>Select an item in the drop down to change the data source used by the WebDropDown.</value>
+  </data>
+  <data name="DataBindingLabel" xml:space="preserve">
+    <value>Select a Data Source</value>
+  </data>
+  <data name="DataBindingTitle" xml:space="preserve">
+    <value>Data Binding</value>
+  </data>
+  <data name="DataPagingDataLabel" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="DataPagingDescription" xml:space="preserve">
+    <value>This example will let you see the different ways you can use data paging with the WebDropDown.</value>
+  </data>
+  <data name="DataPagingImgAlt" xml:space="preserve">
+    <value>DATA PAGING</value>
+  </data>
+  <data name="DataPagingPageModeLabel" xml:space="preserve">
+    <value>Page Mode</value>
+  </data>
+  <data name="DataPagingPageSizeLabel" xml:space="preserve">
+    <value>Page Size</value>
+  </data>
+  <data name="DataPagingTitle" xml:space="preserve">
+    <value>Paging the items of the WebDropDown</value>
+  </data>
+  <data name="DelarativeDataBinding_AccessDataSourceDescription" xml:space="preserve">
+    <value>This sample shows how to bind the WebDropDown to AccessDataSource control.</value>
+  </data>
+  <data name="DelarativeDataBinding_AccessDataSourceTitle" xml:space="preserve">
+    <value>Declarative Data Binding to AccessDataSource</value>
+  </data>
+  <data name="DelarativeDataBinding_DomainDataSourceDescription" xml:space="preserve">
+    <value>This sample shows how to bind the WebDropDown to DomainDataSource control.</value>
+  </data>
+  <data name="DelarativeDataBinding_DomainDataSourceTitle" xml:space="preserve">
+    <value>Declarative Data Binding to DomainDataSource</value>
+  </data>
+  <data name="DelarativeDataBinding_LinqDataSourceDescription" xml:space="preserve">
+    <value>This sample shows how to bind the WebDropDown to LinqDataSource control.</value>
+  </data>
+  <data name="DelarativeDataBinding_LinqDataSourceTitle" xml:space="preserve">
+    <value>Declarative Data Binding to LinqDataSource</value>
+  </data>
+  <data name="DelarativeDataBinding_SqlDataSourceDescription" xml:space="preserve">
+    <value>This sample shows how to bind the WebDropDown to SqlDataSource control.</value>
+  </data>
+  <data name="DelarativeDataBinding_SqlDataSourceTitle" xml:space="preserve">
+    <value>Declarative Data Binding to SqlDataSource</value>
+  </data>
+  <data name="LoadOnDemandDescription" xml:space="preserve">
+    <value>This sample will give you a first look of loading data as the user needs it.  As you scroll the control will start to make the next chunk of data available.</value>
+  </data>
+  <data name="LoadOnDemandImgAlt" xml:space="preserve">
+    <value>LOAD ON DEMAND</value>
+  </data>
+  <data name="LoadOnDemandLoadingItems" xml:space="preserve">
+    <value>Loading items...</value>
+  </data>
+  <data name="LoadOnDemandText" xml:space="preserve">
+    <value>Scroll down to the bottom</value>
+  </data>
+  <data name="LoadOnDemandTitle" xml:space="preserve">
+    <value>Load on Demand</value>
+  </data>
+  <data name="MultiSelectionBasic" xml:space="preserve">
+    <value>Basic multiple selection</value>
+  </data>
+  <data name="MultiSelectionCheckbox" xml:space="preserve">
+    <value>Checkbox multiple selection</value>
+  </data>
+  <data name="MultiSelectionDescription" xml:space="preserve">
+    <value>This sample shows the Multi Selection functionality of the WebDropDown.  You can make multiple selections with the mouse, keyboard or checkboxes.  For multiple selection use CTR and SHIFT keys with the keyboard/mouse.</value>
+  </data>
+  <data name="MultiSelectionKeyboard" xml:space="preserve">
+    <value>Keyboard multiple selection</value>
+  </data>
+  <data name="MultiSelectionLabel" xml:space="preserve">
+    <value>Multi Selection</value>
+  </data>
+  <data name="MultiSelectionNewItems" xml:space="preserve">
+    <value>new items</value>
+  </data>
+  <data name="MultiSelectionOldItems" xml:space="preserve">
+    <value>old items</value>
+  </data>
+  <data name="MultiSelectionSelectionChanged" xml:space="preserve">
+    <value>Selection Changed</value>
+  </data>
+  <data name="MultiSelectionSelectionChanging" xml:space="preserve">
+    <value>Selection Changing</value>
+  </data>
+  <data name="MultiSelectionTitle" xml:space="preserve">
+    <value>Multi Selection feature of the WebDropDown</value>
+  </data>
+  <data name="ProgramaticDataBinding_DataTableDescription" xml:space="preserve">
+    <value>This sample shows how to populate WebDropDown from a DataTable.</value>
+  </data>
+  <data name="ProgramaticDataBinding_DataTableTitle" xml:space="preserve">
+    <value>Simple Data Binding to a DataTable</value>
+  </data>
+  <data name="ProgramaticDataBinding_IEnumerableDescription" xml:space="preserve">
+    <value>This sample shows how to populate WebDropDown from an IEnumerable Collection.</value>
+  </data>
+  <data name="ProgramaticDataBinding_IEnumerableTitle" xml:space="preserve">
+    <value>Simple Data Binding to an IEnumerable</value>
+  </data>
+  <data name="PropertyExplorerAnimationDurationLabel" xml:space="preserve">
+    <value>Animation Duration</value>
+  </data>
+  <data name="PropertyExplorerAnimationLabel" xml:space="preserve">
+    <value>Animations</value>
+  </data>
+  <data name="PropertyExplorerAnimationTypeLabel" xml:space="preserve">
+    <value>Animation Type</value>
+  </data>
+  <data name="PropertyExplorerAutoCompleteLabel" xml:space="preserve">
+    <value>Auto Complete</value>
+  </data>
+  <data name="PropertyExplorerCaseSensitivityLabel" xml:space="preserve">
+    <value>Case Sensitivity</value>
+  </data>
+  <data name="PropertyExplorerContainerHeightLabel" xml:space="preserve">
+    <value>Container Height</value>
+  </data>
+  <data name="PropertyExplorerContainerMaxHeightLabel" xml:space="preserve">
+    <value>Container Max Height</value>
+  </data>
+  <data name="PropertyExplorerContainerWidth" xml:space="preserve">
+    <value>Container Width</value>
+  </data>
+  <data name="PropertyExplorerDescription" xml:space="preserve">
+    <value>This sample shows how to configure the WebDropDown to meet your needs.  You can select any of the properties below to adjust the control.</value>
+  </data>
+  <data name="PropertyExplorerDisplayModeLabel" xml:space="preserve">
+    <value>Display Mode</value>
+  </data>
+  <data name="PropertyExplorerDuration0" xml:space="preserve">
+    <value>0.5 Seconds</value>
+  </data>
+  <data name="PropertyExplorerDuration1" xml:space="preserve">
+    <value>1 Second</value>
+  </data>
+  <data name="PropertyExplorerDuration2" xml:space="preserve">
+    <value>2 Seconds</value>
+  </data>
+  <data name="PropertyExplorerDuration3" xml:space="preserve">
+    <value>3 Seconds</value>
+  </data>
+  <data name="PropertyExplorerDuration4" xml:space="preserve">
+    <value>4 Seconds</value>
+  </data>
+  <data name="PropertyExplorerDuration5" xml:space="preserve">
+    <value>5 Seconds</value>
+  </data>
+  <data name="PropertyExplorerEnable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="PropertyExplorerLabel" xml:space="preserve">
+    <value>WebDropDown Property Explorer</value>
+  </data>
+  <data name="PropertyExplorerOffsetXLabel" xml:space="preserve">
+    <value>Offset X</value>
+  </data>
+  <data name="PropertyExplorerOffsetYLabel" xml:space="preserve">
+    <value>Offset Y</value>
+  </data>
+  <data name="PropertyExplorerOrientationLabel" xml:space="preserve">
+    <value>Orientation</value>
+  </data>
+  <data name="PropertyExplorerTitle" xml:space="preserve">
+    <value>How to Configure the WebDropDown</value>
+  </data>
+  <data name="ServerEventsDescription" xml:space="preserve">
+    <value>This sample shows how to subscribe to the server events of the WebDropDown. When an event fires, a postback will occur and a message will be displayed for the item that triggered the event.</value>
+  </data>
+  <data name="ServerEventsItemAdded" xml:space="preserve">
+    <value>Item Added:</value>
+  </data>
+  <data name="ServerEventsItemRemoved" xml:space="preserve">
+    <value>Item Removed:</value>
+  </data>
+  <data name="ServerEventsSelectionChanged" xml:space="preserve">
+    <value>Selection Changed:</value>
+  </data>
+  <data name="ServerEventsTitle" xml:space="preserve">
+    <value>Server Events for the WebDropDown</value>
+  </data>
+  <data name="ServerEventsValueChanged" xml:space="preserve">
+    <value>Value Changed:</value>
+  </data>
+  <data name="SeverEventLabel" xml:space="preserve">
+    <value>Server Events</value>
+  </data>
+  <data name="SyncColumnAccountID" xml:space="preserve">
+    <value>Account ID</value>
+  </data>
+  <data name="SyncColumnAccountType" xml:space="preserve">
+    <value>Account Type</value>
+  </data>
+  <data name="SyncColumnBalance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="SyncColumnFirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="SyncColumnLastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="SyncDescription" xml:space="preserve">
+    <value>This example shows how to integrate the WebDropDown with other ASP.NET controls.  In this example we filter a WebDataGrid using the value of the WebDropDown.</value>
+  </data>
+  <data name="SyncTitle" xml:space="preserve">
+    <value>Integrating the WebDropDown with other controls</value>
+  </data>
+  <data name="TemplatesCustomTemplate" xml:space="preserve">
+    <value>Custom Template:</value>
+  </data>
+  <data name="TemplatesDescription" xml:space="preserve">
+    <value>The WebDropDown gives the developer the flexibility to add their own custom makup to the drop down container.</value>
+  </data>
+  <data name="TemplatesTable" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="TemplatesTitle" xml:space="preserve">
+    <value>Templating the WebDropDown container </value>
+  </data>
+  <data name="TemplatesWebDataGrid" xml:space="preserve">
+    <value>WebDataGrid</value>
+  </data>
+  <data name="ThemeDescription" xml:space="preserve">
+    <value>The WebDropDown comes with a number of predefined styles and can be customized by changing the defined CSS styles for the control.</value>
+  </data>
+  <data name="ThemeTitle" xml:space="preserve">
+    <value>Application Styling Themes for WebDropdown</value>
+  </data>
+  <data name="ValidationDescription" xml:space="preserve">
+    <value>This example shows how to use the .NET framework validators with the WebDropDown.</value>
+  </data>
+  <data name="ValidationImgAlt" xml:space="preserve">
+    <value>Validation</value>
+  </data>
+  <data name="ValidationMessage" xml:space="preserve">
+    <value>Validation failed!!!</value>
+  </data>
+  <data name="ValidationRequiredFieldLabel" xml:space="preserve">
+    <value>Required Field</value>
+  </data>
+  <data name="ValidationRequiredValidationFailed" xml:space="preserve">
+    <value>&lt;img src='images/stop.png' /&gt;Validation Failed!!!</value>
+  </data>
+  <data name="ValidationSubmitLabel" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="ValidationTitle" xml:space="preserve">
+    <value>WebDropDown working with .NET  validators</value>
+  </data>
+</root>

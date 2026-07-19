@@ -1,0 +1,46 @@
+.igpnl_TrendyControl
+{
+}
+
+
+.igpnl_TrendyPanel
+{
+	background-color:#F8F8F8;
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+}
+
+
+.igpnl_TrendyHeaderExpanded
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	font-weight:bold;
+	font-size:xx-small;
+	font-family: Verdana;
+	margin-top:3px;
+	margin-bottom:3px;
+	padding-top:4px;
+	padding-bottom:4px;
+	cursor:hand;
+	color:White;
+}
+
+
+.igpnl_TrendyHeaderCollapsed
+{
+}
+
+
+.igpnl_TrendyHeaderHover
+{
+}
+
+
+.igpnl_TrendyGroupBoxControl
+{
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+}
+
+

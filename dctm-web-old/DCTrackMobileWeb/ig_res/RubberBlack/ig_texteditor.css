@@ -1,0 +1,116 @@
+.igte_RubberBlackEditWithButtons
+{
+	font-size: 10px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	background-color: #F9F9F9;
+	line-height:1px;
+	height:20px;
+	width: 130px;
+	outline:0;
+	border:solid 1px #4E4E4E;
+}
+
+
+.igte_RubberBlackEdit
+{
+	font-size: 12px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	background-color: #F9F9F9;
+	border:solid 1px #4E4E4E;
+	outline:0;
+}
+
+.igte_RubberBlackTextArea
+{
+	font-size: 12px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	background-color: #F9F9F9;
+	border:solid 1px #4E4E4E;
+	outline:0;
+	resize:none;
+}
+
+.igte_RubberBlackEditInContainer
+{
+	font-size: 12px;
+	font-family: Segoe UI, Verdana, Arial, Sans-Serif;
+	background-color: Transparent;
+	border-width:0px;
+	outline:0;
+}
+
+.igte_RubberBlackFocus
+{
+	background-image: none;
+	background-color: #FFFFFF;
+	border-color:#000000;
+}
+
+.igte_RubberBlackHover
+{
+	border-color:#000000;
+}
+
+.igte_RubberBlackInner
+{
+}
+
+.igte_RubberBlackInnerFocus
+{
+}
+
+.igte_RubberBlackInnerHover
+{
+}
+
+.igte_RubberBlackButtonSize
+{
+	width:15px;
+	height:100%;
+}
+
+.igte_RubberBlackButton
+{
+	background-color: #000000;
+	background-image: url(images/igte_spinbuttonbg.gif);
+	background-repeat: repeat-x;
+	line-height:normal;
+	border:solid 1px #000000;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+.igte_RubberBlackButtonFocus
+{
+}
+
+.igte_RubberBlackNullText
+{
+	color: #888888;
+}
+
+.igte_RubberBlackButtonHover
+{
+	background-color: #666666;
+	background-image: url(images/igte_spinbuttonbghover.gif);
+	background-repeat: repeat-x;
+}
+
+
+.igte_RubberBlackButtonPressed
+{
+	background-color: #999999;
+	background-image: url(images/igte_spinbuttonbgpressed.gif);
+	background-repeat: repeat-x;
+}
+
+
+.igte_RubberBlackButtonDisabled
+{
+	background-color: #CCCCCC;
+	background-image: none;
+}
+
+.igte_RubberBlackButtonImg
+{
+}

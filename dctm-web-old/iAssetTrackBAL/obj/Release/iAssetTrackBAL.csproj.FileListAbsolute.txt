@@ -1,0 +1,81 @@
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackBAL.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackDALC.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackSecurity.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.Unity.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.Unity.Interception.dll
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackSecurity.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Security.Cryptography.xml
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.Unity.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\obj\Release\iAssetTrackBAL.csprojResolveAssemblyReference.cache
+C:\Jagadeesh\DCTrackMobileWeb\iAssetTrackBAL\obj\Release\iAssetTrackBAL.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackBAL.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackDALC.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackSecurity.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.Web.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Core.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Excel.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Shared.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Reports.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Word.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.IO.v16.1.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackSecurity.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.Web.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Core.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Excel.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Shared.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Reports.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Word.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.IO.v16.1.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\obj\Release\iAssetTrackBAL.csprojAssemblyReference.cache
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\obj\Release\iAssetTrackBAL.csproj.CoreCompileInputs.cache
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\obj\Release\iAssetTrackBAL.csproj.CopyComplete
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\obj\Release\iAssetTrackBAL.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.Unity.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.Unity.Interception.dll
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.Unity.pdb
+C:\Users\babujag\OneDrive - Hewlett Packard Enterprise\J\DCTM\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.Unity.Interception.pdb
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackBAL.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackDALC.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackSecurity.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Reports.v16.1.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Word.v16.1.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.IO.v16.1.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\iAssetTrackSecurity.pdb
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.Web.v16.1.xml
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Core.v16.1.xml
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Excel.v16.1.xml
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Shared.v16.1.xml
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Reports.v16.1.xml
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Word.v16.1.xml
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.IO.v16.1.xml
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.pdb
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Microsoft.Practices.EnterpriseLibrary.Common.xml
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\obj\Release\iAssetTrackBAL.csprojAssemblyReference.cache
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\obj\Release\iAssetTrackBAL.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\obj\Release\iAssetTrackBAL.csproj.CopyComplete
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\obj\Release\iAssetTrackBAL.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.Web.v16.1.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Core.v16.1.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Documents.Excel.v16.1.dll
+C:\Users\Administrator\Documents\code\WebApp\DCTrackMobileWeb\iAssetTrackBAL\bin\Release\Infragistics45.WebUI.Shared.v16.1.dll

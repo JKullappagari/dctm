@@ -1,0 +1,52 @@
+.igpnl_AppletiniControl
+{
+	border:solid 1px #4F7600;
+}
+
+
+.igpnl_AppletiniPanel
+{
+	background-color:#F8F8F8;
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+}
+
+
+.igpnl_AppletiniHeaderExpanded
+{
+	background-position:center ;
+	background-image: url(images/header.gif);
+	font-weight:bold;
+	font-size:xx-small;
+	font-family: Verdana;
+	margin-top:3px;
+	margin-bottom:3px;
+	padding-top:2px;
+	padding-bottom:3px;
+	height: 25px;
+	cursor:hand;
+	color:Black;
+}
+
+
+.igpnl_AppletiniHeaderCollapsed
+{
+	height: 25px;
+}
+
+
+.igpnl_AppletiniHeaderHover
+{
+	background-image: url(images/header_hover.gif);
+	color:#306000;
+}
+
+
+.igpnl_AppletiniGroupBoxControl
+{
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+	border:solid 1px #4F7600;
+}
+
+

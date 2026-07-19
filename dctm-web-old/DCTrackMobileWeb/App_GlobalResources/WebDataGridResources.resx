@@ -1,0 +1,1257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ColumnHeaderAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="ColumnHeaderCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="ColumnHeaderCompany" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="ColumnHeaderContact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="ColumnHeaderCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="ColumnHeaderId" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="ColumnHeaderPostalCode" xml:space="preserve">
+    <value>Zip</value>
+  </data>
+  <data name="ControlName" xml:space="preserve">
+    <value>WebDataGrid</value>
+  </data>
+  <data name="DataBinding_BoundColumnDescription" xml:space="preserve">
+    <value>The WebDataGrid is a powerful control that supports a variety of different data sources. This sample shows how to setup one or more bound data fields and bind the grid to the different supported data sources (e.g. Data Source Controls, Data Tables, ICollection, IEnumerable, and IBindingList.</value>
+  </data>
+  <data name="DataBinding_BoundColumnTitle" xml:space="preserve">
+    <value>Databinding bound data fields to different data sources</value>
+  </data>
+  <data name="DataBindMessage" xml:space="preserve">
+    <value>Select Data Source:</value>
+  </data>
+  <data name="DataSourceAccess" xml:space="preserve">
+    <value>AccessDataSource</value>
+  </data>
+  <data name="DataSourceDataTable" xml:space="preserve">
+    <value>Data Table</value>
+  </data>
+  <data name="DataSourceIBindingList" xml:space="preserve">
+    <value>IBindingList</value>
+  </data>
+  <data name="DataSourceICollection" xml:space="preserve">
+    <value>ICollection</value>
+  </data>
+  <data name="DataSourceIEnumerable" xml:space="preserve">
+    <value>IEnumerable</value>
+  </data>
+  <data name="DataSourceLinq" xml:space="preserve">
+    <value>Linq</value>
+  </data>
+  <data name="ProductComparison_Description" xml:space="preserve">
+    <value>Product Description</value>
+  </data>
+  <data name="ProductComparison_Name" xml:space="preserve">
+    <value>Product Name</value>
+  </data>
+  <data name="ProductComparison_Price" xml:space="preserve">
+    <value>Product Price</value>
+  </data>
+  <data name="DataBinding_TemplateColumnDescription" xml:space="preserve">
+    <value>The WebDataGrid includes several templates that allow you to customize how the grid is displayed. This sample shows how to use templates with databinding expressions</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="DataBinding_TemplateColumnTitle" xml:space="preserve">
+    <value>Using DataBinding Expressions and Column Templates</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="DataBinding_BasicDescription" xml:space="preserve">
+    <value>The WebDataGrid is a powerful control that supports a variety of different data sources. This sample shows how easy it is to bind a data source control on the page by setting the grid’s DataSourceID property to equal the ID of the data source control.</value>
+  </data>
+  <data name="DataBinding_BasicTitle" xml:space="preserve">
+    <value>Databinding the WebDataGrid</value>
+  </data>
+  <data name="DataBinding_DynamicColumnDescription" xml:space="preserve">
+    <value>The WebDataGrid is a powerful control that supports a variety of different data sources. This sample shows how to use code to dynamically create the bound columns of the grid and bind a data source.</value>
+  </data>
+  <data name="DataBinding_DynamicColumnTitle" xml:space="preserve">
+    <value>Adding columns dynamically to the WebDataGrid</value>
+  </data>
+  <data name="Paging_BasicDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a paging behavior that allows you configure the grid to display data across multi pages. The behavior includes properties for setting the number of items displayed per page and position of the pager can be set to top, bottom, or both.</value>
+  </data>
+  <data name="Paging_BasicTitle" xml:space="preserve">
+    <value>Configuring Paging Behavior</value>
+  </data>
+  <data name="Paging_CustomDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a paging behavior that allows you configure the grid to display data across multi pages. This sample shows how to use a custom CSS style to customize the appearance of the grid’s pager.</value>
+  </data>
+  <data name="Paging_CustomTitle" xml:space="preserve">
+    <value>How to use CSS styles to customize the pager</value>
+  </data>
+  <data name="Paging_PreviousNextDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a paging behavior that allows you configure the grid to display data across multi pages. This sample shows how to setup the pager mode to be NextPrevious. This mode allows you to use first, last, previous, and next links to navigate between pages instead of using a list of pages.</value>
+  </data>
+  <data name="Paging_PreviousNextTitle" xml:space="preserve">
+    <value>How to setup a Previous\Next Pager</value>
+  </data>
+  <data name="Paging_TemplateDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a paging behavior that allows you configure the grid to display data across multi pages. This sample shows how to create a custom pager appearance using the pager’s template.</value>
+  </data>
+  <data name="Paging_TemplateTitle" xml:space="preserve">
+    <value>How to build a custom pager</value>
+  </data>
+  <data name="ColumnHeaderPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="ColumnHeaderRegion" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="TemplatesAlternate_Description" xml:space="preserve">
+    <value>The WebDataGrid includes several templates that allow you to customize how the grid is displayed. This sample shows how to use alternating row template to display every other row using a different CSS style (e.g. changing the text color).</value>
+  </data>
+  <data name="TemplatesAlternate_Title" xml:space="preserve">
+    <value>Using Alternate Row Templates</value>
+  </data>
+  <data name="TemplatesCell_Description" xml:space="preserve">
+    <value>The WebDataGrid includes several templates that allow you to customize how the grid is displayed. This sample shows how to use custom cell/column templates to alter the appearance of a cell or column. When the order quantity is 25 or greater than the quantity cell will be highlighted.</value>
+  </data>
+  <data name="TemplatesCell_Title" xml:space="preserve">
+    <value>Using Cell and Column Templates</value>
+  </data>
+  <data name="TemplatesEditRow_Description" xml:space="preserve">
+    <value>The WebDataGrid includes several templates that allow you to customize how the grid is displayed. This sample shows how to use an edit row template to offer a custom editing experience. Double click on a row to open the edit row template. After modifying one or more data elements click OK to update the grid or Cancel to undo your changes.</value>
+  </data>
+  <data name="TemplatesEditRow_Title" xml:space="preserve">
+    <value>Using Edit Row Templates</value>
+  </data>
+  <data name="TemplatesEmpty_Description" xml:space="preserve">
+    <value>The WebDataGrid includes several templates that allow you to customize how the grid is displayed. This sample shows how to setup a custom error and empty row template. Change the currently displayed template in the control panel to see the configure grid template.</value>
+  </data>
+  <data name="TemplatesEmpty_Title" xml:space="preserve">
+    <value>Using Error and Empty Row Templates</value>
+  </data>
+  <data name="TemplatesHeader_Description" xml:space="preserve">
+    <value>The WebDataGrid includes several templates that allow you to customize how the grid is displayed. In this sample a custom header and footer have been setup. The customer head includes a select all check box that is used for selecting all the currently displayed rows. Each column can use a different header and footer template.</value>
+  </data>
+  <data name="TemplatesHeader_Title" xml:space="preserve">
+    <value>Using Header and Footer Templates</value>
+  </data>
+  <data name="AppStyling_Description" xml:space="preserve">
+    <value>The WebDataGrid ships with a number of pre-built application styles. This sample allows you to quickly change the appearance of the grid by applying one of the pre-build styles.</value>
+  </data>
+  <data name="AppStyling_Title" xml:space="preserve">
+    <value>Using Application Styling</value>
+  </data>
+  <data name="ColumnResizing_Description" xml:space="preserve">
+    <value>The WebDataGrid includes a column resizing behavior that allows you to configure the grid to support resizing of columns. This sample shows how to setup the behavior so an end user can resize one or more columns.</value>
+  </data>
+  <data name="ColumnResizing_Title" xml:space="preserve">
+    <value>Column Resizing Behavior</value>
+  </data>
+  <data name="CustomCSS_Description" xml:space="preserve">
+    <value>The WebDataGrid contains several CSS properties that can be used to control the appearance of the grid. This sample shows how to use custom CSS styles to setup the grid to look like a web based email client.</value>
+  </data>
+  <data name="CustomCSS_Title" xml:space="preserve">
+    <value>Using Custom CSS Styles</value>
+  </data>
+  <data name="Activation_ClientDescription" xml:space="preserve">
+    <value>The WebDataGrid includes an activation behavior that allows you configure how the grid behaves when a cell is active. This sample shows how to interact with the client side events of the activation behavior and notifies the user when the events are fired.</value>
+  </data>
+  <data name="Activation_ClientTitle" xml:space="preserve">
+    <value>Activation Behavior - Client Events</value>
+  </data>
+  <data name="Activation_CustomCSSDescription" xml:space="preserve">
+    <value>The WebDataGrid includes an activation behavior that allows you configure how the grid behaves when a cell is active. This sample shows how to use a custom CSS style to customize the appearance of the active cell, column, or row.</value>
+  </data>
+  <data name="Activation_CustomCSSTitle" xml:space="preserve">
+    <value>Activation Behavior - Custom CSS</value>
+  </data>
+  <data name="Activation_BasicDescription" xml:space="preserve">
+    <value>The WebDataGrid includes an activation behavior that allows you configure how the grid behaves when a cell is active. This sample shows how to enable or disable the activation behavior. A custom CSS style is used to highlight the active cell when the behavior is enabled. When it is disabled the custom CSS style is not applied.</value>
+  </data>
+  <data name="Activation_ServerDescription" xml:space="preserve">
+    <value>The WebDataGrid includes an activation behavior that allows you configure how the grid behaves when a cell is active. This sample shows how to interact with the server side events of the activation behavior and displays the contents of the active cell when the server side event is fired.</value>
+  </data>
+  <data name="Activation_ServerTitle" xml:space="preserve">
+    <value>Activation Behavior - Server Events</value>
+  </data>
+  <data name="Activation_BasicTitle" xml:space="preserve">
+    <value>Configuring Activation Behavior</value>
+  </data>
+  <data name="DataEditing_AddRowClientDescription" xml:space="preserve">
+    <value>The WebDataGrid includes an add new row behavior that allows an end user to add one or more rows of data to the bound data source. This sample shows how to interact with the client side events of the behavior and notifies the user when the events are fired.</value>
+  </data>
+  <data name="DataEditing_AddRowClientTitle" xml:space="preserve">
+    <value>Add New Row Behavior - Client Events</value>
+  </data>
+  <data name="DataEditing_AddRowServerDescription" xml:space="preserve">
+    <value>The WebDataGrid includes an add new row behavior that allows an end user to add one or more rows of data to the bound data source. This sample shows how to interact with the server side events of the behavior. When the Row Adding event fires, the length of the ID column is checked to make sure it is at least five characters. If the length is smaller the end user is notified using the AJAX response property of the grid.</value>
+  </data>
+  <data name="DataEditing_AddRowServerTitle" xml:space="preserve">
+    <value>Add New Row Behavior - Server Events</value>
+  </data>
+  <data name="DataEditing_AddRowTitle" xml:space="preserve">
+    <value>Add New Row Behavior</value>
+  </data>
+  <data name="DataEditing_AutoCrudDescription" xml:space="preserve">
+    <value>The WebDataGrid can be configured to automatically handle CRUD (Create, Read, Update, Delete) actions against custom collections. This sample shows how to enable the grid to perform the CRUD operations. To add a new row, please hit Enter after updating the last cell of the new row.</value>
+  </data>
+  <data name="DataEditing_AutoCrudTitle" xml:space="preserve">
+    <value>Automatic CRUD for Custom Collections</value>
+  </data>
+  <data name="DataEditing_DataFilterClientDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a data filtering behavior that allows you to enable filtering of data bound to the grid. This sample shows how to interact with the client side events of the behavior and notifies the user when the events fire.</value>
+  </data>
+  <data name="DataEditing_DataFilterClientTitle" xml:space="preserve">
+    <value>Data Filtering Behavior - Client Events</value>
+  </data>
+  <data name="DataEditing_DataFilterDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a data filtering behavior that allows you to enable filtering of data bound to the grid. This sample shows how to configure the alignment, visibility, and animation of the data filtering control. This control is used for filtering data by applying one of the following filtering rules: Equals, begin with, end with, contains, does not contain, or does not equal.</value>
+  </data>
+  <data name="DataEditing_DataFilterServerDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a data filtering behavior that allows you to enable filtering of data bound to the grid. This sample shows how to interact with the server side events of the behavior and displays the filtering rule and value used for filtering data.</value>
+  </data>
+  <data name="DataEditing_DataFilterServerTitle" xml:space="preserve">
+    <value>Data Filtering Behavior - Server Events</value>
+  </data>
+  <data name="DataEditing_DataFilterTitle" xml:space="preserve">
+    <value>Data Filtering Behavior</value>
+  </data>
+  <data name="DataEditing_DeleteRowDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a delete row behavior that allows an end user to remove one or more rows of data from the bound data source. This sample shows how to setup the behavior so when the user clicks on the delete icon the current row is deleted from the bound data source.</value>
+  </data>
+  <data name="DataEditing_DeleteRowServerDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a delete row behavior that allows an end user to remove one or more rows of data from the bound data source. This sample shows how to interact with the server events of the behavior. When the Row Deleting event fires, the row trying to be deleted is checked. If the row Id equals “LONEP”, a validation message is returned to user using the grid’s AJAX response property. All other rows will be deleted from the data source.</value>
+  </data>
+  <data name="DataEditing_DeleteRowServerTitle" xml:space="preserve">
+    <value>Delete Row Behavior  - Server Events</value>
+  </data>
+  <data name="DataEditing_DeleteRowTitle" xml:space="preserve">
+    <value>Delete Row Behavior</value>
+  </data>
+  <data name="DataEditing_EditModeDescription" xml:space="preserve">
+    <value>The WebDataGrid support several different editing modes. This sample shows how to configure the grid to use the different edit mode available: Single or Double Click, F2, Key Press, or on Activation.</value>
+  </data>
+  <data name="DataEditing_EditModeTitle" xml:space="preserve">
+    <value>Enabled Cell Editing</value>
+  </data>
+  <data name="Selection_RowSelectorsDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a row selector behavior that allows you to configure how row selection behaves. This sample shows how to setup the grid to display row selectors and row numbering. The behavior can be configured to show or hide row numbering</value>
+  </data>
+  <data name="Selection_RowSelectorsTitle" xml:space="preserve">
+    <value>Row Selector Behavior</value>
+  </data>
+  <data name="Selection_ClientDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a selection behavior that allows you configure how the grid behaves when one or more cells, columns, or rows are selected. This sample shows how to interact with the client side events of the behavior and notifies the user when the events are fired.</value>
+  </data>
+  <data name="Selection_ClientTitle" xml:space="preserve">
+    <value>Selection Behavior - Client Events</value>
+  </data>
+  <data name="Selection_BasicDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a selection behavior that allows you configure how the grid behaves when one or more cells, columns, or rows are selected. This sample uses the client side events of the selection behavior to keep track of the number of selected cell and columns.</value>
+  </data>
+  <data name="Selection_ServerDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a selection behavior that allows you configure how the grid behaves when one or more cells, columns, or rows are selected. This sample shows how to interact with the server side events of the behavior and display the contents of the selected cell.</value>
+  </data>
+  <data name="Selection_ServerTitle" xml:space="preserve">
+    <value>Selection Behavior - Server Events</value>
+  </data>
+  <data name="Selection_BasicTitle" xml:space="preserve">
+    <value>Selection Behavior</value>
+  </data>
+  <data name="Sorting_ClientDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a sorting behavior that allows for one or more columns to be used for sorting the data bound to the grid. This sample shows how to interact with the client side events for the behavior and notifies the user when the events are fired.</value>
+  </data>
+  <data name="Sorting_ClientTitle" xml:space="preserve">
+    <value>Sorting Behavior - Client Events</value>
+  </data>
+  <data name="Sorting_CustomIndicatorsDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a sorting behavior that allows for one or more columns to be used for sorting the data bound to the grid. This sample shows how to use an image as a custom sorting indicator.</value>
+  </data>
+  <data name="Sorting_CustomIndicatorsTitle" xml:space="preserve">
+    <value>Sorts Behavior - Custom Indicators</value>
+  </data>
+  <data name="Sorting_BasicDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a sorting behavior that allows for one or more columns to be used for sorting the data bound to the grid. This sample shows how to setup the behavior to support single or multi column sorting. When multi column mode is enabled use the Ctrl key to select one or more columns to sort the data by.</value>
+  </data>
+  <data name="Sorting_ServerDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a sorting behavior that allows for one or more columns to be used for sorting the data bound to the grid. This sample shows how to interact with the server side events for the behavior and displays the current sorted column and direction when the event fires.</value>
+  </data>
+  <data name="Sorting_ServerTitle" xml:space="preserve">
+    <value>Sorting Behavior - Server Events</value>
+  </data>
+  <data name="Sorting_BasicTitle" xml:space="preserve">
+    <value>Configuring Sorting Behavior</value>
+  </data>
+  <data name="DataEditing_UpdateRowClientDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a cell editing behavior that allows an end user to edit one or more data elements in the bound data source. This sample shows how to interact with the Client-side events for the behavior and notifies the user when the events are fired.</value>
+  </data>
+  <data name="DataEditing_UpdateRowClientTitle" xml:space="preserve">
+    <value>Cell Editing Behavior - Client Events</value>
+  </data>
+  <data name="DataEditing_UpdateRowDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a cell editing behavior that allows an end user to edit one or more data elements in the bound data source. This sample shows how to setup the grid to allow basic cell editing. After changing one or more data elements click on the “Save Changes” button to update the data source.</value>
+  </data>
+  <data name="DataEditing_UpdateRowServerDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a cell editing behavior that allows an end user to edit one or more data elements in the bound data source. This sample shows how to interact with the server side events for the behavior. When the Row Updating event fires, it checks to see if row being edit has a validate company name. If the company name is blank, the end user is notified using the AJAX response property of the grid. If the company name is not blank, the data source is updated and the user is notified of the successful operation.</value>
+  </data>
+  <data name="DataEditing_UpdateRowServerTitle" xml:space="preserve">
+    <value>Cell Editing Behavior - Server Events</value>
+  </data>
+  <data name="DataEditing_UpdateRowTitle" xml:space="preserve">
+    <value>Cell Editing Behavior</value>
+  </data>
+  <data name="DataEditing_AddRowDescription" xml:space="preserve">
+    <value>The WebDataGrid includes an add new row behavior that allows an end user to add one or more rows of data to the bound data source. This sample shows how to setup the behavior so the new row can be displayed at the top or bottom of the grid.</value>
+  </data>
+  <data name="DataEditing_AddRowClient_HeaderTitle" xml:space="preserve">
+    <value>Client-side Grid Add New Row Events</value>
+  </data>
+  <data name="DataEditing_AddRow_ConfigText" xml:space="preserve">
+    <value>Position:</value>
+  </data>
+  <data name="DataEditing_AddRow_DescriptionText" xml:space="preserve">
+    <value>Enter data into the blank row; once you &amp;lt;TAB&amp;gt; or press &amp;lt;ENTER&amp;gt; to end
+					    editing on the last cell the row will be added to the grid.</value>
+  </data>
+  <data name="DataEditing_AddRow_HeaderTitle" xml:space="preserve">
+    <value>How to Add New Rows</value>
+  </data>
+  <data name="DataEditing_CellEditingEnabled_ClickActionTitle" xml:space="preserve">
+    <value>Select a cell click action:</value>
+  </data>
+  <data name="DataEditing_CellEditingEnabled_HeaderTitle" xml:space="preserve">
+    <value>Edit Mode Actions:</value>
+  </data>
+  <data name="WebDataGrid_EventsDescription" xml:space="preserve">
+    <value>Interact with the grid to see event that's raised</value>
+  </data>
+  <data name="DataEditing_AddRowServer_HeaderTitle" xml:space="preserve">
+    <value>Server Side Grid Add New Row Events</value>
+  </data>
+  <data name="DataEditing_DeleteRowServer_HeaderTitle" xml:space="preserve">
+    <value>Server Side Grid Delete Row Events</value>
+  </data>
+  <data name="DataEditing_UpdateRowClient_HeaderTitle" xml:space="preserve">
+    <value>Client-side Grid Update Row Events</value>
+  </data>
+  <data name="DataEditing_UpdateRowServer_HeaderTitle" xml:space="preserve">
+    <value>Server Side Grid Update Row Events</value>
+  </data>
+  <data name="Filtering_Basic_ConfigSettings_Label1" xml:space="preserve">
+    <value>Alignment:</value>
+  </data>
+  <data name="Filtering_Basic_ConfigSettings_Label2" xml:space="preserve">
+    <value>Visibility On:</value>
+  </data>
+  <data name="Filtering_Basic_ConfigSettings_Label3" xml:space="preserve">
+    <value>Animation On:</value>
+  </data>
+  <data name="Filtering_Basic_ConfigSettings_Label4" xml:space="preserve">
+    <value>Animation Type:</value>
+  </data>
+  <data name="Filtering_Basic_ConfigSettings_Label5" xml:space="preserve">
+    <value>Animation Duration:</value>
+  </data>
+  <data name="Filtering_Basic_ConfigSettings_Value1" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="Filtering_Basic_ConfigSettings_Value2" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="Filtering_Basic_HeaderTitle" xml:space="preserve">
+    <value>Control Panel</value>
+  </data>
+  <data name="Filtering_ClientEvents_HeaderTitle" xml:space="preserve">
+    <value>Client-side Grid Filtering Events</value>
+  </data>
+  <data name="Filtering_ServerEvents_HeaderTitle" xml:space="preserve">
+    <value>Server Side Grid Filtering Events</value>
+  </data>
+  <data name="Paging_Basic_NumberOfItemsText" xml:space="preserve">
+    <value>Number of items per page:</value>
+  </data>
+  <data name="Paging_Basic_PagerPositionText" xml:space="preserve">
+    <value>Select Pager Position:</value>
+  </data>
+  <data name="Paging_Basic_PagerPosition_Item1" xml:space="preserve">
+    <value>Pager on the bottom</value>
+  </data>
+  <data name="Paging_Basic_PagerPosition_Item2" xml:space="preserve">
+    <value>Pager on the top</value>
+  </data>
+  <data name="Paging_Basic_PagerPosition_Item3" xml:space="preserve">
+    <value>Pager on both top and bottom</value>
+  </data>
+  <data name="Activation_Basic_HeaderTitle" xml:space="preserve">
+    <value>Control Panel</value>
+  </data>
+  <data name="Activation_Client_EventsHeaderTitle" xml:space="preserve">
+    <value>Client-side Grid Activation Events</value>
+  </data>
+  <data name="Activation_Server_EventsHeaderTitle" xml:space="preserve">
+    <value>Server Side Grid Activation Events</value>
+  </data>
+  <data name="DataEditing_AddRow_Bottom" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="DataEditing_AddRow_Top" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="Paging_Client_HeaderTitle" xml:space="preserve">
+    <value>Client-side Grid Paging Events</value>
+  </data>
+  <data name="Paging_Server_HeaderTitle" xml:space="preserve">
+    <value>Server Side Grid Paging Events</value>
+  </data>
+  <data name="Selection_Basic_Description" xml:space="preserve">
+    <value>Click and drag to select multiple cells, or hold Control + Click on the Headers to select multiple columns.</value>
+  </data>
+  <data name="Selection_Basic_HeaderTitle" xml:space="preserve">
+    <value>Multiple Cell and Header Selection Status:</value>
+  </data>
+  <data name="Selection_Basic_SelectedCells" xml:space="preserve">
+    <value>Selected Cells Count:</value>
+  </data>
+  <data name="Selection_Basic_SelectedColumns" xml:space="preserve">
+    <value>Selected Columns Count:</value>
+  </data>
+  <data name="Selection_Client_EventsHeaderTitle" xml:space="preserve">
+    <value>Client-side Grid Selection Events</value>
+  </data>
+  <data name="Selection_Server_EventsHeaderTitle" xml:space="preserve">
+    <value>Server Side Grid Selection Events</value>
+  </data>
+  <data name="Sorting_Basic_EventsHeaderTitle" xml:space="preserve">
+    <value>Sort a single column of data by clicking a column header. Sort multiple columns by pressing the Ctrl key while clicking multiple column headers.</value>
+  </data>
+  <data name="Sorting_Basic_MultiColumn" xml:space="preserve">
+    <value>Multiple column sorting</value>
+  </data>
+  <data name="Sorting_Basic_SingleColumn" xml:space="preserve">
+    <value>Single column sorting</value>
+  </data>
+  <data name="Sorting_Basic_SortingType" xml:space="preserve">
+    <value>Select sorting type:</value>
+  </data>
+  <data name="Sorting_Client_EventsHeaderTitle" xml:space="preserve">
+    <value>Client-side Grid Sorting Events</value>
+  </data>
+  <data name="Sorting_Server_EventsHeaderTitle" xml:space="preserve">
+    <value>Server Side Grid Sorting Events</value>
+  </data>
+  <data name="Styling_Theme_SelectATheme" xml:space="preserve">
+    <value>Select a theme:</value>
+  </data>
+  <data name="Paging_ServerEventMessage" xml:space="preserve">
+    <value>Paging Event Fired! Displaying page:</value>
+  </data>
+  <data name="Selection_ServerEventMessage" xml:space="preserve">
+    <value>Selected Cell Value: </value>
+  </data>
+  <data name="Activation_ServerEventMessage" xml:space="preserve">
+    <value>Activation Event Fired! Active Cell Value: </value>
+  </data>
+  <data name="Filtering_ColumnFilterMessage" xml:space="preserve">
+    <value>Column: {0}, Filter: {1}</value>
+  </data>
+  <data name="Filtering_ServerEventMessage" xml:space="preserve">
+    <value>Data Filter: </value>
+  </data>
+  <data name="Sorting_ServerSideEventMessage" xml:space="preserve">
+    <value>Sorting Event Fired! Sorting by Column: {0} Sort Direction: {1}</value>
+  </data>
+  <data name="AddNewRow_ServerMessageFail" xml:space="preserve">
+    <value>New row failed validation. Customer ID {0} is less than 5 characters</value>
+  </data>
+  <data name="AddNewRow_ServerMessageSuccess" xml:space="preserve">
+    <value>New row added succesfully.</value>
+  </data>
+  <data name="RowDelete_ServerMessageFail" xml:space="preserve">
+    <value>Row (CustomerID=LONEP) can not be deleted!</value>
+  </data>
+  <data name="RowDelete_ServerMessageSuccess" xml:space="preserve">
+    <value>The following rows have been deleted {0}.</value>
+  </data>
+  <data name="SaveButton" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="UpdateRow_ServerMessageFailed" xml:space="preserve">
+    <value>Row updation Failed !</value>
+  </data>
+  <data name="UpdateRow_ServerMessageSuccess" xml:space="preserve">
+    <value>Row updated successfully!</value>
+  </data>
+  <data name="AutoCRUD_AddNewRow" xml:space="preserve">
+    <value>New row added succesfully.</value>
+  </data>
+  <data name="AutoCRUD_DeleteRow" xml:space="preserve">
+    <value>Row deleted succesfully.</value>
+  </data>
+  <data name="AutoCRUD_UpdateRow" xml:space="preserve">
+    <value>Row updated succesfully.</value>
+  </data>
+  <data name="ClientMessageAJAXResponse" xml:space="preserve">
+    <value>AJAXResponse</value>
+  </data>
+  <data name="Paging_ClientMessageInitialize" xml:space="preserve">
+    <value>Initialize Pager</value>
+  </data>
+  <data name="Paging_ClientMessagePageChanged" xml:space="preserve">
+    <value>Page Index Changed</value>
+  </data>
+  <data name="Paging_ClientMessagePageChanging" xml:space="preserve">
+    <value>Page Index Changing</value>
+  </data>
+  <data name="Selection_ClientMessageCellSelectionChanged" xml:space="preserve">
+    <value>Cell Selection Changed</value>
+  </data>
+  <data name="Selection_ClientMessageCellSelectionChanging" xml:space="preserve">
+    <value>Cell Selection Changing</value>
+  </data>
+  <data name="Selection_ClientMessageColumnSelectionChanged" xml:space="preserve">
+    <value>Column Selection Changed</value>
+  </data>
+  <data name="Selection_ClientMessageColumnSelectionChanging" xml:space="preserve">
+    <value>Column  Selection Changing</value>
+  </data>
+  <data name="Selection_ClientMessageRowSelectionChanged" xml:space="preserve">
+    <value>Row Selection Changed</value>
+  </data>
+  <data name="Selection_ClientMessageRowSelectionChanging" xml:space="preserve">
+    <value>Row Selection Changing</value>
+  </data>
+  <data name="Activation_ClientMessageCellChanged" xml:space="preserve">
+    <value>Active Cell Changed</value>
+  </data>
+  <data name="Activation_ClientMessageCellChanging" xml:space="preserve">
+    <value>Active Cell Changing</value>
+  </data>
+  <data name="Filtering_ClientMessageColumnFilter" xml:space="preserve">
+    <value>Column Filtering</value>
+  </data>
+  <data name="Filtering_ClientMessageDataFiltered" xml:space="preserve">
+    <value>Data Filtered</value>
+  </data>
+  <data name="Filtering_ClientMessageDataFiltering" xml:space="preserve">
+    <value>Data Filtering</value>
+  </data>
+  <data name="Filtering_ClientMessageFilterDropdownDisplayed" xml:space="preserve">
+    <value>Filter drop down displayed</value>
+  </data>
+  <data name="Filtering_ClientMessageFilterDropdownDisplaying" xml:space="preserve">
+    <value>Filter drop down displaying</value>
+  </data>
+  <data name="Filtering_ClientMessageFilterDropdownHiddend" xml:space="preserve">
+    <value>Filter drop down hidden</value>
+  </data>
+  <data name="Filtering_ClientMessageFilterDropdownHidding" xml:space="preserve">
+    <value>Filter drop down hiding</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ButtonOK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="EmptyRowTemplateMessage" xml:space="preserve">
+    <value>No records returned.</value>
+  </data>
+  <data name="ErrorTemplateException" xml:space="preserve">
+    <value>An error has occurred processing your request!</value>
+  </data>
+  <data name="ErrorTemplateMessage" xml:space="preserve">
+    <value>An error has occurred! Please contact support.</value>
+  </data>
+  <data name="Filtering_AnimationType_Bounce" xml:space="preserve">
+    <value>Bounce</value>
+  </data>
+  <data name="Filtering_AnimationType_EaseIn" xml:space="preserve">
+    <value>EaseIn</value>
+  </data>
+  <data name="Filtering_AnimationType_EaseInOut" xml:space="preserve">
+    <value>EaseInOut</value>
+  </data>
+  <data name="Filtering_AnimationType_EaseOut" xml:space="preserve">
+    <value>EaseOut</value>
+  </data>
+  <data name="Filtering_AnimationType_Linear" xml:space="preserve">
+    <value>Linear</value>
+  </data>
+  <data name="FooterText" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="Sorting_ColumnSorted" xml:space="preserve">
+    <value>Column Sorted</value>
+  </data>
+  <data name="Sorting_ColumnSorting" xml:space="preserve">
+    <value>Column Sorting</value>
+  </data>
+  <data name="AddNewRow_EnteredEditMode" xml:space="preserve">
+    <value>Entered Edit Mode</value>
+  </data>
+  <data name="AddNewRow_EnteringEditMode" xml:space="preserve">
+    <value>Entering Edit Mode</value>
+  </data>
+  <data name="AddNewRow_ExitedEditMode" xml:space="preserve">
+    <value>Exited Edit Mode</value>
+  </data>
+  <data name="AddNewRow_ExitingEditMode" xml:space="preserve">
+    <value>Exiting Edit Mode</value>
+  </data>
+  <data name="UpdateRow_EditMode" xml:space="preserve">
+    <value>Entered Edit Mode</value>
+  </data>
+  <data name="UpdateRow_EnteringEditMode" xml:space="preserve">
+    <value>Entering Edit Mode</value>
+  </data>
+  <data name="UpdateRow_ExitedEditMode" xml:space="preserve">
+    <value>Exited Edit Mode</value>
+  </data>
+  <data name="UpdateRow_ExitingEditMode" xml:space="preserve">
+    <value>Exiting Edit Mode</value>
+  </data>
+  <data name="ColumnHeaderFreight" xml:space="preserve">
+    <value>Freight</value>
+  </data>
+  <data name="ColumnHeaderOrderDate" xml:space="preserve">
+    <value>Order Date</value>
+  </data>
+  <data name="ColumnHeaderProduct" xml:space="preserve">
+    <value>Product Name</value>
+  </data>
+  <data name="ColumnHeaderQuantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="ColumnHeaderShippingDate" xml:space="preserve">
+    <value>Shipping Date</value>
+  </data>
+  <data name="Dashboard_Description" xml:space="preserve">
+    <value>The WebDataGrid is a powerful control that can be used in several different scenarios. This sample shows how to use the grid in a sales dashboard. Select a row to display sales data by month for the selected customer in a chart.</value>
+  </data>
+  <data name="Dashboard_Title" xml:space="preserve">
+    <value>Sales Dashboard View</value>
+  </data>
+  <data name="ColumnEmailDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="ColumnEmailFrom" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="ColumnEmailSize" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="ColumnEmailSubject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="ColumnEmailTo" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="FeatureNotAvailable" xml:space="preserve">
+    <value>Feature Not Available</value>
+  </data>
+  <data name="MyMailMenu_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="MyMailMenu_Reply" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="NoEmail" xml:space="preserve">
+    <value>No items to display</value>
+  </data>
+  <data name="MyMailMenu_Foward" xml:space="preserve">
+    <value>Foward</value>
+  </data>
+  <data name="MyMailMenu_Move" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="MyMailMenu_Print" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="MyMailMenu_Spam" xml:space="preserve">
+    <value>Spam</value>
+  </data>
+  <data name="Paging_ClientDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a paging behavior that allows you configure the grid to display data across multi pages. This sample shows how to interact with the client side events of the paging behavior and notifies the user when the events are fired.</value>
+  </data>
+  <data name="Paging_ClientTitle" xml:space="preserve">
+    <value>Paging Behavior - Client Events</value>
+  </data>
+  <data name="Paging_ServerDescription" xml:space="preserve">
+    <value>The WebDataGrid includes a paging behavior that allows you configure the grid to display data across multi pages. This sample shows how to interact with the server side events of the paging behavior and notify the user when the events are fired.</value>
+  </data>
+  <data name="Paging_ServerTitle" xml:space="preserve">
+    <value>Paging Behavior - Server Events</value>
+  </data>
+  <data name="DataEditing_EditorsDescription" xml:space="preserve">
+    <value>The WebDataGrid includes several built in editor providers that can be used to customize the editing experience. This sample shows how to configure the grid to use the following editor providers: Text Editor, Date Chooser, Numeric Editor, and Slider Editor.</value>
+  </data>
+  <data name="DataEditing_EditorsTitle" xml:space="preserve">
+    <value>Using Editor Providers</value>
+  </data>
+  <data name="Activation_Basic_On" xml:space="preserve">
+    <value>Activation On:</value>
+  </data>
+  <data name="DataEditing_CellEditingEnabled_ClickDouble" xml:space="preserve">
+    <value>Double</value>
+  </data>
+  <data name="DataEditing_CellEditingEnabled_ClickNone" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="DataEditing_CellEditingEnabled_ClickSingle" xml:space="preserve">
+    <value>Single</value>
+  </data>
+  <data name="DataEditing_DeleteButton" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Templates_Empty_Show" xml:space="preserve">
+    <value>Show Empty Template</value>
+  </data>
+  <data name="Templates_Error_Show" xml:space="preserve">
+    <value>Show Error Template</value>
+  </data>
+  <data name="MyMailMenu_Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="MyMailMenu_Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="MyMailMenu_Mail" xml:space="preserve">
+    <value>Mail</value>
+  </data>
+  <data name="MyMailMenu_Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="MyMailTree_DeletedItems" xml:space="preserve">
+    <value>Deleted Items</value>
+  </data>
+  <data name="MyMailTree_Drafts" xml:space="preserve">
+    <value>Drafts</value>
+  </data>
+  <data name="MyMailTree_Headers_Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="MyMailTree_Headers_Contacts" xml:space="preserve">
+    <value>Contacts</value>
+  </data>
+  <data name="MyMailTree_Headers_Mail" xml:space="preserve">
+    <value>Mail</value>
+  </data>
+  <data name="MyMailTree_Headers_Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="MyMailTree_Inbox" xml:space="preserve">
+    <value>Inbox</value>
+  </data>
+  <data name="MyMailTree_JunkEmail" xml:space="preserve">
+    <value>Junk E-mail</value>
+  </data>
+  <data name="MyMailTree_Outbox" xml:space="preserve">
+    <value>Outbox</value>
+  </data>
+  <data name="MyMailTree_PersonalFolders" xml:space="preserve">
+    <value>Personal Folders</value>
+  </data>
+  <data name="MyMailTree_SentItems" xml:space="preserve">
+    <value>Sent Items</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="ColumnMoving_AltTag" xml:space="preserve">
+    <value>Column Moving</value>
+  </data>
+  <data name="ColumnMoving_ClientEventsHeaderTitle" xml:space="preserve">
+    <value>Column Moving Client Events</value>
+  </data>
+  <data name="ColumnMoving_Description" xml:space="preserve">
+    <value>Change one or more of the attributes below to change how column moving behaves. If slide mode is enabled the column header being moved will only follow the x-axis of your mouse. If you select follow mode than the  column header will follow both the mouse's x-axis and y-axis. You can disable column moving by selecting one of the columns listed in the disable column list.</value>
+  </data>
+  <data name="ColumnMoving_Disable" xml:space="preserve">
+    <value>Column to Disable:</value>
+  </data>
+  <data name="ColumnMoving_DragStyleFollow" xml:space="preserve">
+    <value>Follow</value>
+  </data>
+  <data name="ColumnMoving_DragStyleSlide" xml:space="preserve">
+    <value>Slide</value>
+  </data>
+  <data name="ColumnMoving_MovingType" xml:space="preserve">
+    <value>Column Moving Type:</value>
+  </data>
+  <data name="Columns_ColumnMovingDescription" xml:space="preserve">
+    <value>How to use the column moving behavior of the WebDataGrid.</value>
+  </data>
+  <data name="Columns_ColumnMovingTitle" xml:space="preserve">
+    <value>Column Moving</value>
+  </data>
+  <data name="EditorColumnContactName" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="EditorColumnOrderDate" xml:space="preserve">
+    <value>Order Date</value>
+  </data>
+  <data name="EditorColumnOrderID" xml:space="preserve">
+    <value>Order ID</value>
+  </data>
+  <data name="EditorColumnShippingCompany" xml:space="preserve">
+    <value>Shipper</value>
+  </data>
+  <data name="EditorColumnShippingDate" xml:space="preserve">
+    <value>Shipping Date</value>
+  </data>
+  <data name="EditorDescription" xml:space="preserve">
+    <value>This samples show how to use editors within the WebDataGrid.  For example, double click on the Contact to get a WebDropDown.</value>
+  </data>
+  <data name="Editors_DropDownDescription" xml:space="preserve">
+    <value>How to use the WebDropDown as an editor for the WebDataMenu.</value>
+  </data>
+  <data name="Editors_DropDownTitle" xml:space="preserve">
+    <value>Using WebDropDown as an Editor</value>
+  </data>
+  <data name="EditorTitle" xml:space="preserve">
+    <value>WebDropDown editors in a WebDataGrid</value>
+  </data>
+  <data name="VirtualScrolling_ClientDescription" xml:space="preserve">
+    <value>This sample demonstrates how to interact with the client side events for the virtual scrolling behavior.  This sample will allow you to turn the Virtual Scrolling behavior on and off.  You also have the ability to switch between the two available Scrolling Modes.</value>
+  </data>
+  <data name="VirtualScrolling_ClientTitle" xml:space="preserve">
+    <value>Virtual scrolling client events</value>
+  </data>
+  <data name="VirtualScrolling_DataFetchDelay" xml:space="preserve">
+    <value>Data Fetch Delay (MS):</value>
+  </data>
+  <data name="VirtualScrolling_Description" xml:space="preserve">
+    <value>This sample demonstrates how to configure the different properties of the virtual scrolling behavior.  The Row Cache Factor is a multiplier used to determine the total number of fetched rows per request.     The Threshold Factor is a multiplier used to define a threshold for requesting a new set of rows from the server.  Both the Row Cache Factor and Threshold factor are based on the number of visible rows.  The Data Fetch Delay is the number of milliseconds between the last interaction with the scrollbar and the data request.</value>
+  </data>
+  <data name="VirtualScrolling_Mode_Deferred" xml:space="preserve">
+    <value>Deferred</value>
+  </data>
+  <data name="VirtualScrolling_Mode_Virtual" xml:space="preserve">
+    <value>Virtual</value>
+  </data>
+  <data name="VirtualScrolling_NotificationHeader" xml:space="preserve">
+    <value>Client-side Grid Virtual Scrolling Events</value>
+  </data>
+  <data name="VirtualScrolling_PagerDescription" xml:space="preserve">
+    <value>This sample demonstrates how paging and virtual scrolling work together.</value>
+  </data>
+  <data name="VirtualScrolling_PagerTitle" xml:space="preserve">
+    <value>Using a pager with virtual scrolling</value>
+  </data>
+  <data name="VirtualScrolling_RowCacheFactor" xml:space="preserve">
+    <value>Row Cache Factor:</value>
+  </data>
+  <data name="VirtualScrolling_RowsReceived" xml:space="preserve">
+    <value>More Rows Received</value>
+  </data>
+  <data name="VirtualScrolling_RowsRequest" xml:space="preserve">
+    <value>More Rows Requested</value>
+  </data>
+  <data name="VirtualScrolling_Thresholdactor" xml:space="preserve">
+    <value>Threshold Factor:</value>
+  </data>
+  <data name="VirtualScrolling_Title" xml:space="preserve">
+    <value>Configuring Virtual Scrolling</value>
+  </data>
+  <data name="Paging_of" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="Paging_Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="ColumnFixingServer_Description" xml:space="preserve">
+    <value>This sample demonstrates how turn on the Column Fixing behavior and some of the adjustments you can make to the behavior.  This sample will let you adjust the appearance of the Column Fixing behavior.</value>
+  </data>
+  <data name="ColumnFixingServer_Title" xml:space="preserve">
+    <value>Column Fixing Behavior - Server-side</value>
+  </data>
+  <data name="ColumnFixing_Description" xml:space="preserve">
+    <value>This sample demonstrates how to configure the different properties of the column fixing behavior. After you modify one of the values the company field will be updated to reflect the change. When synchronize cell height is enabled the cell height for a row will be synchronized. This should only be enabled for small grids because it slows down the column fixing behavior.</value>
+  </data>
+  <data name="ColumnFixing_Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="ColumnFixing_Option1" xml:space="preserve">
+    <value>Enabled Fixed Columns</value>
+  </data>
+  <data name="ColumnFixing_Option2" xml:space="preserve">
+    <value>Fixed Column Alignment:</value>
+  </data>
+  <data name="ColumnFixing_Option3" xml:space="preserve">
+    <value>Button Alignment:</value>
+  </data>
+  <data name="ColumnFixing_Option4" xml:space="preserve">
+    <value>Synchronize Cell Height</value>
+  </data>
+  <data name="ColumnFixing_Right" xml:space="preserve">
+    <value>Right</value>
+  </data>
+  <data name="ColumnFixing_Title" xml:space="preserve">
+    <value>Basic Column Fixing Behavior</value>
+  </data>
+  <data name="DataEditing_DeleteRowImagePath" xml:space="preserve">
+    <value>../../images/WebDataGrid/eng/DeleteIcon.PNG</value>
+  </data>
+  <data name="VirtualScrolling_Disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="VirtualScrolling_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="Columns_ColumnFixingClient_Description" xml:space="preserve">
+    <value>This sample demonstrates how to programmatically setup column fixing to left and right fix columns. To fix columns using client-side code, you must enable the column fixing feature on the server-side.</value>
+  </data>
+  <data name="Columns_ColumnFixingClient_Title" xml:space="preserve">
+    <value>Column Fixing Behavior - Client-side</value>
+  </data>
+  <data name="VirtualScrolling_ClientAPI_VirtualScrolling" xml:space="preserve">
+    <value>Virtual Scrolling:</value>
+  </data>
+  <data name="VirtualScrolling_ClientAPI_HeaderTitle" xml:space="preserve">
+    <value>Control Panel</value>
+  </data>
+  <data name="VirtualScrolling_ScrollingMode" xml:space="preserve">
+    <value>Scrolling Mode:</value>
+  </data>
+  <data name="WebDataGridWithContextMenu_Description" xml:space="preserve">
+    <value>This sample demonstrates how you can use Context Menu together with WebDataGrid to perform some actions against the selected row.</value>
+  </data>
+  <data name="WebDataGridWithContextMenu_Titel" xml:space="preserve">
+    <value>WebDataGrid with Context Menu</value>
+  </data>
+  <data name="WebDataGrid_DataEditing_AutoDetectEditorsDescription" xml:space="preserve">
+    <value>This sample demonstrates how you are able to bind to different data source with editing enabled, and the grid will pick up editors based on the column data types.</value>
+  </data>
+  <data name="WebDataGrid_DataEditing_AutoDetectEditorsTitle" xml:space="preserve">
+    <value>WebDataGrid Auto-Detect Editors</value>
+  </data>
+  <data name="WebDataGrid_AllBehaviorsEnabled_Description" xml:space="preserve">
+    <value>This sample demonstrates how the WebDataGrid works when all behaviors are Enabled. Behaviors (Activation, Selection, Paging, RowSelectors, Sorting, ColumnMoving, ColumnResizing, CellEditing, RowAdding, RowDeleting, ColumnFixing, Filtering)</value>
+  </data>
+  <data name="WebDataGrid_AllBehaviorsEnabled_Title" xml:space="preserve">
+    <value>WebDataGrid - All behaviors enabled</value>
+  </data>
+  <data name="WebDataGrid_ColumnCalculationFixing_ColumnsCalc" xml:space="preserve">
+    <value>Freight + Quantity</value>
+  </data>
+  <data name="WebDataGrid_ColumnCalculationFixing_Description" xml:space="preserve">
+    <value>This sample demonstrates how to setup a frozen column look using the fixed column feature of the WebDataGrid.  A column has been fixed to the right side of the WebDataGrid and a custom calculation is applied to the column.</value>
+  </data>
+  <data name="WebDataGrid_ColumnCalculationFixing_Title" xml:space="preserve">
+    <value>WebDataGrid - Fixed column calculation</value>
+  </data>
+  <data name="WebDataGrid_CustomClientEvents_ClientMessageKeyUp" xml:space="preserve">
+    <value>Key Up Event</value>
+  </data>
+  <data name="WebDataGrid_CustomClientEvents_ClientMessageMouseDown" xml:space="preserve">
+    <value>Mouse Down Event</value>
+  </data>
+  <data name="WebDataGrid_CustomClientEvents_Description" xml:space="preserve">
+    <value>This sample demonstrates how you can use the new click, keypress event on the WebDataGrid to grab the element and its information.</value>
+  </data>
+  <data name="WebDataGrid_CustomClientEvents_EventsHeaderTitle" xml:space="preserve">
+    <value>Custom Client Side Grid Events</value>
+  </data>
+  <data name="WebDataGrid_CustomClientEvents_Title" xml:space="preserve">
+    <value>WebDataGrid - Custom Client Events</value>
+  </data>
+  <data name="WebDataGridWithContextMenu_DeleteMessage" xml:space="preserve">
+    <value>Are you sure, you want do delete {0} record?</value>
+  </data>
+  <data name="WebDataGridWithContextMenu_RowInEditMode" xml:space="preserve">
+    <value>Exit Edit mode for Row with ID ({0})</value>
+  </data>
+  <data name="WebDataGridWithContextMenu_RowNotInEditMode" xml:space="preserve">
+    <value>Edit Row with ID ({0})</value>
+  </data>
+  <data name="WebDataGridWithContextMenu_RowSelected" xml:space="preserve">
+    <value>Select Row with ID ({0})</value>
+  </data>
+  <data name="WebDataGridWithContextMenu_RowUnselected" xml:space="preserve">
+    <value>Unselect Row with ID ({0})</value>
+  </data>
+  <data name="ColumnHiding_Desc" xml:space="preserve">
+    <value>This sample shows how to hide specific columns in the WebDataGrid. The city and country columns have been hidden.</value>
+  </data>
+  <data name="ColumnHiding_Desc_Client" xml:space="preserve">
+    <value>This sample shows how to hide specific columns in the WebDataGrid using the CSOM. Check or Uncheck the checkboxes below to show/hide a column.</value>
+  </data>
+  <data name="ColumnHiding_Title" xml:space="preserve">
+    <value>Column Hiding</value>
+  </data>
+  <data name="ColumnHiding_Title_Client" xml:space="preserve">
+    <value>Column Hiding - Client-side</value>
+  </data>
+  <data name="ColumnHiding_Title_Sub_Client" xml:space="preserve">
+    <value>Hide a Column(s)</value>
+  </data>
+  <data name="ColumnMoving_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="WebDataGrid_CustomClientEvents_ActiveCellText" xml:space="preserve">
+    <value>Active Cell Text</value>
+  </data>
+  <data name="Columns_ColumnFixingClient_AlignCompanyLabel" xml:space="preserve">
+    <value>Align Company Column to:</value>
+  </data>
+  <data name="Columns_ColumnFixingClient_FixCompanyLabel" xml:space="preserve">
+    <value>Fix/unfix Company column:</value>
+  </data>
+  <data name="ColumnHeaderShippedDate" xml:space="preserve">
+    <value>Shipped Date</value>
+  </data>
+  <data name="WebDataGrid_SwitchingDataSourcesontheFly_Description" xml:space="preserve">
+    <value>Select a data source from the drop down to switch data sources.</value>
+  </data>
+  <data name="WebDataGrid_SwitchingDataSourcesontheFly_Title" xml:space="preserve">
+    <value>WebDataGrid - Switching Data Sources on the Fly</value>
+  </data>
+  <data name="DataSourceDomain" xml:space="preserve">
+    <value>DomainDataSource</value>
+  </data>
+  <data name="DelarativeDataBinding_AccessDataSourceDescription" xml:space="preserve">
+    <value>The WebDataGrid is a powerful control that supports a variety of different data sources. This sample shows how to bind the grid to AccessDataSource control.</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="DelarativeDataBinding_AccessDataSourceTitle" xml:space="preserve">
+    <value>Declarative Data Binding to AccessDataSource</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="DelarativeDataBinding_DomainDataSourceDescription" xml:space="preserve">
+    <value>The WebDataGrid is a powerful control that supports a variety of different data sources. This sample shows how to bind the grid to DomainDataSource control.</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="DelarativeDataBinding_DomainDataSourceTitle" xml:space="preserve">
+    <value>Declarative Data Binding to DomainDataSource</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="DelarativeDataBinding_LinqDataSourceDescription" xml:space="preserve">
+    <value>The WebDataGrid is a powerful control that supports a variety of different data sources. This sample shows how to bind the grid to LinqDataSource control.</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="DelarativeDataBinding_LinqDataSourceTitle" xml:space="preserve">
+    <value>Declarative Data Binding to LinqDataSource</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="DelarativeDataBinding_SqlDataSourceDescription" xml:space="preserve">
+    <value>The WebDataGrid is a powerful control that supports a variety of different data sources. This sample shows how to bind the grid to SqlDataSource control.</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="DelarativeDataBinding_SqlDataSourceTitle" xml:space="preserve">
+    <value>Declarative Data Binding to SqlDataSource</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="ProgramaticDataBinding_DataTableDescription" xml:space="preserve">
+    <value>The WebDataGrid is a powerful control that supports a variety of different data sources. This sample shows how to bind the grid to a DataTable.</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="ProgramaticDataBinding_DataTableTitle" xml:space="preserve">
+    <value>Simple Data Binding to a DataTable</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="ProgramaticDataBinding_IBindingListDescription" xml:space="preserve">
+    <value>The WebDataGrid is a powerful control that supports a variety of different data sources. This sample shows how to bind the grid to a IBindingList.</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="ProgramaticDataBinding_IBindingListTitle" xml:space="preserve">
+    <value>Simple Data Binding to a BindingList</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="ProgramaticDataBinding_IEnumerableDescription" xml:space="preserve">
+    <value>The WebDataGrid is a powerful control that supports a variety of different data sources. This sample shows how to bind the grid to a IEnumerable Collection. The grid's BoundDataFields are created from code-behind.</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="ProgramaticDataBinding_IEnumerableTitle" xml:space="preserve">
+    <value>Simple Data Binding to an IEnumerable</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birth Date</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="EmployeeID" xml:space="preserve">
+    <value>EmployeeID</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="ProductID" xml:space="preserve">
+    <value>Product ID</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="ProductName" xml:space="preserve">
+    <value>Product Name</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="QuantityPerUnit" xml:space="preserve">
+    <value>Quantity Per Unit</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="ReorderLevel" xml:space="preserve">
+    <value>Reorder Level</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Title</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="UnitPrice" xml:space="preserve">
+    <value>Unit Price</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="UnitsInStock" xml:space="preserve">
+    <value>Units In Stock</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="UnitsOnOrder" xml:space="preserve">
+    <value>Units On Order</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="WebDataGridExcelExporter_Description" xml:space="preserve">
+    <value>Exporting data to Microsoft Excel has never been easier! The power of WebDataGrid is extended by adding this great feature. You can either export only visible (grid loaded) data, or choose to export all data in data source. Everything with a single click and many method overloads. Check out the source code for details</value>
+    <comment>to translate</comment>
+  </data>
+  <data name="WebDataGridExcelExporter_Title" xml:space="preserve">
+    <value>Exporting data to Excel(tm) using Excel Exporter for WebDataGrid</value>
+    <comment>to translate</comment>
+  </data>
+</root>

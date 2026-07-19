@@ -1,0 +1,195 @@
+.igwv_TrendyControl
+{
+	border: solid 1px #006F4A;
+}
+
+
+.igwv_TrendyCaptionHeader
+{
+	background-color:#0f9a48;
+	background-repeat:repeat-x;
+	background-image: url(images/header.gif);
+	font-weight:bold;
+	font-size:8pt;
+	border-width: 0;
+	line-height: 16pt;
+	color:#FFFFFF;
+	text-align:center;
+}
+
+
+.igwv_TrendyDayHeader
+{
+	background-color: #ABDCBF;
+	background-repeat: repeat-x;
+	background-image: url(images/header_hover.gif);
+	border-width: 0px;
+	border-top: solid 1px #006F4A;
+	border-bottom: solid 1px #006F4A;
+	font-size: 8pt;
+	font-weight: bold;
+	color: #006F4A;
+	vertical-align: middle;
+	text-align: center;
+}
+
+
+.igwv_TrendyDay
+{
+	background-color: #FFFFFF;
+	overflow: hidden;
+	cursor:hand;
+}
+
+
+.igwv_TrendyAppointment
+{
+	background-color:White;
+	font-size:8pt;
+	border:solid 1px #999999;
+	overflow: hidden;
+	padding: 3px;
+	margin: 1px;
+	cursor: pointer;
+}
+
+.igwv_TrendyFadedAppointment
+{
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+
+.igwv_TrendyAllDayEvent
+{
+	background-color: #F5F5F5;
+	font-size:8pt;
+	border: dotted 1px #999999;
+	padding:3px;
+	margin: 1px;
+	white-space: nowrap;
+	text-align:center;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+
+.igwv_TrendyNavigationButton
+{
+	background-color:Transparent;
+	border-width:0px;
+	width: 20px;
+	height: 20px;
+	cursor:hand;
+	vertical-align:middle;
+}
+
+
+.igwv_TrendyDayArea
+{
+	border-width: 0;
+	border-left:solid 1px #006F4A;
+	border-right:solid 1px #006F4A;
+}
+
+
+.igwv_TrendyTodayHeader
+{
+	background-color:#009DFF;
+	background-repeat:repeat-x;
+	background-position: top;
+	background-image: url(images/igg_Selected.gif);
+	font-weight:bold;
+	color:#FFFFFF;
+}
+
+
+.igwv_TrendyToday
+{
+}
+
+
+.igwv_TrendySelectedAppointment
+{
+	background-color:#66BA3B;
+	color: #FFFFFF;
+	font-size:8pt;
+	border: dotted 1px #006F4A;
+	overflow: hidden;
+	padding: 3px;
+	margin: 1px;
+	cursor: pointer;
+	text-align: center;
+}
+
+
+.igwv_TrendyActiveDayHeader
+{
+	background-color: #0f9a48;
+	background-repeat:repeat-x ;
+	background-image: url(images/header.gif);
+	font-weight:bold;
+	color:White;
+}
+
+
+.igwv_TrendyActiveDay
+{
+	background-color: #FFFFFF;
+	background-repeat: repeat-x;
+	background-position:bottom ;
+	background-image: url(images/footer.gif);
+}
+
+
+
+.igwv_TrendyResourceButton
+{
+	background-color:#ffffff;
+	background-repeat:repeat-x;
+	background-position: bottom;
+	background-image: url(images/igmc_weekbg.gif);
+	padding: 3px;
+	color: #333333;
+	border-width: 0;
+	border-right: solid 1px #999999;
+	border-bottom: solid 1px #999999;
+	font-size: 8pt;
+}
+
+.igwv_TrendyResourceButton:focus, .igwv_TrendyResourceButtonActive
+{
+	filter:alpha(opacity=100);
+	-moz-opacity:1.0;
+	-khtml-opacity: 1.0;
+	opacity: 1.0;
+}
+
+.igwv_TrendyResourceButton:hover
+{
+	filter:alpha(opacity=100);
+	-moz-opacity:1.0;
+	-khtml-opacity: 1.0;
+	opacity: 1.0;
+}
+
+.igwv_TrendyMultiDayEventArrowLeft
+{
+      background-image: url(images/igws_arrowLeft.gif);
+      background-repeat: no-repeat;
+      background-position: center center;
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+}
+
+.igwv_TrendyMultiDayEventArrowRight
+{
+      background-image: url(images/igws_arrowRight.gif);
+      background-repeat: no-repeat;
+      background-position: center center;
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+}

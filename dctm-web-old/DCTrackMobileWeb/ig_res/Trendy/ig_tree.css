@@ -1,0 +1,65 @@
+.igtr_TrendyControl
+{
+	border-width:0px;
+	color:Black;
+}
+
+
+.igtr_TrendyIsland
+{
+}
+
+
+.igtr_TrendyNode
+{
+	color:DimGray;
+}
+
+
+.igtr_TrendyParent
+{
+}
+
+
+.igtr_TrendyLeaf
+{
+	margin-top:0px;
+	margin-bottom:0px;
+	color:DimGray;
+}
+
+
+.igtr_TrendyEdit
+{
+}
+
+
+.igtr_TrendyRoot
+{
+	font-weight:bold;
+	color:#006F4A;
+}
+
+
+.igtr_TrendyHover
+{
+	cursor:hand;
+	color:#4C7B04;
+	text-decoration:underline;
+}
+
+
+.igtr_TrendySelected
+{
+	font-weight:bold;
+	color:#4C7B04;
+}
+
+
+.igtr_TrendyDisabled
+{
+	color:#E1E1E1;
+	text-decoration:line-through;
+}
+
+

@@ -1,0 +1,209 @@
+.igmc_TrendyControl
+{
+	background-color: #eee;
+	border:1px solid #CCCCCC;
+	width: 225px;
+	height: 200px;
+	padding: 0px;
+	margin: 0px;
+	font-family: Segoe UI, Verdana, Arial, Georgia, Sans-Serif;
+}
+
+.igmc_TrendyDOW
+{
+	background-color: #f1f1f1;
+	background-repeat:repeat-x;
+	background-position:top;
+	background-image: url(images/igmc_dowbg.gif);
+	font-size:0.8em;
+	border-width:0px;
+	border-bottom:solid 1px #CCCCCC;
+	text-align:center;
+	font-weight: bold;
+	padding: 0px;
+	height: 35px;
+}
+
+.igmc_TrendyNextPrev
+{
+	margin: 0px;
+	padding: 0px;
+	font-size:0.8em;
+	color: #FFFFFF;
+	padding: 0px 3px;
+}
+
+.igmc_TrendyHoverNextPrev
+{
+	cursor: pointer;
+	color: #000;
+}
+
+.igmc_TrendyPressedNextPrev
+{
+}
+
+.igmc_TrendyFooter
+{
+	background-color: #F1F1F1;
+	background-image: url(images/igmc_footerbg.gif);
+	background-repeat:repeat-x;
+	border-top: 1px solid #CCCCCC;
+	font-size:0.8em;
+	text-align:center;
+	height: 35px;
+}
+
+.igmc_TrendyHoverFooter
+{
+	background-color: #FFFFFF;
+	background-image: url(images/igmc_footerbghover.gif);
+	background-repeat:repeat-x;
+	cursor: pointer;
+	color: #0099FF;
+}
+
+.igmc_TrendyPressedFooter
+{
+	background-color: #FFFFFF;
+	background-image: url(images/igmc_footerbgpressed.gif);
+	background-repeat:repeat-x;
+}
+
+.igmc_TrendyHeader
+{
+	background-color: #24a244;
+	background-repeat:repeat-x;
+	background-position:top;
+	background-image: url(images/igmc_headerbg.png);
+	border-bottom: 1px solid #6691B8;
+	height: 50px;
+}
+
+.igmc_TrendyMonthYear
+{
+	font-size:1em;
+	font-weight:bold;
+	padding: 0px 2px;
+	color: #FFFFFF;
+}
+
+.igmc_TrendyPressedMonthYear
+{
+	color: #000000;
+}
+
+.igmc_TrendyHoverMonthYear
+{
+	cursor: pointer;
+	color: #000000;
+	
+}
+
+.igmc_TrendyDay
+{
+	background-color:#FFFFFF;
+	font-size:0.9em;
+	text-align:center;
+	border: 1px solid #FFFFFF;
+	font-weight: bold;
+}
+
+.igmc_TrendyDay.igmc_TrendyOtherMonthDay
+{
+	background-image:none;
+	color: #a4a4a4;
+	font-size:0.9em;
+	font-weight:normal;
+}
+
+.igmc_TrendyWeekNumber
+{
+	border: 1px solid #EEEEEE;
+	background-color: #EEEEEE;
+	font-weight: bold;
+}
+
+.igmc_TrendyWeekendDay
+{
+	background-color:#f9f9f9;
+	border: 1px solid #f9f9f9;
+}
+
+.igmc_TrendyOtherMonthDay
+{
+	color:#AAAAAA;
+	background-image: none;
+}
+
+.igmc_TrendyTodayDay, .igmc_TrendyTodayDay.igmc_TrendySelectedDay
+{
+	background-color: #33CCFF;
+	border: 1px solid #008cbb;
+	color: #FFFFFF;
+}
+
+.igmc_TrendySelectedDay
+{
+	background-color: #e9f4d5;
+	font-weight:bold;
+	color: #696969;
+}
+
+.igmc_TrendyFocusDay, .igmc_TrendyOtherMonthDay.igmc_TrendyFocusDay
+{
+	background-color: #91ca34;
+	color:#FFFFFF;
+	font-weight:bold;
+	border: 1px solid #74a12a;
+}
+
+.igmc_TrendyHoverDay, .igmc_TrendyTodayDay.igmc_TrendyHoverDay, .igmc_TrendyOtherMonthDay.igmc_TrendyHoverDay
+{
+	background-color: #0099FF;
+	background-image: url(images/igmc_dayselected.gif);
+	background-repeat: repeat-x;
+	border: 1px solid #0099ff;
+	color:#FFFFFF;
+	font-weight: bold;
+}
+
+.igmc_TrendyDisabledDay
+{
+	color:#FFFFFF;
+}
+
+/* CSS classes for Month and Year selection Popup in header */
+.igmc_TrendyList
+{
+	background-color: #fff;
+	border:1px solid #bbb;
+}
+
+.igmc_TrendyItem
+{
+	background-color:#fff;
+	border:1px solid #fff;
+	font-size:1em;
+	text-align: center;
+}
+
+.igmc_TrendySelectedItem
+{
+	background-color: #91ca34;
+	color:#FFFFFF;
+	border: 1px solid #74a12a;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.igmc_TrendyHoverItem
+{
+	background-color: #0099FF;
+	background-image: url(images/igmc_dayselected.gif);
+	background-repeat: repeat-x;
+	border: 1px solid #0099ff;
+	color:#FFFFFF;
+	font-weight: bold;
+	cursor: pointer;
+}

@@ -1,0 +1,944 @@
+using System;
+using System.Data; 
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+
+using iAssetTrack.DALC;
+using iAssetTrack.BAL;
+using System.Globalization;
+using iAssetTrackBAL;
+//using hp.rfid.biztalk;
+
+public partial class ViewAsset : System.Web.UI.Page
+{
+
+    private const string TAB_KEY_SUMMARY = "Summary";
+    // (Redundant)private const string TAB_KEY_AUTHORIZATION = "Authorization";
+    private const string TAB_KEY_ASSOCIATION = "Association";
+    private const string TAB_KEY_HISTORY = "History";
+    private const string TAB_KEY_AUDIT = "Audit";
+    private DataTable _dtRights;
+
+    private const string VIEWSTATE_AUTHORIZATION = "Authorization";
+    private const string VIEWSTATE_ASSOCIATION = "Association";
+    private const string VIEWSTATE_DOCUMENTID = "AssetID";
+    private const string VIEWSTATE_HISTORY = "History";
+    private const string VIEWSTATE_AUDIT = "Audit";
+
+    private const string ISPARENT_IMAGE = "infragistics/images/Outlook2003/folders.gif";
+    private const string ISCHILD_IMAGE = "infragistics/images/Outlook2003/folder.gif";
+
+
+    private bool IsAuthorizationTabInitialized
+    {
+        get { return (ViewState[VIEWSTATE_AUTHORIZATION] != null ? Convert.ToBoolean(ViewState[VIEWSTATE_AUTHORIZATION]) : false); }
+        set { ViewState[VIEWSTATE_AUTHORIZATION] = value; }
+    }
+
+    private bool IsAssociationTabInitialized
+    {
+        get { return (ViewState[VIEWSTATE_ASSOCIATION] != null ? Convert.ToBoolean(ViewState[VIEWSTATE_ASSOCIATION]) : false); }
+        set { ViewState[VIEWSTATE_ASSOCIATION] = value; }
+    }
+
+    private bool IsHistoryTabInitialized
+    {
+        get { return (ViewState[VIEWSTATE_HISTORY] != null ? Convert.ToBoolean(ViewState[VIEWSTATE_HISTORY]) : false); }
+        set { ViewState[VIEWSTATE_HISTORY] = value; }
+    }
+
+    private bool IsAuditTabInitialized
+    {
+        get { return (ViewState[VIEWSTATE_AUDIT] != null ? Convert.ToBoolean(ViewState[VIEWSTATE_AUDIT]) : false); }
+        set { ViewState[VIEWSTATE_AUDIT] = value; }
+    }
+
+    private int AssetID
+    {
+        get { return (Session["AssetID"] != null ? Convert.ToInt32(Session["AssetID"]) : 0); }
+        set { Session["AssetID"] = value; }
+    }
+
+    //Order the First Column in Sequence for maximum efficiency
+    private iAssetTrack.BAL.AssetCreationBAL objDocument;
+    private string prevPage = "AssetSearch.aspx";
+
+    private const string USER_IMAGE_FILE = "~/images/user.gif";
+
+    private String[,] saModuleRightsControlList = new String[3, 3]
+    {
+        {"Create", "ibCreateAsset", "Visible,Enabled"},
+        {"Authorize", "uwlGroupUsers", "Visible,Enabled"},
+        {"Authorize", "uwlSelectedUsers", "Visible,Enabled"}
+    };
+
+    protected void ibReset_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+
+        //Response.Redirect("AssetSearch.aspx");
+        //Response.Redirect(prevPage);
+
+
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+        _dtRights = (DataTable)(Session["Rights"]);
+
+        if (_dtRights == null)
+        {
+            Session["RedirectUrl"] = "ViewAsset.aspx";
+            Response.Redirect("Login.aspx");
+        }
+
+        Session["PageHeader"] = "Asset View";
+        int intAssetID = 0;
+        if (Request.QueryString.Get("AssetID") != null)
+        {
+            intAssetID = Convert.ToInt32(Request.QueryString.Get("AssetID").ToString());
+            Session["AssetID"] = Request.QueryString.Get("AssetID");
+            this.hdnAssetID.Value = Request.QueryString.Get("AssetID");
+        }
+
+        if (Session["AssetID"] != null)
+        {
+            intAssetID = Convert.ToInt32(Session["AssetID"].ToString());
+            this.hdnAssetID.Value = Request.QueryString.Get("AssetID");
+        }
+
+        if (Request.QueryString.Get("Caller") != null)
+        {
+            prevPage = Request.QueryString.Get("Caller").ToString();
+        }
+
+        //Session["PageHeader"] = SiteMap.CurrentNode.Description;
+        Session["PageUser"] = System.Configuration.ConfigurationManager.AppSettings["LoginUser"];
+        Session["PageTime"] = System.Configuration.ConfigurationManager.AppSettings["LoginTime"];
+
+        if (intAssetID != 0)
+        {
+            FillAssetDetails();
+        }
+
+        if (bool.Parse(Session["TenantUser"].ToString()))
+        {
+            ArrayList assignedAssets = new ArrayList();
+            UserBAL objUser = new UserBAL();
+            objUser.UserID = Convert.ToInt32(Session["UserID"]);
+            DataSet dsTenant = objUser.retrieveTenantDetails();
+            if (dsTenant.Tables.Count > 0 && dsTenant.Tables[0].Rows.Count > 0)
+            {
+                TenantBAL objTenant = new TenantBAL();
+                objTenant.TenantId = Convert.ToInt32(dsTenant.Tables[0].Rows[0][DBFields.DBFIELD_TENANT_ID].ToString());
+                DataSet dsTA = objTenant.retrieveAssetAssignmentList();
+                if (dsTA.Tables.Count > 0 && dsTA.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow drA in dsTA.Tables[0].Rows)
+                    {
+                        if (!assignedAssets.Contains((drA[DBFields.DBFIELD_ASSETID].ToString())))
+                            assignedAssets.Add(drA[DBFields.DBFIELD_ASSETID].ToString());
+                    }
+                }
+                if (assignedAssets.Count > 0 && assignedAssets.Contains(Session["AssetID"].ToString()))
+                {
+                    //do nothing
+                }
+                else
+                {
+                    Response.Redirect("~/LogoutMe.aspx");
+                }
+
+            }
+
+        }
+
+        if (!Page.IsPostBack)
+        {
+            //Added by kjb on 09 Aug 2011 -- now View page opens in a new window, on click of Cancel it will close the page.
+            ibReset.Attributes.Add("onClick", "javascript:window.close(); return false;");
+            ibReset2.Attributes.Add("onClick", "javascript:window.close(); return false;");
+            //ibReset.Attributes.Add("onClick", "javascript:history.back(); return false;");
+            //PageControlAccess.CheckPageControlAccess(this, saModuleRightsControlList);
+        }
+
+
+
+    }
+
+    //protected void Page_LoadComplete(object sender, EventArgs e)
+    //{
+    //    //CheckPageControlAccess();
+    //}
+
+    private void ShowHideButtons(string Type, bool OnOff)
+    {
+        switch (Type)
+        {
+            case "Restrict":
+                ibBarr.Visible = OnOff;
+                ibBarr.Enabled = OnOff;
+                ibBarr2.Visible = OnOff;
+                ibBarr2.Enabled = OnOff;
+                break;
+            case "PermRestrict":
+                ibPermRestrict.Visible = OnOff;
+                ibPermRestrict.Enabled = OnOff;
+                ibPermRestrict2.Visible = OnOff;
+                ibPermRestrict2.Enabled = OnOff;
+                break;
+            case "Decomm":
+                ibMuster.Text = "Decommission";
+                ibMuster2.Text = "Decommission";
+                ibMuster.ToolTip = "Decommission Asset";
+                ibMuster2.ToolTip = "Decommission Asset";
+                ibMuster.Visible = OnOff;
+                ibMuster.Enabled = OnOff;
+                ibMuster2.Visible = OnOff;
+                ibMuster2.Enabled = OnOff;
+                break;
+            case "Recomm":
+                ibMuster.Text = "Recommission";
+                ibMuster2.Text = "Recommission";
+                ibMuster.ToolTip = "Recommission Asset";
+                ibMuster2.ToolTip = "Recommission Asset";
+                ibMuster.Visible = OnOff;
+                ibMuster.Enabled = OnOff;
+                ibMuster2.Visible = OnOff;
+                ibMuster2.Enabled = OnOff;
+                break;
+            case "WriteOff":
+                ibWriteOff.Visible = OnOff;
+                ibWriteOff.Enabled = OnOff;
+                ibWriteOff2.Visible = OnOff;
+                ibWriteOff2.Enabled = OnOff;
+                break;
+            case "RemoveRestrict":
+                ibUnBarr.Visible = OnOff;
+                ibUnBarr.Enabled = OnOff;
+                ibUnBarr2.Visible = OnOff;
+                ibUnBarr2.Enabled = OnOff;
+                break;
+            case "RemovePermRestrict":
+                ibDePermRestrict.Enabled = OnOff;
+                ibDePermRestrict.Visible = OnOff;
+                ibDePermRestrict2.Enabled = OnOff;
+                ibDePermRestrict2.Visible = OnOff;
+                break;
+            case "Edit":
+                ibEdit.Enabled = OnOff;
+                ibEdit.Visible = OnOff;
+                ibEdit2.Enabled = OnOff;
+                ibEdit2.Visible = OnOff;
+                break;
+            case "Reset":
+                ibReset.Enabled = OnOff;
+                ibReset.Visible = OnOff;
+                ibReset2.Enabled = OnOff;
+                ibReset2.Visible = OnOff;
+                break;
+
+        }
+    }
+
+    private int GetAdminUserID()
+    {
+        int userID = 0;
+        UserBAL obUser = new UserBAL();
+        obUser.LoginName = "Admin";
+        DataSet dsUser = obUser.retrieveUserByUserName();
+        if (dsUser != null && dsUser.Tables[0].Rows.Count > 1)
+        {
+            userID = Convert.ToInt32(dsUser.Tables[0].Rows[0].ToString());
+        }
+
+        return userID;
+    }
+
+    private void FillAssetDetails()
+    {
+        int intAssetID = 0;
+        int intParentAssetID = 0;
+
+        if (Session["AssetID"] != null)
+            intAssetID = Convert.ToInt32(Session["AssetID"].ToString());
+        this.hdnAssetID.Value = Convert.ToString(intAssetID);
+        objDocument = new iAssetTrack.BAL.AssetCreationBAL();
+        objDocument.AssetID = intAssetID;
+        DataTable dt = objDocument.GetAssetViewDetails();
+        DataRow dr = null;
+        if (dt != null)
+            if (dt.Rows.Count > 0)
+                dr = dt.Rows[0];
+
+        if (dr != null)
+        {
+            ShowHideButtons("Edit", true);
+            ShowHideButtons("Reset", true);
+            bool isRestricted = false;
+            if (Convert.IsDBNull(dr["BarredStartDate"]))
+            {
+                ShowHideButtons("Restrict", true);
+                ShowHideButtons("RemoveRestrict", false);
+            }
+            else if (DateTime.Compare(System.DateTime.Now, Convert.ToDateTime(dr["BarredEndDate"])) > 0)
+            {
+                // first remove the barred, since barred period is over.
+
+                AssetUnBarringBAL obAUB = new AssetUnBarringBAL();
+                obAUB.AssetID = intAssetID;
+                obAUB.UpdatedBy = GetAdminUserID();
+                obAUB.UnBarredReason = "UnBarred by system after barred period over.";
+                obAUB.Persist(DALCOperation.Update);
+
+                ShowHideButtons("Restrict", true);
+                ShowHideButtons("RemoveRestrict", false);
+
+                this.txtBarredFrom.Text = "";
+                this.txtBarredTo.Text = "";
+            }
+            else
+            {
+                ShowHideButtons("RemoveRestrict", true);
+                ShowHideButtons("Restrict", false);
+                isRestricted = true;
+            }
+            //PermRestrict
+            if (isRestricted)
+            {
+                // if asset is restricted, than don't show perm restrict buttons
+                ShowHideButtons("RemovePermRestrict", false);
+                ShowHideButtons("PermRestrict", false);
+            }
+            else
+            {
+                if (Convert.ToBoolean(dr["IsPermRestrict"]))
+                {
+                    ShowHideButtons("RemovePermRestrict", true);
+                    ShowHideButtons("PermRestrict", false);
+                    //if asset is not restricted, but perm restricted than
+                    // don't show restrict buttons
+                    ShowHideButtons("Restrict", false);
+                    ShowHideButtons("RemoveRestrict", false);
+                }
+                else
+                {
+                    ShowHideButtons("RemovePermRestrict", false);
+                    ShowHideButtons("PermRestrict", true);
+                }
+            }
+            //Decomm.
+            if (Convert.ToBoolean(dr["IsMustered"]))
+            {
+                ShowHideButtons("Decomm", false);
+                ShowHideButtons("Recomm", true);
+                ibEdit2.Enabled = false;
+                ibEdit.Enabled = false;
+            }
+            else
+            {
+                ShowHideButtons("Decomm", true);
+            }
+            //Write-Off
+            if (Convert.ToBoolean(dr["IsWriteOff"]))
+            {
+                ShowHideButtons("WriteOff", false);
+                ShowHideButtons("Restrict", false);
+                ShowHideButtons("RemoveRestrict", false);
+                ShowHideButtons("PermRestrict", false);
+                ShowHideButtons("RemovePermRestrict", false);
+                ShowHideButtons("Decomm", false);
+                ShowHideButtons("Recomm", false);
+                ibEdit2.Enabled = false;
+                ibEdit.Enabled = false;
+            }
+            else
+            {
+                ShowHideButtons("WriteOff", true);
+            }
+
+            EnableRights();
+
+            txtBusinessUnit.Text = dr["BusinessUnit"].ToString();
+            txtDepartment.Text = dr["Site"].ToString();
+            txtLocation.Text = dr["LastLocation"].ToString();
+            txtRefNo.Text = dr["RefNumber"].ToString();
+            // txtAssetName.Text = dr["AssetName"].ToString();//commented on 06May2013
+            txtAssetName.Text = dr["HostName"].ToString();// Added on 06May2013
+            txtAssetNames.Text = dr["AssetName"].ToString();// Added on 06May2013
+            txtAssetType.Text = dr["AssetGroup"].ToString();
+            //txtCreatedBy.Text = dr["CreatedBy"].ToString();---commented by vidya
+            txtParentAsset.Text = dr["Parent"].ToString();//Added on 17Apr2013
+            //txtCreateDate.Text = string.Format("{0:dd/MM/yyyy}", dr["CreatedDate"].ToString());
+            txtCreateDate.Text = dr["CreatedDate"].ToString();
+            txtStartPosition.Text = dr["StartPos"].ToString();
+            txtOrientation.Text = dr["Orientation"].ToString();
+            txtRU.Text = dr["NoOfRUs"].ToString();
+            txtRackOrStand.Text = dr["RackOrStand"].ToString();
+            
+
+            if (dr["ExpiryDate"] != DBNull.Value)
+            {
+
+
+                //txtMusteringDate.Text = string.Format("{0:dd/MM/yyyy}",dr["ExpiryDate"].ToString());
+                txtMusteringDate.Text = dr["ExpiryDate"].ToString();
+
+                if (dr["MusterReason"] != null)
+                {
+                    txtMusterReason.Text = dr["MusterReason"].ToString();
+                }
+            }
+            else
+            {
+                //lblExpiryDate.Visible = false;
+                //txtMusteringDate.Visible = false;
+                //txtMusterReason.Visible = false;
+            }
+
+            String CurrentOwner = "";
+
+            CurrentOwner = dr["CurrentOwner"].ToString();
+            this.txtCurrentOwner.Text = CurrentOwner;
+            txtCreatedBy.Text = CurrentOwner;
+
+
+            if (dr["IssuedByUserName"] != DBNull.Value)
+            {
+                this.txtCheckOutBy.Text = dr["IssuedByUserName"].ToString();
+                this.txtIssuedDate.Text = dr["IssuedDate"].ToString();
+            }
+
+            if (dr["IssuedToUserName"] != DBNull.Value)
+            {
+                //this.txtIssuedTo.Text = dr["IssuedToUserName"].ToString();
+                this.txtCheckOutBy.Text = dr["IssuedToUserName"].ToString();
+                this.txtIssuedDate.Text = dr["IssuedDate"].ToString();
+            }
+
+
+            if (dr["ReceivedByUserName"] != DBNull.Value)
+            {
+                this.txtReceivedBy.Text = dr["ReceivedByUserName"].ToString();
+                this.txtReceivedDate.Text = dr["ReceivedDate"].ToString();
+            }
+
+            if (dr["BarredStartDate"] == DBNull.Value || dr["BarredEndDate"] == DBNull.Value)
+            {
+                //this.txtBarredFrom.Visible = false;
+                //this.txtBarredTo.Visible = false;
+                this.txtBarredFrom.Text = "";
+                this.txtBarredTo.Text = "";
+
+            }
+            else
+            {
+
+                this.txtBarredFrom.Text = Convert.ToDateTime(dr["BarredStartDate"].ToString()).ToString("dd/MM/yyyy HH:mm");
+                this.txtBarredTo.Text = Convert.ToDateTime(dr["BarredEndDate"].ToString()).ToString("dd/MM/yyyy HH:mm");
+                this.txtBarredFrom.Visible = true;
+                this.txtBarredTo.Visible = true;
+            }
+
+            this.txtIsRestricted.Text = (Convert.ToBoolean(dr["IsPermRestrict"].ToString()) ? "Yes" : "No");
+
+            if (dr["ParentAssetID"] != DBNull.Value)
+            {
+                intParentAssetID = Convert.ToInt32(Session["AssetID"].ToString());
+                //SupercedeRightsForSubDocuments(intParentAssetID);
+            }
+
+
+            if (dr["CurrentRFIDCardNumber"] != DBNull.Value)
+            {
+                this.txtRFIDTag.Text = dr["CurrentRFIDCardNumber"].ToString();
+                this.txtRFIDAssigned.Text = dr["RFIDAssignDate"].ToString();
+            }
+            else
+            {
+                this.txtRFIDTag.Text = "Un-Assigned";
+                this.txtRFIDAssigned.Visible = false;
+            }
+
+            bool bIsParent = (dr["IsParent"] == DBNull.Value ? false : Convert.ToBoolean(dr["IsParent"]));
+            bool bIsChild = (dr["ParentAssetID"] != DBNull.Value);
+
+            // added by kjb on 05 July 2011
+            txtAssetModel.Text = dr["ModelName"].ToString();
+            txtMfg.Text = dr["MfgName"].ToString();
+            txtOS.Text = dr["OS"].ToString();
+            txtCPU.Text = dr["CPU"].ToString();
+            txtCPUCount.Text = dr["CPUCount"].ToString();
+            txtCPUCore.Text = dr["CPUCore"].ToString();
+            // added on 06 July 2011 by kjb
+            txtTechCategory.Text = dr["TechName"].ToString();
+
+            //added byy kjb on 05 June 2012
+            if (Convert.ToBoolean(dr["IsWriteOff"].ToString()))
+            {
+                txtWriteOff.Text = "Yes";
+            }
+            else
+            {
+                txtWriteOff.Text = "No";
+            }
+        }
+
+
+        //fillAuthorizedList(intAssetID);
+        FillAssetHistory();
+        //FillAlertHistory();
+
+    }
+
+
+
+    private void EnableRights()
+    {
+        // To do Debasish
+        // Get the KeyValue column from the tblModuleRight table. If the user group has been
+        // granted access for this action, then there will be a row in the table with Keyvalue
+        // same as the controlname. Then enable or disable the control.
+        // The KeyValue column represents the control name in the screen, e.g. ibBarr. 
+
+
+
+        if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "Modify" + "'").Length == 0)
+        {
+            ibEdit.Visible = false;
+            ibEdit2.Visible = false;
+        }
+        else
+        {
+            ibEdit.Visible = true;
+            ibEdit2.Visible = true;
+        }
+
+        //if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "Cancel" + "'").Length == 0)
+        //    //ibCancelDocument.Visible = false;
+        //else
+        //    //ibCancelDocument.Visible = true;
+
+
+        if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "Bar" + "'").Length == 0)
+        {
+            ibBarr.Visible = false;
+            ibBarr2.Visible = false;
+        }
+
+        if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "UnBar" + "'").Length == 0)
+        {
+            ibUnBarr.Visible = false;
+            ibUnBarr2.Visible = false;
+        }
+
+        if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "Restrict" + "'").Length == 0)
+        {
+            ibPermRestrict.Visible = false;
+            ibPermRestrict2.Visible = false;
+        }
+
+        if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "Revoke Perm Restrict" + "'").Length == 0)
+        {
+            ibDePermRestrict.Visible = false;
+            ibDePermRestrict2.Visible = false;
+        }
+
+        if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "Decommission" + "'").Length == 0)
+        {
+            ibMuster.Visible = false;
+            ibMuster2.Visible = false;
+        }
+
+        if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "WriteOff" + "'").Length == 0)
+        {
+            ibWriteOff.Visible = false;
+            ibWriteOff2.Visible = false;
+        }
+
+        //if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "Reinstate" + "'").Length == 0)
+        //{
+        //    ibReinstate.Visible = false;
+        //    ibReinstate2.Visible = false;
+        //}
+
+
+        //if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "Assign RFID" + "'").Length == 0)
+        //{
+        //    ibAssignRFID.Visible = false;
+        //    ibAssignRFID2.Visible = false;
+        //}
+
+        //if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "De-assign RFID" + "'").Length == 0)
+        //{
+        //    ibDeassignRFID.Visible = false;
+        //    ibDeassignRFID2.Visible = false;
+        //}
+
+        //if (_dtRights.Select("Module = 'Search Asset' and Rights = '" + "Print RFID" + "'").Length == 0)
+        //   ibPrint.Visible = false;
+
+
+        // Before user's rights, check the if the document is Sub Document or not
+        // if yes, then disable the Bar Document, Unbar Document, Assign RFID, Deassign RFID, Perm Restrict, Derestrict.
+        // Basically all the rights.
+
+
+    }
+
+
+
+    protected void ibEdit_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        if (Session["AssetID"] != null)
+        {
+            Response.Redirect("CreateAssetPopup.aspx?ID=" + Session["AssetID"].ToString() + "&Mode=E");
+        }
+    }
+
+    protected void ibPrint_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+
+    }
+
+
+
+    #region Private Methods for Page Load
+
+    #endregion Private Methods for Page Load
+
+
+    #region Populate Controls
+
+
+    private void SupercedeRightsForSubDocuments(int ParentAssetID)
+    {
+        // If there is a ParentAssetID that means it's a subdocument. All the actions are disabled
+        // irrespective of user rights.
+
+        ibBarr.Visible = false;
+        ibBarr2.Visible = false;
+
+        ibUnBarr.Visible = false;
+        ibUnBarr2.Visible = false;
+
+        ibPermRestrict.Visible = false;
+        ibPermRestrict2.Visible = false;
+
+        ibDePermRestrict.Visible = false;
+        ibDePermRestrict2.Visible = false;
+
+        ibMuster.Visible = false;
+        ibMuster2.Visible = false;
+
+        ibAssignRFID.Visible = false;
+        ibAssignRFID2.Visible = false;
+
+        ibDeassignRFID.Visible = false;
+        ibDeassignRFID2.Visible = false;
+
+        ibEdit.Visible = false; // Even you cannot edit the document
+        ibEdit2.Visible = false; // Even you cannot edit the document
+
+    }
+
+    private void FillAssetHistory()
+    {
+        int intAssetID = 0;
+        if (Session["AssetID"] != null)
+        {
+            intAssetID = Convert.ToInt32(Session["AssetID"].ToString());
+        }
+
+        objDocument = new iAssetTrack.BAL.AssetCreationBAL();
+        objDocument.AssetID = intAssetID;
+        DataSet dtDocument = objDocument.GetAssetHistoryDetails(intAssetID);
+
+        if (dtDocument.Tables[0].Rows.Count > 0)
+        {
+            uwgDocumentHistory.DataSource = dtDocument.Tables[0];
+            uwgDocumentHistory.DataBind();
+            //if(uwgDocumentHistory.Columns.Count >= 5)
+            //     {
+            //        uwgDocumentHistory.Columns[0].Hidden = true;
+            //        uwgDocumentHistory.Columns[1].Width = Unit.Pixel(130);
+            //        uwgDocumentHistory.Columns[2].Width = Unit.Pixel(130);
+            //        uwgDocumentHistory.Columns[3].Width = Unit.Pixel(200);
+            //        uwgDocumentHistory.Columns[4].Width = Unit.Pixel(250);
+            //        uwgDocumentHistory.Columns[5].Width = Unit.Pixel(250);
+            //     }
+        }
+
+    }
+
+
+    #endregion Populate Controls
+
+    #region Database Retrieval and Updates
+
+
+    #endregion Database Retrieval and Updates
+
+    #region Private Methods for Authorization List
+
+    /*
+    private void InitializeAuthorizationList()
+    {
+        uwlGroupUsers.Groups.Clear();
+
+        iAssetTrack.BAL.GroupBAL groupBAL = new iAssetTrack.BAL.GroupBAL();
+        DataSet groups = groupBAL.retrieve();
+
+
+        if (groups.Tables[0].Rows.Count > 0)
+        {
+            for (int i = 0; i < groups.Tables[0].Rows.Count; i++)
+            {
+                Group uwlGroup = uwlGroupUsers.Groups.Add(groups.Tables[0].Rows[i]["Group"].ToString(), groups.Tables[0].Rows[i]["GroupId"].ToString());
+
+                groupBAL.GroupID = Int32.Parse(groups.Tables[0].Rows[i]["GroupId"].ToString());
+                DataSet users = groupBAL.retrieveUsers("LastName");
+
+                if (users.Tables[0].Rows.Count > 0)
+                {
+                    for (int j = 0; j < users.Tables[0].Rows.Count; j++)
+                    {
+                        String username = users.Tables[0].Rows[j]["LastName"].ToString() + ", " + users.Tables[0].Rows[j]["FirstName"].ToString();
+                        Item uwlItem = uwlGroup.Items.Add(username, users.Tables[0].Rows[j]["GroupMemberID"].ToString());
+                        uwlItem.Image = "~/images/user.gif";
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    private void MoveSelection(UltraWebListbar src, UltraWebListbar tgt, String SelectedItemKey)
+    {
+        if (src.Groups.Count > 0 & src.SelectedGroup >= 0)
+        {
+            Group srcGroup = src.Groups[src.SelectedGroup];
+            Item selectedSourceItem = srcGroup.Items.FromKey(SelectedItemKey);
+
+            if (selectedSourceItem != null)
+            {
+ 
+                String groupkey = srcGroup.Key;
+                String groupname = srcGroup.Text;
+
+                Group tgtGroup = tgt.Groups.FromKey(groupkey);
+
+                if (tgtGroup == null)
+                {
+                    tgtGroup = tgt.Groups.Add(groupname, groupkey);
+                }
+
+                if (tgtGroup.Items.FromKey(selectedSourceItem.Key) == null )
+                {
+                    InsertItem(tgtGroup, new Item(selectedSourceItem.Text, selectedSourceItem.Image, selectedSourceItem.Key));
+
+                    //srcGroup.Items.Remove(selectedSourceItem);
+                }
+            }
+            else
+            {
+
+                String groupkey = srcGroup.Key;
+                String groupname = srcGroup.Text;
+
+                Group tgtGroup = tgt.Groups.FromKey(groupkey);
+
+                if (tgtGroup == null)
+                {
+                    Group newGroup = copyGroup(srcGroup);
+                    InsertGroup(newGroup, tgt);
+                }
+
+                //src.Groups.Remove(srcGroup);
+            }
+
+        }
+    }
+
+
+    private void RemoveSelection(UltraWebListbar tgt, String SelectedItemKey)
+    {
+
+        if (tgt.Groups.Count > 0 & tgt.SelectedGroup >= 0)
+        {
+
+            Group srcGroup = tgt.Groups[tgt.SelectedGroup];
+            Item selectedSourceItem = srcGroup.Items.FromKey(SelectedItemKey);
+
+            if (selectedSourceItem != null)
+            {
+                srcGroup.Items.Remove(selectedSourceItem);
+                tgt.SelectedItem = null;
+                if (srcGroup.Items.Count == 0)
+                {
+                    tgt.Groups.Remove(srcGroup);
+                    tgt.SelectedGroup = 0;
+                    tgt.SelectedItem = null;
+                }
+            }
+            else
+            {
+                tgt.Groups.Remove(srcGroup);
+                tgt.SelectedGroup = 0;
+                tgt.SelectedItem = null;
+            }
+        }
+
+    }
+
+    private Group copyGroup(Group srcGrp)
+    {
+        String groupkey = srcGrp.Key;
+        String grouptext = srcGrp.Text;
+
+        Group newGroup = new Group(grouptext, groupkey);
+
+        for (int i = 0; i < srcGrp.Items.Count; i++)
+        {
+            Item newItem = new Item(srcGrp.Items[i].Text, srcGrp.Items[i].Key);
+            newItem.Image = srcGrp.Items[i].Image;
+            newGroup.Items.Add(newItem);
+
+        }
+
+        return newGroup;
+    }
+
+
+
+    private void InsertGroup(Group newGroup, UltraWebListbar uwlBar)
+    {
+        bool groupInserted = false;
+        for (int i = 0; i < uwlBar.Groups.Count; i++)
+        {
+            int res = uwlBar.Groups[i].Text.CompareTo(newGroup.Text);
+            if (res > 0)
+            {
+                uwlBar.Groups.Insert(i, newGroup);
+                groupInserted = true;
+                break;
+            }
+        }
+
+        if (!groupInserted)
+        {
+            uwlBar.Groups.Add(newGroup);
+        }
+    }
+
+
+    private void InsertItem(Group tgtGroup, Item newItem)
+    {
+        bool itemInserted = false;
+        for (int i = 0; i < tgtGroup.Items.Count; i++)
+        {
+            int res = tgtGroup.Items[i].Text.CompareTo(newItem.Text);
+            if (res > 0)
+            {
+                tgtGroup.Items.Insert(i, newItem);
+                itemInserted = true;
+                break;
+            }
+        }
+
+        if (!itemInserted)
+        {
+            tgtGroup.Items.Add(newItem);
+        }
+    }
+     */
+
+    #endregion Private Methods for Authorization List
+
+    #region Page Events
+
+
+
+    //protected void uwtCreateAsset_TabClick(object sender, Infragistics.WebUI.UltraWebTab.WebTabEvent e)
+    //{
+
+
+    //    switch (e.Tab.Key)
+    //    {
+
+    //        case TAB_KEY_HISTORY:
+
+    //            if (!this.IsHistoryTabInitialized)
+    //            {
+    //                FillAssetHistory();
+    //                // Temporarily comment out the below line to refresh history each time.
+    //                //this.IsHistoryTabInitialized = true;
+    //            }
+
+    //            break;
+
+    //        case TAB_KEY_AUDIT:
+
+    //            if (!this.IsAuditTabInitialized)
+    //            {
+    //                //FillAlertHistory();//tab removed because it contains UltraWebGrid
+
+    //                this.IsAuditTabInitialized = true;
+    //            }
+
+    //            break;
+    //    }
+
+
+
+
+
+    //    //this.uwtCreateAsset.AutoPostBack = (!this.IsAssociationTabInitialized ||
+    //    //    !this.IsAuthorizationTabInitialized ||
+    //    //    !this.IsHistoryTabInitialized ||
+    //    //    !this.IsAuditTabInitialized);
+    //    //UltraWebGrid removed by kjb on 27 Sep 2012
+
+    //}
+
+
+    /*
+    protected void ibRight_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        MoveSelection(uwlGroupUsers, uwlSelectedUsers, uwlGroupUsers_hdnSelectedItemKey.Value);
+    }
+    protected void ibLeft_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        RemoveSelection(uwlSelectedUsers, uwlSelectedUsers_hdnSelectedItemKey.Value);
+    }
+    protected void ibAllRight_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        uwlSelectedUsers.Groups.Clear();
+        uwlSelectedUsers.SelectedItem = null;
+        uwlSelectedUsers.SelectedGroup = 0;
+
+        foreach (Group group in uwlGroupUsers.Groups)
+        {
+            uwlGroupUsers.SelectedGroup = group.Index;
+            MoveSelection(uwlGroupUsers, uwlSelectedUsers, "");
+        }
+    }
+    protected void ibAllLeft_Click(object sender, Infragistics.WebUI.WebDataInput.ButtonEventArgs e)
+    {
+        uwlSelectedUsers.Groups.Clear();
+        uwlSelectedUsers.SelectedItem = null;
+        uwlSelectedUsers.SelectedGroup = 0;
+    }
+     */
+
+    #endregion Page Events
+
+
+}

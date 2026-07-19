@@ -1,0 +1,170 @@
+<%@ Page Language="C#" Theme="SkinFile" MasterPageFile="~/iAssetTrackMasterPage.master"
+    AutoEventWireup="true" CodeFile="AssetDataExcel.aspx.cs" Inherits="AssetDataExcel"
+    Title="Asset Data - Excel" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
+
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+    Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+<%@ Register Assembly="Infragistics45.WebUI.WebDataInput.v14.1, Version=14.1.20141.1015, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.WebDataInput" TagPrefix="igtxt" %>
+<%@ Register Assembly="Infragistics45.Web.v14.1, Version=14.1.20141.1015, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.GridControls" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v14.1, Version=14.1.20141.1015, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI" TagPrefix="ig" %>
+<%@ Register Assembly="Infragistics45.Web.v14.1, Version=14.1.20141.1015, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.Web.UI.NavigationControls" TagPrefix="ig" %>
+<asp:Content ID="Content_AssetDataExcel" ContentPlaceHolderID="Master_ContentPlaceHolder"
+    runat="Server">
+    <script language="javascript" type="text/javascript">
+        //<!--
+
+        // -->
+    </script>
+    <table id="Table3" border="0" cellpadding="2" style="width: 100%;">
+        <tr>
+            <td align="left" colspan="2" valign="top">
+                <div style="width: 100%;">
+                    <ig:WebExplorerBar ID="wpSearchOptions" runat="server" GroupExpandAction="HeaderClick"
+                        meta:resourcekey="wpSearchOptionsResource1" Width="100%" BorderWidth="1px">
+                        <Groups>
+                            <ig:ExplorerBarGroup Text="Search Options" Expanded="true">
+                                <Items>
+                                    <ig:ExplorerBarItem TemplateId="tmpAssetSearch">
+                                    </ig:ExplorerBarItem>
+                                </Items>
+                            </ig:ExplorerBarGroup>
+                        </Groups>
+                        <Templates>
+                            <ig:ItemTemplate TemplateID="tmpAssetSearch">
+                                <Template>
+                                    <table id="Table1" align="center" border="0" cellpadding="0" cellspacing="2" style="border-right: gray 1px solid;
+                                        border-top: gray 1px solid; border-left: gray 1px solid; border-bottom: gray 1px solid;
+                                        height: 46px;" width="100%" >
+                                        <tr style="height: 19px">
+                                            <td class="labelTD" style="height: 7px" valign="top" colspan="2">
+                                                <asp:Label ID="lblColSelector" runat="server" CssClass="FieldName" Width="500px"
+                                                    meta:resourcekey="lblColSelectorResource1"></asp:Label>
+                                            </td>
+                                        </tr>
+                                          <tr style="height: 19px">
+                                            <td class="labelTD" style="height: 7px" valign="top" colspan="2">
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                          <tr style="height: 19px">
+                                            <td class="labelTD" style="height: 7px" valign="top" colspan="2" align="left">
+                                                <asp:CheckBox ID="chkSelectAll" runat="server" CssClass="checkBoxText" Width="500px"
+                                                    meta:resourcekey="chkSelectAllResource1" OnCheckedChanged="chkSelectAll_OnCheckedChanged" AutoPostBack="true"
+                                                    ></asp:CheckBox>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ControlTD" style="height: 300px" valign="top" width="250px">
+                                                <div style="overflow-y: scroll; width: 250px; height: 250px">
+                                                    <asp:CheckBoxList ID="chkColumns" runat="server" Width="240px" Height="240px" BorderColor="Black"
+                                                        BorderStyle="Solid" BorderWidth="1px" CssClass="checkBoxText">
+                                                        <asp:ListItem Text="AssetID" Value="ASSETID"></asp:ListItem>
+                                                        <asp:ListItem Text="Serial No" Value="SERIALNO"></asp:ListItem>
+                                                        <asp:ListItem Text="Asset Type" Value="ASSETGROUP"></asp:ListItem>
+                                                        <asp:ListItem Text="Manufacturer" Value="MANUFACTURER"></asp:ListItem>
+                                                        <asp:ListItem Text="Model" Value="MODEL"></asp:ListItem>
+                                                        <asp:ListItem Text="Rack or Stand" Value="MOUNT"></asp:ListItem>
+                                                        <asp:ListItem Text="Asset Name" Value="ASSETNAME"></asp:ListItem>
+                                                        <asp:ListItem Text="Site" Value="SITE"></asp:ListItem>
+                                                        <asp:ListItem Text="City" Value="CITY"></asp:ListItem>
+                                                        <asp:ListItem Text="Country" Value="COUNTRY"></asp:ListItem>
+                                                        <asp:ListItem Text="Region" Value="REGION"></asp:ListItem>
+                                                         <asp:ListItem Text="Room" Value="ROOM"></asp:ListItem>
+                                                        <asp:ListItem Text="Row" Value="ROW"></asp:ListItem>
+                                                        <asp:ListItem Text="Rack" Value="RACK"></asp:ListItem>
+                                                        <asp:ListItem Text="Barcode/ RFID" Value="BARCODE/RFID"></asp:ListItem>
+                                                        <asp:ListItem Text="Created Date" Value="CREATEDDATE"></asp:ListItem>
+                                                        <asp:ListItem Text="Asset Creator" Value="CREATOR"></asp:ListItem>
+                                                        <asp:ListItem Text="Current Owner" Value="CURRENTOWNER"></asp:ListItem>
+                                                        <asp:ListItem Text="Operating System" Value="OSYSTEM"></asp:ListItem>
+                                                         <asp:ListItem Text="CPU" Value="CPU"></asp:ListItem>
+                                                        <asp:ListItem Text="CPU Count" Value="CCOUNT"></asp:ListItem>
+                                                        <asp:ListItem Text="CPU Core" Value="CCORE"></asp:ListItem>
+                                                        <asp:ListItem Text="Start RU" Value="STARTPOS"></asp:ListItem>
+                                                        <asp:ListItem Text="END RU" Value="NOOFUS"></asp:ListItem>
+                                                        <asp:ListItem Text="Orientation" Value="ORIENTATION"></asp:ListItem>
+                                                        <asp:ListItem Text="Host Name" Value="HOSTNAME"></asp:ListItem>
+                                                        <asp:ListItem Text="Application Name" Value="APPLICATION"></asp:ListItem>
+                                                        <asp:ListItem Text="Application Criticality" Value="APPCRITICALITY"></asp:ListItem>
+                                                        <asp:ListItem Text="Application Type" Value="APPTYPE"></asp:ListItem>
+                                                        <asp:ListItem Text="Application Division" Value="APPDIVISION"></asp:ListItem>
+                                                    </asp:CheckBoxList>
+                                                </div>
+                                            </td>
+                                            <td class="ControlTD" style="height: 7px;" valign="bottom">
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <table style="width: 26px">
+                                                    <tr>
+                                                        <td style="width: 25px;" class="ControlTD">
+                                                           <%-- <igtxt:WebImageButton ID="ibUp" runat="server" Height="27px" UseBrowserDefaults="False"
+                                                                Width="100px" SkinID="uwButton" TabIndex="4" OnClick="ibUp_Click" ImageDirectory=""
+                                                                meta:resourcekey="ibUpResource1">
+                                                            </igtxt:WebImageButton>--%>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            &nbsp;
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 25px;" class="ControlTD">
+                                                           <%-- <igtxt:WebImageButton ID="ibDown" runat="server" Height="27px" UseBrowserDefaults="False"
+                                                                CausesValidation="False" SkinID="uwButton" Width="100px" TabIndex="7" OnClick="ibDown_Click"
+                                                                ImageDirectory="" meta:resourcekey="ibDownResource1">
+                                                            </igtxt:WebImageButton>--%>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 138px; text-align: justify;">
+                                                <%--<asp:Button ID="btnShowReport" runat="server" OnClick="btnShowReport_Click" Text="Show Report" />--%>
+                                                <igtxt:WebImageButton ID="btnShowReport" runat="server" ImageDirectory="" meta:resourcekey="btnShowReportResource1"
+                                                    OnClick="btnShowReport_Click" SkinID="uwButton" TabIndex="7" UseBrowserDefaults="False"
+                                                    Width="118px">
+                                                    <RoundedCorners HeightOfBottomEdge="0" MaxHeight="23" MaxWidth="500" RenderingType="FileImages"
+                                                        WidthOfRightEdge="13" />
+                                                    <Appearance>
+                                                        <style cursor="Hand" font-names="Arial" font-size="8pt">
+                                                            
+                                                        </style>
+                                                        <ButtonStyle Cursor="Hand" Font-Names="Arial" Font-Size="8pt">
+                                                        </ButtonStyle>
+                                                    </Appearance>
+                                                </igtxt:WebImageButton>
+                                            </td>
+                                            <td colspan="5" style="text-align: justify;">
+                                                <asp:Label ID="lblErrorMessage" runat="server" CssClass="ErrValStyle" Height="16px"
+                                                    meta:resourcekey="lblErrorMessageResource1" Visible="False" Width="682px"></asp:Label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </Template>
+                            </ig:ItemTemplate>
+                        </Templates>
+                    </ig:WebExplorerBar>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" width="100%" colspan="4">
+                <asp:Panel ID="Panel1" runat="server" Width="100%" meta:resourcekey="Panel1Resource1">
+                    <%-- <asp:Panel ID="Panel1" runat="server" Width="100%">--%>
+                    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="100%" Font-Names="Verdana"
+                        Height="380px" Font-Size="8pt" ProcessingMode="Remote" ShowParameterPrompts="False"
+                        Style="text-align: center" meta:resourcekey="ReportViewer1Resource1">
+                    </rsweb:ReportViewer>
+                </asp:Panel>
+            </td>
+        </tr>
+    </table>
+</asp:Content>
